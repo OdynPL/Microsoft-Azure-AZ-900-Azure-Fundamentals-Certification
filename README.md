@@ -370,40 +370,22 @@ Skupia się na **przywróceniu pracy systemu w innym regionie**.
 
 ## 2. Azure Architecture (Architektura i hierarchia)
 **Hierarchia i scope:**
-```
 
-## 2. Azure Architecture (Architektura i hierarchia)
+### 2. Azure Architecture (Architektura i hierarchia)
 
 **Hierarchia i scope — logika porządkowania zasobów w Azure**
 
 Poniższy diagram przedstawia pełną hierarchię zarządzania w Azure — od najwyższego poziomu tożsamości (Tenant), przez struktury organizacyjne (Management Groups), aż po subskrypcje, grupy zasobów i pojedyncze zasoby.
 
-Hierarchia definiuje:
+<img src="assets/hierarchy_scope.svg">
+
+### Hierarchia definiuje:
 - **zakres (scope)**, na którym można przypisywać uprawnienia (RBAC),
 - **miejsce stosowania polityk** (Azure Policy),
 - **jak organizować zasoby** w skali całej organizacji,
 - **gdzie przebiegają granice rozliczeń i odpowiedzialności**.
 
 <br>
-
-<img src="assets/hierarchy_scope.svg">
-
-### Co oznaczają poszczególne poziomy?
-
-- **Tenant**  
-  Najwyższy poziom — reprezentuje organizację w Microsoft Entra ID (Azure AD). To tu znajdują się konta użytkowników, grupy, role i tożsamości.
-
-- **Management Group**  
-  Służy do organizowania wielu subskrypcji. Pozwala stosować polityki, standardy i RBAC *ponad* subskrypcjami.
-
-- **Subscription**  
-  Jednostka rozliczeniowa i administracyjna — definiuje limity, budżety, uprawnienia oraz zakres wdrożeń.
-
-- **Resource Group (RG)**  
-  Logiczy kontener na zasoby. Zasoby w jednej RG zwykle należą do tego samego cyklu życia lub wspólnego projektu.
-
-- **Resource**  
-  Pojedyncza usługa, np. VM, VNet, Storage Account, Database, App Service itd.
 
 ---
 
