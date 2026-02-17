@@ -391,7 +391,6 @@ Poniższy diagram przedstawia pełną hierarchię zarządzania w Azure — od na
 
 Ta struktura jest fundamentem pracy z Azure — wpływa na **uprawnienia, governance, koszty, compliance**, a nawet na sposób planowania architektury i CI/CD.
 
-```
 - **Tenant (Microsoft Entra ID)** – tożsamość organizacji
 - **Management Group** – grupowanie subskrypcji, polityki na poziomie całej organizacji
 - **Subscription** – rozliczenia, limity, granica uprawnień
