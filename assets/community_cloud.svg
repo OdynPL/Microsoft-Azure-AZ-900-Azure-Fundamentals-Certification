@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="340" height="200">
+  <ellipse cx="170" cy="70" rx="110" ry="50" fill="#fff" stroke="#0094d4" stroke-width="3"/>
+  <text x="170" y="75" font-size="20" font-family="Arial" fill="#0094d4" text-anchor="middle">Community</text>
+
+  <circle cx="100" cy="145" r="25" fill="#e0f7ff" stroke="#0094d4" stroke-width="2"/>
+  <circle cx="170" cy="145" r="25" fill="#e0f7ff" stroke="#0094d4" stroke-width="2"/>
+  <circle cx="240" cy="145" r="25" fill="#e0f7ff" stroke="#0094d4" stroke-width="2"/>
+
+  <text x="100" y="150" font-size="12" font-family="Arial" fill="#0074a6" text-anchor="middle">Org A</text>
+  <text x="170" y="150" font-size="12" font-family="Arial" fill="#0074a6" text-anchor="middle">Org B</text>
+  <text x="240" y="150" font-size="12" font-family="Arial" fill="#0074a6" text-anchor="middle">Org C</text>
+</svg>

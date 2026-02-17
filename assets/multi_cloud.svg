@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="200">
+  <ellipse cx="90" cy="90" rx="70" ry="40" fill="#fff" stroke="#0078d4" stroke-width="3"/>
+  <ellipse cx="180" cy="60" rx="70" ry="40" fill="#fff" stroke="#ff9900" stroke-width="3"/>
+  <ellipse cx="270" cy="90" rx="70" ry="40" fill="#fff" stroke="#34a853" stroke-width="3"/>
+
+  <text x="90" y="95" font-size="16" font-family="Arial" fill="#0078d4" text-anchor="middle">Azure</text>
+  <text x="180" y="65" font-size="16" font-family="Arial" fill="#ff9900" text-anchor="middle">AWS</text>
+  <text x="270" y="95" font-size="16" font-family="Arial" fill="#34a853" text-anchor="middle">GCP</text>
+
+  <text x="180" y="165" font-size="18" font-family="Arial" fill="#333" text-anchor="middle">Multi‑Cloud</text>
+</svg>
