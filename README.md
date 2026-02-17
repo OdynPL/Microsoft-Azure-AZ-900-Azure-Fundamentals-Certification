@@ -295,6 +295,8 @@ Kontrola obciążenia aplikacji i API w czasie autoskalowania — ochrona przed 
 ### **High Availability (HA) – Wysoka dostępność**
 Projektowanie infrastruktury w taki sposób, aby usługa pozostawała dostępna mimo awarii pojedynczych elementów.
 
+<img src="assets/high_availability.svg">
+
 **Kluczowe mechanizmy:**
 - **Redundancja zasobów** – co najmniej 2 instancje (VM, kontenery, App Service) pracujące równolegle.
 - **Availability Zones (AZ)** – fizycznie odseparowane strefy w regionie, każda z własnym zasilaniem, chłodzeniem i siecią.
@@ -309,6 +311,8 @@ Projektowanie infrastruktury w taki sposób, aby usługa pozostawała dostępna 
 ### **Fault Tolerance – Odporność na awarie**
 System działa nawet wtedy, gdy część komponentów ulegnie całkowitej awarii — bez utraty usługi i bez przerwy.
 
+<img src="assets/resilience.svg">
+
 **Cechy architektury odpornej na awarie:**
 - **Brak pojedynczego punktu awarii (SPOF)** — każdy element ma co najmniej jeden duplikat.
 - **Active/Active** – wszystkie instancje stale działają i są gotowe przejąć ruch.
@@ -322,6 +326,8 @@ System działa nawet wtedy, gdy część komponentów ulegnie całkowitej awarii
 ### **Disaster Recovery (DR) – Odzyskiwanie po awarii**
 Zabezpieczenie na wypadek katastrofalnej awarii całego regionu lub utraty danych.  
 Skupia się na **przywróceniu pracy systemu w innym regionie**.
+
+<img src="assets/disaster_recovery.svg">
 
 **Podstawowe pojęcia:**
 - **RTO (Recovery Time Objective)** – jak szybko system musi zostać przywrócony (czas).
