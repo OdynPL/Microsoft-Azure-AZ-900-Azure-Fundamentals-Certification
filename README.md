@@ -82,6 +82,28 @@ Wykorzystanie wielu dostawców chmury (np. Azure, AWS, GCP) jednocześnie. Pozwa
 
 ---
 
+### Distributed Cloud
+Model, w którym usługi chmurowe dostawcy (np. Azure, AWS, GCP) są fizycznie uruchamiane bliżej użytkownika — w lokalnych centrach danych, edge‑location, on‑prem lub w regionach partnerskich. Pozwala zachować jedno zarządzanie chmurą, ale wykonywać obliczenia tam, gdzie są potrzebne.
+<br>
+
+<img src="assets/distributed_cloud.svg">
+
+**Kiedy używać:** niska latencja, wymagania rezydencji danych, obciążenia przemysłowe/IoT, obliczenia blisko fabryki lub oddziału.  
+**Ryzyka/uwagi:** większa złożoność wdrożeń, koordynacja między lokalnymi zasobami a centralną chmurą, zależność od infrastruktury partnerów.
+
+---
+
+### Edge Cloud
+Przetwarzanie danych bezpośrednio na „krawędzi” sieci — blisko urządzeń IoT, fabryk, sklepów, samochodów autonomicznych czy systemów przemysłowych. Minimalizuje opóźnienia i redukuje transfer danych do regionów chmurowych.
+<br>
+
+<img src="assets/edge_cloud.svg">
+
+**Kiedy używać:** ultra‑niska latencja, IoT, urządzenia mobilne, autonomiczne systemy, lokalne decyzje w czasie rzeczywistym.  
+**Ryzyka/uwagi:** konieczność zarządzania wieloma lokalizacjami, ograniczone zasoby sprzętowe, bardziej złożone bezpieczeństwo.
+
+---
+
 **Modele usług:**
 - **IaaS** – VM, sieć, storage
 - **PaaS** – App Service, Functions, zarządzane DB
