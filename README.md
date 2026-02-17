@@ -104,11 +104,98 @@ Przetwarzanie danych bezpośrednio na „krawędzi” sieci — blisko urządze�
 
 ---
 
-**Modele usług:**
-- **IaaS** – VM, sieć, storage
-- **PaaS** – App Service, Functions, zarządzane DB
-- **SaaS** – gotowe aplikacje (np. Microsoft 365)
-- **Serverless / FaaS** – uruchamianie kodu bez zarządzania serwerami
+## Modele usług
+
+### IaaS (Infrastructure as a Service)
+Dostawca udostępnia zasoby infrastruktury: maszyny wirtualne, sieci, load balancery, firewalle, dyski.  
+Użytkownik zarządza systemem operacyjnym, aplikacjami i konfiguracją.
+
+**Przykłady:** Azure VM, VNet, Load Balancer, Storage.  
+**Kiedy używać:** migracje lift‑and‑shift, systemy wymagające pełnej kontroli nad OS.  
+**Ryzyka/uwagi:** większe koszty utrzymania i administracji.
+
+---
+
+### PaaS (Platform as a Service)
+Środowisko uruchomieniowe dla aplikacji bez konieczności zarządzania OS, patchami i infrastrukturą.  
+Odpowiadasz jedynie za kod i dane.
+
+**Przykłady:** Azure App Service, Azure SQL, Functions (Premium).  
+**Kiedy używać:** API, mikroserwisy, aplikacje web.  
+**Plusy:** automatyczne skalowanie, wysoka dostępność, szybkie wdrażanie.
+
+---
+
+### SaaS (Software as a Service)
+W pełni gotowe aplikacje dostarczane jako usługa — bez instalacji i utrzymania.
+
+**Przykłady:** Microsoft 365, Power BI, Salesforce.  
+**Kiedy używać:** poczta, dokumenty, CRM, HR, analiza danych.  
+**Plusy:** minimalny narzut operacyjny.
+
+---
+
+### Serverless / FaaS (Function as a Service)
+Kod uruchamiany na żądanie, bez serwerów i bez opłat stałych — płacisz tylko za wykonanie.
+
+**Przykłady:** Azure Functions (Consumption), AWS Lambda.  
+**Kiedy używać:** event‑driven, automatyzacje, integracje, IoT.  
+**Plusy:** pełna autoskalowalność.
+
+---
+
+### NaaS (Network as a Service)
+Sieć jako usługa — routing, VPN, SD‑WAN, firewalle, połączenia między chmurami, edge networking.
+
+**Przykłady:** Azure Virtual WAN, AWS Cloud WAN.  
+**Kiedy używać:** globalna sieć firmy, integracje multi‑cloud, oddziały.  
+**Ryzyka/uwagi:** zależność od usług sieciowych dostawcy.
+
+---
+
+### CaaS (Container as a Service)
+Zarządzane środowisko kontenerowe — bez utrzymywania VM czy orkiestracji.
+
+**Przykłady:** Azure Container Instances, AWS Fargate, Cloud Run.  
+**Kiedy używać:** mikroserwisy, API, krótkie zadania batch.  
+**Plusy:** zero administrowania infrastrukturą.
+
+---
+
+### DaaS (Desktop as a Service)
+Zdalne, hostowane w chmurze środowiska pulpitu użytkownika.
+
+**Przykłady:** Azure Virtual Desktop, Windows 365.  
+**Kiedy używać:** praca zdalna, call‑center, access z dowolnego urządzenia.  
+**Ryzyka/uwagi:** zależność od jakości łącza.
+
+---
+
+### iPaaS (Integration Platform as a Service)
+Platformy integracyjne do łączenia systemów, API, ETL i workflow.
+
+**Przykłady:** Azure Logic Apps, MuleSoft, Boomi.  
+**Kiedy używać:** integracje ERP/CRM, automatyzacja procesów.  
+**Plusy:** szybkie łączenie systemów bez pisania backendu.
+
+---
+
+### MBaaS / BaaS (Mobile/Backend as a Service)
+Backend dostarczany jako usługa — auth, bazy, storage, push, API.
+
+**Przykłady:** Firebase, AWS Amplify.  
+**Kiedy używać:** aplikacje mobilne, prototypy, szybki development.
+
+---
+
+### BPaaS (Business Process as a Service)
+Gotowe procesy biznesowe jako usługa, np. HR, płace, księgowość, CRM.
+
+**Przykłady:** Workday, Dynamics 365, Salesforce.  
+**Kiedy używać:** outsourcing procesów biznesowych.  
+**Plusy:** standaryzacja i skalowalność.
+
+---
 
 **Skalowanie i elastyczność:**
 - **Vertical (up/down)** – większy/ mniejszy rozmiar zasobu (np. VM); może wymagać restartu
