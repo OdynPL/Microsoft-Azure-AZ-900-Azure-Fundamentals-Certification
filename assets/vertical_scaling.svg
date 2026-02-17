@@ -1,0 +1,8 @@
+
+<svg xmlns='http://www.w3.org/2000/svg' width='420' height='200'>
+ <rect width='420' height='200' fill='#eef5ff'/>
+ <text x='210' y='30' font-size='22' font-family='Arial' fill='#003f88' text-anchor='middle'>Vertical Scaling</text>
+ <rect x='60' y='70' width='80' height='50' fill='#fff' stroke='#0078d4' stroke-width='3'/>
+ <rect x='180' y='55' width='110' height='80' fill='#fff' stroke='#0078d4' stroke-width='3'/>
+ <rect x='330' y='40' width='60' height='110' fill='#fff' stroke='#0078d4' stroke-width='3'/>
+</svg>
