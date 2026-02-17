@@ -1,0 +1,6 @@
+<svg width='300' height='180' xmlns='http://www.w3.org/2000/svg'>
+  <rect width='300' height='180' fill='#e0f0ff'/>
+  <ellipse cx='150' cy='70' rx='110' ry='50' fill='white' stroke='#0078d4' stroke-width='3'/>
+  <text x='150' y='75' font-size='20' font-family='Arial' fill='#0078d4' text-anchor='middle'>Public Cloud</text>
+  <text x='150' y='130' font-size='14' font-family='Arial' fill='#333' text-anchor='middle'>Infrastructure by provider</text>
+</svg>

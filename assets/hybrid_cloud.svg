@@ -1,0 +1,8 @@
+<svg width='340' height='200' xmlns='http://www.w3.org/2000/svg'>
+  <ellipse cx='100' cy='80' rx='80' ry='45' fill='white' stroke='#0078d4' stroke-width='3'/>
+  <ellipse cx='240' cy='80' rx='80' ry='45' fill='white' stroke='#7a3db8' stroke-width='3'/>
+  <line x1='140' y1='120' x2='200' y2='120' stroke='#555' stroke-width='3' stroke-dasharray='6 4'/>
+  <text x='100' y='85' font-size='18' font-family='Arial' fill='#0078d4' text-anchor='middle'>Public</text>
+  <text x='240' y='85' font-size='18' font-family='Arial' fill='#7a3db8' text-anchor='middle'>Private</text>
+  <text x='170' y='160' font-size='16' font-family='Arial' fill='#333' text-anchor='middle'>Hybrid Cloud</text>
+</svg>
