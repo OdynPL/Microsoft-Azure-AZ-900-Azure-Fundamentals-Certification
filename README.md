@@ -290,10 +290,77 @@ Kontrola obciążenia aplikacji i API w czasie autoskalowania — ochrona przed 
 
 ---
 
-**HA / DR / Odporność:**
-- **High Availability** – redundancja + strefy AZ + load balancer
-- **Fault Tolerance** – działanie mimo awarii części komponentów
-- **Disaster Recovery (RTO/RPO)** – pary regionów, replikacja, procedury odtworzeniowe
+## Odporność, Wysoka Dostępność i Disaster Recovery
+
+### **High Availability (HA) – Wysoka dostępność**
+Projektowanie infrastruktury w taki sposób, aby usługa pozostawała dostępna mimo awarii pojedynczych elementów.
+
+**Kluczowe mechanizmy:**
+- **Redundancja zasobów** – co najmniej 2 instancje (VM, kontenery, App Service) pracujące równolegle.
+- **Availability Zones (AZ)** – fizycznie odseparowane strefy w regionie, każda z własnym zasilaniem, chłodzeniem i siecią.
+- **Load Balancing** – równoważenie ruchu między instancjami (L4/L7).
+- **Health probes** – automatyczne wykrywanie niedziałających instancji i wyłączanie ich z rotacji.
+- **Autoskalowanie** – dodawanie instancji, aby uniknąć przeciążeń.
+
+**Cel:** minimalizacja przestojów (downtime) w obrębie *jednego regionu*.
+
+---
+
+### **Fault Tolerance – Odporność na awarie**
+System działa nawet wtedy, gdy część komponentów ulegnie całkowitej awarii — bez utraty usługi i bez przerwy.
+
+**Cechy architektury odpornej na awarie:**
+- **Brak pojedynczego punktu awarii (SPOF)** — każdy element ma co najmniej jeden duplikat.
+- **Active/Active** – wszystkie instancje stale działają i są gotowe przejąć ruch.
+- **Self‑healing** – automatyczne zastępowanie uszkodzonych zasobów (VMSS, Kubernetes).
+- **Dane replikowane synchronicznie** – brak utraty danych przy padzie jednego węzła (np. ZRS dla storage).
+
+**Cel:** ciągłość działania przy awariach sprzętu, instancji, stref AZ lub fragmentów infrastruktury.
+
+---
+
+### **Disaster Recovery (DR) – Odzyskiwanie po awarii**
+Zabezpieczenie na wypadek katastrofalnej awarii całego regionu lub utraty danych.  
+Skupia się na **przywróceniu pracy systemu w innym regionie**.
+
+**Podstawowe pojęcia:**
+- **RTO (Recovery Time Objective)** – jak szybko system musi zostać przywrócony (czas).
+- **RPO (Recovery Point Objective)** – ile danych można stracić (czas od ostatniej replikacji).
+
+**Techniki w Azure:**
+- **Region Pairs** – każdy region ma sparowany region w tej samej geografii (szybsze przywracanie, chroniona aktualizacja).
+- **Asynchroniczna replikacja danych** – Storage GRS/RA‑GRS, SQL Geo-Replication, Cosmos DB multi-region.
+- **Azure Site Recovery (ASR)** – automatyczna replikacja VM, odtwarzanie aplikacji, orchestracja failover.
+- **Backupy i snapshoty** – dane krytyczne przechowywane niezależnie od głównej infrastruktury.
+
+**Scenariusze DR:**
+- **Cold Standby** – zasoby odtwarzane dopiero po awarii (najtańsze).
+- **Warm Standby** – ograniczona liczba maszyn działa w regionie zapasowym.
+- **Hot Standby / Active-Passive** – pełna gotowość, ale ruch idzie tylko do jednego regionu.
+- **Active-Active Multi‑Region** – oba regiony obsługują ruch jednocześnie.
+
+**Cel:** utrzymanie pracy biznesu nawet w przypadku utraty całego regionu.
+
+---
+
+### **Podsumowanie różnic**
+
+| Mechanizm            | Ochrona przed awarią | Poziom geograficzny | Przestój | Koszt |
+|----------------------|----------------------|----------------------|----------|-------|
+| **High Availability** | awaria instancji, AZ | 1 region             | bardzo niski | średni |
+| **Fault Tolerance**  | pełna odporność       | 1 region (Active/Active) | praktycznie brak | wysoki |
+| **Disaster Recovery** | awaria regionu        | 2+ regiony           | zależny od RTO | zróżnicowany |
+
+---
+
+### **Dobre praktyki odporności systemów**
+- Projektuj **stateless** — stan w DB, cache, storage.
+- Używaj **multi-zone** dla HA i **multi-region** dla DR.
+- Testuj **regularnie failover** i aktualizuj runbooki DR.
+- Wymuszaj **replikację danych** zgodnie z RPO.
+- Zapewnij **monitoring + alerty** (Azure Monitor, KQL).
+
+---
 
 ---
 
