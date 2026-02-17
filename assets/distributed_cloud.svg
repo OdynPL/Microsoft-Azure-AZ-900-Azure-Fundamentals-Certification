@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="200">
+  <ellipse cx="180" cy="60" rx="110" ry="45" fill="#fff" stroke="#0078d4" stroke-width="3"/>
+  <text x="180" y="65" font-size="20" font-family="Arial" fill="#0078d4" text-anchor="middle">Distributed Cloud</text>
+
+  <rect x="40" y="120" width="60" height="40" fill="#e0f2ff" stroke="#0078d4" stroke-width="2"/>
+  <rect x="150" y="120" width="60" height="40" fill="#e0f2ff" stroke="#0078d4" stroke-width="2"/>
+  <rect x="260" y="120" width="60" height="40" fill="#e0f2ff" stroke="#0078d4" stroke-width="2"/>
+
+  <text x="70"  y="145" font-size="12" font-family="Arial" fill="#005a96" text-anchor="middle">On‑prem</text>
+  <text x="180" y="145" font-size="12" font-family="Arial" fill="#005a96" text-anchor="middle">Edge</text>
+  <text x="290" y="145" font-size="12" font-family="Arial" fill="#005a96" text-anchor="middle">Region</text>
+</svg>
