@@ -25,10 +25,32 @@
 ---
 
 ## 1. Cloud Concepts (Podstawy chmury)
-**Modele wdrożenia:**
-- **Public Cloud** – usługi w infrastrukturze dostawcy (Azure)
-- **Private Cloud** – dedykowana chmura organizacji
-- **Hybrid Cloud** – połączenie on‑prem i public cloud
+## Modele wdrożenia
+
+### Public Cloud
+Usługi uruchamiane w infrastrukturze dostawcy (np. Microsoft Azure). Dostępność i skalowanie zapewnia provider, a Ty płacisz za zużycie. Szybki time‑to‑market, szeroka oferta usług, brak konieczności utrzymywania hardware’u.
+<br>
+
+<img src="assets/public_cloud.svg" alt="Public Cloud – infrastruktura dostawcy"zeba globalnego zasięgu, krótkie cykle wdrożeniowe.  
+**Ryzyka/uwagi:** lock‑in, zgodność/regulacje, kontrola nad siecią niższa niż on‑prem.
+
+---
+
+### Private Cloud
+Dedykowana chmura dla jednej organizacji (własne DC / hosting dedykowany / Azure Stack HCI). Najwyższa kontrola i możliwość dopasowania do rygorów zgodności, kosztem zwinności i CAPEX/OPEX.
+<br>
+
+<img src="assets/private_cloud.svg" alt="Privatee wymagania compliance, izolacja, specyficzne potrzeby bezpieczeństwa/latencji.  
+**Ryzyka/uwagi:** większe koszty utrzymania, mniejsza elastyczność skalowania.
+
+---
+
+### Hybrid Cloud
+Połączenie środowisk on‑prem/private z public cloud. Umożliwia przenoszenie obciążeń, burst do chmury i stopniową migrację, z zachowaniem kontroli nad danymi krytycznymi.
+<br>
+
+<img src="assets/hybrid_cloud.svg" alt="Hybrid Cloud – połączenie on‑prem i public cloud", integracje z istniejącymi systemami.  
+**Ryzyka/uwagi:** złożoność sieci/identyfikacji/monitoringu, potrzeba spójnego governance.
 
 **Modele usług:**
 - **IaaS** – VM, sieć, storage
