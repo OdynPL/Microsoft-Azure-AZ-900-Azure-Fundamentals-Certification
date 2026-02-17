@@ -217,10 +217,72 @@ Gotowe procesy biznesowe jako usługa, np. HR, płace, księgowość, CRM.
 
 ---
 
-**Skalowanie i elastyczność:**
-- **Vertical (up/down)** – większy/ mniejszy rozmiar zasobu (np. VM); może wymagać restartu
-- **Horizontal (out/in)** – dodawanie/usuwanie instancji (VMSS, scale‑out App Service)
-- **Autoskalowanie** – automatyczny dobór instancji (metryki/harmonogram)
+## Skalowanie i elastyczność
+
+### **Vertical Scaling (Scale Up / Scale Down)**
+Zwiększanie lub zmniejszanie *mocy pojedynczej instancji* zasobu — np. większy rozmiar VM (więcej CPU/RAM/dysk), mocniejsza baza danych, większy plan App Service.
+
+**Charakterystyka:**
+- Skalowanie „w górę” = mocniejsza maszyna.
+- Skalowanie „w dół” = tańsza/słabsza maszyna.
+- Zwykle **wymaga restartu** (przestój zależny od usługi).
+- Ograniczenia sprzętowe — istnieje „sufit” skali.
+
+**Kiedy używać:** bazy danych, monolity, workloady zależne od pojedynczego węzła.
+
+---
+
+### **Horizontal Scaling (Scale Out / Scale In)**
+Dodawanie lub usuwanie *instancji zasobu*. Zamiast jednej mocnej maszyny — wiele mniejszych pracujących równolegle.
+
+**Charakterystyka:**
+- Scale out = dodawanie instancji.
+- Scale in = usuwanie instancji.
+- **Brak przestojów** — nowa instancja dołącza automatycznie.
+- Wymaga stateless lub odpowiedniego przechowywania sesji.
+
+**Przykłady:**  
+- VMSS (Virtual Machine Scale Sets)  
+- App Service z wieloma instancjami  
+- Kubernetes / AKS (HPA, VPA, node autoscaling)
+
+**Kiedy używać:** API, web, mikroserwisy, obciążenia rozproszone.
+
+---
+
+### **Autoskalowanie (Automatic Scaling / Auto‑Scale)**
+Automatyczne zwiększanie/zmniejszanie liczby instancji lub mocy zasobu na podstawie *metryk, progów i reguł*.
+
+**Rodzaje autoskalowania:**
+- **Metric-based** – CPU, RAM, latency, queue depth, request count.
+- **Schedule-based** – konkretne godziny/dni (np. nocne / weekendy).
+- **Event-based** – zdarzenia aplikacyjne (np. komunikat w kolejce).
+- **Predictive autoscaling** – AI/ML przewiduje obciążenie (np. Azure Functions Premium, App Service Premium).
+
+**Co potrafi autoscaler:**
+- Dynamicznie dołącza/usuwa instancje VM / kontenerów / workerów.
+- Reaguje na przeciążenia i koszt.
+- Zapewnia odporność — jeśli instancja padnie, zostaje automatycznie odtworzona.
+
+**Kiedy używać:** zmienne obciążenia, obciążenia sezonowe, systemy o ruchu skokowym (e‑commerce, IoT, integracje).
+
+---
+
+### **Additional Concepts (warto dodać w chmurze)**
+
+#### **Bursting**
+Tymczasowe podniesienie mocy zasobu ponad nominalną (np. Azure Premium Disks, niektóre VM).
+
+#### **Load Balancing**
+Load balancer rozprowadza ruch między instancjami, umożliwiając skuteczne scale-out.
+
+#### **Stateless Architecture**
+Wymagana do efektywnego autoskalowania — stan przechowywany poza instancjami (cache/DB/redis).
+
+#### **Throttling / Rate Limiting**
+Kontrola obciążenia aplikacji i API w czasie autoskalowania — ochrona przed lawinowym ruchem.
+
+---
 
 **HA / DR / Odporność:**
 - **High Availability** – redundancja + strefy AZ + load balancer
