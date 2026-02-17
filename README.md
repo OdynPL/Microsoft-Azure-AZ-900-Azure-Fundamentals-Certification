@@ -199,7 +199,7 @@ Platformy integracyjne do łączenia systemów, API, ETL i workflow.
 ### MBaaS / BaaS (Mobile/Backend as a Service)
 Backend dostarczany jako usługa — auth, bazy, storage, push, API.
 
-<img src="assets/baas.svg">
+<img src="assets/mbaas.svg">
 
 **Przykłady:** Firebase, AWS Amplify.  
 **Kiedy używać:** aplikacje mobilne, prototypy, szybki development.
