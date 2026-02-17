@@ -1,29 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="750" height="140">
-  <rect width="750" height="140" fill="#f4f8ff"/>
-
-  <text x="375" y="30" font-size="22" font-family="Arial" fill="#003f88" text-anchor="middle">
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="500">
+  <rect width="260" height="500" fill="#f4f8ff"/>
+  <text x="130" y="40" font-size="22" font-family="Arial" fill="#003f88" text-anchor="middle">
     Hierarchia i Scope
   </text>
 
   <g font-family="Arial" font-size="16" fill="#003f88" text-anchor="middle">
 
-    <rect x="20" y="60" width="100" height="40" fill="#fff" stroke="#0078d4" stroke-width="2"/>
-    <text x="70" y="85">Tenant</text>
+    <rect x="55" y="80" width="150" height="40" fill="#fff" stroke="#0078d4" stroke-width="2"/>
+    <text x="130" y="105">Tenant</text>
 
-    <line x1="120" y1="80" x2="150" y2="80" stroke="#555" stroke-width="2"/>
+    <line x1="130" y1="120" x2="130" y2="150" stroke="#555" stroke-width="2"/>
 
-    <rect x="150" y="60" width="160" height="40" fill="#fff" stroke="#0078d4" stroke-width="2"/>
-    <text x="230" y="85">Management Group</text>
+    <rect x="25" y="150" width="210" height="40" fill="#fff" stroke="#0078d4" stroke-width="2"/>
+    <text x="130" y="175">Management Group</text>
 
-    <line x1="310" y1="80" x2="340" y2="80" stroke="#555" stroke-width="2"/>
+    <line x1="130" y1="190" x2="130" y2="220" stroke="#555" stroke-width="2"/>
 
-    <rect x="340" y="60" width="120" height="40" fill="#fff" stroke="#0078d4" stroke-width="2"/>
-    <text x="400" y="85">Subscription</text>
+    <rect x="55" y="220" width="150" height="40" fill="#fff" stroke="#0078d4" stroke-width="2"/>
+    <text x="130" y="245">Subscription</text>
 
-    <line x1="460" y1="80" x2="490" y2="80" stroke="#555" stroke-width="2"/>
+    <line x1="130" y1="260" x2="130" y2="290" stroke="#555" stroke-width="2"/>
 
-    <rect x="490" y="60" width="170" height="40" fill="#fff" stroke="#0078d4" stroke-width="2"/>
-    <text x="575" y="85">Resource Group</text>
+    <rect x="25" y="290" width="210" height="40" fill="#fff" stroke="#0078d4" stroke-width="2"/>
+    <text x="130" y="315">Resource Group</text>
+
+    <line x1="130" y1="330" x2="130" y2="360" stroke="#555" stroke-width="2"/>
+
+    <rect x="55" y="360" width="150" height="40" fill="#fff" stroke="#0078d4" stroke-width="2"/>
+    <text x="130" y="385">Resource</text>
 
   </g>
 </svg>
