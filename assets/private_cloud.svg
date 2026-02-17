@@ -1,7 +1,6 @@
-<svg width='300' height='180' xmlns='http://www.w3.org/2000/svg'>
-  <rect width='300' height='180' fill='#f2e8ff'/>
-  <rect x='40' y='40' width='220' height='100' fill='white' stroke='#7a3db8' stroke-width='3'/>
-  <text x='150' y='90' font-size='20' font-family='Arial' fill='#7a3db8' text-anchor='middle'>Private Cloud</text>
-  <text x='150' y='130' font-size='14' font-family='Arial' fill='#333' text-anchor='middle'>Dedicated to organization</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="180">
+  <rect width="300" height="180" fill="#f2e8ff"/>
+  <rect x="40" y="40" width="220" height="100" fill="#fff" stroke="#7a3db8" stroke-width="3"/>
+  <text x="150" y="90" font-size="20" font-family="Arial" fill="#7a3db8" text-anchor="middle">Private Cloud</text>
+  <text x="150" y="130" font-size="14" font-family="Arial" fill="#333" text-anchor="middle">Dedicated to organization</text>
 </svg>
-``
