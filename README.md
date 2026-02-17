@@ -371,7 +371,6 @@ Skupia się na **przywróceniu pracy systemu w innym regionie**.
 ## 2. Azure Architecture (Architektura i hierarchia)
 **Hierarchia i scope:**
 ```
-Tenant → Management Group → Subscription → Resource Group → Resource
 
 <img src="assets/hierarchy_scope.svg">
 
