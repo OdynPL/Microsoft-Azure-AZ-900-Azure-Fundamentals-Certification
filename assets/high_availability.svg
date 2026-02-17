@@ -1,0 +1,9 @@
+
+<svg xmlns='http://www.w3.org/2000/svg' width='420' height='220'>
+  <rect width='420' height='220' fill='#eef5ff'/>
+  <text x='210' y='30' font-size='22' font-family='Arial' fill='#003f88' text-anchor='middle'>High Availability</text>
+  <rect x='80' y='70' width='80' height='60' fill='#fff' stroke='#0078d4' stroke-width='3'/>
+  <rect x='180' y='70' width='80' height='60' fill='#fff' stroke='#0078d4' stroke-width='3'/>
+  <rect x='280' y='70' width='80' height='60' fill='#fff' stroke='#0078d4' stroke-width='3'/>
+  <text x='210' y='160' font-size='14' font-family='Arial' fill='#333' text-anchor='middle'>Redundant instances + Load Balancer</text>
+</svg>
