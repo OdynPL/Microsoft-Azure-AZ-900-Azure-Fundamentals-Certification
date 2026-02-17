@@ -104,7 +104,7 @@ Przetwarzanie danych bezpośrednio na „krawędzi” sieci — blisko urządze�
 
 ---
 
-## Modele usług
+## Modele usług chmurowych
 
 ### IaaS (Infrastructure as a Service)
 Dostawca udostępnia zasoby infrastruktury: maszyny wirtualne, sieci, load balancery, firewalle, dyski.  
