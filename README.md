@@ -222,6 +222,8 @@ Gotowe procesy biznesowe jako usługa, np. HR, płace, księgowość, CRM.
 ### **Vertical Scaling (Scale Up / Scale Down)**
 Zwiększanie lub zmniejszanie *mocy pojedynczej instancji* zasobu — np. większy rozmiar VM (więcej CPU/RAM/dysk), mocniejsza baza danych, większy plan App Service.
 
+<img src="assets/vertical_scaling.svg">
+
 **Charakterystyka:**
 - Skalowanie „w górę” = mocniejsza maszyna.
 - Skalowanie „w dół” = tańsza/słabsza maszyna.
@@ -234,6 +236,8 @@ Zwiększanie lub zmniejszanie *mocy pojedynczej instancji* zasobu — np. więks
 
 ### **Horizontal Scaling (Scale Out / Scale In)**
 Dodawanie lub usuwanie *instancji zasobu*. Zamiast jednej mocnej maszyny — wiele mniejszych pracujących równolegle.
+
+<img src="assets/horizontal_scaling.svg">
 
 **Charakterystyka:**
 - Scale out = dodawanie instancji.
@@ -252,6 +256,8 @@ Dodawanie lub usuwanie *instancji zasobu*. Zamiast jednej mocnej maszyny — wie
 
 ### **Autoskalowanie (Automatic Scaling / Auto‑Scale)**
 Automatyczne zwiększanie/zmniejszanie liczby instancji lub mocy zasobu na podstawie *metryk, progów i reguł*.
+
+<img src="assets/autoscaling.svg">
 
 **Rodzaje autoskalowania:**
 - **Metric-based** – CPU, RAM, latency, queue depth, request count.
