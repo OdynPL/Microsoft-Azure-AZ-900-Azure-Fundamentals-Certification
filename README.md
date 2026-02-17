@@ -31,7 +31,7 @@
 Usługi uruchamiane w infrastrukturze dostawcy (np. Microsoft Azure). Dostępność i skalowanie zapewnia provider, a Ty płacisz za zużycie. Szybki time‑to‑market, szeroka oferta usług, brak konieczności utrzymywania hardware’u.
 <br>
 
-assets/public_cloud.svg
+<img src="assets/public_cloud.svg">
 
 **Kiedy używać:** projekty o zmiennym obciążeniu, potrzeba globalnego zasięgu, krótkie cykle wdrożeniowe.  
 **Ryzyka/uwagi:** lock‑in, zgodność/regulacje, kontrola nad siecią niższa niż on‑prem.
@@ -42,7 +42,7 @@ assets/public_cloud.svg
 Dedykowana chmura dla jednej organizacji (własne DC / hosting dedykowany / Azure Stack HCI). Najwyższa kontrola i możliwość dopasowania do rygorów zgodności, kosztem zwinności i CAPEX/OPEX.
 <br>
 
-assets/private_cloud.svg
+<img src="assets/private_cloud.svg">
 
 **Kiedy używać:** silne wymagania compliance, izolacja, specyficzne potrzeby bezpieczeństwa/latencji.  
 **Ryzyka/uwagi:** większe koszty utrzymania, mniejsza elastyczność skalowania.
@@ -53,7 +53,7 @@ assets/private_cloud.svg
 Połączenie środowisk on‑prem/private z public cloud. Umożliwia przenoszenie obciążeń, burst do chmury i stopniową migrację, z zachowaniem kontroli nad danymi krytycznymi.
 <br>
 
-assets/hybrid_cloud.svg
+<img src="assets/hybrid_cloud.svg">
 
 **Kiedy używać:** modernizacja etapowa, wymogi rezydencji danych, integracje z istniejącymi systemami.  
 **Ryzyka/uwagi:** złożoność sieci/identyfikacji/monitoringu, potrzeba spójnego governance.
