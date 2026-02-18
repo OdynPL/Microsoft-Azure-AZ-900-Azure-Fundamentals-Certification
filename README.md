@@ -714,25 +714,25 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
 
     **Site‑to‑Site VPN (S2S)**  
 
-        Stałe połączenie **całej sieci on‑prem** z **Azure VNet** za pomocą tunelu IPsec pomiędzy routerem/firewallem a Azure VPN Gateway.  
-        Wszystkie urządzenia lokalne mogą komunikować się z zasobami w Azure tak, jakby były w jednej sieci.
+    Stałe połączenie **całej sieci on‑prem** z **Azure VNet** za pomocą tunelu IPsec pomiędzy routerem/firewallem a Azure VPN Gateway.  
+    Wszystkie urządzenia lokalne mogą komunikować się z zasobami w Azure tak, jakby były w jednej sieci.
 
-        Najważniejsze cechy:
-        - połączenie sieć‑do‑sieci (router ↔ Azure)
-        - idealne dla biur, oddziałów i datacenter
-        - działa automatycznie, bez ingerencji użytkownika
-        - wymaga publicznego IP po stronie on‑prem i urządzenia IPsec
+    Najważniejsze cechy:
+    - połączenie sieć‑do‑sieci (router ↔ Azure)
+    - idealne dla biur, oddziałów i datacenter
+    - działa automatycznie, bez ingerencji użytkownika
+    - wymaga publicznego IP po stronie on‑prem i urządzenia IPsec
 
     **Point‑to‑Site VPN (P2S)**  
 
-        Połączenie **pojedynczego użytkownika lub komputera** z Azure VNet.  
-        Użytkownik łączy się do Azure za pomocą klienta VPN (OpenVPN, IKEv2, Azure VPN Client) — bez potrzeby posiadania infrastruktury sieciowej.
+    Połączenie **pojedynczego użytkownika lub komputera** z Azure VNet.  
+    Użytkownik łączy się do Azure za pomocą klienta VPN (OpenVPN, IKEv2, Azure VPN Client) — bez potrzeby posiadania infrastruktury sieciowej.
 
-        Najważniejsze cechy:
-        - połączenie urządzenie‑do‑sieci (user/laptop ↔ Azure)
-        - idealne dla administratorów, deweloperów i pracy zdalnej
-        - nie wymaga routera ani publicznego IP po stronie użytkownika
-        - obsługuje certyfikaty lub Azure AD jako metodę uwierzytelniani
+    Najważniejsze cechy:
+    - połączenie urządzenie‑do‑sieci (user/laptop ↔ Azure)
+    - idealne dla administratorów, deweloperów i pracy zdalnej
+    - nie wymaga routera ani publicznego IP po stronie użytkownika
+    - obsługuje certyfikaty lub Azure AD jako metodę uwierzytelniani
 
     <img src="assets/vpns2sp2p.svg">
 
