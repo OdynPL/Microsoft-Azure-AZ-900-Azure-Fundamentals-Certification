@@ -72,7 +72,7 @@
   <rect x="900" y="450" width="150" height="60" class="vm"/>
   <text x="975" y="485" text-anchor="middle">VM-n</text>
 
-  <!-- Footer description -->
+  <!-- Footer description  -->
   <text x="550" y="610" text-anchor="middle">
     Autoscaling zarządza liczbą instancji, Load Balancer rozdziela ruch, model definiuje konfigurację VM.
   </text>
