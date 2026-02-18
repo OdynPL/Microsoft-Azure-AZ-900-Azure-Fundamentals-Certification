@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="650">
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="600">
   <style>
     .box { fill:#eef4ff; stroke:#4a84f4; stroke-width:2; rx:10; }
     .sub { fill:#ffffff; stroke:#7aa3f0; stroke-width:1.6; rx:8; }
@@ -7,50 +7,43 @@
   </style>
 
   <text x="550" y="40" text-anchor="middle" class="title">
-    AKS — Azure Kubernetes Service (Architecture)
+    AKS — Azure Kubernetes Service
   </text>
 
-  <!-- MAIN BOX -->
-  <rect x="50" y="70" width="1000" height="520" class="box"/>
+  <rect x="50" y="70" width="1000" height="480" class="box"/>
   <text x="550" y="105" text-anchor="middle" style="font-size:16px;font-weight:bold;">
     Managed Kubernetes Cluster
   </text>
 
-  <!-- LEFT: ACR -->
-  <rect x="80" y="150" width="260" height="120" class="sub"/>
-  <text x="210" y="180" text-anchor="middle" style="font-weight:bold;">ACR (Azure Container Registry)</text>
-  <text x="210" y="205" text-anchor="middle">Przechowywanie obrazów</text>
-  <text x="210" y="225" text-anchor="middle">Integracja z AKS</text>
+  <rect x="100" y="150" width="260" height="140" class="sub"/>
+  <text x="230" y="180" text-anchor="middle" style="font-weight:bold;">ACR</text>
+  <text x="230" y="205" text-anchor="middle">Azure Container Registry</text>
+  <text x="230" y="225" text-anchor="middle">Źródło obrazów</text>
 
-  <!-- CONTROL PLANE -->
-  <rect x="400" y="150" width="300" height="140" class="sub"/>
-  <text x="550" y="180" text-anchor="middle" style="font-weight:bold;">Control Plane (Managed)</text>
+  <rect x="420" y="150" width="260" height="140" class="sub"/>
+  <text x="550" y="180" text-anchor="middle" style="font-weight:bold;">Control Plane</text>
   <text x="550" y="205" text-anchor="middle">API Server • Scheduler</text>
   <text x="550" y="225" text-anchor="middle">Controller Manager</text>
   <text x="550" y="245" text-anchor="middle">Zarządzany przez Azure</text>
 
-  <!-- NODE POOLS -->
-  <rect x="750" y="150" width="260" height="320" class="sub"/>
+  <rect x="750" y="150" width="260" height="300" class="sub"/>
   <text x="880" y="180" text-anchor="middle" style="font-weight:bold;">Node Pools</text>
-  <text x="880" y="205" text-anchor="middle">VM Scale Set (agent nodes)</text>
+  <text x="880" y="205" text-anchor="middle">Agent nodes (VM)</text>
   <text x="880" y="225" text-anchor="middle">Linux / Windows</text>
-  <text x="880" y="245" text-anchor="middle">Autoscaling (CA)</text>
+  <text x="880" y="245" text-anchor="middle">Autoscaling</text>
 
-  <!-- PODS INSIDE NODE POOL -->
-  <rect x="780" y="270" width="200" height="60" class="sub"/>
-  <text x="880" y="305" text-anchor="middle">Pods</text>
+  <rect x="780" y="260" width="200" height="50" class="sub"/>
+  <text x="880" y="290" text-anchor="middle">Pods</text>
 
-  <rect x="780" y="340" width="200" height="60" class="sub"/>
-  <text x="880" y="375" text-anchor="middle">Deployments</text>
+  <rect x="780" y="320" width="200" height="50" class="sub"/>
+  <text x="880" y="350" text-anchor="middle">Deployments</text>
 
-  <rect x="780" y="410" width="200" height="60" class="sub"/>
-  <text x="880" y="445" text-anchor="middle">Services</text>
+  <rect x="780" y="380" width="200" height="50" class="sub"/>
+  <text x="880" y="410" text-anchor="middle">Services</text>
 
-  <!-- HPA / addons -->
-  <rect x="400" y="330" width="300" height="140" class="sub"/>
-  <text x="550" y="360" text-anchor="middle" style="font-weight:bold;">Autoscaling & Add‑ons</text>
-  <text x="550" y="385" text-anchor="middle">HPA (pods autoscaling)</text>
-  <text x="550" y="405" text-anchor="middle">Cluster Autoscaler (nodes)</text>
-  <text x="550" y="425" text-anchor="middle">Monitoring • Logs • Ingress</text>
+  <rect x="100" y="320" width="580" height="130" class="sub"/>
+  <text x="390" y="350" text-anchor="middle" style="font-weight:bold;">Add-ons & Integracje</text>
+  <text x="390" y="375" text-anchor="middle">Monitoring • Logi • Ingress</text>
+  <text x="390" y="395" text-anchor="middle">Azure Policy • KEDA • RBAC</text>
 
 </svg>
