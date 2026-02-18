@@ -611,8 +611,18 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
 
 - **Azure Container Instances (ACI)**  
 
-  Uruchamianie kontenerów bez konieczności tworzenia klastra Kubernetes.  
-  Idealne do szybkich, krótkotrwałych workloadów.
+    Azure Container Instances to najszybszy sposób uruchamiania kontenerów w Azure bez potrzeby tworzenia lub zarządzania klastrem Kubernetes.  
+    Idealne do krótkotrwałych, jednorazowych lub prostych workloadów — batch jobs, API workers, testów, automatyzacji.
+
+    <img src="assets/aci.svg">
+
+    Kluczowe cechy:
+    - start kontenera w kilka sekund (bez orkiestracji)
+    - płatność tylko za czas działania CPU/RAM kontenera
+    - obsługa obrazów z Azure Container Registry (ACR) i Docker Hub
+    - wsparcie dla sidecar containers i grup kontenerów (Container Groups)
+    - integracja z VNet (opcjonalnie)
+    - idealne do: jobów, event-driven tasks, ETL, automatyzacji, szybkich micro‑API
 
 - **AKS (Azure Kubernetes Service)**  
 

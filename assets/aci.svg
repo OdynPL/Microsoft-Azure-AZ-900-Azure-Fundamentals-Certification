@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="430">
+  <style>
+    .box { fill:#eef4ff; stroke:#4a84f4; stroke-width:2; rx:10; }
+    .sub { fill:#ffffff; stroke:#7aa3f0; stroke-width:1.5; rx:8; }
+    .title { font-family: Arial; font-size: 22px; font-weight: bold; }
+    text { font-family: Arial; font-size: 14px; }
+  </style>
+
+  <text x="550" y="40" text-anchor="middle" class="title">
+    Azure Container Instances (ACI)
+  </text>
+
+  <!-- Main container -->
+  <rect x="50" y="70" width="1000" height="330" class="box"/>
+  <text x="550" y="100" text-anchor="middle" style="font-size:16px;font-weight:bold;">
+    Uruchamianie kontenerów bez Kubernetes
+  </text>
+
+  <!-- Container Group -->
+  <rect x="120" y="150" width="320" height="200" class="sub"/>
+  <text x="280" y="180" text-anchor="middle" style="font-weight:bold;">Container Group</text>
+  <text x="280" y="205" text-anchor="middle">1 lub wiele kontenerów</text>
+  <text x="280" y="225" text-anchor="middle">wspólny lifecycle + sieć</text>
+  <text x="280" y="255" text-anchor="middle" style="font-size:12px;color:#666;">
+    (opcjonalnie sidecar)
+  </text>
+
+  <!-- Single Container -->
+  <rect x="160" y="240" width="240" height="80" class="sub"/>
+  <text x="280" y="275" text-anchor="middle">Container</text>
+
+  <!-- Image Sources -->
+  <rect x="480" y="150" width="260" height="120" class="sub"/>
+  <text x="610" y="180" text-anchor="middle" style="font-weight:bold;">Źródło obrazu</text>
+  <text x="610" y="205" text-anchor="middle">Azure Container Registry</text>
+  <text x="610" y="225" text-anchor="middle">Docker Hub</text>
+
+  <!-- Use cases -->
+  <rect x="770" y="150" width="250" height="200" class="sub"/>
+  <text x="895" y="180" text-anchor="middle" style="font-weight:bold;">Zastosowania</text>
+  <text x="895" y="205" text-anchor="middle">Batch jobs</text>
+  <text x="895" y="225" text-anchor="middle">ETL / automaty</text>
+  <text x="895" y="245" text-anchor="middle">Testy / CI tasks</text>
+  <text x="895" y="265" text-anchor="middle">Micro‑API / workers</text>
+  <text x="895" y="285" text-anchor="middle">Event-driven tasks</text>
+
+</svg>
