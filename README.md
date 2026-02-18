@@ -1125,11 +1125,49 @@ Rodzaje:
 ---
 
 ## 8. Governance & Compliance
-- **Azure Policy** – Definition (pojedyncza reguła) i Initiative (zestaw); **Effects**: Deny/Audit/Append/Modify; przypisanie na **scope** (MG/Sub/RG/Resource)
-- **Resource Locks** – Delete/ReadOnly (ochrona przed przypadkowym usunięciem/modyfikacją)
-- **Tags** – metadane dla organizacji i rozliczeń
-- **Azure Blueprints** – pakiet governance (Policy + RBAC + ARM/Bicep + struktura RG)
-- **Azure Arc** – governance i zarządzanie zasobami on‑prem/multi‑cloud
+
+- **Azure Policy**
+  Mechanizm zapewniający zgodność konfiguracji zasobów z wymaganiami organizacji:
+  - **Policy Definition** – pojedyncza reguła (np. „wymagaj tagu Environment”, „blokuj publiczne IP”).
+  - **Policy Initiative** – zestaw wielu reguł grupowanych jako standard (np. CIS, ISO).
+  - **Effects**:
+    - **Deny** – blokuje wdrożenie niezgodnego zasobu.
+    - **Audit** – oznacza zasób jako niezgodny, ale nie blokuje działania.
+    - **Append** – dodaje brakujące właściwości (np. tagi).
+    - **Modify** – automatycznie poprawia konfigurację zasobu podczas wdrażania.
+  - **Scope**: Management Group / Subscription / Resource Group / Resource.
+  Azure Policy zapewnia kontrolę, automatyczną korektę i pełną widoczność zgodności w środowisku.
+
+- **Resource Locks**
+  Zabezpieczenia przed przypadkowym lub niepożądanym usunięciem albo modyfikacją zasobów:
+  - **Delete** – uniemożliwia usunięcie zasobu.
+  - **ReadOnly** – blokuje wszystkie modyfikacje, pozwalając tylko na odczyt.
+
+  Stosowane głównie na krytycznych zasobach (np. VNET, Key Vault, Storage).
+
+- **Tags**
+  Metadane przypisywane do zasobów w celu:
+  - organizacji i klasyfikacji (np. Environment, Owner, Project),
+  - raportowania kosztów i chargeback/showback,
+  - automatyzacji i filtrowania (np. w Azure Policy).
+
+  Pomagają utrzymać porządek i przejrzystość dużych środowisk.
+
+- **Azure Blueprints**
+  Kompleksowy pakiet governance łączący:
+  - **Policy**,  
+  - **RBAC**,  
+  - **ARM/Bicep templates**,  
+  - strukturę **Resource Groups**,
+  w jeden spójny model wdrożeniowy.
+  
+  Umożliwia szybkie i powtarzalne tworzenie środowisk zgodnych ze standardami organizacji (np. Landing Zone).
+
+- **Azure Arc**
+  Rozszerzenie Azure na środowiska **on‑premise, multi‑cloud i edge**:
+  - umożliwia stosowanie Azure Policy, Defender for Cloud, RBAC i Tagów na zasobach spoza Azure,
+  - zapewnia jednolite zarządzanie serwerami, Kubernetes, bazami danych i aplikacjami,
+  - wspiera standardy compliance w środowiskach hybrydowych.
 
 ---
 
