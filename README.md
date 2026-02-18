@@ -432,22 +432,22 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
 
 - **tags** służą do dodawania metadanych (np. koszt centrum, właściciel, projekt),  
 
-Najczęstsze zastosowania:
+    Najczęstsze zastosowania:
 
-- **Rozliczenia i kosztorysowanie** – tagi pozwalają przypisać koszt zasobów do projektu, działu, środowiska lub zespołu. Dzięki temu raporty kosztów są czytelne i dokładne.  
-  Przykłady: `CostCenter=IT01`, `Project=Ecommerce`, `Environment=Prod`
+    - **Rozliczenia i kosztorysowanie** – tagi pozwalają przypisać koszt zasobów do projektu, działu, środowiska lub zespołu. Dzięki temu raporty kosztów są czytelne i dokładne.  
+    Przykłady: `CostCenter=IT01`, `Project=Ecommerce`, `Environment=Prod`
 
-- **Zarządzanie i porządkowanie zasobów** – ułatwiają odnajdywanie i grupowanie powiązanych elementów w dużych subskrypcjach.  
-  Przykłady: `Owner=Jan.Kowalski`, `Service=BackendAPI`
+    - **Zarządzanie i porządkowanie zasobów** – ułatwiają odnajdywanie i grupowanie powiązanych elementów w dużych subskrypcjach.  
+    Przykłady: `Owner=Jan.Kowalski`, `Service=BackendAPI`
 
-- **Automatyzacja i polityki** – tagi mogą być używane przez Azure Policy, Automation, zaplanowane skrypty i governance.  
-  Przykłady: automatyczne wyłączanie maszyn z tagiem `AutoShutdown=True`
+    - **Automatyzacja i polityki** – tagi mogą być używane przez Azure Policy, Automation, zaplanowane skrypty i governance.  
+    Przykłady: automatyczne wyłączanie maszyn z tagiem `AutoShutdown=True`
 
-- **Bezpieczeństwo i odpowiedzialność** – jasne wskazanie właściciela lub kontaktu sprawia, że wiadomo, kto odpowiada za utrzymanie zasobu.  
-  Przykład: `OwnerEmail=devops-team@example.com`
+    - **Bezpieczeństwo i odpowiedzialność** – jasne wskazanie właściciela lub kontaktu sprawia, że wiadomo, kto odpowiada za utrzymanie zasobu.  
+    Przykład: `OwnerEmail=devops-team@example.com`
 
-- **Zarządzanie cyklem życia** – tagi mogą określać datę wygaśnięcia, przeglądu lub planowanego usunięcia.  
-  Przykład: `ExpiryDate=2026-06-30`
+    - **Zarządzanie cyklem życia** – tagi mogą określać datę wygaśnięcia, przeglądu lub planowanego usunięcia.  
+    Przykład: `ExpiryDate=2026-06-30`
 
 - **locks** (`Delete` / `ReadOnly`) chronią zasoby przed przypadkowym usunięciem lub modyfikacją, co jest kluczowe w utrzymaniu porządku i bezpieczeństwa w środowisku.
 
