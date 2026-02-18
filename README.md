@@ -537,61 +537,77 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
 
 - **Virtual Machines (VM)**  
 
-  Elastyczne maszyny wirtualne w wielu seriach (B, Dv5/Ev5, pamięciochłonne, obliczeniowe, GPU).  
-  Obsługują **managed disks**, **VM Extensions** i dowolne systemy operacyjne.
+    Elastyczne maszyny wirtualne w wielu seriach (B, Dv5/Ev5, pamięciochłonne, obliczeniowe, GPU).  
+    Obsługują **managed disks**, **VM Extensions** i dowolne systemy operacyjne.
 
-  <img src="assets/vm.svg">
+    <img src="assets/vm.svg">
 
-  **Managed disks** czyli niezawodne dyski zarządzane dla maszyny virtualnej.
+    **Managed disks** czyli niezawodne dyski zarządzane dla maszyny virtualnej.
 
-  **VM Extensions** czyli dodatki instalowane w VM, które automatyzują konfigurację.
+    **VM Extensions** czyli dodatki instalowane w VM, które automatyzują konfigurację.
 
 - **Availability Sets**  
 
-  Zapewniają odporność na awarie dzięki podziałowi na **Fault Domains** i **Update Domains**.  
-  Chronią przed skutkami awarii sprzętu oraz planowanych aktualizacji.
+    Zapewniają odporność na awarie dzięki podziałowi na **Fault Domains** i **Update Domains**.  
+    Chronią przed skutkami awarii sprzętu oraz planowanych aktualizacji.
 
-  <img src="assets/avsets.svg">
+    <img src="assets/avsets.svg">
 
-  **Fault Domains** czyli niezależne fizyczne strefy (różne racki, zasilanie, sieć).  
+    **Fault Domains** czyli niezależne fizyczne strefy (różne racki, zasilanie, sieć).  
 
-  **Update Domains** czyli logiczne grupy aktualizacji, restartowane osobno.
+    **Update Domains** czyli logiczne grupy aktualizacji, restartowane osobno.
 
-- **VM Scale Sets (VMSS)**  
+    - **VM Scale Sets (VMSS)**  
 
-  **VM Scale Sets** to usługa umożliwiająca automatyczne uruchamianie, skalowanie i zarządzanie wieloma identycznymi maszynami wirtualnymi (VM). Wszystkie instancje oparte są na jednym *modelu* konfiguracji, co zapewnia spójność środowiska przy dużej skali.
+    **VM Scale Sets** to usługa umożliwiająca automatyczne uruchamianie, skalowanie i zarządzanie wieloma identycznymi maszynami wirtualnymi (VM). Wszystkie instancje oparte są na jednym *modelu* konfiguracji, co zapewnia spójność środowiska przy dużej skali.
 
-  <img src="assets/vmss.svg">
+    <img src="assets/vmss.svg">
 
-    - **Autoscaling** – automatyczne zwiększanie lub zmniejszanie liczby VM na podstawie metryk (CPU, RAM, Queue Length, HTTP load) lub harmonogramów.
+        - **Autoscaling** – automatyczne zwiększanie lub zmniejszanie liczby VM na podstawie metryk (CPU, RAM, Queue Length, HTTP load) lub harmonogramów.
 
-    - **Rolling Upgrades** – bezpieczne wdrażanie aktualizacji poprzez stopniową wymianę instancji (grupami – Update Domains), bez przestojów całego systemu.
+        - **Rolling Upgrades** – bezpieczne wdrażanie aktualizacji poprzez stopniową wymianę instancji (grupami – Update Domains), bez przestojów całego systemu.
 
-    - **Load Balancer Integration** – natywne połączenie z Azure Load Balancer lub Application Gateway, które równomiernie rozdzielają ruch na instancje.
+        - **Load Balancer Integration** – natywne połączenie z Azure Load Balancer lub Application Gateway, które równomiernie rozdzielają ruch na instancje.
 
-    - **Instance Model (VM Template)** – wzorzec definiujący obraz systemu (image), rozmiar VM, dyski, konfiguracje sieciowe, rozszerzenia i bootstrap (cloud-init/UserData).
+        - **Instance Model (VM Template)** – wzorzec definiujący obraz systemu (image), rozmiar VM, dyski, konfiguracje sieciowe, rozszerzenia i bootstrap (cloud-init/UserData).
 
-    - **High Availability** – instancje automatycznie rozkładane są między **Fault Domains / Update Domains**, zwiększając odporność na awarie.
+        - **High Availability** – instancje automatycznie rozkładane są między **Fault Domains / Update Domains**, zwiększając odporność na awarie.
 
-    - **Orchestracja** – dwa tryby:  
-        - *Uniform* (domyślny): wszystkie VM są identyczne i zarządzane centralnie.  
-        - *Flexible*: większa elastyczność, np. do scenariuszy z różnymi typami VM lub strefami dostępności (AZ).
+        - **Orchestracja** – dwa tryby:  
+            - *Uniform* (domyślny): wszystkie VM są identyczne i zarządzane centralnie.  
+            - *Flexible*: większa elastyczność, np. do scenariuszy z różnymi typami VM lub strefami dostępności (AZ).
 
-   VMSS pozwala budować skalowalne, wysoko dostępne farmy serwerów opartych o identyczne VM, z automatycznym balansowaniem obciążenia i kontrolowanymi aktualizacjami.
+    VMSS pozwala budować skalowalne, wysoko dostępne farmy serwerów opartych o identyczne VM, z automatycznym balansowaniem obciążenia i kontrolowanymi aktualizacjami.
 
 - **App Service**  
 
-  Zarządzana platforma do uruchamiania aplikacji Web, API i Mobile — bez konieczności zarządzania infrastrukturą.  
+    Zarządzana platforma do uruchamiania aplikacji Web, API i Mobile — bez konieczności zarządzania infrastrukturą.  
 
-  <img src="assets/appservice.svg">
+    <img src="assets/appservice.svg">
 
-  Umożliwia łatwe wdrażanie aplikacji, obsługuje **deployment slots**, integruje się z CI/CD  
-  (GitHub Actions, Azure DevOps) i zapewnia automatyczne skalowanie instancji w zależności od obciążenia.
+    Umożliwia łatwe wdrażanie aplikacji, obsługuje **deployment slots**, integruje się z CI/CD  
+    (GitHub Actions, Azure DevOps) i zapewnia automatyczne skalowanie instancji w zależności od obciążenia.
 
-- **Azure Functions**  
+- **Azure Functions**
 
-  Model serverless — płacisz tylko za wykonanie.  
-  Plany **Consumption** i **Premium**, szeroka gama triggerów i bindingów.
+    Serverless compute uruchamiany „na żądanie” — kod wykonuje się tylko wtedy, gdy pojawi się zdarzenie, a Ty płacisz wyłącznie za czas wykonania.  
+    Funkcje działają w planach **Consumption** (auto‑skalowanie, płatność za wykonania) oraz **Premium** (stałe instancje, VNET, dłuższe timeouty), obsługując dziesiątki triggerów i bindingów.
+
+    <img src="assets/azfunctions.svg">
+
+    - **Triggers** – zdarzenia uruchamiające funkcję (np. HTTP, Timer, Queue, Service Bus, Blob, Event Grid).
+
+    - **Input/Output Bindings** – deklaratywne powiązania z usługami Azure, bez pisania boilerplate (np. zapis do Blob Storage albo pobranie wiadomości z Queue).
+
+    - **Function App** – kontener logiczny grupujący funkcje, ich konfigurację, connection strings i runtime.
+
+    - **Host.json** – konfiguracja środowiskowa, retry, batch size, integracje.
+
+    - **Application Settings** – klucze, connection stringi, konfiguracja runtime.
+
+    - **Monitoring** – wbudowana integracja z Application Insights.
+
+    Azure Functions = event‑driven + serverless + automatyczne skalowanie + bogaty ekosystem triggerów i bindingów.
 
 - **Azure Container Instances (ACI)**  
 
