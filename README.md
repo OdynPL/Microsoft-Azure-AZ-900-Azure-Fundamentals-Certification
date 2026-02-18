@@ -1401,24 +1401,53 @@ Używany, gdy potrzebne jest sterowanie ruchem na poziomie DNS i niezależnie od
 
 ### AI i Data
 
-- **Cognitive Services / Azure OpenAI / Azure ML**  
-  - Cognitive Services – gotowe modele AI (mowa, OCR, sentiment).  
-  - Azure OpenAI – GPT, embeddings, generowanie treści.  
-  - Azure ML – pełne MLOps, trening modeli, rejestry, automatyzacja, endpointy.
+**Cognitive Services / Azure OpenAI / Azure ML**
 
-- **Data Factory / Synapse Pipelines / Databricks**  
-  - ADF – ETL/ELT, integracje i pipeline’y danych.  
-  - Synapse Pipelines – jak ADF, ale w ramach Synapse.  
-  - Databricks – Spark + Lakehouse + ML + Delta Lake.
+- **Cognitive Services**  
+  Gotowe modele AI bez trenowania: OCR, analiza obrazów, rozpoznawanie mowy, tłumaczenia, sentiment, wykrywanie anomalii.
+
+- **Azure OpenAI**  
+  Modele generatywne (GPT, embeddings): generowanie tekstu, podsumowania, chatboty, wyszukiwanie semantyczne, automatyzacja procesów.
+
+- **Azure Machine Learning (Azure ML)**  
+  Platforma MLOps: trening modeli, eksperymenty, rejestr modeli, pipeline’y, wdrożenia do endpointów, monitorowanie jakości i driftu.
+
+---
+
+**Data Factory / Synapse Pipelines / Databricks**
+
+- **Azure Data Factory (ADF)**  
+  ETL/ELT i integracje danych: pipeline’y, transformacje, harmonogramy, łączenie źródeł on‑prem i cloud.
+
+- **Synapse Pipelines**  
+  Pipeline’y w ramach Synapse – najlepsze, gdy używasz środowiska Synapse (SQL Pools, Spark, Data Lake).
+
+- **Databricks**  
+  Spark + Delta Lake + ML: skalowalne przetwarzanie big‑data, notebooki, streaming, lakehouse, MLflow.
 
 ---
 
 ### IoT (Internet of Things)
 
-- **IoT Hub** – komunikacja IoT (MQTT/AMQP/HTTPS), device twin, telemetria.  
-- **IoT Central** – platforma IoT SaaS bez backendu.  
-- **Digital Twins** – modelowanie relacji i stanów obiektów (cyfrowe bliźniaki).  
-- **Azure Sphere** – bezpieczne MCU i OS dla IoT.
+**IoT (Internet of Things)** to koncepcja, w której fizyczne urządzenia łączą się z internetem, wymieniają dane i pozwalają zdalnie monitorować oraz sterować realnym światem w sposób automatyczny i inteligentny.
+
+<img src="assets/iotschema.svg">
+
+**IoT Hub**
+Zarządzany hub komunikacyjny IoT obsługujący MQTT/AMQP/HTTPS, z dwukierunkową komunikacją między urządzeniami a chmurą.  
+Zapewnia telemetrię, komendy, konfigurację oraz **Device Twin** do przechowywania stanu i metadanych urządzeń.
+
+**IoT Central**
+Platforma IoT typu SaaS, która eliminuje potrzebę tworzenia backendu.  
+Oferuje gotowe dashboardy, analitykę, alerty, zarządzanie urządzeniami i szybkie wdrożenia IoT bez programowania infrastruktury.
+
+**Azure Digital Twins**
+Silnik do modelowania cyfrowych reprezentacji obiektów i ich relacji (digital twins).  
+Umożliwia odwzorowanie budynków, fabryk, urządzeń i procesów, analizę stanów, symulacje i integrację z telemetrią IoT Hub.
+
+**Azure Sphere**
+Kompletny i bezpieczny ekosystem IoT: specjalne MCU, zabezpieczony Linux OS oraz usługa bezpieczeństwa zapewniająca aktualizacje, certyfikację i ochronę urządzeń.  
+Idealny dla urządzeń wymagających najwyższego poziomu bezpieczeństwa.
 
 ---
 
