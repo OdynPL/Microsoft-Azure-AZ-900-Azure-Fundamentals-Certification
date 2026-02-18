@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600">
+  <style>
+    .geo { fill:#fff4d6; stroke:#f2b200; stroke-width:2; }
+    .region { fill:#e8f0fe; stroke:#4a84f4; stroke-width:2; }
+    .az { fill:#e7f8ee; stroke:#34a853; stroke-width:1.5; }
+    text { font-family: Arial; font-size: 16px; }
+  </style>
+
+  <!-- Geography -->
+  <rect x="50" y="40" width="800" height="500" rx="15" class="geo"/>
+  <text x="450" y="80" text-anchor="middle">Geography (np. EU)</text>
+
+  <!-- Regions -->
+  <rect x="120" y="130" width="220" height="120" rx="10" class="region" />
+  <text x="230" y="170" text-anchor="middle">Region A</text>
+
+  <rect x="560" y="130" width="220" height="120" rx="10" class="region" />
+  <text x="670" y="170" text-anchor="middle">Region B</text>
+
+  <!-- Region Pair arrows -->
+  <line x1="340" y1="190" x2="560" y2="190" stroke="#555" stroke-width="2" marker-end="url(#arrow)" />
+  <line x1="560" y1="210" x2="340" y2="210" stroke="#555" stroke-width="2" marker-end="url(#arrow)" />
+
+  <!-- Marker -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#555" />
+    </marker>
+  </defs>
+
+  <!-- AZ inside Region A -->
+  <rect x="140" y="210" width="70" height="60" rx="8" class="az" />
+  <text x="175" y="245" text-anchor="middle" style="font-size:14px">AZ 1</text>
+
+  <rect x="230" y="210" width="70" height="60" rx="8" class="az" />
+  <text x="265" y="245" text-anchor="middle" style="font-size:14px">AZ 2</text>
+
+  <rect x="320" y="210" width="70" height="60" rx="8" class="az" />
+  <text x="355" y="245" text-anchor="middle" style="font-size:14px">AZ 3</text>
+
+  <!-- AZ inside Region B -->
+  <rect x="580" y="210" width="70" height="60" rx="8" class="az" />
+  <text x="615" y="245" text-anchor="middle" style="font-size:14px">AZ 1</text>
+
+  <rect x="670" y="210" width="70" height="60" rx="8" class="az" />
+  <text x="705" y="245" text-anchor="middle" style="font-size:14px">AZ 2</text>
+
+  <rect x="760" y="210" width="70" height="60" rx="8" class="az" />
+  <text x="795" y="245" text-anchor="middle" style="font-size:14px">AZ 3</text>
+
+  <!-- Bottom label -->
+  <text x="450" y="560" text-anchor="middle">Diagram: Geography → Regions → Availability Zones → Region Pair</text>
+
+</svg>
