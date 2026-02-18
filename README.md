@@ -553,10 +553,9 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
 
   <img src="assets/avsets.svg">
 
+  **Fault Domains** czyli niezależne fizyczne strefy (różne racki, zasilanie, sieć).  
 
-    **Fault Domains** czyli niezależne fizyczne strefy (różne racki, zasilanie, sieć).  
-
-    **Update Domains** czyli logiczne grupy aktualizacji, restartowane osobno.
+  **Update Domains** czyli logiczne grupy aktualizacji, restartowane osobno.
 
 - **VM Scale Sets (VMSS)**  
 
