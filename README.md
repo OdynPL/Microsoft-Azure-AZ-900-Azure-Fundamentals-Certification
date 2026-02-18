@@ -391,22 +391,28 @@ Poniższy diagram przedstawia pełną hierarchię zarządzania w Azure — od na
 
 Ta struktura jest fundamentem pracy z Azure — wpływa na **uprawnienia, governance, koszty, compliance**, a nawet na sposób planowania architektury i CI/CD.
 
-- **Tenant (Microsoft Entra ID)** – tożsamość organizacji
-- **Management Group** – grupowanie subskrypcji, polityki na poziomie całej organizacji
-- **Subscription** – rozliczenia, limity, granica uprawnień
-- **Resource Group (RG)** – logiczny kontener zasobów
-- **Resource** – pojedyncza usługa (VM, VNet, Storage, App Service itd.)
+## Struktura Azure
 
-**Globalna infrastruktura:**
-- **Region** – zestaw współpołączonych centrów danych
-- **Availability Zone (AZ)** – fizycznie separowane DC w obrębie regionu (osobne zasilanie/chłodzenie/sieć)
-- **Geography** – granica rezydencji danych (np. EU/US)
-- **Region Pair** – sparowany region w tej samej geografii (aktualizacje, DR)
+- **Tenant (Microsoft Entra ID)** – główny kontener tożsamości całej organizacji. Zawiera użytkowników, grupy i zasady bezpieczeństwa.
+- **Management Group** – umożliwia grupowanie wielu subskrypcji oraz nakładanie wspólnych polityk na poziomie organizacji.
+- **Subscription** – określa sposób rozliczeń, limity oraz stanowi granicę uprawnień administracyjnych.
+- **Resource Group (RG)** – logiczny kontener na powiązane ze sobą zasoby (np. aplikację i jej bazę danych).
+- **Resource** – pojedynczy zasób lub usługa, np. VM, VNet, konto Storage, App Service itd.
 
-**ARM – warstwa zarządzania:**
-- Spójne API (Portal/CLI/PowerShell/REST)
-- Deklaratywne wdrożenia: **ARM Templates** (JSON) / **Bicep**
-- Organizacja: **tags**, **locks** (Delete/ReadOnly)
+<img src="assets/azure_hierarchy.svg">
+
+## Globalna infrastruktura Azure
+
+- **Region** – zestaw współpołączonych centrów danych działających jako jedna lokalizacja dostarczająca usługi Azure.
+- **Availability Zone (AZ)** – fizycznie odseparowane centra danych w obrębie jednego regionu (oddzielne zasilanie, chłodzenie, sieć) zapewniające wysoki poziom odporności.
+- **Geography** – obszar składający się z jednego lub kilku regionów, stanowiący granicę rezydencji i zgodności danych (np. EU, US).
+- **Region Pair** – dwa regiony w tej samej geografii sparowane ze sobą w celu zapewnienia odporności, planowania aktualizacji i disaster recovery.
+
+## ARM – warstwa zarządzania
+
+- **Spójne API** – jednolity sposób zarządzania zasobami Azure z użyciem Portalu, CLI, PowerShell i REST API.
+- **Deklaratywne wdrożenia** – możliwość definiowania infrastruktury jako kodu za pomocą **ARM Templates (JSON)** lub **Bicep**.
+- **Organizacja zasobów** – użycie **tags** do metadanych (np. koszt, właściciel) oraz **locks** (Delete / ReadOnly) do ochrony przed przypadkowymi zmianami lub usunięciem.
 
 ---
 
