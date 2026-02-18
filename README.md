@@ -1289,10 +1289,36 @@ Rodzaje:
 ---
 
 ## 11. IaC & Automation (Infrastruktura jako kod)
-- **ARM Templates (JSON)** / **Bicep** – deklaratywne wdrożenia, idempotencja, GitOps
-- **Terraform** – multi‑cloud IaC (provider AzureRM)
-- **DSC** – wymuszanie stanu konfiguracji
-- **Automation** – runbooki, Update Management, Change Tracking
+
+- **ARM Templates (JSON) / Bicep**
+  Deklaratywne podejście do definiowania infrastruktury:
+  - **Deklaratywność** – opisujesz *jaki* ma być stan zasobów, a Azure zajmuje się wdrożeniem.
+  - **Idempotencja** – wielokrotne uruchamianie tych samych szablonów daje ten sam efekt; brak ryzyka duplikacji.
+  - **GitOps** – idealne do łączenia z CI/CD; kod infrastruktury w repozytorium pozwala na kontrolę wersji, PR review i automatyczne wdrażanie.
+  - **ARM (JSON)** – niskopoziomowe, bardziej szczegółowe, natywne dla Azure.
+  - **Bicep** – nowszy, prostszy i czytelniejszy język, który kompiluje się do ARM; wspiera moduły, lepszą walidację i łatwiejsze utrzymanie.
+
+- **Terraform**
+  Popularne i uniwersalne narzędzie IaC działające w modelu multi‑cloud:
+  - **Provider AzureRM** – umożliwia pełne zarządzanie zasobami Azure.
+  - **Stan (state)** – Terraform śledzi zmiany infrastruktury i porównuje stan bieżący z planowanym.
+  - **Plan → Apply** – weryfikacja zmian przed wdrożeniem (co zostanie utworzone, zmodyfikowane lub usunięte).
+  - **Multi‑cloud** – jedna składnia dla Azure, AWS, GCP, VMware, K8s.
+  - Świetny wybór dla organizacji działających w wielu środowiskach lub chcących odseparować IaC od konkretnego dostawcy.
+
+- **DSC (Desired State Configuration)**
+  Mechanizm konfiguracji hostów Windows (i częściowo Linux):
+  - Definiujesz docelowy stan systemu (np. zainstalowane role, pliki, serwisy).
+  - DSC zapewnia **wymuszanie i utrzymanie** zadeklarowanego stanu.
+  - Używany głównie do konfiguracji serwerów, VM, środowisk hybrydowych.
+  - Integruje się z Azure Automation State Configuration.
+
+- **Automation**
+  Zestaw narzędzi do automatyzacji operacji i zarządzania:
+  - **Runbooki** – skrypty PowerShell i Python wykonywane w chmurze; idealne do automatyzacji operacji, cleanupów, rotacji kluczy.
+  - **Update Management** – automatyczne instalowanie poprawek dla VM (Windows i Linux) bez potrzeby własnej infrastruktury patchowania.
+  - **Change Tracking & Inventory** – monitorowanie zmian plików, rejestru, usług, pakietów oraz zbieranie szczegółowej inwentaryzacji serwerów.
+  - Świetne do operacji typu: harmonogramy, cykliczne zadania, utrzymanie zgodności środowisk.
 
 ---
 
