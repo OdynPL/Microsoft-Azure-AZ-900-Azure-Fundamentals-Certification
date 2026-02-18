@@ -933,11 +933,111 @@ Stosowane wtedy, gdy lacze sieciowe jest zbyt wolne, niestabilne lub kosztowne.
 ---
 
 ## 6. Identity & Access (Microsoft Entra)
-- **Microsoft Entra ID** – tożsamość, SSO, MFA, External Identities, Passwordless
-- **RBAC** – Owner/Contributor/Reader + role niestandardowe; dziedziczenie w dół scope
-- **Conditional Access** – zasady warunkowe (ryzyko, lokalizacja, urządzenie)
-- **PIM** – Just‑In‑Time dla ról uprzywilejowanych
-- **Managed Identities** – tożsamość dla aplikacji bez sekretów
+
+**Microsoft Entra ID**  
+Centralny system tozsamosci w Azure i Microsoft 365. Odpowiada za uwierzytelnianie uzytkownikow, aplikacji i urzadzen. 
+
+<img src="assets/msentraid.svg">
+ 
+Kluczowe funkcje:
+- **SSO (Single Sign-On)** – jedno logowanie do wielu aplikacji (SaaS, on-prem, Azure).  
+- **MFA (Multi-Factor Authentication)** – dodatkowe potwierdzenie tozsamosci (aplikacja, SMS, klucz FIDO2).  
+- **External Identities** – bezpieczny dostep dla partnerow/klientow bez tworzenia kont wewnetrznych.  
+- **Passwordless** – logowanie bez hasla (Windows Hello, FIDO2, Phone Sign-in).  
+- **Directory roles** – role administracyjne dla zarzadzania tozsamoscia.
+
+**Jak Entra ID uwierzytelnia uzytkownika**?
+
+<img src="assets/userauthorization.svg">
+
+Proces logowania przebiega w kilku krokach:
+1. **Identyfikacja** – uzytkownik podaje login (UPN), Entra ID ustala tenant i polityki.  
+2. **Uwierzytelnienie** – haslo, passwordless (FIDO2/Hello), certyfikat lub SSO z urzadzenia.  
+3. **Kontrole dostepu** (Conditional Access) – Entra ID ocenia ryzyko logowania, lokalizacje, stan urzadzenia, zgodnosc z politykami oraz wymaga MFA jesli to konieczne.  
+4. **Wydanie tokenow** – po pozytywnym potwierdzeniu wydawane sa ID Token, Access Token i Refresh Token (OAuth2/OIDC), ktore aplikacje wykorzystuja do autoryzacji.
+
+**Jak uwierzytelniane sa aplikacje?**
+
+<img src="assets/appauthorization.svg">
+
+Aplikacje korzystaja z wlasnej tozsamosci aplikacyjnej:
+- sekret klienta,  
+- certyfikat,  
+- lub **Managed Identity** (najbardziej bezpieczny model, bez sekretow).  
+
+Aplikacja uwierzytelnia sie w Entra ID, a nastepnie otrzymuje **Access Token** do zasobow takich jak Storage, Key Vault, SQL, Event Hub itd.
+
+**Jak uwierzytelniane sa urzadzenia?**
+
+<img src="assets/deviceauthorization.svg">
+
+Urzadzenia moga byc:
+- Azure AD Registered (BYOD),  
+- Azure AD Joined (urzadzenia firmowe),  
+- Hybrid Joined (AD on‑prem + Entra ID).  
+
+Entra ID sprawdza:
+- czy urzadzenie jest zapisane w katalogu,  
+- czy jest zgodne (Intune compliance),  
+- czy spelnia polityki bezpieczenstwa organizacji.  
+
+Dzieki temu mozliwe jest SSO, wymuszanie MFA, lub blokada dostepu dla niezaufanych urzadzen.
+
+---
+
+**RBAC (Role-Based Access Control)**  
+Mechanizm autoryzacji w Azure oparty na rolach przypisywanych do zakresow zasobow.  
+
+Najwazniejsze elementy:
+- Role wbudowane: **Owner**, **Contributor**, **Reader**.  
+- Mozliwosc tworzenia **custom roles** z granularnymi uprawnieniami.  
+- **Dziedziczenie scope w dol** – uprawnienia przypisane na Subscription obejmuja Resource Groups i zasoby nizej.  
+- Precyzyjna kontrola dostepu do zasobow Azure zgodnie z zasadami least privilege.
+
+---
+
+**Conditional Access**  
+Silnik zasad warunkowych wymuszajacy dodatkowe kontrole przy logowaniu.
+
+Kluczowe atrybuty:
+- **Ryzyko logowania / ryzyko uzytkownika** (Identity Protection).  
+- **Lokalizacja** (kraje, zakresy IP, sieci zaufane).  
+- **Stan urzadzenia** (Intune compliance).  
+- **Typ aplikacji** (przegladarka / klienci mobilni / aplikacje legacy).  
+
+Akcje zasad:
+- Wymuszenie MFA  
+- Blokada dostepu  
+- Wymuszenie zgodnego urzadzenia  
+- Wymuszenie sesji bezhaslowej
+
+---
+
+**PIM (Privileged Identity Management)**  
+Mechanizm nadawania uprawnien administracyjnych na zasadzie JIT (Just‑In‑Time).
+
+Najwazniejsze funkcje:
+- Tymczasowa aktywacja roli tylko na okres wykonywanych zadan.  
+- Wymuszenie uzasadnienia, zgody (approval) lub MFA przed nadaniem roli.  
+- Audyt aktywacji, notyfikacje i alerty.  
+- Minimalizacja ryzyka naduzyc przez stale podniesione uprawnienia.
+
+---
+
+**Managed Identities**  
+Tozsamosc systemowa dla aplikacji dzialajacych w Azure — bez kluczy, bez hasel, bez sekretow.  
+
+Zastosowania:
+- Dostep aplikacji do Azure Storage, Key Vault, SQL, Event Hub itp.  
+- Obsluga wbudowana w uslugi Azure (VM, App Service, Functions, Logic Apps).  
+- Kluczowe korzysci:
+  - automatyczne zarzadzanie tozsamoscia przez Azure  
+  - brak potrzeby przechowywania i rotowania sekretow  
+  - zgodnosc z Zero Trust  
+
+Rodzaje:
+- **System-assigned** – tozsamosc przypisana do jednego zasobu  
+- **User-assigned** – tozsamosc tworzona jako oddzielny zasob, wspoldzielona miedzy aplikacjami
 
 ---
 
