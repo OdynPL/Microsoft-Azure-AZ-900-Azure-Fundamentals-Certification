@@ -7,12 +7,12 @@
   </style>
 
   <text x="550" y="40" text-anchor="middle" class="title">
-    Azure Functions — Serverless
+    Azure Functions
   </text>
 
   <rect x="50" y="70" width="1000" height="460" class="box"/>
   <text x="550" y="100" text-anchor="middle" style="font-size:16px;font-weight:bold;">
-    Function App
+    Function App (serverless)
   </text>
 
   <rect x="100" y="150" width="280" height="160" class="sub"/>
@@ -26,7 +26,7 @@
   <text x="550" y="210" text-anchor="middle" style="font-weight:bold;">
     Function (kod)
   </text>
-  <text x="550" y="235" text-anchor="middle">Event‑driven</text>
+  <text x="550" y="235" text-anchor="middle">Event-driven</text>
   <text x="550" y="255" text-anchor="middle">Autoscaling</text>
 
   <rect x="710" y="150" width="280" height="160" class="sub"/>
@@ -43,6 +43,6 @@
   <rect x="550" y="350" width="400" height="140" class="sub"/>
   <text x="750" y="380" text-anchor="middle" style="font-weight:bold;">Monitoring</text>
   <text x="750" y="405" text-anchor="middle">Application Insights</text>
-  <text x="750" y="425" text-anchor="middle">Logi, metryki, traces</text>
+  <text x="750" y="425" text-anchor="middle">Logi, metryki</text>
 
 </svg>
