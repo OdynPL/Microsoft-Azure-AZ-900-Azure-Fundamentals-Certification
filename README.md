@@ -1453,14 +1453,45 @@ Idealny dla urządzeń wymagających najwyższego poziomu bezpieczeństwa.
 
 ### Inne przydatne
 
-- **Azure Bastion** – bezpieczne RDP/SSH bez publicznych IP.  
-- **Azure Load Testing** – testy obciążeniowe (JMeter‑as‑a‑Service).  
-- **Azure Cache for Redis** – szybki cache/distributed store.  
-- **App Configuration / Feature Flags** – centralna konfiguracja + rollout funkcji.  
-- **AKS Fleet** – zarządzanie wieloma klastrami AKS.  
-- **Container Registry (ACR)** – prywatny rejestr obrazów OCI.  
-- **Azure Lighthouse** – delegowane zarządzanie tenantami i subskrypcjami.  
-- **Azure Virtual Desktop** – wirtualne desktopy i aplikacje w chmurze.
+**Azure Bastion**
+Bezpieczny dostęp RDP/SSH do VM bez publicznych IP – działa przez portal i eliminuje potrzebę otwierania portów.
+
+**Azure Load Testing**
+Testy obciążeniowe w oparciu o JMeter, analiza wydajności i integracja z CI/CD bez utrzymywania własnej infrastruktury.
+
+**Azure Cache for Redis**
+Szybki in‑memory distributed cache do sesji, kolejek, pub/sub, ograniczania ruchu na bazach i niskich opóźnień.
+
+**App Configuration / Feature Flags**
+Centralna konfiguracja i kontrolowane wdrażanie funkcji (feature flags), z wersjonowaniem i pełną integracją z aplikacjami.
+
+**AKS Fleet**
+Zarządzanie wieloma klastrami AKS: governance, rollouty, multi‑cluster services, idealne dla środowisk enterprise.
+
+**Container Registry (ACR)**
+Prywatny rejestr OCI/Docker z buildami (ACR Tasks), skanowaniem podatności, replikacją geo i integracją z AKS.
+
+**Azure Lighthouse**
+Delegowane zarządzanie subskrypcjami i tenantami – doskonałe dla MSP, DevOps i scenariuszy multi‑tenant.
+
+**Azure Virtual Desktop**
+Wirtualne desktopy i aplikacje Windows w chmurze: multisession, FSLogix, autoscaling.
+
+---
+
+### Dodatkowe przydatne usługi
+
+**Azure Private Link**
+Prywatny dostęp do usług Azure (SQL, Storage, Key Vault) w ramach sieci bez ruchu publicznego.
+
+**Managed HSM**
+Sprzętowe moduły bezpieczeństwa (HSM) do generowania i przechowywania kluczy zgodnie z FIPS 140‑2.
+
+**Azure Monitor / Application Insights**
+Monitoring metryk, logów, zależności i wydajności aplikacji – podstawa obserwowalności.
+
+**Logic Apps Standard**
+Serverless workflowy i automatyzacje z setkami konektorów (SAP, SQL, Salesforce, EDI, B2B).
 
 ---
 
@@ -1479,13 +1510,161 @@ Idealny dla urządzeń wymagających najwyższego poziomu bezpieczeństwa.
 ---
 
 ## 14. Glosariusz skrócony
-- **Resource** – pojedynczy zasób w Azure (VM/VNet/Storage/App itd.)
-- **Resource Group** – kontener zasobów
-- **Subscription** – granica rozliczeń, limitów, uprawnień
-- **Management Group** – grupowanie subskrypcji
-- **Region / AZ / Geography / Region Pair** – elementy globalnej infrastruktury
-- **ARM / Bicep** – deklaratywne wdrożenia
-- **RG Tags / Locks** – metadane i blokady (Delete/ReadOnly)
+
+| Pojęcie | Definicja |
+|--------|-----------|
+| Tenant (Entra ID) | Instancja tożsamości dla organizacji. |
+| Directory | Katalog użytkowników, grup i aplikacji. |
+| Subscription | Granica rozliczeń, limitów i uprawnień. |
+| Management Group | Hierarchiczne grupowanie subskrypcji. |
+| Resource Group | Kontener logiczny dla zasobów. |
+| Resource | Pojedynczy zasób Azure (VM, VNet, Storage itd.). |
+| Tag | Metadana opisująca zasób. |
+| Resource Lock | Blokada Delete/ReadOnly chroniąca zasoby. |
+| Scope | Poziom przypisywania RBAC/polityk (MG→Sub→RG→Resource). |
+
+| Region | Fizyczna lokalizacja centrum danych. |
+| Availability Zone | Strefa niezależna w regionie. |
+| Zone Redundant Services | Usługi działające w wielu AZ. |
+| Geography | Zestaw regionów w jednej jurysdykcji. |
+| Region Pair | Sparowane regiony DR. |
+| Edge Location | Punkt POP dla CDN/Front Door. |
+| SLA | Gwarancja dostępności. |
+| HA (High Availability) | Wysoka dostępność rozwiązania. |
+| DR (Disaster Recovery) | Odtwarzanie po awarii. |
+
+| Entra ID (Azure AD) | Usługa tożsamości i uwierzytelniania. |
+| User | Użytkownik w katalogu. |
+| Group | Grupa uprawnień. |
+| Role / RBAC | Role definiujące dostęp do zasobów. |
+| Service Principal | Tożsamość aplikacji. |
+| Managed Identity | Systemowa tożsamość bez kluczy. |
+| Conditional Access | Dostęp zależny od warunków (lokacja, urządzenie). |
+| PIM | Zarządzanie rolami uprzywilejowanymi. |
+| App Registration | Rejestracja aplikacji w Entra ID. |
+
+| VNet | Prywatna sieć w Azure. |
+| Subnet | Segmentacja sieci. |
+| NSG | Reguły sieciowe L3–L4. |
+| ASG | Grupy aplikacyjne VM. |
+| UDR (Route Table) | Niestandardowy routing. |
+| VNet Peering | Połączenie prywatne między VNetami. |
+| Private Endpoint | Prywatny endpoint do usług PaaS. |
+| Private Link | Prywatny dostęp do usług Azure. |
+| Azure Firewall | Firewall warstw L3–L7. |
+| WAF | Firewall aplikacyjny L7. |
+| Load Balancer | Load balancing L4. |
+| Application Gateway | Load balancing L7 + WAF. |
+| Front Door | Globalny routing HTTP(S). |
+| Traffic Manager | DNS load balancing. |
+| VPN Gateway | Tunel IPsec Azure ↔ on‑prem. |
+| ExpressRoute | Prywatna łączność MPLS z Azure. |
+| Bastion | Bezpieczny RDP/SSH bez publicznych IP. |
+
+| VM (Virtual Machine) | Maszyna wirtualna. |
+| VMSS | Skalowanie grup VM. |
+| Availability Set | Separacja VM w domenach awarii. |
+| App Service | Hosting aplikacji Web/API. |
+| Function App | Serverless oparty o trigerry. |
+| Container Apps | Zarządzane kontenery serverless. |
+| AKS | Zarządzany Kubernetes. |
+| ACR | Prywatny rejestr obrazów OCI. |
+| Logic Apps | Workflow integracyjny. |
+| Batch | Przetwarzanie wsadowe/HPC. |
+| AVD | Wirtualne desktopy Windows. |
+| Dedicated Host | Fizyczny host tylko dla jednego klienta. |
+
+| Storage Account | Konto usług magazynowych. |
+| Blob Storage | Obiektowy magazyn danych. |
+| Azure Files | Udostępnione SMB/NFS. |
+| Queue Storage | Proste kolejki komunikatów. |
+| Table Storage | NoSQL key‑value. |
+| Disk Storage | Dyski VM. |
+
+| Azure SQL Database | Zarządzana baza SQL. |
+| SQL Managed Instance | Prawie pełna instancja SQL w PaaS. |
+| Cosmos DB | Globalna baza NoSQL z niskimi opóźnieniami. |
+| PostgreSQL Flexible Server | Zarządzany PostgreSQL. |
+| MySQL Flexible Server | Zarządzany MySQL. |
+| MariaDB | PaaS MariaDB. |
+| Synapse Analytics | Lakehouse + SQL + Spark. |
+| Databricks | Spark + Delta Lake + MLflow. |
+| Redis Cache | In-memory distributed cache. |
+
+| Service Bus | Messaging enterprise (kolejki/topics). |
+| Event Hub | Streaming telemetrii i big‑data. |
+| Event Grid | Routing zdarzeń serverless. |
+| Storage Queue | Kolejki w Storage. |
+| API Management | API Gateway. |
+| App Configuration | Centralna konfiguracja. |
+| Feature Flags | Przełączniki funkcji w aplikacji. |
+
+| Azure Monitor | Centralny monitoring zasobów. |
+| Metrics | Metryki czasowe. |
+| Logs | Logi w KQL. |
+| Activity Log | Operacje zarządcze. |
+| Diagnostic Settings | Kierowanie logów/metryk. |
+| Application Insights | Telemetria i APM. |
+| Alerts | Alerty metryczne/logowe. |
+| Workbooks | Dashboardy i wizualizacje. |
+| Change Tracking | Zmiany konfiguracji VM. |
+| Update Management | Aktualizacje systemów. |
+
+| Azure Policy | Wymuszanie konfiguracji zasobów. |
+| Policy Definition | Pojedyncza reguła. |
+| Initiative | Zestaw reguł. |
+| Blueprints | Szablony governance. |
+| Defender for Cloud | Bezpieczeństwo i Secure Score. |
+| Key Vault | Sekrety, klucze i certyfikaty. |
+| Managed HSM | Sprzętowy moduł kryptograficzny. |
+| DDoS Protection | Ochrona przed atakami wolumetrycznymi. |
+| IAM | Identity & Access Management. |
+| Zero Trust | Model bezpieczeństwa „never trust, always verify”. |
+
+| Azure DevOps | Repos, Boards, Pipelines, Artifacts. |
+| GitHub Actions | CI/CD jako usługa. |
+| Pipelines | Procesy budowania i wdrażania. |
+| Artifacts | Rejestr paczek. |
+| ARM Templates | Deklaratywne szablony JSON. |
+| Bicep | DSL IaC dla ARM. |
+| Terraform | Multi-cloud IaC. |
+| GitOps | Model declarative + repository-driven. |
+| Runbook | Automatyczne skrypty. |
+| DSC | Wymuszanie stanu konfiguracji. |
+
+| Azure Machine Learning | MLOps i trening modeli. |
+| Azure OpenAI | Modele generatywne GPT. |
+| Cognitive Services | Gotowe modele AI (Vision/Speech/Language). |
+| Data Factory | ETL/ELT i integracja danych. |
+| Synapse Pipelines | Orkiestracja danych w Synapse. |
+| Databricks | Spark + ML + Lakehouse. |
+| Power BI Embedded | Wizualizacja danych w aplikacjach. |
+
+| IoT Hub | Dwukierunkowa komunikacja IoT. |
+| Device Twin | Stan i właściwości urządzeń. |
+| IoT Edge | Moduły kontenerowe na urządzeniach. |
+| IoT Central | Platforma IoT SaaS. |
+| Device Provisioning Service | Automatyczna rejestracja urządzeń IoT. |
+| Azure Digital Twins | Modele i relacje obiektów fizycznych. |
+| Azure Sphere | Bezpieczny MCU i OS IoT. |
+
+| Cost Management | Analiza kosztów i budżety. |
+| Reservations | Rezerwacje na 1/3 lata. |
+| Azure Hybrid Benefit | Wykorzystanie własnych licencji. |
+| Spot VM | Tanie, przerywalne VM. |
+| Egress | Ruch wychodzący z chmury (płatny). |
+| Ingress | Ruch przychodzący (bezpłatny). |
+| TCO Calculator | Porównanie kosztów on‑prem vs Azure. |
+
+| Soft Delete | Odzyskiwanie skasowanych zasobów. |
+| Immutable Storage | Nie­zmienialne dane (compliance). |
+| Hot/Cool/Archive | Warstwy przechowywania danych. |
+| Autoscale | Automatyczne skalowanie zasobów. |
+| Replica | Kopia danych. |
+| Shard | Partycja danych. |
+| SAS Token | Delegowany dostęp do Storage. |
+| CORS | Polityki cross-origin. |
+| CDN | Sieć dostarczania treści. |
 
 ---
 
