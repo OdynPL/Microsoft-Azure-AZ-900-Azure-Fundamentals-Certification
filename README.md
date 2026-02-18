@@ -579,7 +579,6 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
 
    VMSS pozwala budować skalowalne, wysoko dostępne farmy serwerów opartych o identyczne VM, z automatycznym balansowaniem obciążenia i kontrolowanymi aktualizacjami.
 
-
 - **App Service**  
 
   Zarządzone środowisko dla aplikacji Web/API/Mobile.  

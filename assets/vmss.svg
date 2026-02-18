@@ -23,19 +23,19 @@
   <text x="210" y="185" text-anchor="middle">Frontend IP</text>
   <text x="210" y="205" text-anchor="middle">Backend Pool → VMSS</text>
 
-  <!-- Instance Model (template) -->
+  <!-- Instance Model -->
   <rect x="370" y="130" width="300" height="120" class="sub"/>
   <text x="520" y="160" text-anchor="middle" style="font-weight:bold;">Instance Model (template)</text>
-  <text x="520" y="185" text-anchor="middle">Image, rozmiar, OS, Extensions</text>
-  <text x="520" y="205" text-anchor="middle">NIC/NSG, dyski, cloud-init/UserData</text>
+  <text x="520" y="185" text-anchor="middle">Image, size, OS, Extensions</text>
+  <text x="520" y="205" text-anchor="middle">NIC/NSG, disks, cloud-init/UserData</text>
 
   <!-- Autoscale rules -->
   <rect x="700" y="130" width="330" height="120" class="sub"/>
   <text x="865" y="160" text-anchor="middle" style="font-weight:bold;">Autoscaling</text>
-  <text x="865" y="185" text-anchor="middle">metriky: CPU / RAM / Queue / sched.</text>
-  <text x="865" y="205" text-anchor="middle">Scale out / in · min/max/desired</text>
+  <text x="865" y="185" text-anchor="middle">CPU/RAM/Queue/Schedule</text>
+  <text x="865" y="205" text-anchor="middle">scale out / scale in</text>
 
-  <!-- Connections (LB -> Instances, Template -> Instances, Autoscale -> VMSS) -->
+  <!-- Lines -->
   <line x1="340" y1="190" x2="420" y2="320" stroke="#666" stroke-width="2"/>
   <line x1="520" y1="250" x2="520" y2="320" stroke="#666" stroke-width="2"/>
   <line x1="865" y1="250" x2="865" y2="320" stroke="#666" stroke-width="2"/>
@@ -44,7 +44,7 @@
   <rect x="120" y="290" width="880" height="180" class="sub"/>
   <text x="560" y="315" text-anchor="middle" style="font-weight:bold;">Instances</text>
 
-  <!-- VM instances (row 1) -->
+  <!-- Row 1 -->
   <rect x="150" y="330" width="140" height="60" class="sub"/>
   <text x="220" y="365" text-anchor="middle">VM-1</text>
 
@@ -60,7 +60,7 @@
   <rect x="830" y="330" width="140" height="60" class="sub"/>
   <text x="900" y="365" text-anchor="middle">VM-5</text>
 
-  <!-- VM instances (row 2) -->
+  <!-- Row 2 -->
   <rect x="150" y="410" width="140" height="60" class="sub"/>
   <text x="220" y="445" text-anchor="middle">VM-6</text>
 
@@ -70,3 +70,31 @@
   <rect x="490" y="410" width="140" height="60" class="sub"/>
   <text x="560" y="445" text-anchor="middle">VM-8</text>
 
+  <rect x="660" y="410" width="140" height="60" class="sub"/>
+  <text x="730" y="445" text-anchor="middle">VM-9</text>
+
+  <rect x="830" y="410" width="140" height="60" class="sub"/>
+  <text x="900" y="445" text-anchor="middle">VM-n</text>
+
+  <!-- Rolling upgrades -->
+  <rect x="120" y="500" width="880" height="70" class="sub"/>
+  <text x="560" y="525" text-anchor="middle" style="font-weight:bold;">Rolling upgrades</text>
+
+  <rect x="250" y="535" width="120" height="25" class="sub"/>
+  <text x="310" y="553" text-anchor="middle">UD1</text>
+
+  <line x1="370" y1="548" x2="420" y2="548" stroke="#666" stroke-width="2"/>
+
+  <rect x="420" y="535" width="120" height="25" class="sub"/>
+  <text x="480" y="553" text-anchor="middle">UD2</text>
+
+  <line x1="540" y1="548" x2="590" y2="548" stroke="#666" stroke-width="2"/>
+
+  <rect x="590" y="535" width="120" height="25" class="sub"/>
+  <text x="650" y="553" text-anchor="middle">UD3</text>
+
+  <!-- Footer -->
+  <text x="550" y="620" text-anchor="middle">
+    LB → VMSS, autoscaling → dodaje/usuwa VM, rolling upgrades → aktualizacje partiami
+  </text>
+</svg>
