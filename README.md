@@ -1346,7 +1346,7 @@ Rodzaje:
   Router zdarzeń z niskimi opóźnieniami, zapewniający event push w architekturach event‑driven.  
   Służy do reagowania na zdarzenia z Azure (np. BlobCreated → Function).
 
-  <img src="assets/eventgrid.svg">
+  <img src="assets/eventgrids.svg">
 
 ---
 
