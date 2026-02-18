@@ -777,10 +777,35 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
     Prostszy model, ale mniejsza izolacja niz Private Endpoint.
 
 **Równoważenie i edge:**
-- **Azure Load Balancer (L4)** – SNAT, inbound/outbound
-- **Application Gateway (L7 + WAF)** – HTTP(S), URL‑based routing, Web Application Firewall
-- **Traffic Manager (DNS LB)** – geo/priority/weighted
-- **Front Door** – globalny entry point (acceleracja + WAF + routing)
+
+- **Azure Load Balancer (L4)** 
+
+  Równoważenie ruchu na warstwie 4 (TCP/UDP). Oferuje SNAT, obsługę ruchu inbound i outbound, wsparcie dla scenariuszy HA oraz integrację z VM/VMSS.  
+  Stosowany tam, gdzie wymagane jest szybkie, niskopoziomowe przekazywanie pakietów bez inspekcji HTTP.
+
+  <img src="assets/azureloadbalancer.svg">
+
+- **Application Gateway (L7 + WAF)**  
+
+  Równoważenie na warstwie 7 (HTTP/HTTPS) z funkcjami terminacji SSL, routingu URL‑based, cookie affinity oraz integracją z **Web Application Firewall (WAF)**.  
+  Idealny dla aplikacji webowych wymagających zaawansowanej inspekcji i ochrony.
+
+  <img src="assets/applicationgateway.svg">
+
+- **Traffic Manager (DNS LB)**  
+
+  Równoważenie na poziomie DNS — kieruje ruch na podstawie reguł typu geo‑routing, priority, weighted lub performance.  
+  Działa globalnie i pozwala kontrolować, gdzie użytkownicy zostaną przekierowani *przed* nawiązaniem połączenia.
+
+  <img src="assets/trafficmanager.svg">
+
+- **Azure Front Door**  
+
+  Globalny punkt wejścia zbudowany na edge network Microsoft.  
+  Zapewnia akcelerację ruchu HTTP(s), caching, globalny load balancing L7, TLS offload oraz wbudowany WAF.  
+  Idealny dla aplikacji o zasięgu globalnym i wymagających niskich opóźnień.
+
+  <img src="assets/frontdoor.svg">
 
 ---
 

@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="540">
+  <style>
+    .box { fill:#eef4ff; stroke:#4a84f4; stroke-width:2; rx:10; }
+    .sub { fill:#ffffff; stroke:#7aa3f0; stroke-width:1.5; rx:8; }
+    .title { font-family: Arial; font-size: 22px; font-weight: bold; }
+    text { font-family: Arial; font-size: 14px; }
+  </style>
+
+  <text x="550" y="40" text-anchor="middle" class="title">
+    Application Gateway (L7 + WAF)
+  </text>
+
+  <rect x="50" y="70" width="1000" height="430" class="box"/>
+  <text x="550" y="105" text-anchor="middle" style="font-size:16px;font-weight:bold;">
+    Layer 7 HTTP(S) load balancing with Web Application Firewall
+  </text>
+
+  <!-- CLIENT -->
+  <rect x="100" y="170" width="260" height="160" class="sub"/>
+  <text x="230" y="200" text-anchor="middle" style="font-weight:bold;">Clients</text>
+  <text x="230" y="225" text-anchor="middle">HTTP / HTTPS traffic</text>
+  <text x="230" y="245" text-anchor="middle">Browsers / API clients</text>
+
+  <text x="390" y="255" text-anchor="middle" style="font-size:28px;">→</text>
+
+  <!-- APP GATEWAY -->
+  <rect x="420" y="150" width="260" height="200" class="sub"/>
+  <text x="550" y="180" text-anchor="middle" style="font-weight:bold;">Application Gateway</text>
+  <text x="550" y="205" text-anchor="middle">L7 routing rules</text>
+  <text x="550" y="225" text-anchor="middle">URL path based routing</text>
+  <text x="550" y="245" text-anchor="middle">Host headers rules</text>
+  <text x="550" y="265" text-anchor="middle">SSL termination</text>
+
+  <!-- WAF -->
+  <rect x="420" y="360" width="260" height="100" class="sub"/>
+  <text x="550" y="390" text-anchor="middle" style="font-weight:bold;">WAF (Web Application Firewall)</text>
+  <text x="550" y="415" text-anchor="middle">OWASP rules, protection</text>
+
+  <text x="710" y="255" text-anchor="middle" style="font-size:28px;">→</text>
+
+  <!-- BACKEND -->
+  <rect x="740" y="170" width="280" height="160" class="sub"/>
+  <text x="880" y="200" text-anchor="middle" style="font-weight:bold;">Backend Pool</text>
+  <text x="880" y="225" text-anchor="middle">VM / VMSS / App Service</text>
+  <text x="880" y="245" text-anchor="middle">Private IPs</text>
+  <text x="880" y="265" text-anchor="middle">App workloads</text>
+
+</svg>
