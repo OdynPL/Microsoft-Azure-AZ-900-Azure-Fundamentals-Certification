@@ -1160,7 +1160,7 @@ Rodzaje:
   - **ARM/Bicep templates**,  
   - strukturę **Resource Groups**,
   w jeden spójny model wdrożeniowy.
-  
+
   Umożliwia szybkie i powtarzalne tworzenie środowisk zgodnych ze standardami organizacji (np. Landing Zone).
 
 - **Azure Arc**
@@ -1172,11 +1172,59 @@ Rodzaje:
 ---
 
 ## 9. Monitoring & Logging
-- **Azure Monitor** – **Metrics** (czasowe), **Logs** (KQL, Log Analytics), **Alerts** (metryki/zapytania)
-- **Service Health** – incydenty i maintenance w regionach/usługach
-- **Activity Log** – kto/co/kiedy (operacje ARM)
-- **Resource Logs** – szczegółowe logi działania (wymagają **Diagnostic Settings**)
-- **Workbooks** – dashboardy + wizualizacje + KQL
+
+- **Azure Monitor**
+  Centralna platforma monitoringu w Azure, która zbiera, przechowuje, analizuje i wizualizuje dane operacyjne z zasobów.
+  
+  - **Metrics (metryki czasowe)**
+    Dane numeryczne zbierane w krótkich odstępach czasu (np. CPU %, pamięć, IOPS, opóźnienia).
+    - przeznaczone do szybkiej analizy trendów,
+    - idealne do alertów w czasie zbliżonym do rzeczywistego,
+    - przechowywane w wysokiej rozdzielczości (1-minutowe interwały).
+
+  - **Logs (KQL / Log Analytics)**
+    Dane o wysokiej szczegółowości zapisywane w Log Analytics Workspace.
+    - logi strukturalne i niestandardowe,
+    - analiza poprzez **Kusto Query Language (KQL)**,
+    - możliwość łączenia danych z wielu usług,
+    - fundament dla Security, Monitoring, Governance.
+
+  - **Alerts**
+    Mechanizm powiadamiania o problemach, oparty na:
+    - metrykach (np. CPU > 80% przez 5 min),
+    - zapytaniach KQL (np. błędy 500 w ostatnich 10 minutach),
+    - logach aktywności, logach zasobów,
+    - integracji z Action Groups (e-mail, Teams, webhook, ITSM).
+
+- **Service Health**
+  Informacje o stanie platformy Azure dotyczące:
+  - trwających incydentów,
+  - planowanych prac konserwacyjnych,
+  - degradacji usług w wybranych regionach.
+  Można konfigurować alerty na awarie wpływające na konkretne zasoby.
+
+- **Activity Log**
+  Log operacyjny na poziomie subskrypcji, zawierający:
+  - **kto** wykonał operację,
+  - **co** zmieniono,
+  - **kiedy** i **z jakiego źródła**,
+  - dotyczy głównie operacji ARM (tworzenie/usuwanie/aktualizacje zasobów).
+  Jest podstawą audytów i analizy zmian.
+
+- **Resource Logs**
+  Szczegółowe logi działania konkretnych usług (np. Storage Access Logs, Key Vault Audit Logs).
+  - wymagają włączenia **Diagnostic Settings**,
+  - można je wysłać do:
+    - Log Analytics Workspace,
+    - Event Hub,
+    - Storage Account,
+  - pozwalają analizować zachowanie aplikacji, ruch, błędy, opóźnienia, dostęp.
+
+- **Workbooks**
+  Zaawansowane interaktywne dashboardy:
+  - łączą wizualizacje, tekst, parametry, zapytania KQL,
+  - nadają się do tworzenia raportów operacyjnych, security, SRE/DevOps,
+  - w pełni konfigurowalne (heatmapy, wykresy, tabele, integracja z Azure Monitor).
 
 ---
 
