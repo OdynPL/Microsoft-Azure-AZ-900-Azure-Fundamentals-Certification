@@ -1092,10 +1092,35 @@ Rodzaje:
 ---
 
 ## 7. Security (Bezpieczeństwo)
-- **Microsoft Defender for Cloud** – Secure Score, rekomendacje, ochrona obciążeń (VM/DB/Storage)
-- **Key Vault** – Secrets/Keys/Certificates (+ HSM)
-- **DDoS Protection** – Basic/Standard
-- **WAF** – na Application Gateway/Front Door
+
+- **Microsoft Defender for Cloud**  
+  Kompleksowa platforma zabezpieczeń chmurowych zapewniająca:
+  - **Secure Score** – miernik poziomu bezpieczeństwa środowiska z rekomendacjami działań naprawczych.
+  - **Rekomendacje bezpieczeństwa** – zalecenia dot. konfiguracji, podatności i zgodności ze standardami (CIS, NIST, ISO).
+  - **Ochrona obciążeń (Cloud Workload Protection):**
+    - **VM** – wykrywanie zagrożeń, analiza zachowań, agentless scanning.
+    - **Bazy danych** – ochrona SQL/PostgreSQL/MySQL, wykrywanie anomalii.
+    - **Storage** – skanowanie pod kątem malware, identyfikacja niepoprawnych konfiguracji.
+  - **Defender for Containers** – analiza obrazów, runtime protection, integracja z AKS.
+  - **Defender for APIs** – wykrywanie ryzyk i nadużyć API.
+
+- **Key Vault**  
+  Bezpieczne przechowywanie i zarządzanie:
+  - **Secrets** – hasła, tokeny, connection stringi.
+  - **Keys** – klucze kryptograficzne do szyfrowania i podpisywania.
+  - **Certificates** – pełny cykl życia certyfikatów, automatyczne odnowienia.
+  - **HSM (Managed HSM)** – sprzętowe moduły kryptograficzne FIPS 140-2 Level 3.
+
+- **DDoS Protection**  
+  Ochrona przed atakami DDoS:
+  - **Basic** – automatyczna ochrona dla wszystkich usług publicznych Azure.
+  - **Standard** – zaawansowana ochrona (L3–L7), adaptacyjne profile ruchu, automatyczne łagodzenie, alerty, raporty, **DDoS Rapid Response (DRR)** oraz SLA finansowe.
+
+- **WAF (Web Application Firewall)**  
+  Ochrona aplikacji webowych przed atakami (OWASP Top 10):
+  - **Application Gateway WAF** – filtrowanie L7, Managed/Custom Rules, bot protection, TLS termination.
+  - **Azure Front Door WAF** – globalna ochrona na edge, rate limiting, szybkie reagowanie.
+  - Wspólne polityki, integracja z Log Analytics i Sentinel.
 
 ---
 
