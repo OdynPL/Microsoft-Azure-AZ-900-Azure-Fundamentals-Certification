@@ -647,8 +647,12 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
 
 - **Azure Bastion**  
 
-  Bezpieczny dostęp RDP/SSH przez przeglądarkę **bez publicznego IP** na VM.  
-  Minimalizuje powierzchnię ataku i upraszcza administrację.
+    Azure Bastion umożliwia bezpieczne połączenia RDP i SSH do maszyn wirtualnych **bez potrzeby wystawiania publicznych adresów IP**.  
+
+    <img src="assets/azurebastion.svg">
+
+    Działa przez przeglądarkę (HTML5), minimalizuje powierzchnię ataku, usuwa konieczność otwierania portów 3389/22  
+    i zapewnia dostęp w pełni przez sieć prywatną (VNet).
 
 ---
 
