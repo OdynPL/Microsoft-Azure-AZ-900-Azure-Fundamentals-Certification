@@ -965,6 +965,19 @@ Aplikacje korzystaja z wlasnej tozsamosci aplikacyjnej:
 - certyfikat,  
 - lub **Managed Identity** (najbardziej bezpieczny model, bez sekretow).  
 
+**Managed Identity** to mechanizm nadawania aplikacjom tozsamosci zarzadzanej w pelni przez Azure — bez sekretow, bez hasel, bez certyfikatow.  
+
+**Jak dziala Managed Identity**:
+- aplikacja nie przechowuje zadnych sekretow ani kluczy  
+- uwierzytelnia sie poprzez lokalny endpoint MSI dostepny tylko wewnatrz uslugi  
+- Azure potwierdza, ze aplikacja ma tozsamosc MI oraz sprawdza jej role RBAC  
+- Entra ID wystawia **Access Token** dla konkretnej uslugi  
+- aplikacja dodaje token: `Authorization: Bearer <token>` i laczy sie z zasobem
+
+**Rodzaje Managed Identity**:
+- **System-assigned** – tozsamosc jest zwiazana z jednym zasobem; tworzy sie sama i znika wraz z zasobem.  
+- **User-assigned** – osobny zasob tozsamosci, ktory mozna przypisac do wielu aplikacji; bardziej elastyczne.
+
 Aplikacja uwierzytelnia sie w Entra ID, a nastepnie otrzymuje **Access Token** do zasobow takich jak Storage, Key Vault, SQL, Event Hub itd.
 
 **Jak uwierzytelniane sa urzadzenia?**
