@@ -651,17 +651,57 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
 
     <img src="assets/azurebastion.svg">
 
-    Działa przez przeglądarkę (HTML5), minimalizuje powierzchnię ataku, usuwa konieczność otwierania portów 3389/22  
-    i zapewnia dostęp w pełni przez sieć prywatną (VNet).
+    Działa przez przeglądarkę (HTML5), minimalizuje powierzchnię ataku, usuwa konieczność otwierania portów 3389/22. 
+
+    Zapewnia dostęp w pełni przez sieć prywatną (VNet).
 
 ---
 
 ## 4. Networking (Sieci i łączność)
-- **VNet / Subnets / UDR** – prywatne adresacje, trasowanie
-- **VNet Peering** – łączenie sieci przy niskim opóźnieniu
-- **VPN Gateway** – IPsec site‑to‑site/point‑to‑site
-- **ExpressRoute** – prywatne łącze do Azure
-- **Private Endpoint / Service Endpoint** – prywatny dostęp do usług PaaS
+
+- **VNet / Subnets / UDR**
+
+    Podstawowa sieć prywatna w Azure – kontrola adresacji, segmentacji oraz tras statycznych (UDR) do kierowania ruchu.
+
+    - **VNet (Virtual Network)**
+
+    Logiczna sieć prywatna w Azure, działająca podobnie do klasycznej sieci LAN.  
+    Umożliwia pełną kontrolę nad adresacją IP, komunikacją między zasobami, integracją z siecią on‑prem oraz izolacją środowisk.
+
+    - **Subnets**
+
+    Podział VNet na mniejsze, logiczne segmenty w celu separacji usług, zwiększenia bezpieczeństwa i kontroli dostępu.  
+    Pozwalają przypisywać różne NSG, UDR i zasady per segment, np. subnet „App”, „DB”, „Gateway”.
+
+    - **UDR (User Defined Routes)**
+
+    Niestandardowe trasy, które pozwalają ręcznie kierować ruch sieciowy zamiast używać domyślnego routingu Azure.  
+
+    <img src="assets/azurevnets.svg">
+
+    Najczęstsze zastosowania:
+    - kierowanie ruchu przez firewall (NVA)  
+    - wymuszenie ruchu między subnetami przez appliance  
+    - tunelowanie ruchu do on‑prem / VPN / ExpressRoute  
+    - blokowanie lub przekierowanie wybranych sieci
+
+
+- **VNet Peering**
+
+  Szybłe, niskolatencyjne połączenie sieci w Azure z pełną komunikacją prywatną „przez plecy” — bez tuneli, bez NAT.
+
+- **VPN Gateway**
+
+  Tunel IPsec łączący on‑prem z Azure (site‑to‑site) lub pojedynczych użytkowników (point‑to‑site) przez klienta VPN.
+
+- **ExpressRoute**
+
+  Dedykowane prywatne łącze do Azure o dużej przepustowości i stabilności; omija publiczny Internet.
+
+- **Private Endpoint / Service Endpoint**
+
+  Prywatny dostęp do usług PaaS (np. Storage, SQL, WebApps) przez prywatne IP – eliminuje publiczny ruch i zwiększa bezpieczeństwo.
+
 
 **Równoważenie i edge:**
 - **Azure Load Balancer (L4)** – SNAT, inbound/outbound
