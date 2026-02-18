@@ -611,10 +611,11 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
 
 - **Azure Container Instances (ACI)**  
 
-    Azure Container Instances to najszybszy sposób uruchamiania kontenerów w Azure bez potrzeby tworzenia lub zarządzania klastrem Kubernetes.  
-    Idealne do krótkotrwałych, jednorazowych lub prostych workloadów — batch jobs, API workers, testów, automatyzacji.
+    Azure Container Instances to najszybszy sposób uruchamiania kontenerów w Azure bez potrzeby tworzenia lub zarządzania klastrem Kubernetes.
 
     <img src="assets/aci.svg">
+
+    Idealne do krótkotrwałych, jednorazowych lub prostych workloadów — batch jobs, API workers, testów, automatyzacji.
 
     Kluczowe cechy:
     - start kontenera w kilka sekund (bez orkiestracji)
@@ -626,7 +627,24 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
 
 - **AKS (Azure Kubernetes Service)**  
 
-  Zarządzany Kubernetes z automatycznymi aktualizacjami, autoscalingiem i integracją z **Azure Container Registry (ACR)**.
+    Zarządzany Kubernetes w Azure, który automatyzuje większość złożonych zadań administracyjnych — takich jak aktualizacje węzłów, skalowanie, bezpieczeństwo i integracja z ekosystemem Azure.  
+
+    <img src="assets/aks.svg">
+
+    Umożliwia uruchamianie kontenerów w modelu produkcyjnym bez konieczności samodzielnego zarządzania control plane.
+
+    
+    **Kluczowe elementy AKS:**
+    - **Zarządzany control plane** – Kubernetes API server, scheduler, controller manager utrzymywane przez Azure.
+    - **Node Pools (agent nodes)** – węzły robocze, na których działają pody (VM‑ki w tle).
+    - **Autoscaling** – Cluster Autoscaler (CA) + Horizontal Pod Autoscaler (HPA).
+    - **Integracja z ACR** – bezpośrednie pobieranie obrazów kontenerów z Azure Container Registry.
+    - **Network model** – Kubenet lub Azure CNI (pełna integracja z VNet).
+    - **Load Balancing** – automatyczne tworzenie Load Balancera dla usług typu LoadBalancer.
+    - **AKS Add‑ons** – monitoring, logi, Application Gateway Ingress, Azure Policy, KEDA.
+    - **Bezpieczeństwo** – MSI, Azure RBAC, políticas, OIDC, secret store CSI driver.
+
+    **AKS** = w pełni zarządzany Kubernetes + automatyczne aktualizacje + skalowanie + integracje Azure (ACR, VNet, RBAC).
 
 - **Azure Bastion**  
 
