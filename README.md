@@ -534,14 +534,58 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
 ---
 
 ## 3. Compute Services (Usługi obliczeniowe)
-- **Virtual Machines** – rozmiary serii (B, Dv5/Ev5, pamięciochłonne/obliczeniowe/GPU), managed disks, VM extensions
-- **Availability Sets** – Fault Domains/Update Domains (redukcja ryzyka awarii/maintenance)
-- **VM Scale Sets (VMSS)** – autoskalowanie wielu VM, rolling upgrades
-- **App Service** – Web/API/Mobile Apps, deployment slots
-- **Azure Functions** – consumption/premium, trigery i bindingi
-- **Azure Container Instances (ACI)** – szybkie kontenery bez orkiestracji
-- **AKS** – zarządzany Kubernetes (integracja ACR, autoscaling)
-- **Azure Bastion** – bezpieczny RDP/SSH w przeglądarce bez publicznego IP na VM
+
+- **Virtual Machines (VM)**  
+
+  Elastyczne maszyny wirtualne w wielu seriach (B, Dv5/Ev5, pamięciochłonne, obliczeniowe, GPU).  
+  Obsługują **managed disks**, **VM Extensions** i dowolne systemy operacyjne.
+
+  <img src="assets/vm.svg">
+
+  **Managed disks** czyli niezawodne dyski zarządzane dla maszyny virtualnej.
+
+  **VM Extensions** czyli dodatki instalowane w VM, które automatyzują konfigurację.
+
+- **Availability Sets**  
+
+  Zapewniają odporność na awarie dzięki podziałowi na **Fault Domains** i **Update Domains**.  
+  Chronią przed skutkami awarii sprzętu oraz planowanych aktualizacji.
+
+  <img src="assets/avsets.svg">
+
+
+    **Fault Domains** czyli niezależne fizyczne strefy (różne racki, zasilanie, sieć).  
+
+    **Update Domains** czyli logiczne grupy aktualizacji, restartowane osobno.
+
+- **VM Scale Sets (VMSS)**  
+
+  Automatyczne skalowanie wielu identycznych VM.  
+  Obsługa **autoscaling**, rolling upgrades oraz integracja z Load Balancer.
+
+- **App Service**  
+
+  Zarządzone środowisko dla aplikacji Web/API/Mobile.  
+  Obsługuje **deployment slots**, integrację CI/CD i autoskalowanie.
+
+- **Azure Functions**  
+
+  Model serverless — płacisz tylko za wykonanie.  
+  Plany **Consumption** i **Premium**, szeroka gama triggerów i bindingów.
+
+- **Azure Container Instances (ACI)**  
+
+  Uruchamianie kontenerów bez konieczności tworzenia klastra Kubernetes.  
+  Idealne do szybkich, krótkotrwałych workloadów.
+
+- **AKS (Azure Kubernetes Service)**  
+
+  Zarządzany Kubernetes z automatycznymi aktualizacjami, autoscalingiem i integracją z **Azure Container Registry (ACR)**.
+
+- **Azure Bastion**  
+
+  Bezpieczny dostęp RDP/SSH przez przeglądarkę **bez publicznego IP** na VM.  
+  Minimalizuje powierzchnię ataku i upraszcza administrację.
 
 ---
 
