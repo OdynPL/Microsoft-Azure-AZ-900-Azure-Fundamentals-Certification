@@ -1001,13 +1001,42 @@ Dzieki temu mozliwe jest SSO, wymuszanie MFA, lub blokada dostepu dla niezaufany
 ---
 
 **RBAC (Role-Based Access Control)**  
-Mechanizm autoryzacji w Azure oparty na rolach przypisywanych do zakresow zasobow.  
+Mechanizm autoryzacji w Azure oparty na rolach przypisywanych do okreslonych zakresow zasobow (scope).  
+Umozliwia precyzyjne kontrolowanie, kto co moze zrobic w danym zasobie — zgodnie z zasada least privilege.
+
+<img src="assets/rbac.svg">
 
 Najwazniejsze elementy:
-- Role wbudowane: **Owner**, **Contributor**, **Reader**.  
-- Mozliwosc tworzenia **custom roles** z granularnymi uprawnieniami.  
-- **Dziedziczenie scope w dol** – uprawnienia przypisane na Subscription obejmuja Resource Groups i zasoby nizej.  
-- Precyzyjna kontrola dostepu do zasobow Azure zgodnie z zasadami least privilege.
+
+- **Role wbudowane**  
+  Podstawowe role obejmuja:  
+  - **Owner** – pelna administracja zasobami + zarzadzanie dostepem  
+  - **Contributor** – pelna administracja zasobami, ale bez nadawania uprawnien  
+  - **Reader** – tylko odczyt  
+
+  Dodatkowo istnieja setki **ról specjalistycznych**, np. Storage Blob Reader, Key Vault Secrets Officer, Virtual Machine Contributor.
+
+- **Custom roles**  
+  Gdy role wbudowane sa zbyt szerokie, mozna tworzyc role **niestandardowe** oparte na pojedynczych akcjach (actions / notActions), 
+  np. tylko „odczyt sekretow Key Vault” lub „restart VM bez mozliwosci kasowania”.
+
+- **Scope (zakres) i dziedziczenie**  
+  Scope definiuje, do czego rola ma zastosowanie:  
+  - **Subscription** → dziedziczy na wszystkie Resource Groups i zasoby  
+  - **Resource Group** → dziedziczy na zasoby w tej grupie  
+  - **Resource** → dotyczy tylko jednego zasobu  
+  Uprawnienia przypisane wyzej **zawsze dziedzicza w dol**, dlatego zaleca sie przypisywanie ról na mozliwie najnizszym poziomie.
+
+- **Model decyzyjny**  
+  Jeżeli uzytkownik ma wiele ról w danym scope, sumuja sie one (model additive).  
+  Blokady resource lock **nie sa** elementem RBAC — dzialaja oddzielnie.
+
+- **Zastosowania mechanizmu RBAC**  
+  RBAC jest kluczowe dla bezpieczenstwa:  
+  - ogranicza nadmiarowe uprawnienia  
+  - zapewnia podzial obowiazkow (SoD)  
+  - precyzyjnie definiuje, kto moze zarzadzac Storage, VM, SQL, App Service, Key Vault itd.  
+  - integruje sie z **Managed Identity**, dzięki czemu aplikacje rowniez korzystaja z RBAC zamiast sekretow
 
 ---
 
