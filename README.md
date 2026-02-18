@@ -738,7 +738,25 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
 
 - **ExpressRoute**
 
-  Dedykowane prywatne łącze do Azure o dużej przepustowości i stabilności; omija publiczny Internet.
+    **ExpressRoute** to dedykowane, prywatne polaczenie WAN pomiedzy infrastruktura on‑prem a Microsoft Azure.
+
+    Omija publiczny Internet, zapewniajac stabilne parametry sieci, niskie opoznienia oraz przewidywalna przepustowosc.
+
+    <img src="assets/expressroute.svg">
+
+    **Najwazniejsze cechy:**
+    - prywatny, fizyczny obwod — brak ruchu przez Internet
+    - bardzo wysoka przepustowosc (50 Mbps do 100 Gbps)
+    - stabilne opoznienia i SLA klasy operatorskiej
+    - bezpieczne polaczenie do Azure bez VPN i IPsec
+    - dwa tryby dostepu: ExpressRoute Standard i ExpressRoute Direct
+    - obsluga Microsoft peering (uslugi Office 365, Dynamics), Azure private peering (VNets) i Microsoft global backbone
+
+    **Zastosowania:**
+    - krytyczne obciazenia wymagajace przewidywalnej sieci
+    - integracja z data center
+    - migracje masowe (bulk data transfer)
+    - komunikacja miedzy regionami przez globalny backbone Microsoft
 
 - **Private Endpoint / Service Endpoint**
 
