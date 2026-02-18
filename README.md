@@ -810,21 +810,111 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
 ---
 
 ## 5. Storage (Przechowywanie danych)
-**Typy:**
-- **Blob** (Hot/Cool/Archive)
-- **File** (SMB, Azure Files, File Sync)
-- **Queue** (kolejki wiadomości)
-- **Table** (NoSQL key‑value)
-- **Managed Disks** (OS/Data/Temp, Premium/Standard/Ultra)
 
-**Redundancja:**
-- **LRS** (kopie w jednym DC)
-- **ZRS** (kopie w wielu AZ w regionie)
-- **GRS / RA‑GRS** (replikacja cross‑region)
+Azure Storage to zestaw usług do przechowywania plików, obiektów, danych NoSQL oraz dysków dla maszyn wirtualnych.  
+Poniżej znajdziesz jasne i zrozumiałe wyjaśnienie, czym są poszczególne typy storage, po co się ich używa oraz jak działa redundancja danych.
 
-**Narzędzia i migracje:**
-- **Storage Explorer**, **AzCopy**
-- **Azure Migrate**, **Data Box**
+---
+
+## **Typy danych i ich zastosowania**
+
+**Blob Storage** (obiekty / pliki)
+Najbardziej uniwersalne miejsce na duże, niestrukturalne dane.
+
+- Hot — częste odczyty, wysoka wydajność  
+- Cool — rzadziej używane dane, niższy koszt  
+- Archive — przechowywanie długoterminowe, najniższy koszt  
+- Zastosowania: kopie zapasowe, logi, obrazy, filmy, dane ML, statyczne pliki
+
+---
+
+**Azure Files** (udzialy sieciowe)
+Chmurowy odpowiednik klasycznego Windows File Server.
+
+- SMB/NFS udziały sieciowe  
+- Azure File Sync do synchronizacji z lokalnym serwerem plików  
+- Zastosowania: udziały użytkowników, zasoby współdzielone, migracje serwerów plików
+
+---
+
+**Queue Storage** (kolejki wiadomości)
+Prosta, skalowalna kolejka komunikatów dla architektur event‑driven.
+
+- komunikacja asynchroniczna między usługami  
+- idealna dla mikroserwisów, workerów, batch processing
+
+---
+
+**Table Storage** (NoSQL key‑value)
+Tania, szybka i schematless baza NoSQL do ogromnych ilości danych.
+
+- dane w formie PartitionKey + RowKey  
+- idealne dla logów, metadanych, telemetrii, konfiguracji  
+- alternatywa: Cosmos DB Table API
+
+---
+
+**Managed Disks** (dyski dla VM)
+Dyski zarządzane przez Azure, wykorzystywane przez maszyny wirtualne.
+
+- Premium SSD — produkcja, wysokie IOPS  
+- Standard SSD — solidny kompromis cena/wydajność  
+- Standard HDD — archiwizacja, testy  
+- Ultra SSD — bardzo wysokie IOPS i throughput  
+- OS Disk / Data Disk / Temp Disk (lokalny, nietrwały)
+
+---
+
+## **Redundancja danych (odporność na awarie)**
+
+**LRS — Locally Redundant Storage**
+- 3 kopie danych w jednym datacenter  
+- najniższy koszt  
+- odporność tylko w obrębie pojedynczego DC
+
+**ZRS — Zone Redundant Storage**
+- replikacja między 3 strefami Availability Zone  
+- ochrony przed awarią całej strefy  
+- stabilny wybór dla środowisk produkcyjnych
+
+**GRS — Geo Redundant Storage**
+- LRS + kopia do regionu pary  
+- 6 kopii danych łącznie  
+- ochrona przed awarią całego regionu
+
+**RA‑GRS — Read‑Access GRS**
+- jak GRS, ale region zapasowy jest możliwy do odczytu  
+- idealne dla globalnych aplikacji, które potrzebują dostępu read-only w czasie awarii
+
+---
+
+## **Narzędzia i migracje**
+
+**Storage Explorer**
+Narzędzie GUI do zarządzania Blob/Files/Queue/Table.
+
+- przeglądanie i edycja danych  
+- zarządzanie dostępem (SAS)  
+- wygodne operacje na dużych strukturach plików  
+
+**AzCopy**
+Najszybsze narzędzie do przesyłania danych do/z Azure Storage.
+
+- praca w CLI  
+- wysoka wydajność  
+- idealne do migracji dużych wolumenów
+
+**Azure Migrate**
+Aplikacje, VM‑ki i dane mogą być analizowane i migrowane do Azure.
+
+- automatyczne rekomendacje  
+- integracja z Azure Storage (np. blob staging)
+
+**Data Box**
+Fizyczne urządzenia Azure do przenoszenia ogromnych ilości danych offline.
+
+- gdy Internet jest zbyt wolny  
+- modele: Data Box Disk, Data Box, Data Box Heavy  
 
 ---
 
