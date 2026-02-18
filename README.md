@@ -413,13 +413,43 @@ Ta struktura jest fundamentem pracy z Azure — wpływa na **uprawnienia, govern
 
 - **Region Pair** – dwa regiony w tej samej geografii sparowane ze sobą w celu zapewnienia odporności, planowania aktualizacji i disaster recovery.
 
-## ARM – warstwa zarządzania
+## ARM (Azure Resource Manager) – warstwa zarządzania
+
+**Azure Resource Manager (ARM)** to centralna warstwa zarządzania platformą Azure.  
+Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezależnie od tego, z jakiego narzędzia korzystasz.
 
 <img src="assets/arm_layer.svg">
 
-- **Spójne API** – jednolity sposób zarządzania zasobami Azure z użyciem Portalu, CLI, PowerShell i REST API.
-- **Deklaratywne wdrożenia** – możliwość definiowania infrastruktury jako kodu za pomocą **ARM Templates (JSON)** lub **Bicep**.
-- **Organizacja zasobów** – użycie **tags** do metadanych (np. koszt, właściciel) oraz **locks** (Delete / ReadOnly) do ochrony przed przypadkowymi zmianami lub usunięciem.
+- **Spójne API** – ujednolicony mechanizm zarządzania zasobami Azure.
+
+  Niezależnie od tego, czy korzystasz z Portalu, Azure CLI, PowerShell czy REST API, wszystkie operacje trafiają do tej samej warstwy zarządzającej. Dzięki temu działania są przewidywalne i działają tak samo w każdym narzędziu.
+
+- **Deklaratywne wdrożenia** – możliwość opisywania infrastruktury w formie deklaratywnej, czyli definiujesz *co* ma powstać, a nie *jak to tworzyć*.  
+
+  Azure realizuje to poprzez **ARM Templates (JSON)** oraz **Bicep**, umożliwiając automatyczne, powtarzalne i kontrolowane wdrożenia w modelu Infrastructure as Code.
+
+- **Organizacja zasobów** – możliwość nadawania zasobom struktury i zabezpieczeń.  
+
+- **tags** służą do dodawania metadanych (np. koszt centrum, właściciel, projekt),  
+
+Najczęstsze zastosowania:
+
+- **Rozliczenia i kosztorysowanie** – tagi pozwalają przypisać koszt zasobów do projektu, działu, środowiska lub zespołu. Dzięki temu raporty kosztów są czytelne i dokładne.  
+  Przykłady: `CostCenter=IT01`, `Project=Ecommerce`, `Environment=Prod`
+
+- **Zarządzanie i porządkowanie zasobów** – ułatwiają odnajdywanie i grupowanie powiązanych elementów w dużych subskrypcjach.  
+  Przykłady: `Owner=Jan.Kowalski`, `Service=BackendAPI`
+
+- **Automatyzacja i polityki** – tagi mogą być używane przez Azure Policy, Automation, zaplanowane skrypty i governance.  
+  Przykłady: automatyczne wyłączanie maszyn z tagiem `AutoShutdown=True`
+
+- **Bezpieczeństwo i odpowiedzialność** – jasne wskazanie właściciela lub kontaktu sprawia, że wiadomo, kto odpowiada za utrzymanie zasobu.  
+  Przykład: `OwnerEmail=devops-team@example.com`
+
+- **Zarządzanie cyklem życia** – tagi mogą określać datę wygaśnięcia, przeglądu lub planowanego usunięcia.  
+  Przykład: `ExpiryDate=2026-06-30`
+
+- **locks** (`Delete` / `ReadOnly`) chronią zasoby przed przypadkowym usunięciem lub modyfikacją, co jest kluczowe w utrzymaniu porządku i bezpieczeństwa w środowisku.
 
 ---
 
