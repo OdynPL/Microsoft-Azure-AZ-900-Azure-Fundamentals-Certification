@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1250" height="750" viewBox="0 0 1250 750">
+  <defs>
+    <style>
+      .title { font: 700 26px Inter, Segoe UI, Arial, sans-serif; fill:#0b3a75; }
+      .subtitle { font: 600 14px Inter, Segoe UI, Arial, sans-serif; fill:#0b3a75; }
+      .text { font: 13px Inter, Segoe UI, Arial, sans-serif; fill:#1f2430; }
+      .muted { font: 12px Inter, Segoe UI, Arial, sans-serif; fill:#5a6577; }
+      .lane { fill:#ffffff; stroke:#d7dee9; stroke-width:2; rx:14; }
+      .hub { fill:#f0f8ff; stroke:#007acc; stroke-width:2.2; rx:14; }
+      .partition { fill:#fff7ee; stroke:#cc7a00; stroke-width:2; rx:10; }
+      .actor { fill:#f6f9fc; stroke:#8a9dbd; stroke-width:2; rx:10; }
+      .consumer { fill:#f2fff7; stroke:#2f8f4e; stroke-width:2; rx:10; }
+      .arrow { stroke:#333; stroke-width:2.2; marker-end:url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="12" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#333"/>
+    </marker>
+  </defs>
+
+  <text x="625" y="40" text-anchor="middle" class="title">Azure Event Hub — schemat architektury</text>
+  <text x="625" y="64" text-anchor="middle" class="muted">Big‑data ingress · IoT · telemetria · streaming</text>
+
+  <!-- Producers -->
+  <rect x="40" y="110" width="300" height="600" class="lane"/>
+  <text x="60" y="135" class="subtitle">Producenci (Ingress)</text>
+
+  <rect x="70" y="170" width="260" height="90" class="actor"/>
+  <text x="200" y="200" class="subtitle" text-anchor="middle">Aplikacje mobilne</text>
+  <text x="200" y="220" class="muted" text-anchor="middle">telemetria · logi</text>
+
+  <rect x="70" y="280" width="260" height="90" class="actor"/>
+  <text x="200" y="310" class="subtitle" text-anchor="middle">IoT urządzenia</text>
+  <text x="200" y="330" class="muted" text-anchor="middle">MQTT → gateway</text>
+
+  <rect x="70" y="390" width="260" height="90" class="actor"/>
+  <text x="200" y="420" class="subtitle" text-anchor="middle">Aplikacje backend</text>
+  <text x="200" y="440" class="muted" text-anchor="middle">event‑producer</text>
+
+  <!-- Event Hub -->
+  <rect x="360" y="110" width="520" height="600" class="lane"/>
+  <text x="380" y="135" class="subtitle">Event Hub Namespace</text>
+
+  <rect x="380" y="170" width="480" height="520" class="hub"/>
+  <text x="620" y="200" class="subtitle" text-anchor="middle">Event Hub: telemetry-stream</text>
+
+  <!-- Partitions -->
+  <rect x="410" y="240" width="420" height="120" class="partition"/>
+  <text x="620" y="270" text-anchor="middle" class="subtitle">Partition 0</text>
+  <text x="620" y="295" text-anchor="middle" class="muted">append‑only log</text>
+
+  <rect x="410" y="380" width="420" height="120" class="partition"/>
+  <text x="620" y="410" text-anchor="middle" class="subtitle">Partition 1</text>
+  <text x="620" y="435" text-anchor="middle" class="muted">offset, sequence number</text>
+
+  <rect x="410" y="520" width="420" height="120" class="partition"/>
+  <text x="620" y="550" text-anchor="middle" class="subtitle">Partition 2</text>
+  <text x="620" y="575" text-anchor="middle" class="muted">retention windows</text>
+
+  <!-- Consumers -->
+  <rect x="900" y="110" width="300" height="600" class="lane"/>
+  <text x="920" y="135" class="subtitle">Konsumenci (Processors)</text>
+
+  <rect x="930" y="170" width="260" height="90" class="consumer"/>
+  <text x="1060" y="200" class="subtitle" text-anchor="middle">Stream Analytics</text>
+  <text x="1060" y="220" class="muted" text-anchor="middle">SQL‑like streaming</text>
+
+  <rect x="930" y="280" width="260" height="90" class="consumer"/>
+  <text x="1060" y="310" class="subtitle" text-anchor="middle">Databricks</text>
+  <text x="1060" y="330" class="muted" text-anchor="middle">Spark Structured Streaming</text>
+
+  <rect x="930" y="390" width="260" height="90" class="consumer"/>
+  <text x="1060" y="420" class="subtitle" text-anchor="middle">Function (Event Hub trigger)</text>
+  <text x="1060" y="440" class="muted" text-anchor="middle">auto‑scale</text>
+
+  <rect x="930" y="500" width="260" height="90" class="consumer"/>
+  <text x="1060" y="530" class="subtitle" text-anchor="middle">Synapse Analytics</text>
+  <text x="1060" y="550" class="muted" text-anchor="middle">ETL / lakehouse</text>
+
+  <!-- Arrows -->
+  <line x1="300" y1="210" x2="380" y2="260" class="arrow"/>
+  <line x1="300" y1="320" x2="380" y2="300" class="arrow"/>
+  <line x1="300" y1="430" x2="380" y2="340" class="arrow"/>
+
+  <line x1="830" y1="300" x2="930" y2="215" class="arrow"/>
+  <line x1="830" y1="420" x2="930" y2="325" class="arrow"/>
+  <line x1="830" y1="560" x2="930" y2="430" class="arrow"/>
+  <line x1="830" y1="605" x2="930" y2="545" class="arrow"/>
+</svg>

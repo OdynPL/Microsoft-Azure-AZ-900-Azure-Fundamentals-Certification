@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+  <defs>
+    <style>
+      .title { font: 700 26px Inter, Segoe UI, Arial, sans-serif; fill:#0b3a75; }
+      .subtitle { font: 600 14px Inter, Segoe UI, Arial, sans-serif; fill:#0b3a75; }
+      .text { font: 13px Inter, Segoe UI, Arial, sans-serif; fill:#1f2430; }
+      .muted { font: 12px Inter, Segoe UI, Arial, sans-serif; fill:#5a6577; }
+      .lane { fill:#ffffff; stroke:#d7dee9; stroke-width:2; rx:14; }
+      .box { fill:#eef5ff; stroke:#4a78c2; stroke-width:2; rx:10; }
+      .bus { fill:#f6fbff; stroke:#0b7ac2; stroke-width:2.2; rx:14; }
+      .queue { fill:#fff7ee; stroke:#cc7a00; stroke-width:2; rx:10; }
+      .topic { fill:#fff2f5; stroke:#cc4a7a; stroke-width:2; rx:10; }
+      .sub { fill:#f2fff7; stroke:#2f8f4e; stroke-width:2; rx:8; }
+      .dlq { fill:#fde8ec; stroke:#b22234; stroke-width:2; rx:8; }
+      .actor { fill:#f6f9fc; stroke:#8a9dbd; stroke-width:2; rx:10; }
+      .arrow { stroke:#38404a; stroke-width:2.2; marker-end:url(#arrowhead); }
+      .arrow-dash { stroke:#38404a; stroke-width:2; stroke-dasharray:6 6; marker-end:url(#arrowhead); }
+    </style>
+    <marker id="arrowhead" markerWidth="12" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#38404a"/>
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="600" y="40" text-anchor="middle" class="title">Azure Service Bus — schemat architektury</text>
+  <text x="600" y="64" text-anchor="middle" class="muted">Kolejki, Tematy/Subscriptions, DLQ, Producenci i Konsumenci</text>
+
+  <!-- Swimlanes -->
+  <rect x="20" y="90" width="350" height="640" class="lane"/>
+  <text x="40" y="115" class="subtitle">Producenci (Publishers)</text>
+
+  <rect x="390" y="90" width="420" height="640" class="lane"/>
+  <text x="410" y="115" class="subtitle">Azure Service Bus (Namespace)</text>
+
+  <rect x="830" y="90" width="350" height="640" class="lane"/>
+  <text x="850" y="115" class="subtitle">Konsumenci (Workers/Handlers)</text>
+
+  <!-- Producers -->
+  <rect x="60" y="160" width="270" height="80" class="actor"/>
+  <text x="195" y="188" text-anchor="middle" class="subtitle">Aplikacja A</text>
+  <text x="195" y="210" text-anchor="middle" class="muted">HTTP/gRPC · background jobs</text>
+
+  <rect x="60" y="260" width="270" height="80" class="actor"/>
+  <text x="195" y="288" text-anchor="middle" class="subtitle">Usługa B</text>
+  <text x="195" y="310" text-anchor="middle" class="muted">mikroserwis · event‑producer</text>
+
+  <rect x="60" y="360" width="270" height="80" class="actor"/>
+  <text x="195" y="388" text-anchor="middle" class="subtitle">Function App</text>
+  <text x="195" y="410" text-anchor="middle" class="muted">timer/HTTP trigger</text>
+
+  <!-- Service Bus Namespace -->
+  <rect x="410" y="140" width="380" height="560" class="bus"/>
+  <text x="600" y="168" text-anchor="middle" class="subtitle">Namespace: contoso-sb</text>
+
+  <!-- Queue -->
+  <rect x="430" y="200" width="180" height="110" class="queue"/>
+  <text x="520" y="225" text-anchor="middle" class="subtitle">Queue: orders</text>
+  <text x="520" y="245" text-anchor="middle" class="text">FIFO z Sessions</text>
+  <text x="520" y="265" text-anchor="middle" class="muted">retry, lock, TTL</text>
+
+  <!-- Topic -->
+  <rect x="630" y="200" width="140" height="110" class="topic"/>
+  <text x="700" y="225" text-anchor="middle" class="subtitle">Topic</text>
+  <text x="700" y="245" text-anchor="middle" class="text">events</text>
+  <text x="700" y="265" text-anchor="middle" class="muted">pub/sub</text>
+
+  <!-- Subscriptions -->
+  <rect x="620" y="330" width="160" height="70" class="sub"/>
+  <text x="700" y="355" text-anchor="middle" class="subtitle">Sub: billing</text>
+  <text x="700" y="375" text-anchor="middle" class="muted">SQL filters</text>
+
+  <rect x="620" y="410" width="160" height="70" class="sub"/>
+  <text x="700" y="435" text-anchor="middle" class="subtitle">Sub: analytics</text>
+  <text x="700" y="455" text-anchor="middle" class="muted">correlation filters</text>
+
+  <!-- DLQs -->
+  <rect x="430" y="320" width="180" height="60" class="dlq"/>
+  <text x="520" y="350" text-anchor="middle" class="text">Queue DLQ</text>
+
+  <rect x="620" y="490" width="160" height="60" class="dlq"/>
+  <text x="700" y="520" text-anchor="middle" class="text">Subscriptions DLQ</text>
+
+  <!-- Consumers -->
+  <rect x="870" y="180" width="290" height="90" class="actor"/>
+  <text x="1015" y="206" text-anchor="middle" class="subtitle">Worker 1</text>
+  <text x="1015" y="228" text-anchor="middle" class="muted">PeekLock · prefetch · concurrency</text>
+
+  <rect x="870" y="290" width="290" height="90" class="actor"/>
+  <text x="1015" y="316" text-anchor="middle" class="subtitle">Worker 2</text>
+  <text x="1015" y="338" text-anchor="middle" class="muted">Sessions (ordered)</text>
+
+  <rect x="870" y="400" width="290" height="90" class="actor"/>
+  <text x="1015" y="426" text-anchor="middle" class="subtitle">Function (Queue trigger)</text>
+  <text x="1015" y="448" text-anchor="middle" class="muted">auto‑scale</text>
+
+  <rect x="870" y="510" width="290" height="90" class="actor"/>
+  <text x="1015" y="536" text-anchor="middle" class="subtitle">Logic App / APIM</text>
+  <text x="1015" y="558" text-anchor="middle" class="muted">integracje B2B</text>
+
+  <!-- Arrows: producers to bus -->
+  <line x1="330" y1="200" x2="430" y2="240" class="arrow"/>
+  <line x1="330" y1="300" x2="430" y2="255" class="arrow"/>
+  <line x1="330" y1="380" x2="630" y2="255" class="arrow"/>
+
+  <!-- Arrows inside bus -->
+  <line x1="710" y1="255" x2="710" y2="330" class="arrow"/>
+  <line x1="710" y1="255" x2="710" y2="410" class="arrow"/>
+
+  <!-- Arrows to consumers -->
+  <line x1="610" y1="240" x2="870" y2="225" class="arrow"/>
+  <line x1="520" y1="310" x2="870" y2="335" class="arrow"/>
+  <line x1="700" y1="365" x2="870" y2="445" class="arrow"/>
+  <line x1="700" y1="445" x2="870" y2="555" class="arrow"/>
+
+  <!-- DLQ arrows (dashed) -->
+  <line x1="520" y1="380" x2="870" y2="555" class="arrow-dash"/>
+  <line x1="700" y1="550" x2="870" y2="555" class="arrow-dash"/>
+
+  <!-- Legend -->
+  <rect x="40" y="650" width="1120" height="60" class="lane"/>
+  <text x="60" y="675" class="text">Cechy:</text>
+  <text x="120" y="675" class="muted">At‑least‑once delivery · Duplicate detection · Sessions (FIFO) · Scheduled messages · Deferral · Transactions</text>
+  <text x="60" y="695" class="muted">Tryb odbioru: PeekLock/ReceiveAndDelete · TTL · Poison messages → DLQ · Reguły i filtry Subscriptions</text>
+</svg>

@@ -1327,24 +1327,74 @@ Rodzaje:
 ---
 
 ## 12. Extended Azure Services (Usługi rozszerzone)
-**Integracja i zdarzenia:**
-- **Service Bus** (kolejki/topics)
-- **Event Hub** (telemetria/big‑data ingress)
-- **Event Grid** (router zdarzeń)
 
-**API i edge:**
-- **API Management** (APIM)
-- **Front Door / CDN / Traffic Manager**
+### Integracja i zdarzenia
 
-**AI i Data:**
-- **Cognitive Services / Azure OpenAI / Azure ML**
-- **Data Factory / Synapse Pipelines / Databricks**
+- **Service Bus**  
+  Messaging klasy enterprise oparty o kolejki (1:1) i topics/subscriptions (1→n), z obsługą transakcji, DLQ i AMQP.  
+  Idealny do mikroserwisów wymagających niezawodności i kolejkowania.
 
-**IoT:**
-- **IoT Hub / IoT Central / Digital Twins / Sphere**
+  <img src="assets/servicebus.svg">
 
-**Inne przydatne:**
-- **Azure Bastion**, **Azure Load Testing**, **Azure Cache for Redis**, **App Configuration / Feature Flags**, **AKS Fleet**, **Container Registry (ACR)**, **Azure Lighthouse**, **Azure Virtual Desktop**
+- **Event Hub**  
+  Strumieniowy ingress telemetrii na ogromną skalę (miliony zdarzeń/s).  
+  Integruje się z Spark, Databricks, Stream Analytics i może działać jako Kafka‑as‑a‑Service.
+
+  <img src="assets/eventhub.svg">
+
+- **Event Grid**  
+  Router zdarzeń z niskimi opóźnieniami, zapewniający event push w architekturach event‑driven.  
+  Służy do reagowania na zdarzenia z Azure (np. BlobCreated → Function).
+
+  <img src="assets/eventgrid.svg">
+
+---
+
+### API i edge
+
+- **API Management (APIM)**  
+  Gateway API, transformacje request/response, rate‑limiting, OAuth2/JWT, polityki i developer portal.
+
+- **Front Door / CDN / Traffic Manager**  
+  - **Front Door** – globalny edge, routing L7, WAF, caching.  
+  - **CDN** – szybka dystrybucja treści statycznych.  
+  - **Traffic Manager** – DNS load balancing geograficzny/prioritized.
+
+---
+
+### AI i Data
+
+- **Cognitive Services / Azure OpenAI / Azure ML**  
+  - Cognitive Services – gotowe modele AI (mowa, OCR, sentiment).  
+  - Azure OpenAI – GPT, embeddings, generowanie treści.  
+  - Azure ML – pełne MLOps, trening modeli, rejestry, automatyzacja, endpointy.
+
+- **Data Factory / Synapse Pipelines / Databricks**  
+  - ADF – ETL/ELT, integracje i pipeline’y danych.  
+  - Synapse Pipelines – jak ADF, ale w ramach Synapse.  
+  - Databricks – Spark + Lakehouse + ML + Delta Lake.
+
+---
+
+### IoT (Internet of Things)
+
+- **IoT Hub** – komunikacja IoT (MQTT/AMQP/HTTPS), device twin, telemetria.  
+- **IoT Central** – platforma IoT SaaS bez backendu.  
+- **Digital Twins** – modelowanie relacji i stanów obiektów (cyfrowe bliźniaki).  
+- **Azure Sphere** – bezpieczne MCU i OS dla IoT.
+
+---
+
+### Inne przydatne
+
+- **Azure Bastion** – bezpieczne RDP/SSH bez publicznych IP.  
+- **Azure Load Testing** – testy obciążeniowe (JMeter‑as‑a‑Service).  
+- **Azure Cache for Redis** – szybki cache/distributed store.  
+- **App Configuration / Feature Flags** – centralna konfiguracja + rollout funkcji.  
+- **AKS Fleet** – zarządzanie wieloma klastrami AKS.  
+- **Container Registry (ACR)** – prywatny rejestr obrazów OCI.  
+- **Azure Lighthouse** – delegowane zarządzanie tenantami i subskrypcjami.  
+- **Azure Virtual Desktop** – wirtualne desktopy i aplikacje w chmurze.
 
 ---
 
