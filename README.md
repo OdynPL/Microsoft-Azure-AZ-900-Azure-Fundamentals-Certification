@@ -811,8 +811,11 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
 
 ## 5. Storage (Przechowywanie danych)
 
-Azure Storage to zestaw usług do przechowywania plików, obiektów, danych NoSQL oraz dysków dla maszyn wirtualnych.  
+Azure Storage to zestaw usług do przechowywania plików, obiektów, danych NoSQL oraz dysków dla maszyn wirtualnych. 
+
 Poniżej znajdziesz jasne i zrozumiałe wyjaśnienie, czym są poszczególne typy storage, po co się ich używa oraz jak działa redundancja danych.
+
+<img src="assets/storagetypes.svg">
 
 ---
 
@@ -821,10 +824,11 @@ Poniżej znajdziesz jasne i zrozumiałe wyjaśnienie, czym są poszczególne typ
 **Blob Storage** (obiekty / pliki)
 Najbardziej uniwersalne miejsce na duże, niestrukturalne dane.
 
-- Hot — częste odczyty, wysoka wydajność  
-- Cool — rzadziej używane dane, niższy koszt  
-- Archive — przechowywanie długoterminowe, najniższy koszt  
-- Zastosowania: kopie zapasowe, logi, obrazy, filmy, dane ML, statyczne pliki
+- **Hot** — częste odczyty, wysoka wydajność  
+- **Cool** — rzadziej używane dane, niższy koszt  
+- **Archive** — przechowywanie długoterminowe, najniższy koszt  
+
+Zastosowania: kopie zapasowe, logi, obrazy, filmy, dane ML, statyczne pliki
 
 ---
 
@@ -866,6 +870,8 @@ Dyski zarządzane przez Azure, wykorzystywane przez maszyny wirtualne.
 ---
 
 ## **Redundancja danych (odporność na awarie)**
+
+<img src="assets/storageredundancy.svg">
 
 **LRS — Locally Redundant Storage**
 - 3 kopie danych w jednym datacenter  
@@ -910,12 +916,20 @@ Aplikacje, VM‑ki i dane mogą być analizowane i migrowane do Azure.
 - automatyczne rekomendacje  
 - integracja z Azure Storage (np. blob staging)
 
-**Data Box**
-Fizyczne urządzenia Azure do przenoszenia ogromnych ilości danych offline.
 
-- gdy Internet jest zbyt wolny  
-- modele: Data Box Disk, Data Box, Data Box Heavy  
+**Data Box**  
+Fizyczne urzadzenia Azure do przenoszenia bardzo duzych ilosci danych **offline**, bez wykorzystania Internetu.  
+Stosowane wtedy, gdy lacze sieciowe jest zbyt wolne, niestabilne lub kosztowne.
 
+- **Data Box Disk** – do ok. 40 TB; zestaw szyfrowanych dyskow SSD USB.  
+  Szybkie wdrozenie, lekkie migracje, wiele lokalizacji.
+
+- **Data Box** – do ok. 100 TB; pelne urzadzenie NAS w formie walizki.  
+  Wysoka przepustowosc lokalna, SMB/NFS/REST, duze migracje danych.
+
+- **Data Box Heavy** – do ok. 1 PB; przemyslowe urzadzenie na kolach.  
+  Bardzo duze migracje (archiwa, data lakes, media), transfery wielogigabitowe.
+ 
 ---
 
 ## 6. Identity & Access (Microsoft Entra)

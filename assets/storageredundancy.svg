@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="620">
+  <style>
+    .box { fill:#eef4ff; stroke:#4a84f4; stroke-width:2; rx:10; }
+    .sub { fill:#ffffff; stroke:#7aa3f0; stroke-width:1.6; rx:8; }
+    .title { font-family: Arial; font-size: 22px; font-weight: bold; }
+    text { font-family: Arial; font-size: 14px; }
+  </style>
+
+  <text x="550" y="40" text-anchor="middle" class="title">
+    Azure Storage - Redundancy Models
+  </text>
+
+  <rect x="50" y="70" width="1000" height="520" class="box"/>
+  <text x="550" y="105" text-anchor="middle" style="font-size:16px;font-weight:bold;">
+    LRS • ZRS • GRS • RA-GRS
+  </text>
+
+  <!-- LRS -->
+  <rect x="100" y="150" width="260" height="160" class="sub"/>
+  <text x="230" y="180" text-anchor="middle" style="font-weight:bold;">LRS</text>
+  <text x="230" y="205" text-anchor="middle">3 copies</text>
+  <text x="230" y="225" text-anchor="middle">Single datacenter</text>
+  <text x="230" y="245" text-anchor="middle">Lowest cost</text>
+
+  <!-- ZRS -->
+  <rect x="420" y="150" width="260" height="160" class="sub"/>
+  <text x="550" y="180" text-anchor="middle" style="font-weight:bold;">ZRS</text>
+  <text x="550" y="205" text-anchor="middle">Zone-level replication</text>
+  <text x="550" y="225" text-anchor="middle">3 Availability Zones</text>
+  <text x="550" y="245" text-anchor="middle">High availability</text>
+
+  <!-- GRS -->
+  <rect x="740" y="150" width="260" height="160" class="sub"/>
+  <text x="870" y="180" text-anchor="middle" style="font-weight:bold;">GRS</text>
+  <text x="870" y="205" text-anchor="middle">Cross-region replication</text>
+  <text x="870" y="225" text-anchor="middle">Primary + Secondary</text>
+  <text x="870" y="245" text-anchor="middle">6 copies of data</text>
+
+  <!-- RA-GRS -->
+  <rect x="250" y="360" width="600" height="160" class="sub"/>
+  <text x="550" y="390" text-anchor="middle" style="font-weight:bold;">RA-GRS</text>
+  <text x="550" y="415" text-anchor="middle">Read-access to secondary region</text>
+  <text x="550" y="435" text-anchor="middle">Same model as GRS + read replica</text>
+  <text x="550" y="455" text-anchor="middle">Ideal for global read workloads</text>
+
+</svg>

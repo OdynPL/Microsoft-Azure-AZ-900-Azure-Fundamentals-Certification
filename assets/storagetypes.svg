@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="600">
+  <style>
+    .box { fill:#eef4ff; stroke:#4a84f4; stroke-width:2; rx:10; }
+    .sub { fill:#ffffff; stroke:#7aa3f0; stroke-width:1.6; rx:8; }
+    .title { font-family: Arial; font-size: 22px; font-weight: bold; }
+    text { font-family: Arial; font-size: 14px; }
+  </style>
+
+  <text x="550" y="40" text-anchor="middle" class="title">
+    Azure Storage - Types Overview
+  </text>
+
+  <rect x="50" y="70" width="1000" height="500" class="box"/>
+  <text x="550" y="105" text-anchor="middle" style="font-size:16px;font-weight:bold;">
+    Blob • Files • Queue • Table • Managed Disks
+  </text>
+
+  <!-- BLOB -->
+  <rect x="100" y="150" width="280" height="150" class="sub"/>
+  <text x="240" y="180" text-anchor="middle" style="font-weight:bold;">Blob Storage</text>
+  <text x="240" y="205" text-anchor="middle">Object storage</text>
+  <text x="240" y="225" text-anchor="middle">Hot / Cool / Archive</text>
+  <text x="240" y="245" text-anchor="middle">Large unstructured data</text>
+
+  <!-- FILES -->
+  <rect x="410" y="150" width="280" height="150" class="sub"/>
+  <text x="550" y="180" text-anchor="middle" style="font-weight:bold;">Azure Files</text>
+  <text x="550" y="205" text-anchor="middle">SMB / NFS shares</text>
+  <text x="550" y="225" text-anchor="middle">Azure File Sync</text>
+  <text x="550" y="245" text-anchor="middle">File server replacement</text>
+
+  <!-- QUEUE -->
+  <rect x="720" y="150" width="280" height="150" class="sub"/>
+  <text x="860" y="180" text-anchor="middle" style="font-weight:bold;">Queue Storage</text>
+  <text x="860" y="205" text-anchor="middle">Message queues</text>
+  <text x="860" y="225" text-anchor="middle">Async workflows</text>
+  <text x="860" y="245" text-anchor="middle">Microservices</text>
+
+  <!-- TABLE -->
+  <rect x="250" y="330" width="280" height="150" class="sub"/>
+  <text x="390" y="360" text-anchor="middle" style="font-weight:bold;">Table Storage</text>
+  <text x="390" y="385" text-anchor="middle">NoSQL key-value</text>
+  <text x="390" y="405" text-anchor="middle">Schema-less</text>
+  <text x="390" y="425" text-anchor="middle">Large sets of data</text>
+
+  <!-- MANAGED DISKS -->
+  <rect x="570" y="330" width="280" height="150" class="sub"/>
+  <text x="710" y="360" text-anchor="middle" style="font-weight:bold;">Managed Disks</text>
+  <text x="710" y="385" text-anchor="middle">OS / Data / Temp</text>
+  <text x="710" y="405" text-anchor="middle">HDD / SSD / Ultra</text>
+  <text x="710" y="425" text-anchor="middle">For Azure VMs</text>
+
+</svg>
