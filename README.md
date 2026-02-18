@@ -760,8 +760,21 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
 
 - **Private Endpoint / Service Endpoint**
 
-  Prywatny dostęp do usług PaaS (np. Storage, SQL, WebApps) przez prywatne IP – eliminuje publiczny ruch i zwiększa bezpieczeństwo.
+    Mechanizmy zapewniajace prywatny dostep do uslug PaaS (np. Storage, SQL, WebApps) bez ruchu przez publiczny Internet.
 
+    <img src="assets/privateendpoints.svg">
+
+    - **Private Endpoint** 
+
+    Tworzy prywatny adres IP w Twoim VNet, ktory wskazuje bezposrednio na usluge PaaS.  
+    Ruch pozostaje w prywatnej sieci Azure (Azure backbone).  
+    Zapewnia najwyzszy poziom izolacji i kontroli.
+
+    - **Service Endpoint**  
+
+    Umozliwia ruch do uslug PaaS z sieci VNet, ale **nie tworzy prywatnego IP**.  
+    Azure rozpoznaje Twoja siec jako zaufane zrodlo i kieruje ruch po prywatnej sciezce.  
+    Prostszy model, ale mniejsza izolacja niz Private Endpoint.
 
 **Równoważenie i edge:**
 - **Azure Load Balancer (L4)** – SNAT, inbound/outbound
