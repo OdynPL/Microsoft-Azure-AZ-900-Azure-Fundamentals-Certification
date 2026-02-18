@@ -20,36 +20,34 @@
     </marker>
   </defs>
 
-  <!-- Tytuł -->
+  <!-- Title -->
   <text x="480" y="34" text-anchor="middle" class="title">
     Availability Set – Fault Domains (FD) & Update Domains (UD)
   </text>
 
-  <!-- Kontener AS -->
+  <!-- AS container -->
   <rect x="40" y="50" width="720" height="460" class="as"/>
   <text x="400" y="80" text-anchor="middle" class="label">Availability Set</text>
 
-  <!-- Pasy Update Domains (poziome) -->
+  <!-- Update Domains -->
   <rect x="60" y="110" width="680" height="110" class="ud1"/>
   <rect x="60" y="230" width="680" height="110" class="ud2"/>
   <rect x="60" y="350" width="680" height="110" class="ud3"/>
 
-  <!-- Etykiety UD -->
   <text x="70" y="125" class="label">UD1</text>
   <text x="70" y="245" class="label">UD2</text>
   <text x="70" y="365" class="label">UD3</text>
 
-  <!-- Kolumny Fault Domains (racks) -->
+  <!-- Fault Domains -->
   <rect x="100" y="100" width="200" height="380" class="fd"/>
   <rect x="340" y="100" width="200" height="380" class="fd"/>
   <rect x="580" y="100" width="200" height="380" class="fd"/>
 
-  <!-- Etykiety FD -->
   <text x="200" y="95" text-anchor="middle" class="label">FD1</text>
   <text x="440" y="95" text-anchor="middle" class="label">FD2</text>
   <text x="680" y="95" text-anchor="middle" class="label">FD3</text>
 
-  <!-- VMs – rozmieszczone w różnych FD i UD -->
+  <!-- VMs -->
   <!-- UD1 -->
   <rect x="135" y="140" width="150" height="55" class="vm"/>
   <text x="210" y="172" text-anchor="middle" class="text">VM-A (UD1 / FD1)</text>
@@ -68,32 +66,31 @@
   <rect x="375" y="380" width="150" height="55" class="vm"/>
   <text x="450" y="412" text-anchor="middle" class="text">VM-E (UD3 / FD2)</text>
 
-  <!-- Sekwencja aktualizacji po UD (rolling updates) -->
+  <!-- Update order -->
   <text x="120" y="500" class="text">Aktualizacje platformy: kolejno po Update Domains</text>
   <line x1="250" y1="495" x2="380" y2="495" class="seq"/>
   <line x1="500" y1="495" x2="630" y2="495" class="seq"/>
+
   <text x="240" y="492" text-anchor="end" class="label">UD1</text>
   <text x="490" y="492" text-anchor="end" class="label">UD2</text>
   <text x="740" y="492" text-anchor="end" class="label">UD3</text>
 
-  <!-- Legenda / wyjaśnienia -->
+  <!-- Legend -->
   <rect x="780" y="50" width="150" height="220" class="legend"/>
   <text x="855" y="75" text-anchor="middle" class="label">Legenda</text>
 
-  <!-- W legendzie: FD -->
   <rect x="795" y="95" width="120" height="38" class="fd"/>
   <text x="855" y="120" text-anchor="middle" class="text">FD – separacja sprzętowa</text>
 
-  <!-- W legendzie: UD -->
   <rect x="795" y="140" width="120" height="22" class="ud1"/>
   <rect x="795" y="168" width="120" height="22" class="ud2"/>
   <rect x="795" y="196" width="120" height="22" class="ud3"/>
   <text x="855" y="160" text-anchor="middle" class="text">UD – fala update</text>
 
-  <!-- Krótka podpowiedź -->
+  <!-- Hint -->
   <rect x="780" y="290" width="150" height="100" class="hint"/>
   <text x="855" y="315" text-anchor="middle" class="label">W praktyce</text>
-  <text x="855" y="335" text-anchor="middle" class="text">Min. 2+ VM w AS</text>
-  <text x="855" y="352" text-anchor="middle" class="text">VM w różnych FD i UD</text>
-  <text x="855" y="369" text-anchor="middle" class="text">= odporność na awarie i aktualizacje</text>
+  <text x="855" y="335" text-anchor="middle" class="text">2+ VM w AS</text>
+  <text x="855" y="352" text-anchor="middle" class="text">każda w innym FD i UD</text>
+  <text x="855" y="369" text-anchor="middle" class="text">→ wysoka dostępność</text>
 </svg>
