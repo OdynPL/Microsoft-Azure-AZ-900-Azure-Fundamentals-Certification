@@ -4,97 +4,76 @@
     .sub { fill:#ffffff; stroke:#7aa3f0; stroke-width:1.5; rx:8; }
     .title { font-family: Arial; font-size: 20px; font-weight: bold; }
     text { font-family: Arial; font-size: 14px; }
+    .vm  { fill:#ffffff; stroke:#4a84f4; stroke-width:1.6; rx:7; }
   </style>
 
   <!-- Title -->
   <text x="550" y="40" text-anchor="middle" class="title">
-    VM Scale Sets (VMSS) — autoscaling, rolling upgrades, Load Balancer
+    VM Scale Sets (VMSS)
   </text>
 
-  <!-- VMSS container -->
+  <!-- Main container -->
   <rect x="50" y="70" width="1000" height="520" class="box"/>
   <text x="550" y="100" text-anchor="middle" style="font-size:16px;font-weight:bold;">
     VM Scale Set (VMSS)
   </text>
 
   <!-- Load Balancer -->
-  <rect x="80" y="130" width="260" height="120" class="sub"/>
-  <text x="210" y="160" text-anchor="middle" style="font-weight:bold;">Load Balancer</text>
-  <text x="210" y="185" text-anchor="middle">Frontend IP</text>
-  <text x="210" y="205" text-anchor="middle">Backend Pool → VMSS</text>
+  <rect x="100" y="150" width="260" height="120" class="sub"/>
+  <text x="230" y="180" text-anchor="middle" style="font-weight:bold;">Load Balancer</text>
+  <text x="230" y="205" text-anchor="middle">Frontend IP</text>
+  <text x="230" y="225" text-anchor="middle">Backend Pool → VMSS</text>
 
-  <!-- Instance Model -->
-  <rect x="370" y="130" width="300" height="120" class="sub"/>
-  <text x="520" y="160" text-anchor="middle" style="font-weight:bold;">Instance Model (template)</text>
-  <text x="520" y="185" text-anchor="middle">Image, size, OS, Extensions</text>
-  <text x="520" y="205" text-anchor="middle">NIC/NSG, disks, cloud-init/UserData</text>
+  <!-- Template -->
+  <rect x="420" y="150" width="260" height="120" class="sub"/>
+  <text x="550" y="180" text-anchor="middle" style="font-weight:bold;">Instance Model</text>
+  <text x="550" y="205" text-anchor="middle">Image, size, OS</text>
+  <text x="550" y="225" text-anchor="middle">NIC/NSG, disks, Extensions</text>
 
-  <!-- Autoscale rules -->
-  <rect x="700" y="130" width="330" height="120" class="sub"/>
-  <text x="865" y="160" text-anchor="middle" style="font-weight:bold;">Autoscaling</text>
-  <text x="865" y="185" text-anchor="middle">CPU/RAM/Queue/Schedule</text>
-  <text x="865" y="205" text-anchor="middle">scale out / scale in</text>
-
-  <!-- Lines -->
-  <line x1="340" y1="190" x2="420" y2="320" stroke="#666" stroke-width="2"/>
-  <line x1="520" y1="250" x2="520" y2="320" stroke="#666" stroke-width="2"/>
-  <line x1="865" y1="250" x2="865" y2="320" stroke="#666" stroke-width="2"/>
+  <!-- Autoscale -->
+  <rect x="740" y="150" width="260" height="120" class="sub"/>
+  <text x="870" y="180" text-anchor="middle" style="font-weight:bold;">Autoscaling</text>
+  <text x="870" y="205" text-anchor="middle">CPU / RAM / Queue</text>
+  <text x="870" y="225" text-anchor="middle">Scale out / in</text>
 
   <!-- Instances area -->
-  <rect x="120" y="290" width="880" height="180" class="sub"/>
-  <text x="560" y="315" text-anchor="middle" style="font-weight:bold;">Instances</text>
+  <rect x="100" y="300" width="900" height="260" class="sub"/>
+  <text x="550" y="330" text-anchor="middle" style="font-weight:bold;">Instances</text>
 
   <!-- Row 1 -->
-  <rect x="150" y="330" width="140" height="60" class="sub"/>
-  <text x="220" y="365" text-anchor="middle">VM-1</text>
+  <rect x="140" y="360" width="150" height="60" class="vm"/>
+  <text x="215" y="395" text-anchor="middle">VM-1</text>
 
-  <rect x="320" y="330" width="140" height="60" class="sub"/>
-  <text x="390" y="365" text-anchor="middle">VM-2</text>
+  <rect x="330" y="360" width="150" height="60" class="vm"/>
+  <text x="405" y="395" text-anchor="middle">VM-2</text>
 
-  <rect x="490" y="330" width="140" height="60" class="sub"/>
-  <text x="560" y="365" text-anchor="middle">VM-3</text>
+  <rect x="520" y="360" width="150" height="60" class="vm"/>
+  <text x="595" y="395" text-anchor="middle">VM-3</text>
 
-  <rect x="660" y="330" width="140" height="60" class="sub"/>
-  <text x="730" y="365" text-anchor="middle">VM-4</text>
+  <rect x="710" y="360" width="150" height="60" class="vm"/>
+  <text x="785" y="395" text-anchor="middle">VM-4</text>
 
-  <rect x="830" y="330" width="140" height="60" class="sub"/>
-  <text x="900" y="365" text-anchor="middle">VM-5</text>
+  <rect x="900" y="360" width="150" height="60" class="vm"/>
+  <text x="975" y="395" text-anchor="middle">VM-5</text>
 
   <!-- Row 2 -->
-  <rect x="150" y="410" width="140" height="60" class="sub"/>
-  <text x="220" y="445" text-anchor="middle">VM-6</text>
+  <rect x="140" y="450" width="150" height="60" class="vm"/>
+  <text x="215" y="485" text-anchor="middle">VM-6</text>
 
-  <rect x="320" y="410" width="140" height="60" class="sub"/>
-  <text x="390" y="445" text-anchor="middle">VM-7</text>
+  <rect x="330" y="450" width="150" height="60" class="vm"/>
+  <text x="405" y="485" text-anchor="middle">VM-7</text>
 
-  <rect x="490" y="410" width="140" height="60" class="sub"/>
-  <text x="560" y="445" text-anchor="middle">VM-8</text>
+  <rect x="520" y="450" width="150" height="60" class="vm"/>
+  <text x="595" y="485" text-anchor="middle">VM-8</text>
 
-  <rect x="660" y="410" width="140" height="60" class="sub"/>
-  <text x="730" y="445" text-anchor="middle">VM-9</text>
+  <rect x="710" y="450" width="150" height="60" class="vm"/>
+  <text x="785" y="485" text-anchor="middle">VM-9</text>
 
-  <rect x="830" y="410" width="140" height="60" class="sub"/>
-  <text x="900" y="445" text-anchor="middle">VM-n</text>
+  <rect x="900" y="450" width="150" height="60" class="vm"/>
+  <text x="975" y="485" text-anchor="middle">VM-n</text>
 
-  <!-- Rolling upgrades -->
-  <rect x="120" y="500" width="880" height="70" class="sub"/>
-  <text x="560" y="525" text-anchor="middle" style="font-weight:bold;">Rolling upgrades</text>
-
-  <rect x="250" y="535" width="120" height="25" class="sub"/>
-  <text x="310" y="553" text-anchor="middle">UD1</text>
-
-  <line x1="370" y1="548" x2="420" y2="548" stroke="#666" stroke-width="2"/>
-
-  <rect x="420" y="535" width="120" height="25" class="sub"/>
-  <text x="480" y="553" text-anchor="middle">UD2</text>
-
-  <line x1="540" y1="548" x2="590" y2="548" stroke="#666" stroke-width="2"/>
-
-  <rect x="590" y="535" width="120" height="25" class="sub"/>
-  <text x="650" y="553" text-anchor="middle">UD3</text>
-
-  <!-- Footer -->
-  <text x="550" y="620" text-anchor="middle">
-    LB → VMSS, autoscaling → dodaje/usuwa VM, rolling upgrades → aktualizacje partiami
+  <!-- Footer description -->
+  <text x="550" y="610" text-anchor="middle">
+    Autoscaling zarządza liczbą instancji, Load Balancer rozdziela ruch, model definiuje konfigurację VM.
   </text>
 </svg>
