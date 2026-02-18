@@ -1290,6 +1290,10 @@ Rodzaje:
 
 ## 11. IaC & Automation (Infrastruktura jako kod)
 
+**IaC (Infrastructure as Code)** to podejście, w którym całą infrastrukturę — serwery, sieci, bazy, konfiguracje — definiuje się i zarządza nią za pomocą plików kodu, zamiast ręcznych kliknięć w portal, co zapewnia automatyzację, powtarzalność i pełną kontrolę wersji.
+
+<img src="assets/iac.svg">
+
 - **ARM Templates (JSON) / Bicep**
   Deklaratywne podejście do definiowania infrastruktury:
   - **Deklaratywność** – opisujesz *jaki* ma być stan zasobów, a Azure zajmuje się wdrożeniem.
