@@ -581,8 +581,12 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
 
 - **App Service**  
 
-  Zarządzone środowisko dla aplikacji Web/API/Mobile.  
-  Obsługuje **deployment slots**, integrację CI/CD i autoskalowanie.
+  Zarządzona platforma do uruchamiania aplikacji Web, API i Mobile — bez konieczności zarządzania infrastrukturą.  
+  
+  Umożliwia łatwe wdrażanie aplikacji, obsługuje **deployment slots**, integruje się z CI/CD  
+  (GitHub Actions, Azure DevOps) i zapewnia automatyczne skalowanie instancji w zależności od obciążenia.
+
+  <img src="assets/appservice.svg">
 
 - **Azure Functions**  
 
