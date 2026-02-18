@@ -629,10 +629,9 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
 
     Zarządzany Kubernetes w Azure, który automatyzuje większość złożonych zadań administracyjnych — takich jak aktualizacje węzłów, skalowanie, bezpieczeństwo i integracja z ekosystemem Azure.  
 
-    <img src="assets/aks.svg">
+    <img src="assets/azurekubernetesservice.svg">
 
     Umożliwia uruchamianie kontenerów w modelu produkcyjnym bez konieczności samodzielnego zarządzania control plane.
-
     
     **Kluczowe elementy AKS:**
     - **Zarządzany control plane** – Kubernetes API server, scheduler, controller manager utrzymywane przez Azure.
@@ -644,7 +643,7 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
     - **AKS Add‑ons** – monitoring, logi, Application Gateway Ingress, Azure Policy, KEDA.
     - **Bezpieczeństwo** – MSI, Azure RBAC, políticas, OIDC, secret store CSI driver.
 
-    **AKS** = w pełni zarządzany Kubernetes + automatyczne aktualizacje + skalowanie + integracje Azure (ACR, VNet, RBAC).
+    **AKS** to w pełni zarządzany Kubernetes + automatyczne aktualizacje + skalowanie + integracje Azure (ACR, VNet, RBAC).
 
 - **Azure Bastion**  
 
