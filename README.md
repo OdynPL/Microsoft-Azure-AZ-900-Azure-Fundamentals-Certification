@@ -1352,13 +1352,50 @@ Rodzaje:
 
 ### API i edge
 
-- **API Management (APIM)**  
-  Gateway API, transformacje request/response, rate‑limiting, OAuth2/JWT, polityki i developer portal.
+**API Management (APIM)**
+APIM to centralny *API Gateway*, który pozwala w jednym miejscu wystawiać, zabezpieczać i zarządzać wszystkimi API w organizacji.  
+Zapewnia m.in.:
+- **transformacje request/response** (np. JSON ↔ XML, dodawanie nagłówków),
+- **bezpieczeństwo i autoryzację** (OAuth2, OpenID Connect, JWT, certyfikaty),
+- **rate‑limiting i throttling** – ochrona backendów przed przeciążeniem,
+- **polityki (Policies)** działające bez zmian w kodzie aplikacji,
+- **Developer Portal** – dokumentacja, testowanie API i zarządzanie kluczami,
+- **wersjonowanie i lifecycle management** API.
 
-- **Front Door / CDN / Traffic Manager**  
-  - **Front Door** – globalny edge, routing L7, WAF, caching.  
-  - **CDN** – szybka dystrybucja treści statycznych.  
-  - **Traffic Manager** – DNS load balancing geograficzny/prioritized.
+Idealny jako warstwa pośrednia między aplikacjami klienckimi a backendami.
+
+---
+
+#### **Front Door / CDN / Traffic Manager**
+
+**Azure Front Door**
+Globalny gateway warstwy L7 działający na edge Microsoftu.  
+Oferuje:
+- inteligentny routing HTTP/HTTPS (latency‑based, path‑based, failover),
+- **WAF** na edge,
+- **globalne load balancing**,
+- **caching** i akcelerację aplikacji,
+- **TLS termination** blisko użytkownika.
+
+Świetny dla aplikacji działających globalnie, wymagających wysokiej wydajności i ochrony.
+
+**Azure CDN**
+Content Delivery Network przeznaczony do:
+- szybkiego dostarczania statycznych treści (CSS, JS, obrazy, wideo),
+- redukcji obciążenia backendu poprzez cache na edge,
+- poprawy czasu ładowania aplikacji.
+
+Działa świetnie samodzielnie lub jako uzupełnienie Front Door.
+
+**Azure Traffic Manager**
+Globalny load balancer oparty o **DNS** (nie przetwarza sam ruchu HTTP).  
+Obsługuje:
+- routing geograficzny (np. kierowanie użytkowników do najbliższego regionu),
+- **failover** między regionami,
+- **weighted routing** (kontrolowany podział ruchu),
+- scenariusze blue/green i A/B.
+
+Używany, gdy potrzebne jest sterowanie ruchem na poziomie DNS i niezależnie od protokołu.
 
 ---
 

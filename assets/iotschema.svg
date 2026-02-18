@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="760" viewBox="0 0 1300 760">
+  <defs>
+    <style>
+      .title { font: 700 26px Inter, Arial, sans-serif; fill:#0b3a75; }
+      .subtitle { font: 600 16px Inter, Arial, sans-serif; fill:#0b3a75; }
+      .text { font: 14px Inter, Arial, sans-serif; fill:#1f2430; }
+      .muted { font: 12px Inter, Arial, sans-serif; fill:#667; }
+      .box { fill:#eef5ff; stroke:#4a78c2; stroke-width:2; rx:12; }
+      .hub { fill:#e9fff2; stroke:#0f8f4e; stroke-width:2; rx:12; }
+      .twins { fill:#fff6ea; stroke:#cc7a00; stroke-width:2; rx:12; }
+      .proc { fill:#fef0f4; stroke:#b22a5a; stroke-width:2; rx:12; }
+      .store { fill:#f6f9fc; stroke:#8a9dbd; stroke-width:2; rx:12; }
+      .iot { fill:#f0f8ff; stroke:#007acc; stroke-width:2; rx:12; }
+      .arrow { stroke:#333; stroke-width:2.4; marker-end:url(#arrowhead); }
+    </style>
+
+    <marker id="arrowhead" markerWidth="12" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#333"/>
+    </marker>
+  </defs>
+
+  <text x="650" y="40" text-anchor="middle" class="title">Azure IoT – Architecture Overview</text>
+  <text x="650" y="68" text-anchor="middle" class="muted">IoT Devices → IoT Hub → Digital Twins → Processing → Storage &amp; Analytics</text>
+
+  <!-- IoT Devices -->
+  <rect x="40" y="150" width="260" height="460" class="box"/>
+  <text x="170" y="185" text-anchor="middle" class="subtitle">IoT Devices</text>
+
+  <rect x="60" y="220" width="220" height="100" class="iot"/>
+  <text x="170" y="260" text-anchor="middle" class="text">Sensors / Edge Devices</text>
+  <text x="170" y="285" text-anchor="middle" class="muted">MQTT · Telemetry · Commands</text>
+
+  <rect x="60" y="340" width="220" height="100" class="iot"/>
+  <text x="170" y="380" text-anchor="middle" class="text">Industrial PLC</text>
+  <text x="170" y="405" text-anchor="middle" class="muted">Modbus / OPC-UA Gateways</text>
+
+  <rect x="60" y="460" width="220" height="100" class="iot"/>
+  <text x="170" y="500" text-anchor="middle" class="text">Smart Devices</text>
+  <text x="170" y="525" text-anchor="middle" class="muted">Home / Automotive / Factory</text>
+
+  <!-- IoT Hub -->
+  <rect x="340" y="150" width="280" height="460" class="hub"/>
+  <text x="480" y="185" text-anchor="middle" class="subtitle">IoT Hub</text>
+  <text x="480" y="205" text-anchor="middle" class="muted">MQTT · AMQP · HTTPS</text>
+
+  <rect x="360" y="240" width="240" height="80" class="hub"/>
+  <text x="480" y="275" text-anchor="middle" class="text">Device Twin</text>
+  <text x="480" y="300" text-anchor="middle" class="muted">State · Tags · Desired/Reported</text>
+
+  <rect x="360" y="340" width="240" height="80" class="hub"/>
+  <text x="480" y="375" text-anchor="middle" class="text">Telemetry Ingest</text>
+
+  <rect x="360" y="440" width="240" height="80" class="hub"/>
+  <text x="480" y="475" text-anchor="middle" class="text">Cloud-to-Device Commands</text>
+
+  <!-- Digital Twins -->
+  <rect x="650" y="150" width="250" height="460" class="twins"/>
+  <text x="775" y="185" text-anchor="middle" class="subtitle">Azure Digital Twins</text>
+
+  <rect x="670" y="240" width="210" height="80" class="twins"/>
+  <text x="775" y="275" text-anchor="middle" class="text">Graph Model</text>
+  <text x="775" y="300" text-anchor="middle" class="muted">spaces · devices · relations</text>
+
+  <rect x="670" y="340" width="210" height="80" class="twins"/>
+  <text x="775" y="375" text-anchor="middle" class="text">State Updates</text>
+  <text x="775" y="400" text-anchor="middle" class="muted">IoT Hub → Twins</text>
+
+  <rect x="670" y="440" width="210" height="80" class="twins"/>
+  <text x="775" y="475" text-anchor="middle" class="text">Events &amp; Change Feeds</text>
+
+  <!-- Processing -->
+  <rect x="930" y="150" width="330" height="220" class="proc"/>
+  <text x="1095" y="185" text-anchor="middle" class="subtitle">Processing</text>
+
+  <rect x="950" y="220" width="290" height="60" class="proc"/>
+  <text x="1095" y="250" text-anchor="middle" class="text">Functions (Event Trigger)</text>
+
+  <rect x="950" y="300" width="290" height="60" class="proc"/>
+  <text x="1095" y="330" text-anchor="middle" class="text">Stream Analytics</text>
+
+  <!-- Storage -->
+  <rect x="930" y="390" width="330" height="220" class="store"/>
+  <text x="1095" y="420" text-anchor="middle" class="subtitle">Storage &amp; Analytics</text>
+
+  <rect x="950" y="460" width="290" height="60" class="store"/>
+  <text x="1095" y="490" text-anchor="middle" class="text">Data Lake / Blob Storage</text>
+
+  <rect x="950" y="540" width="290" height="60" class="store"/>
+  <text x="1095" y="570" text-anchor="middle" class="text">Power BI / Synapse</text>
+
+  <!-- Arrows -->
+  <line x1="300" y1="280" x2="340" y2="280" class="arrow"/>
+  <line x1="300" y1="380" x2="340" y2="350" class="arrow"/>
+  <line x1="300" y1="500" x2="340" y2="420" class="arrow"/>
+
+  <line x1="620" y1="300" x2="650" y2="300" class="arrow"/>
+  <line x1="620" y1="380" x2="650" y2="380" class="arrow"/>
+
+  <line x1="900" y1="280" x2="930" y2="280" class="arrow"/>
+  <line x1="900" y1="470" x2="930" y2="470" class="arrow"/>
+</svg>
