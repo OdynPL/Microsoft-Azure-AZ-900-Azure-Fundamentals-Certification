@@ -1040,20 +1040,26 @@ Najwazniejsze elementy:
 
 ---
 
-**Conditional Access**  
-Silnik zasad warunkowych wymuszajacy dodatkowe kontrole przy logowaniu.
+**Conditional Access**
+Mechanizm kontroli dostepu, ktory ocenia kontekst logowania i decyduje, czy uzytkownik powinien uzyskac dostep, zostac zablokowany, czy wykonac dodatkowa akcje (np. MFA).  
 
-Kluczowe atrybuty:
-- **Ryzyko logowania / ryzyko uzytkownika** (Identity Protection).  
-- **Lokalizacja** (kraje, zakresy IP, sieci zaufane).  
-- **Stan urzadzenia** (Intune compliance).  
-- **Typ aplikacji** (przegladarka / klienci mobilni / aplikacje legacy).  
+Jest to kluczowy element modelu **Zero Trust — zasada: „never trust, always verify”**.
 
-Akcje zasad:
-- Wymuszenie MFA  
-- Blokada dostepu  
-- Wymuszenie zgodnego urzadzenia  
-- Wymuszenie sesji bezhaslowej
+<img src="assets/conditionalaccess.svg">
+
+**Kluczowe atrybuty oceniane podczas logowania:**
+- **Ryzyko logowania / ryzyko uzytkownika** – wykrywanie anomalii, podejrzanych lokalizacji, nietypowych zachowan.  
+- **Lokalizacja** – kraje, zakresy IP, sieci zaufane, VPN, corporate network.  
+- **Stan urzadzenia** – zgodnosc z Intune (compliant / non-compliant), typ OS, poziom zabezpieczen.  
+- **Typ aplikacji i klienta** – przegladarka, aplikacja mobilna, desktopowa, klient legacy, API.  
+- **Typ zasobu** – niektore aplikacje lub API moga wymagac mocniejszych zasad.  
+
+**Dzialania (akcje) podejmowane przez zasady:**
+- **Wymuszenie MFA** – dodatkowy czynnik potwierdzenia tozsamosci.  
+- **Blokada dostepu** – gdy ryzyko jest zbyt duze lub warunki nie sa spelnione.  
+- **Wymuszenie zgodnego urzadzenia** – tylko urządzenia spełniające wymagania Intune.  
+- **Wymuszenie sesji bezhaslowej** – logowanie passwordless.  
+- **Sesje z ograniczeniami** – np. zakaz pobierania plikow (MCAS/Defender for Cloud Apps).  
 
 ---
 

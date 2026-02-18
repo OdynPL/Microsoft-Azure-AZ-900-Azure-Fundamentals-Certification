@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="630">
+  <style>
+    .box { fill:#eef4ff; stroke:#4a84f4; stroke-width:2; rx:10; }
+    .sub { fill:#ffffff; stroke:#7aa3f0; stroke-width:1.6; rx:8; }
+    .title { font-family: Arial; font-size:22px; font-weight:bold; }
+    text { font-family: Arial; font-size:14px; }
+  </style>
+
+  <text x="550" y="40" text-anchor="middle" class="title">
+    Conditional Access - Access Evaluation Flow
+  </text>
+
+  <rect x="50" y="70" width="1000" height="520" class="box"/>
+  <text x="550" y="110" text-anchor="middle" style="font-size:16px;font-weight:bold;">
+    User sign-in → Context evaluation → Policy rules → Decision (allow / block / MFA)
+  </text>
+
+  <!-- USER SIGN-IN -->
+  <rect x="80" y="160" width="280" height="150" class="sub"/>
+  <text x="220" y="190" text-anchor="middle" style="font-weight:bold;">User Sign-in</text>
+  <text x="220" y="215" text-anchor="middle">Login attempt</text>
+  <text x="220" y="235" text-anchor="middle">UPN + credentials</text>
+
+  <text x="380" y="235" text-anchor="middle" style="font-size:28px;">→</text>
+
+  <!-- CONTEXT -->
+  <rect x="410" y="150" width="280" height="170" class="sub"/>
+  <text x="550" y="180" text-anchor="middle" style="font-weight:bold;">Context Evaluation</text>
+  <text x="550" y="205" text-anchor="middle">Risk level</text>
+  <text x="550" y="225" text-anchor="middle">Location / IP</text>
+  <text x="550" y="245" text-anchor="middle">Device compliance</text>
+  <text x="550" y="265" text-anchor="middle">App and client type</text>
+
+  <text x="720" y="235" text-anchor="middle" style="font-size:28px;">→</text>
+
+  <!-- POLICY -->
+  <rect x="750" y="150" width="260" height="170" class="sub"/>
+  <text x="880" y="180" text-anchor="middle" style="font-weight:bold;">Policy Rules</text>
+  <text x="880" y="205" text-anchor="middle">Match conditions</text>
+  <text x="880" y="225" text-anchor="middle">Risk / device / app / location</text>
+  <text x="880" y="245" text-anchor="middle">Define required action</text>
+
+  <!-- DECISIONS -->
+  <rect x="200" y="360" width="700" height="190" class="sub"/>
+  <text x="550" y="390" text-anchor="middle" style="font-weight:bold;">Access Decision</text>
+  <text x="550" y="415" text-anchor="middle">Allow access (conditions satisfied)</text>
+  <text x="550" y="435" text-anchor="middle">Require MFA (extra assurance)</text>
+  <text x="550" y="455" text-anchor="middle">Require compliant device</text>
+  <text x="550" y="475" text-anchor="middle">Block access (high risk / violation)</text>
+
+</svg>
