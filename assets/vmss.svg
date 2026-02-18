@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="650">
+  <style>
+    .box { fill:#eef4ff; stroke:#4a84f4; stroke-width:2; rx:10; }
+    .sub { fill:#ffffff; stroke:#7aa3f0; stroke-width:1.5; rx:8; }
+    .title { font-family: Arial; font-size: 20px; font-weight: bold; }
+    text { font-family: Arial; font-size: 14px; }
+  </style>
+
+  <!-- Title -->
+  <text x="550" y="40" text-anchor="middle" class="title">
+    VM Scale Sets (VMSS) — autoscaling, rolling upgrades, Load Balancer
+  </text>
+
+  <!-- VMSS container -->
+  <rect x="50" y="70" width="1000" height="520" class="box"/>
+  <text x="550" y="100" text-anchor="middle" style="font-size:16px;font-weight:bold;">
+    VM Scale Set (VMSS)
+  </text>
+
+  <!-- Load Balancer -->
+  <rect x="80" y="130" width="260" height="120" class="sub"/>
+  <text x="210" y="160" text-anchor="middle" style="font-weight:bold;">Load Balancer</text>
+  <text x="210" y="185" text-anchor="middle">Frontend IP</text>
+  <text x="210" y="205" text-anchor="middle">Backend Pool → VMSS</text>
+
+  <!-- Instance Model (template) -->
+  <rect x="370" y="130" width="300" height="120" class="sub"/>
+  <text x="520" y="160" text-anchor="middle" style="font-weight:bold;">Instance Model (template)</text>
+  <text x="520" y="185" text-anchor="middle">Image, rozmiar, OS, Extensions</text>
+  <text x="520" y="205" text-anchor="middle">NIC/NSG, dyski, cloud-init/UserData</text>
+
+  <!-- Autoscale rules -->
+  <rect x="700" y="130" width="330" height="120" class="sub"/>
+  <text x="865" y="160" text-anchor="middle" style="font-weight:bold;">Autoscaling</text>
+  <text x="865" y="185" text-anchor="middle">metriky: CPU / RAM / Queue / sched.</text>
+  <text x="865" y="205" text-anchor="middle">Scale out / in · min/max/desired</text>
+
+  <!-- Connections (LB -> Instances, Template -> Instances, Autoscale -> VMSS) -->
+  <line x1="340" y1="190" x2="420" y2="320" stroke="#666" stroke-width="2"/>
+  <line x1="520" y1="250" x2="520" y2="320" stroke="#666" stroke-width="2"/>
+  <line x1="865" y1="250" x2="865" y2="320" stroke="#666" stroke-width="2"/>
+
+  <!-- Instances area -->
+  <rect x="120" y="290" width="880" height="180" class="sub"/>
+  <text x="560" y="315" text-anchor="middle" style="font-weight:bold;">Instances</text>
+
+  <!-- VM instances (row 1) -->
+  <rect x="150" y="330" width="140" height="60" class="sub"/>
+  <text x="220" y="365" text-anchor="middle">VM-1</text>
+
+  <rect x="320" y="330" width="140" height="60" class="sub"/>
+  <text x="390" y="365" text-anchor="middle">VM-2</text>
+
+  <rect x="490" y="330" width="140" height="60" class="sub"/>
+  <text x="560" y="365" text-anchor="middle">VM-3</text>
+
+  <rect x="660" y="330" width="140" height="60" class="sub"/>
+  <text x="730" y="365" text-anchor="middle">VM-4</text>
+
+  <rect x="830" y="330" width="140" height="60" class="sub"/>
+  <text x="900" y="365" text-anchor="middle">VM-5</text>
+
+  <!-- VM instances (row 2) -->
+  <rect x="150" y="410" width="140" height="60" class="sub"/>
+  <text x="220" y="445" text-anchor="middle">VM-6</text>
+
+  <rect x="320" y="410" width="140" height="60" class="sub"/>
+  <text x="390" y="445" text-anchor="middle">VM-7</text>
+
+  <rect x="490" y="410" width="140" height="60" class="sub"/>
+  <text x="560" y="445" text-anchor="middle">VM-8</text>
+
