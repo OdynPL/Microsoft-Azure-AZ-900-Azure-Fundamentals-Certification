@@ -510,6 +510,27 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
 
 - **Locks** (`Delete` / `ReadOnly`) chronią zasoby przed przypadkowym usunięciem lub modyfikacją, co jest kluczowe w utrzymaniu porządku i bezpieczeństwa w środowisku.
 
+    **Po co?**  
+    Aby chronić zasoby przed przypadkowym usunięciem lub zmianą.
+
+    **Rodzaje blokad:**
+    - **Delete** – uniemożliwia usunięcie zasobu; konfigurację nadal można zmieniać.  
+    - **ReadOnly** – blokuje usuwanie i jakiekolwiek modyfikacje; zasób działa tylko w trybie odczytu.
+
+    **Gdzie można je stosować?**
+    - na poziomie: **subscription**, **resource group**, **resource**
+    - blokady dziedziczą się w dół (lock na RG obejmuje wszystkie zasoby w środku)
+
+    **Kto może je zdjąć?**
+    - tylko role uprzywilejowane (np. **Owner**)
+
+    **Kiedy stosować?**
+    - zasoby krytyczne (produkcyjne sieci, Key Vault, Storage z backupami)  
+    - elementy, których nie wolno usuwać ani zmieniać
+
+    **Dlaczego to ważne?**  
+    Locki chronią środowisko przed błędami administratorów i pipeline’ów automatyzacji — zapewniają porządek i bezpieczeństwo operacyjne.
+
 ---
 
 ## 3. Compute Services (Usługi obliczeniowe)
