@@ -415,6 +415,8 @@ Ta struktura jest fundamentem pracy z Azure — wpływa na **uprawnienia, govern
 
 ## ARM – warstwa zarządzania
 
+<img src="assets/arm_layer.svg">
+
 - **Spójne API** – jednolity sposób zarządzania zasobami Azure z użyciem Portalu, CLI, PowerShell i REST API.
 - **Deklaratywne wdrożenia** – możliwość definiowania infrastruktury jako kodu za pomocą **ARM Templates (JSON)** lub **Bicep**.
 - **Organizacja zasobów** – użycie **tags** do metadanych (np. koszt, właściciel) oraz **locks** (Delete / ReadOnly) do ochrony przed przypadkowymi zmianami lub usunięciem.
