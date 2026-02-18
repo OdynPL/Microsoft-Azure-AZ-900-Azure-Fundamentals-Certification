@@ -706,7 +706,33 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
 
 - **VPN Gateway**
 
-  Tunel IPsec łączący on‑prem z Azure (site‑to‑site) lub pojedynczych użytkowników (point‑to‑site) przez klienta VPN.
+    Bramka VPN w Azure umożliwia zestawienie tuneli IPsec od sieci on‑prem (site‑to‑site) lub pojedynczych użytkowników (point‑to‑site) do Azure VNet.  
+
+    <img src="assets/vpngateway.svg">
+
+    Zapewnia szyfrowana komunikacje, integracje z lokalna siecia oraz dostep poprzez klienta VPN bez wystawiania publicznych usług.
+
+    **Site‑to‑Site VPN (S2S)**  
+    Stałe połączenie **całej sieci on‑prem** z **Azure VNet** za pomocą tunelu IPsec pomiędzy routerem/firewallem a Azure VPN Gateway.  
+    Wszystkie urządzenia lokalne mogą komunikować się z zasobami w Azure tak, jakby były w jednej sieci.
+
+    Najważniejsze cechy:
+    - połączenie sieć‑do‑sieci (router ↔ Azure)
+    - idealne dla biur, oddziałów i datacenter
+    - działa automatycznie, bez ingerencji użytkownika
+    - wymaga publicznego IP po stronie on‑prem i urządzenia IPsec
+
+    **Point‑to‑Site VPN (P2S)**  
+    Połączenie **pojedynczego użytkownika lub komputera** z Azure VNet.  
+    Użytkownik łączy się do Azure za pomocą klienta VPN (OpenVPN, IKEv2, Azure VPN Client) — bez potrzeby posiadania infrastruktury sieciowej.
+
+    Najważniejsze cechy:
+    - połączenie urządzenie‑do‑sieci (user/laptop ↔ Azure)
+    - idealne dla administratorów, deweloperów i pracy zdalnej
+    - nie wymaga routera ani publicznego IP po stronie użytkownika
+    - obsługuje certyfikaty lub Azure AD jako metodę uwierzytelniani
+
+    <img src="assets/vpns2sp2p.svg">
 
 - **ExpressRoute**
 
