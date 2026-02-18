@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="420">
+  <style>
+    .box { fill:#eef4ff; stroke:#4a84f4; stroke-width:2; rx:10; }
+    .sub { fill:#ffffff; stroke:#7aa3f0; stroke-width:1.5; rx:8; }
+    .title { font-family: Arial; font-size: 22px; font-weight: bold; }
+    text { font-family: Arial; font-size: 14px; }
+  </style>
+
+  <text x="550" y="40" text-anchor="middle" class="title">
+    VNet Peering
+  </text>
+
+  <rect x="50" y="70" width="1000" height="300" class="box"/>
+  <text x="550" y="105" text-anchor="middle" style="font-size:16px;font-weight:bold;">
+    Private, low-latency network connection between VNets
+  </text>
+
+  <rect x="100" y="150" width="300" height="180" class="sub"/>
+  <text x="250" y="180" text-anchor="middle" style="font-weight:bold;">VNet A</text>
+  <text x="250" y="205" text-anchor="middle">Private IP space</text>
+  <text x="250" y="225" text-anchor="middle">No tunnel needed</text>
+  <text x="250" y="245" text-anchor="middle">No NAT</text>
+
+  <text x="550" y="240" text-anchor="middle" style="font-size:28px;">⇄</text>
+  <text x="550" y="270" text-anchor="middle">Low latency private traffic</text>
+
+  <rect x="700" y="150" width="300" height="180" class="sub"/>
+  <text x="850" y="180" text-anchor="middle" style="font-weight:bold;">VNet B</text>
+  <text x="850" y="205" text-anchor="middle">Full IP-to-IP connectivity</text>
+  <text x="850" y="225" text-anchor="middle">No VPN gateway</text>
+  <text x="850" y="245" text-anchor="middle">No encryption overhead</text>
+
+</svg>

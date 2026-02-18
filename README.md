@@ -665,17 +665,17 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
 
     - **VNet (Virtual Network)**
 
-    Logiczna sieć prywatna w Azure, działająca podobnie do klasycznej sieci LAN.  
-    Umożliwia pełną kontrolę nad adresacją IP, komunikacją między zasobami, integracją z siecią on‑prem oraz izolacją środowisk.
+        Logiczna sieć prywatna w Azure, działająca podobnie do klasycznej sieci LAN.  
+        Umożliwia pełną kontrolę nad adresacją IP, komunikacją między zasobami, integracją z siecią on‑prem oraz izolacją środowisk.
 
     - **Subnets**
 
-    Podział VNet na mniejsze, logiczne segmenty w celu separacji usług, zwiększenia bezpieczeństwa i kontroli dostępu.  
-    Pozwalają przypisywać różne NSG, UDR i zasady per segment, np. subnet „App”, „DB”, „Gateway”.
+        Podział VNet na mniejsze, logiczne segmenty w celu separacji usług, zwiększenia bezpieczeństwa i kontroli dostępu.  
+        Pozwalają przypisywać różne NSG, UDR i zasady per segment, np. subnet „App”, „DB”, „Gateway”.
 
     - **UDR (User Defined Routes)**
 
-    Niestandardowe trasy, które pozwalają ręcznie kierować ruch sieciowy zamiast używać domyślnego routingu Azure.  
+        Niestandardowe trasy, które pozwalają ręcznie kierować ruch sieciowy zamiast używać domyślnego routingu Azure.  
 
     <img src="assets/azurevnets.svg">
 
@@ -688,7 +688,21 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
 
 - **VNet Peering**
 
-  Szybłe, niskolatencyjne połączenie sieci w Azure z pełną komunikacją prywatną „przez plecy” — bez tuneli, bez NAT.
+    Bezpośrednie, szybkie i niskolatencyjne połączenie między dwoma sieciami (VNet) w Azure.  
+
+    Umożliwia pełną komunikację prywatną między adresacjami — **bez tuneli, bez NAT, bez bramy VPN**.  
+
+    Ruch między VNetami odbywa się „przez plecy” infrastruktury Microsoft, z pominięciem Internetu i bez dodatkowego overheadu.
+
+    <img src="assets/vnetpeering.svg">
+
+    Najważniejsze cechy:
+    - pełna prywatna komunikacja IP‑to‑IP między VNetami  
+    - brak tuneli i konfiguracji IPsec  
+    - brak NAT → zachowanie oryginalnych adresów IP  
+    - bardzo niskie opóźnienia (jak w tej samej sieci fizycznej)  
+    - obsługa peeringu globalnego (Global VNet Peering) między regionami Azure  
+
 
 - **VPN Gateway**
 
