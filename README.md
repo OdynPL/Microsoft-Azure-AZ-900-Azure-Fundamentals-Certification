@@ -1522,7 +1522,6 @@ Serverless workflowy i automatyzacje z setkami konektorów (SAP, SQL, Salesforce
 | Tag | Metadana opisująca zasób. |
 | Resource Lock | Blokada Delete/ReadOnly chroniąca zasoby. |
 | Scope | Poziom przypisywania RBAC/polityk (MG→Sub→RG→Resource). |
-
 | Region | Fizyczna lokalizacja centrum danych. |
 | Availability Zone | Strefa niezależna w regionie. |
 | Zone Redundant Services | Usługi działające w wielu AZ. |
@@ -1532,7 +1531,6 @@ Serverless workflowy i automatyzacje z setkami konektorów (SAP, SQL, Salesforce
 | SLA | Gwarancja dostępności. |
 | HA (High Availability) | Wysoka dostępność rozwiązania. |
 | DR (Disaster Recovery) | Odtwarzanie po awarii. |
-
 | Entra ID (Azure AD) | Usługa tożsamości i uwierzytelniania. |
 | User | Użytkownik w katalogu. |
 | Group | Grupa uprawnień. |
@@ -1542,7 +1540,6 @@ Serverless workflowy i automatyzacje z setkami konektorów (SAP, SQL, Salesforce
 | Conditional Access | Dostęp zależny od warunków (lokacja, urządzenie). |
 | PIM | Zarządzanie rolami uprzywilejowanymi. |
 | App Registration | Rejestracja aplikacji w Entra ID. |
-
 | VNet | Prywatna sieć w Azure. |
 | Subnet | Segmentacja sieci. |
 | NSG | Reguły sieciowe L3–L4. |
@@ -1560,7 +1557,6 @@ Serverless workflowy i automatyzacje z setkami konektorów (SAP, SQL, Salesforce
 | VPN Gateway | Tunel IPsec Azure ↔ on‑prem. |
 | ExpressRoute | Prywatna łączność MPLS z Azure. |
 | Bastion | Bezpieczny RDP/SSH bez publicznych IP. |
-
 | VM (Virtual Machine) | Maszyna wirtualna. |
 | VMSS | Skalowanie grup VM. |
 | Availability Set | Separacja VM w domenach awarii. |
@@ -1573,14 +1569,12 @@ Serverless workflowy i automatyzacje z setkami konektorów (SAP, SQL, Salesforce
 | Batch | Przetwarzanie wsadowe/HPC. |
 | AVD | Wirtualne desktopy Windows. |
 | Dedicated Host | Fizyczny host tylko dla jednego klienta. |
-
 | Storage Account | Konto usług magazynowych. |
 | Blob Storage | Obiektowy magazyn danych. |
 | Azure Files | Udostępnione SMB/NFS. |
 | Queue Storage | Proste kolejki komunikatów. |
 | Table Storage | NoSQL key‑value. |
 | Disk Storage | Dyski VM. |
-
 | Azure SQL Database | Zarządzana baza SQL. |
 | SQL Managed Instance | Prawie pełna instancja SQL w PaaS. |
 | Cosmos DB | Globalna baza NoSQL z niskimi opóźnieniami. |
@@ -1590,7 +1584,6 @@ Serverless workflowy i automatyzacje z setkami konektorów (SAP, SQL, Salesforce
 | Synapse Analytics | Lakehouse + SQL + Spark. |
 | Databricks | Spark + Delta Lake + MLflow. |
 | Redis Cache | In-memory distributed cache. |
-
 | Service Bus | Messaging enterprise (kolejki/topics). |
 | Event Hub | Streaming telemetrii i big‑data. |
 | Event Grid | Routing zdarzeń serverless. |
@@ -1598,7 +1591,6 @@ Serverless workflowy i automatyzacje z setkami konektorów (SAP, SQL, Salesforce
 | API Management | API Gateway. |
 | App Configuration | Centralna konfiguracja. |
 | Feature Flags | Przełączniki funkcji w aplikacji. |
-
 | Azure Monitor | Centralny monitoring zasobów. |
 | Metrics | Metryki czasowe. |
 | Logs | Logi w KQL. |
@@ -1609,7 +1601,6 @@ Serverless workflowy i automatyzacje z setkami konektorów (SAP, SQL, Salesforce
 | Workbooks | Dashboardy i wizualizacje. |
 | Change Tracking | Zmiany konfiguracji VM. |
 | Update Management | Aktualizacje systemów. |
-
 | Azure Policy | Wymuszanie konfiguracji zasobów. |
 | Policy Definition | Pojedyncza reguła. |
 | Initiative | Zestaw reguł. |
@@ -1620,7 +1611,6 @@ Serverless workflowy i automatyzacje z setkami konektorów (SAP, SQL, Salesforce
 | DDoS Protection | Ochrona przed atakami wolumetrycznymi. |
 | IAM | Identity & Access Management. |
 | Zero Trust | Model bezpieczeństwa „never trust, always verify”. |
-
 | Azure DevOps | Repos, Boards, Pipelines, Artifacts. |
 | GitHub Actions | CI/CD jako usługa. |
 | Pipelines | Procesy budowania i wdrażania. |
@@ -1631,7 +1621,6 @@ Serverless workflowy i automatyzacje z setkami konektorów (SAP, SQL, Salesforce
 | GitOps | Model declarative + repository-driven. |
 | Runbook | Automatyczne skrypty. |
 | DSC | Wymuszanie stanu konfiguracji. |
-
 | Azure Machine Learning | MLOps i trening modeli. |
 | Azure OpenAI | Modele generatywne GPT. |
 | Cognitive Services | Gotowe modele AI (Vision/Speech/Language). |
@@ -1639,7 +1628,6 @@ Serverless workflowy i automatyzacje z setkami konektorów (SAP, SQL, Salesforce
 | Synapse Pipelines | Orkiestracja danych w Synapse. |
 | Databricks | Spark + ML + Lakehouse. |
 | Power BI Embedded | Wizualizacja danych w aplikacjach. |
-
 | IoT Hub | Dwukierunkowa komunikacja IoT. |
 | Device Twin | Stan i właściwości urządzeń. |
 | IoT Edge | Moduły kontenerowe na urządzeniach. |
@@ -1647,7 +1635,6 @@ Serverless workflowy i automatyzacje z setkami konektorów (SAP, SQL, Salesforce
 | Device Provisioning Service | Automatyczna rejestracja urządzeń IoT. |
 | Azure Digital Twins | Modele i relacje obiektów fizycznych. |
 | Azure Sphere | Bezpieczny MCU i OS IoT. |
-
 | Cost Management | Analiza kosztów i budżety. |
 | Reservations | Rezerwacje na 1/3 lata. |
 | Azure Hybrid Benefit | Wykorzystanie własnych licencji. |
@@ -1655,7 +1642,6 @@ Serverless workflowy i automatyzacje z setkami konektorów (SAP, SQL, Salesforce
 | Egress | Ruch wychodzący z chmury (płatny). |
 | Ingress | Ruch przychodzący (bezpłatny). |
 | TCO Calculator | Porównanie kosztów on‑prem vs Azure. |
-
 | Soft Delete | Odzyskiwanie skasowanych zasobów. |
 | Immutable Storage | Nie­zmienialne dane (compliance). |
 | Hot/Cool/Archive | Warstwy przechowywania danych. |
