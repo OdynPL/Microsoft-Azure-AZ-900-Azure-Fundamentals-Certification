@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="450">
+  <style>
+    .box { fill:#e8f0fe; stroke:#4a84f4; stroke-width:2; }
+    .section { fill:#fff8e6; stroke:#f2b200; stroke-width:2; }
+    .item { fill:#e7f8ee; stroke:#34a853; stroke-width:1.5; }
+    text { font-family: Arial; font-size: 16px; }
+  </style>
+
+  <!-- ARM Layer -->
+  <rect x="50" y="30" width="800" height="380" rx="15" class="section"/>
+  <text x="450" y="70" text-anchor="middle" style="font-size:22px">ARM – warstwa zarządzania</text>
+
+  <!-- Spójne API -->
+  <rect x="80" y="110" width="220" height="90" rx="10" class="box" />
+  <text x="190" y="145" text-anchor="middle" style="font-size:18px">Spójne API</text>
+  <text x="190" y="170" text-anchor="middle" style="font-size:13px">Portal • CLI • PowerShell • REST</text>
+
+  <!-- Deklaratywne wdrożenia -->
+  <rect x="340" y="110" width="220" height="90" rx="10" class="box" />
+  <text x="450" y="145" text-anchor="middle" style="font-size:18px">IaC – deklaratywne</text>
+  <text x="450" y="170" text-anchor="middle" style="font-size:13px">ARM Templates • Bicep</text>
+
+  <!-- Organizacja zasobów -->
+  <rect x="600" y="110" width="220" height="90" rx="10" class="box" />
+  <text x="710" y="145" text-anchor="middle" style="font-size:18px">Organizacja</text>
+  <text x="710" y="170" text-anchor="middle" style="font-size:13px">tags • locks (Delete/ReadOnly)</text>
+
+  <!-- Flow arrows -->
+  <line x1="200" y1="200" x2="200" y2="250" stroke="#555" stroke-width="2" />
+  <line x1="450" y1="200" x2="450" y2="250" stroke="#555" stroke-width="2" />
+  <line x1="710" y1="200" x2="710" y2="250" stroke="#555" stroke-width="2" />
+
+  <!-- Effects layer -->
+  <rect x="80" y="250" width="740" height="120" rx="10" class="item" />
+  <text x="450" y="295" text-anchor="middle" style="font-size:18px">Efekt działania ARM</text>
+  <text x="450" y="330" text-anchor="middle" style="font-size:14px">
+    Spójne zarządzanie • powtarzalne wdrożenia IaC • porządek i kontrola zasobów
+  </text>
+</svg>
