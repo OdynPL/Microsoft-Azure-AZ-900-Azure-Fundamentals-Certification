@@ -967,6 +967,8 @@ Aplikacje korzystaja z wlasnej tozsamosci aplikacyjnej:
 
 **Managed Identity** to mechanizm nadawania aplikacjom tozsamosci zarzadzanej w pelni przez Azure — bez sekretow, bez hasel, bez certyfikatow.  
 
+<img src="assets/managedidentity.svg">
+
 **Jak dziala Managed Identity**:
 - aplikacja nie przechowuje zadnych sekretow ani kluczy  
 - uwierzytelnia sie poprzez lokalny endpoint MSI dostepny tylko wewnatrz uslugi  
