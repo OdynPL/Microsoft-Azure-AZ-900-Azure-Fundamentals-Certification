@@ -75,3 +75,8 @@
   <line x1="350" y1="420" x2="450" y2="260" class="arrow"/>
   <line x1="350" y1="530" x2="450" y2="300" class="arrow"/>
 
+  <line x1="800" y1="210" x2="890" y2="205" class="arrow"/>
+  <line x1="800" y1="310" x2="890" y2="315" class="arrow"/>
+  <line x1="800" y1="440" x2="890" y2="430" class="arrow"/>
+  <line x1="800" y1="550" x2="890" y2="540" class="arrow"/>
+</svg>
