@@ -22,7 +22,7 @@
 - [14. Glosariusz skrócony](#14-glosariusz-skrócony)
 - [15. Azure Free Account - Free Tier](#15-azure-free-account-free-tier)
 - [16. SLA - Service Level Agreement](#16-sla-service-level-agreement)
-- [17. Bazy danych (Databases)](#17.bazy-danych-databases)
+- [17. Bazy danych (Databases)](#17-bazy-danych-databases)
 - [Załącznik A – Diagramy ASCII](#załącznik-a--diagramy-ascii)
 
 ---
@@ -1905,7 +1905,7 @@ Serverless workflowy i automatyzacje z setkami konektorów (SAP, SQL, Salesforce
 
 Azure oferuje kilka modeli baz danych dostępnych jako IaaS, PaaS lub globalne, skalowalne systemy NoSQL. Poniżej najważniejsze usługi wymagane na poziomie AZ‑900.
 
-- **Azure SQL Database (Single / Elastic Pool)**
+### **Azure SQL Database (Single / Elastic Pool)**
 W pełni zarządzana baza danych SQL w modelu PaaS.
 
 - automatyczne backupy, patchowanie, aktualizacje
@@ -1914,7 +1914,7 @@ W pełni zarządzana baza danych SQL w modelu PaaS.
 - najlepsza opcja dla nowych aplikacji cloud‑native
 - brak pełnego wsparcia SQL Agent / cross‑instance features (w porównaniu z MI)
 
-- **SQL Managed Instance (MI)**
+### **SQL Managed Instance (MI)**
 Zarządzana instancja SQL z niemal 100% zgodnością z SQL Server on‑prem.
 
 - wsparcie dla SQL Agent, Linked Servers, Service Broker
@@ -1922,14 +1922,14 @@ Zarządzana instancja SQL z niemal 100% zgodnością z SQL Server on‑prem.
 - idealny do migracji aplikacji, które wymagają pełnej zgodności z SQL Server
 - sieciowo wymaga VNet (bez public endpoint domyślnie)
 
-- **SQL Server on Virtual Machine (SQL on VM)**
+### **SQL Server on Virtual Machine (SQL on VM)**
 Pełny SQL Server działający na maszynie wirtualnej (IaaS).
 
 - pełna kontrola nad OS, wersją SQL, konfiguracją, agentami
 - wymaga własnego patchowania, backupów, HA
 - najlepsze dla scenariuszy, które wymagają pełnego dostępu do instancji lub - niestandardowych rozszerzeń
 
-- **Cosmos DB (NoSQL, global distribution)**
+### **Cosmos DB (NoSQL, global distribution)**
 Globalnie rozproszona, wysokowydajna baza NoSQL działająca w wielu modelach danych:
 
 - dokumenty (Core API / Mongo API)
@@ -1939,7 +1939,7 @@ Globalnie rozproszona, wysokowydajna baza NoSQL działająca w wielu modelach da
 - natywna replikacja między regionami
 - ultra‑niska latencja (milisekundy), automatyczne skalowanie RUs
 
-- **Azure Database for PostgreSQL / MySQL (Flexible Server)**
+### **Azure Database for PostgreSQL / MySQL (Flexible Server)**
 Zarządzane instancje popularnych baz open‑source.
 
 - automatyczne backupy, maintenance, skalowanie
