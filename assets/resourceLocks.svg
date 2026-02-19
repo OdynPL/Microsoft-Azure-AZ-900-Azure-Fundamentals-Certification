@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="200">
+  <style>
+    .box { fill:#eef4ff; stroke:#4a84f4; stroke-width:2; rx:12; }
+    .sub { fill:#ffffff; stroke:#7aa3f0; stroke-width:1.6; rx:10; }
+    text { font-family:Arial; font-size:14px; }
+    .title { font-weight:bold; font-size:18px; }
+  </style>
+
+  <!-- Main container -->
+  <rect x="10" y="10" width="340" height="180" class="box"/>
+
+  <!-- Inner resource box -->
+  <rect x="40" y="55" width="150" height="110" class="sub"/>
+  <text x="115" y="85" text-anchor="middle" class="title">Resource</text>
+  <text x="115" y="110" text-anchor="middle">VM / KV / VNet / Storage</text>
+
+  <!-- Lock icon -->
+  <rect x="225" y="70" width="90" height="90" class="sub"/>
+  <text x="270" y="95" text-anchor="middle" class="title">Lock</text>
+
+  <!-- Padlock graphic -->
+  <rect x="250" y="110" width="40" height="30" rx="6"
+        fill="#4a84f4"/>
+  <path d="M255 110 v-14 a15 15 0 0 1 30 0 v14"
+        fill="none" stroke="#4a84f4" stroke-width="4"/>
+
+</svg>

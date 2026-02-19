@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="360">
+  <style>
+    .box { fill:#eef4ff; stroke:#4a84f4; stroke-width:2; }
+    .sub { fill:#ffffff; stroke:#7aa3f0; stroke-width:1.6; }
+    .title { font-family:Arial; font-size:20px; font-weight:bold; }
+    .txt { font-family:Arial; font-size:14px; }
+  </style>
+
+  <text x="450" y="30" text-anchor="middle" class="title">Azure Policy</text>
+
+  <rect x="25" y="50" width="850" height="280" rx="12" class="box"/>
+
+  <!-- Resource -->
+  <rect x="50" y="110" width="200" height="120" rx="10" class="sub"/>
+  <text x="150" y="135" text-anchor="middle" class="txt">Resource</text>
+  <text x="150" y="160" text-anchor="middle" class="txt">Properties</text>
+
+  <!-- Policy -->
+  <rect x="350" y="90" width="200" height="160" rx="10" class="sub"/>
+  <text x="450" y="120" text-anchor="middle" class="txt">Policy Definition</text>
+  <text x="450" y="145" text-anchor="middle" class="txt">if match</text>
+  <text x="450" y="170" text-anchor="middle" class="txt">then effect</text>
+  <text x="450" y="195" text-anchor="middle" class="txt">Effects:</text>
+  <text x="450" y="215" text-anchor="middle" class="txt">Deny, Audit, Append, Modify</text>
+
+  <!-- Engine -->
+  <rect x="650" y="110" width="200" height="120" rx="10" class="sub"/>
+  <text x="750" y="135" text-anchor="middle" class="txt">Policy Engine</text>
+  <text x="750" y="160" text-anchor="middle" class="txt">Evaluate resource</text>
+  <text x="750" y="185" text-anchor="middle" class="txt">Apply effect</text>
+
+  <!-- Manual arrows (safe ASCII only) -->
+  <text x="275" y="170" class="txt">---</text>
+  <text x="575" y="170" class="txt">---</text>
+</svg>

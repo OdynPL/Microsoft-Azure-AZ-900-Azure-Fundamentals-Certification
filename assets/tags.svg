@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="200">
+  <style>
+    .box { fill:#eef4ff; stroke:#4a84f4; stroke-width:2; }
+    .sub { fill:#ffffff; stroke:#7aa3f0; stroke-width:1.6; }
+    .lbl { fill:#e7f0ff; stroke:#4a84f4; stroke-width:1.2; }
+    .txt { font-family:Arial; font-size:14px; }
+    .cap { font-family:Arial; font-size:16px; font-weight:bold; }
+  </style>
+
+  <!-- Main container -->
+  <rect x="10" y="10" width="340" height="180" rx="12" class="box"/>
+
+  <!-- Resource box -->
+  <rect x="24" y="40" width="180" height="130" rx="10" class="sub"/>
+  <text x="114" y="70" text-anchor="middle" class="cap">Resource</text>
+  <text x="114" y="94" text-anchor="middle" class="txt">VM / Storage / VNet</text>
+
+  <!-- Tag labels to the right -->
+  <rect x="214" y="48" width="126" height="28" rx="8" class="lbl"/>
+  <text x="277" y="66" text-anchor="middle" class="txt">Environment=Prod</text>
+
+  <rect x="214" y="86" width="126" height="28" rx="8" class="lbl"/>
+  <text x="277" y="104" text-anchor="middle" class="txt">Owner=TeamA</text>
+
+  <rect x="214" y="124" width="126" height="28" rx="8" class="lbl"/>
+  <text x="277" y="142" text-anchor="middle" class="txt">CostCenter=IT01</text>
+
+  <rect x="214" y="162" width="126" height="28" rx="8" class="lbl"/>
+  <text x="277" y="180" text-anchor="middle" class="txt">Project=Ecomm</text>
+
+  <!-- Dotted link line (ASCII safe) -->
+  <text x="205" y="105" class="txt">...</text>
+</svg>

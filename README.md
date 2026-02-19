@@ -1240,7 +1240,7 @@ Management Group → Subscription → Resource Group → Resource
 
 ### Resource Locks
 
-<img src="assets/ks.svg">
+<img src="assets/resourceLocks.svg">
 
 Zabezpieczają zasoby przed przypadkowym usunięciem lub edycją.
 
@@ -1345,8 +1345,6 @@ Podział odpowiedzialności między Azure a klientem.
 ---
 
 ### Cloud Adoption Framework & Landing Zone
-
-<img src="assets/wellarchitcafected.svg">
 
 **CAF** obejmuje:
 - strategię i uzasadnienie biznesowe,  
