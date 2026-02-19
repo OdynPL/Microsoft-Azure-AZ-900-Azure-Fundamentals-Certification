@@ -1,0 +1,33 @@
+<svg width="420" height="270" viewBox="0 0 420 270" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .title { font-family: Arial, sans-serif; font-size: 20px; font-weight: 600; fill: #005fb8; }
+    .label { font-family: Arial, sans-serif; font-size: 14px; fill: #222; }
+    .box   { fill: #e6f2ff; stroke: #005fb8; stroke-width: 1.6; rx: 6; }
+    .link  { stroke: #005fb8; stroke-width: 2; }
+  </style>
+
+  <!-- Title -->
+  <text x="20" y="35" class="title">Azure Blueprints</text>
+
+  <!-- Main Blueprint box -->
+  <rect x="15" y="55" width="390" height="190" rx="10" fill="#f5faff" stroke="#006cd1" stroke-width="2"/>
+
+  <!-- Policy -->
+  <rect x="40" y="90" width="150" height="45" class="box"/>
+  <text x="55" y="118" class="label">Azure Policy</text>
+
+  <!-- RBAC -->
+  <rect x="230" y="90" width="150" height="45" class="box"/>
+  <text x="265" y="118" class="label">RBAC</text>
+
+  <!-- ARM/Bicep -->
+  <rect x="40" y="160" width="150" height="45" class="box"/>
+  <text x="55" y="188" class="label">ARM/Bicep Templates</text>
+
+  <!-- RG Structure -->
+  <rect x="230" y="160" width="150" height="45" class="box"/>
+  <text x="243" y="188" class="label">Resource Groups</text>
+
+  <!-- Lines -->
+  <line x1="210" y1="78" x2="210" y2="220" class="link" stroke-dasharray="4 4"/>
+</svg>

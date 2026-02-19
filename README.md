@@ -1277,7 +1277,7 @@ Stosowane szczególnie dla:
 
 <img src="assets/tags.svg">
 
-Metadane przypisywane do zasobów w celu:
+To specjalne **metadane** przypisywane do zasobów w celu:
 - mają klucz i wartość
 - **maksymalnie 50 tagów** na resource
 - organizacji i klasyfikacji (Environment, Owner, Project),
@@ -1292,7 +1292,7 @@ Ważne!
 
 ### Azure Blueprints
 
-assets/blueprints.svg
+<img src="assets/blueprints.svg">
 
 Pakiet governance łączący:
 - Azure Policy,  
@@ -1308,7 +1308,7 @@ Idealne dla enterprise i audytowalnych wdrożeń.
 
 ### Azure Arc
 
-assets/azurearc.svg
+<img src="assets/azurearc.svg">
 
 Rozszerza Azure na środowiska:
 - on‑premise,  
