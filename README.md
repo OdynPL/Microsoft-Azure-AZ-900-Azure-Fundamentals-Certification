@@ -20,8 +20,8 @@
 - [12. Extended Azure Services (Usługi rozszerzone)](#12-extended-azure-services-usługi-rozszerzone)
 - [13. Podchwytliwe pytania AZ‑900](#13-podchwytliwe-pytania-az900)
 - [14. Glosariusz skrócony](#14-glosariusz-skrócony)
-- [15. Azure Free Account - Free Tier](#15-Azure-Free-Account-FreeTier)
-- [16. SLA - Service Level Agreement](#16-SLA-Service-Level-Agreement)
+- [15. Azure Free Account - Free Tier](#15-azure-free-account-free-tier)
+- [16. SLA - Service Level Agreement](#16-sla-service-level-agreement)
 - [Załącznik A – Diagramy ASCII](#załącznik-a--diagramy-ascii)
 
 ---
@@ -1657,7 +1657,7 @@ Serverless workflowy i automatyzacje z setkami konektorów (SAP, SQL, Salesforce
 
 ---
 
-## 15. Azure Free Account - Free Tier
+## 15. Azure Free Account (Free Tier)
 
 - **US$200 kredytu** na pierwszy miesiąc (trial).
 - Po wyczerpaniu – świadomie przejdź na PAYG lub wyłącz zasoby.
@@ -1665,7 +1665,7 @@ Serverless workflowy i automatyzacje z setkami konektorów (SAP, SQL, Salesforce
 
 ---
 
-## 16. SLA - Service Level Agreement
+## 16. SLA (Service Level Agreement)
 
 - Każda usługa ma własne SLA (np. 99,9 / 99,95 / 99,99%).
 - Złożone SLA ≈ iloczyn SLA składników (przy niezależności awarii).
