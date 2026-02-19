@@ -1225,6 +1225,8 @@ Rodzaje:
 
 ## 8. Governance & Compliance
 
+Governance w Azure to **zestaw zasad i narzędzi**, które pomagają utrzymać porządek, bezpieczeństwo i kontrolę nad zasobami w chmurze.
+
 ### Azure Policy
 
 <img src="assets/azurepolicy.svg">
