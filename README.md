@@ -22,6 +22,7 @@
 - [14. Glosariusz skrócony](#14-glosariusz-skrócony)
 - [15. Azure Free Account - Free Tier](#15-azure-free-account-free-tier)
 - [16. SLA - Service Level Agreement](#16-sla-service-level-agreement)
+- [17. Bazy danych (Databases)](#17.bazy-danych-(Databases))
 - [Załącznik A – Diagramy ASCII](#załącznik-a--diagramy-ascii)
 
 ---
@@ -901,7 +902,7 @@ Umożliwia analizę ruchu i debugowanie problemów sieciowych.
 
 ## 5. Storage (Przechowywanie danych)
 
-Azure Storage to zestaw usług do przechowywania plików, obiektów, danych NoSQL oraz dysków dla maszyn wirtualnych. 
+**Azure Storage** to zestaw usług do przechowywania plików, obiektów, danych NoSQL oraz dysków dla maszyn wirtualnych. 
 
 Poniżej znajdziesz jasne i zrozumiałe wyjaśnienie, czym są poszczególne typy storage, po co się ich używa oraz jak działa redundancja danych.
 
@@ -928,6 +929,13 @@ Chmurowy odpowiednik klasycznego Windows File Server.
 - SMB/NFS udziały sieciowe  
 - Azure File Sync do synchronizacji z lokalnym serwerem plików  
 - Zastosowania: udziały użytkowników, zasoby współdzielone, migracje serwerów plików
+
+**Access Tiers** dla Azure Files
+Azure Files obsługuje warstwy wydajności i warstwy dostępu, podobnie jak Blob Storage — ale inaczej działające.
+
+Warstwy wydajności (Performance Tiers):
+- **Standard** (HDD/SSD) – najtańszy, idealny dla klasycznych udziałów SMB/NFS
+- **Premium** (SSD) – wysoka przepustowość i niski latency (np. FSLogix, intensywne I/O)
 
 ---
 
@@ -1890,6 +1898,46 @@ Serverless workflowy i automatyzacje z setkami konektorów (SAP, SQL, Salesforce
 - Złożone SLA ≈ iloczyn SLA składników (przy niezależności awarii).
 - Przykład: 99,95% × 99,9% ≈ 99,85%.
 - Rozmieszczenie w wielu **AZ (Availability Zones)** zwykle podnosi SLA (np. VM).
+
+---
+
+## 17. Bazy danych (Databases)
+
+Azure oferuje kilka modeli baz danych dostępnych jako IaaS, PaaS lub globalne, skalowalne systemy NoSQL. Poniżej najważniejsze usługi wymagane na poziomie AZ‑900.
+
+- **Azure SQL Database (Single / Elastic Pool)**
+W pełni zarządzana baza danych SQL w modelu PaaS.
+
+- automatyczne backupy, patchowanie, aktualizacje
+- wysokie SLA, autoskalowanie, brak zarządzania OS
+- modele: Single Database lub Elastic Pool (wspólne zasoby dla wielu DB)
+- najlepsza opcja dla nowych aplikacji cloud‑native
+- brak pełnego wsparcia SQL Agent / cross‑instance features (w porównaniu z MI)
+
+- **SQL Managed Instance (MI)**
+Zarządzana instancja SQL z niemal 100% zgodnością z SQL Server on‑prem.
+
+- wsparcie dla SQL Agent, Linked Servers, Service Broker
+- PaaS z automatyzacją, ale zachowuje funkcje instancyjne
+- idealny do migracji aplikacji, które wymagają pełnej zgodności z SQL Server
+- sieciowo wymaga VNet (bez public endpoint domyślnie)
+
+- **SQL Server on Virtual Machine (SQL on VM)**
+Pełny SQL Server działający na maszynie wirtualnej (IaaS).
+
+- pełna kontrola nad OS, wersją SQL, konfiguracją, agentami
+- wymaga własnego patchowania, backupów, HA
+- najlepsze dla scenariuszy, które wymagają pełnego dostępu do instancji lub - niestandardowych rozszerzeń
+
+- **Cosmos DB (NoSQL, global distribution)**
+Globalnie rozproszona, wysokowydajna baza NoSQL działająca w wielu modelach danych:
+
+- dokumenty (Core API / Mongo API)
+- key‑value (Table API)
+- graf (Gremlin API)
+- column‑family (Cassandra API)
+- natywna replikacja między regionami
+- ultra‑niska latencja (milisekundy), automatyczne skalowanie RUs
 
 ---
 
