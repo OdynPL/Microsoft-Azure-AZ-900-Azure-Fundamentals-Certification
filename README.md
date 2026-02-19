@@ -1984,7 +1984,7 @@ Jest cross‑platform (Windows, Linux, macOS), działa też w Azure Cloud Shell.
 
 Pozwala wykonywać polecenia administracyjne oraz automatyzować zadania w skryptach.
 
-**Officjalne API** Microsoft tutaj:
+### **Officjalne API** Microsoft tutaj:
 - https://learn.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest
 
 ### Microsoft opisuje schemat jako:
