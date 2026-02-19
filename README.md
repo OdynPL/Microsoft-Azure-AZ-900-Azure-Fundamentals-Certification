@@ -1388,6 +1388,27 @@ Podział odpowiedzialności między Azure a klientem.
     - logach aktywności, logach zasobów,
     - integracji z Action Groups (e-mail, Teams, webhook, ITSM).
 
+- **Azure Advisor**
+
+assets/azureadvisor.svg
+
+**Azure Advisor** to wbudowany doradca dla platformy Azure, analizujący środowisko pod kątem najlepszych praktyk Microsoft i generujący konkretne rekomendacje dotyczące optymalizacji kosztów, wydajności, bezpieczeństwa, niezawodności i operacyjności.
+
+### Kategorie rekomendacji
+- **Cost** – redukcja kosztów (right-size, wyłączanie nieużywanych zasobów, Reserved Instances, Azure Hybrid Benefit).  
+- **Security** – rekomendacje z Defender for Cloud zwiększające poziom zabezpieczeń.  
+- **Reliability** – wskazówki dotyczące wysokiej dostępności, redundancji, odporności i usunięcia SPOF.  
+- **Operational Excellence** – automatyzacja, kopie zapasowe, poprawa procesów operacyjnych.  
+- **Performance** – optymalizacja wydajności (autoscale, właściwe SKU, zwiększanie przepustowości).
+
+### Przykładowe rekomendacje
+- Zmniejszenie przewymiarowanych VM lub wyłączanie ich poza godzinami pracy.  
+- Dodanie redundancji (np. wdrożenia w wielu strefach AZ).  
+- Migracja storage do wydajniejszych SKU (np. Premium SSD).  
+- Dodanie tagów wymaganych przez governance.  
+
+Azure Advisor jest narzędziem **proaktywnym**, często wskazywanym na egzaminie AZ‑900 jako źródło rekomendacji dotyczących kosztów, bezpieczeństwa, wydajności oraz utrzymania środowiska.
+
 - **Service Health**
   Informacje o stanie platformy Azure dotyczące:
   - trwających incydentów,
