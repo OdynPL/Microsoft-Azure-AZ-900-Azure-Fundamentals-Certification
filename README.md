@@ -22,7 +22,7 @@
 - [14. Glosariusz skrócony](#14-glosariusz-skrócony)
 - [15. Azure Free Account - Free Tier](#15-azure-free-account-free-tier)
 - [16. SLA - Service Level Agreement](#16-sla-service-level-agreement)
-- [17. Bazy danych (Databases)](#17.bazy-danych-(Databases))
+- [17. Bazy danych (Databases)](#17.bazy-danych-databases)
 - [Załącznik A – Diagramy ASCII](#załącznik-a--diagramy-ascii)
 
 ---
