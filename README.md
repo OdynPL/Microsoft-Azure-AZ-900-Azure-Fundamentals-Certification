@@ -24,6 +24,7 @@
 - [16. SLA - Service Level Agreement](#16-sla-service-level-agreement)
 - [17. Bazy danych (Databases)](#17-bazy-danych-databases)
 - [18. Subskrypcje (Subscription Models)](#18-subskrypcje-subscription-models)
+- [19. Azure CLI](#19-azure-cli)
 - [Załącznik A – Diagramy ASCII](#załącznik-a--diagramy-ascii)
 
 ---
@@ -1972,6 +1973,54 @@ Azure oferuje różne modele subskrypcji w zależności od tego, jak organizacja
 **CSP (Cloud Solution Provider)**
 - Kupujesz Azure przez partnera, który zapewnia rozliczenia i dodatkowe wsparcie.
 - W CSP zniżki zależą od partnera, a nie od Microsoft — partner może dać rabat lub własne ceny.
+
+---
+
+## 19. Azure CLI
+
+Azure CLI to **narzędzie wiersza poleceń**, które pozwala zarządzać usługami Azure z terminala — szybciej i wygodniej niż przez portal.
+
+Jest cross‑platform (Windows, Linux, macOS), działa też w Azure Cloud Shell.
+
+Pozwala wykonywać polecenia administracyjne oraz automatyzować zadania w skryptach.
+
+**Officjalne API** Microsoft tutaj:
+- https://learn.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest
+
+## Microsoft opisuje schemat jako:
+az <grupa> <podgrupa> <komenda> --parametr wartość
+
+# LOGIN
+az login
+az account set --subscription "<SUB>"
+
+# RESOURCE GROUP
+az group create --name MyRG --location westeurope
+az group delete --name MyRG --yes --no-wait
+
+# VM
+az vm create --resource-group MyRG --name MyVM --image UbuntuLTS
+az vm start --resource-group MyRG --name MyVM
+az vm stop --resource-group MyRG --name MyVM
+az vm delete --resource-group MyRG --name MyVM --yes
+
+# STORAGE
+az storage account create --name mystorage --resource-group MyRG --sku Standard_LRS
+
+# NETWORK
+az network vnet create --resource-group MyRG --name MyVNet
+az network public-ip create --resource-group MyRG --name MyIP
+
+# WEB APP
+az appservice plan create --name MyPlan --resource-group MyRG --sku B1
+az webapp create --resource-group MyRG --plan MyPlan --name mywebapp123
+
+# AKS
+az aks create --resource-group MyRG --name MyAKS --node-count 3
+az aks get-credentials --resource-group MyRG --name MyAKS
+
+# RBAC
+az role assignment create --assignee <USER> --role Reader --scope /subscriptions/<SUB>
 
 ---
 
