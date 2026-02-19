@@ -1939,6 +1939,13 @@ Globalnie rozproszona, wysokowydajna baza NoSQL działająca w wielu modelach da
 - natywna replikacja między regionami
 - ultra‑niska latencja (milisekundy), automatyczne skalowanie RUs
 
+- **Azure Database for PostgreSQL / MySQL (Flexible Server)**
+Zarządzane instancje popularnych baz open‑source.
+
+- automatyczne backupy, maintenance, skalowanie
+- tryby: Single Server (legacy) i Flexible Server (zalecany)
+- idealne dla aplikacji korzystających z open‑source DB
+
 ---
 
 ## Załącznik A – Diagramy ASCII
