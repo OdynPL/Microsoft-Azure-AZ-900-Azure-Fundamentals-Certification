@@ -1129,48 +1129,131 @@ Rodzaje:
 
 ## 8. Governance & Compliance
 
-- **Azure Policy**
-  Mechanizm zapewniający zgodność konfiguracji zasobów z wymaganiami organizacji:
-  - **Policy Definition** – pojedyncza reguła (np. „wymagaj tagu Environment”, „blokuj publiczne IP”).
-  - **Policy Initiative** – zestaw wielu reguł grupowanych jako standard (np. CIS, ISO).
-  - **Effects**:
-    - **Deny** – blokuje wdrożenie niezgodnego zasobu.
-    - **Audit** – oznacza zasób jako niezgodny, ale nie blokuje działania.
-    - **Append** – dodaje brakujące właściwości (np. tagi).
-    - **Modify** – automatycznie poprawia konfigurację zasobu podczas wdrażania.
-  - **Scope**: Management Group / Subscription / Resource Group / Resource.
-  Azure Policy zapewnia kontrolę, automatyczną korektę i pełną widoczność zgodności w środowisku.
+## Azure Policy
+Mechanizm wymuszający zgodność konfiguracji zasobów z wymaganiami organizacji.
 
-- **Resource Locks**
-  Zabezpieczenia przed przypadkowym lub niepożądanym usunięciem albo modyfikacją zasobów:
-  - **Delete** – uniemożliwia usunięcie zasobu.
-  - **ReadOnly** – blokuje wszystkie modyfikacje, pozwalając tylko na odczyt.
+- **Policy Definition** – pojedyncza reguła (np. „wymagaj tagu Environment”, „blokuj publiczne IP”).
+- **Policy Initiative** – zestaw wielu reguł grupowanych jako standard (np. CIS, NIST, ISO).
 
-  Stosowane głównie na krytycznych zasobach (np. VNET, Key Vault, Storage).
+### Effects (działania polityk):
+- **Deny** – blokuje wdrożenie niezgodnego zasobu (**nawet rola Owner nie może tego ominąć**).
+- **Audit** – oznacza zasób jako niezgodny, nie blokuje wdrożenia.
+- **Append** – dodaje brakujące właściwości (np. tagi).
+- **Modify** – automatycznie poprawia konfigurację podczas wdrażania.
+- **DeployIfNotExists** – tworzy brakujące zasoby towarzyszące (np. diag settings).
 
-- **Tags**
-  Metadane przypisywane do zasobów w celu:
-  - organizacji i klasyfikacji (np. Environment, Owner, Project),
-  - raportowania kosztów i chargeback/showback,
-  - automatyzacji i filtrowania (np. w Azure Policy).
+### Exemptions (wyjątki)
+Czasowe wyłączenie polityki dla danego scope bez jej usuwania.  
+Używane dla wyjątków biznesowych, migracji lub zasobów legacy.
 
-  Pomagają utrzymać porządek i przejrzystość dużych środowisk.
+### Remediation Tasks
+Zadania naprawcze dla istniejących zasobów:
+- poprawienie konfiguracji (`Modify`),
+- dodanie brakujących elementów (`DeployIfNotExists`).
 
-- **Azure Blueprints**
-  Kompleksowy pakiet governance łączący:
-  - **Policy**,  
-  - **RBAC**,  
-  - **ARM/Bicep templates**,  
-  - strukturę **Resource Groups**,
-  w jeden spójny model wdrożeniowy.
+### Scope
+Management Group → Subscription → Resource Group → Resource  
+(polityki dziedziczą się wyłącznie w dół)
 
-  Umożliwia szybkie i powtarzalne tworzenie środowisk zgodnych ze standardami organizacji (np. Landing Zone).
+Azure Policy zapewnia automatyczną korektę, standaryzację i pełną widoczność zgodności.
 
-- **Azure Arc**
-  Rozszerzenie Azure na środowiska **on‑premise, multi‑cloud i edge**:
-  - umożliwia stosowanie Azure Policy, Defender for Cloud, RBAC i Tagów na zasobach spoza Azure,
-  - zapewnia jednolite zarządzanie serwerami, Kubernetes, bazami danych i aplikacjami,
-  - wspiera standardy compliance w środowiskach hybrydowych.
+---
+
+## Resource Locks
+Zabezpieczenia przed przypadkowym lub niepożądanym usunięciem lub zmianą zasobów:
+
+- **Delete** – blokuje usuwanie zasobów.
+- **ReadOnly** – blokuje wszystkie modyfikacje.
+
+Stosowane głównie dla zasobów krytycznych (VNet, Key Vault, Storage, LAW).
+
+---
+
+## Tags
+Metadane opisujące zasoby na potrzeby:
+- organizacji i klasyfikacji (Environment, Owner, CostCenter),
+- chargeback/showback i analizy kosztów,
+- automatyzacji (np. auto-shutdown),
+- governance (Azure Policy może je wymuszać lub naprawiać).
+
+Pomagają w utrzymaniu ładu w dużych środowiskach.
+
+---
+
+## Azure Blueprints
+Pakiet governance łączący:
+- Azure Policy,
+- RBAC,
+- ARM/Bicep templates,
+- strukturę Resource Groups.
+
+Służy do szybkiego tworzenia środowisk zgodnych ze standardami organizacji (np. Landing Zone).
+
+---
+
+## Azure Arc
+Rozszerza Azure na środowiska on‑premise, multi‑cloud i edge:
+
+- stosowanie Azure Policy, Defender for Cloud, RBAC i tagów poza Azure,
+- zarządzanie serwerami, klastrami Kubernetes i bazami danych spoza Azure,
+- utrzymanie jednolitego compliance w środowiskach hybrydowych.
+
+---
+
+## Shared Responsibility Model
+Podział odpowiedzialności między Azure a klientem.
+
+### Azure odpowiada za:
+- fizyczną infrastrukturę (DC, sieć, sprzęt, hypervisor),
+- dostępność i SLA usług,
+- aktualizacje i bezpieczeństwo platformy PaaS,
+- integralność globalnej infrastruktury.
+
+### Klient odpowiada za:
+- tożsamość i dostęp (MFA, CA, role, PIM),
+- dane (klasyfikacja, szyfrowanie, backup),
+- konfigurację usług (NSG, firewall, polityki Key Vault),
+- zabezpieczanie kluczy, SAS, tokenów,
+- aktualizacje systemów OS w modelu IaaS.
+
+---
+
+## Service Trust, Compliance i Rezydencja Danych
+- **Service Trust Portal** – dokumenty zgodności (ISO, SOC, PCI), audyty, raporty.
+- **Data Residency** – dane pozostają w wybranej geografii (np. EU).
+- **Azure Government / Azure China** – dedykowane, suwerenne cloud'y ze specjalnymi modelami zgodności.
+
+---
+
+## Well‑Architected Framework (5 filarów)
+Zestaw dobrych praktyk projektowania architektury chmurowej:
+
+1. **Cost Optimization** – zarządzanie kosztami i eliminacja marnotrawstwa.
+2. **Operational Excellence** – automatyzacja, CI/CD, obserwowalność.
+3. **Performance Efficiency** – skalowanie, dobór usług, wydajność.
+4. **Reliability** – odporność, HA/DR, self‑healing.
+5. **Security** – tożsamość, szyfrowanie, Zero Trust, compliance.
+
+---
+
+## Cloud Adoption Framework & Landing Zone
+Framework do planowania i wdrażania chmury.
+
+### Cloud Adoption Framework (CAF) obejmuje:
+- strategię i uzasadnienie biznesowe,
+- ocenę gotowości organizacji,
+- plan migracji,
+- governance (Policy, RBAC, MG),
+- operacje (monitoring, automatyzacja, DevOps).
+
+### Landing Zone
+Gotowy wzorzec środowiska produkcyjnego:
+- hierarchia Management Groups,
+- polityki bezpieczeństwa,
+- sieć bazowa (hub/spoke),
+- RBAC baseline,
+- monitoring i logowanie,
+- zgodność z najlepszymi praktykami CAF/WAF.
 
 ---
 
