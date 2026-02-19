@@ -1988,39 +1988,39 @@ Pozwala wykonywać polecenia administracyjne oraz automatyzować zadania w skryp
 - https://learn.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest
 
 ### Microsoft opisuje schemat jako:
-az <grupa> <podgrupa> <komenda> --parametr wartość
+- az <grupa> <podgrupa> <komenda> --parametr wartość
 
 ### LOGIN
-az login
-az account set --subscription "<SUB>"
+- az login
+- az account set --subscription "<SUB>"
 
 ### RESOURCE GROUP
-az group create --name MyRG --location westeurope
-az group delete --name MyRG --yes --no-wait
+- az group create --name MyRG --location westeurope
+- az group delete --name MyRG --yes --no-wait
 
 ### VM
-az vm create --resource-group MyRG --name MyVM --image UbuntuLTS
-az vm start --resource-group MyRG --name MyVM
-az vm stop --resource-group MyRG --name MyVM
-az vm delete --resource-group MyRG --name MyVM --yes
+- az vm create --resource-group MyRG --name MyVM --image UbuntuLTS
+- az vm start --resource-group MyRG --name MyVM
+- az vm stop --resource-group MyRG --name MyVM
+- az vm delete --resource-group MyRG --name MyVM --yes
 
 ### STORAGE
-az storage account create --name mystorage --resource-group MyRG --sku Standard_LRS
+- az storage account create --name mystorage --resource-group MyRG --sku Standard_LRS
 
 ### NETWORK
-az network vnet create --resource-group MyRG --name MyVNet
-az network public-ip create --resource-group MyRG --name MyIP
+- az network vnet create --resource-group MyRG --name MyVNet
+- az network public-ip create --resource-group MyRG --name MyIP
 
 ### WEB APP
-az appservice plan create --name MyPlan --resource-group MyRG --sku B1
-az webapp create --resource-group MyRG --plan MyPlan --name mywebapp123
+- az appservice plan create --name MyPlan --resource-group MyRG --sku B1
+- az webapp create --resource-group MyRG --plan MyPlan --name mywebapp123
 
 ### AKS
-az aks create --resource-group MyRG --name MyAKS --node-count 3
-az aks get-credentials --resource-group MyRG --name MyAKS
+- az aks create --resource-group MyRG --name MyAKS --node-count 3
+- az aks get-credentials --resource-group MyRG --name MyAKS
 
 ### RBAC
-az role assignment create --assignee <USER> --role Reader --scope /subscriptions/<SUB>
+- az role assignment create --assignee <USER> --role Reader --scope /subscriptions/<SUB>
 
 ---
 
