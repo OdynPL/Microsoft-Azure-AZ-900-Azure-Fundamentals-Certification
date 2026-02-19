@@ -1278,10 +1278,15 @@ Stosowane szczególnie dla:
 <img src="assets/tags.svg">
 
 Metadane przypisywane do zasobów w celu:
+- mają klucz i wartość
+- **maksymalnie 50 tagów** na resource
 - organizacji i klasyfikacji (Environment, Owner, Project),
 - chargeback/showback (koszty per projekt/dział),
 - automatyzacji (np. auto‑shutdown),
 - wymuszania governance (Azure Policy może wymagać tagów).
+
+Ważne!
+- Management Groups **nie mogą mieć** tagów.
 
 ---
 
