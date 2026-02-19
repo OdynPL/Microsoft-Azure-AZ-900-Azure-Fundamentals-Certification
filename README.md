@@ -20,11 +20,13 @@
 - [12. Extended Azure Services (Usługi rozszerzone)](#12-extended-azure-services-usługi-rozszerzone)
 - [13. Podchwytliwe pytania AZ‑900](#13-podchwytliwe-pytania-az900)
 - [14. Glosariusz skrócony](#14-glosariusz-skrócony)
+- [15. Azure Free Account - Free Tier](#15. Azure Free Account - Free Tier)
 - [Załącznik A – Diagramy ASCII](#załącznik-a--diagramy-ascii)
 
 ---
 
 ## 1. Cloud Concepts (Podstawy chmury)
+
 ## Modele wdrożenia
 
 ### Public Cloud
@@ -1651,6 +1653,14 @@ Serverless workflowy i automatyzacje z setkami konektorów (SAP, SQL, Salesforce
 | SAS Token | Delegowany dostęp do Storage. |
 | CORS | Polityki cross-origin. |
 | CDN | Sieć dostarczania treści. |
+
+---
+
+## 15. Azure Free Account - Free Tier
+
+- **US$200 kredytu** na pierwszy miesiąc (trial).
+- Po wyczerpaniu – świadomie przejdź na PAYG lub wyłącz zasoby.
+- Wybrane usługi mają **12‑miesięczny Free Tier** (limity darmowe).
 
 ---
 
