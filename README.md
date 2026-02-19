@@ -23,6 +23,7 @@
 - [15. Azure Free Account - Free Tier](#15-azure-free-account-free-tier)
 - [16. SLA - Service Level Agreement](#16-sla-service-level-agreement)
 - [17. Bazy danych (Databases)](#17-bazy-danych-databases)
+- [18. Subskrypcje (Subscription Models)](#18-subskrypcje-subscription-models)
 - [Załącznik A – Diagramy ASCII](#załącznik-a--diagramy-ascii)
 
 ---
@@ -1945,6 +1946,25 @@ Zarządzane instancje popularnych baz open‑source.
 - automatyczne backupy, maintenance, skalowanie
 - tryby: Single Server (legacy) i Flexible Server (zalecany)
 - idealne dla aplikacji korzystających z open‑source DB
+
+---
+
+## 18. Subskrypcje (Subscription Models)
+
+**Azure Subscription Models**
+Azure oferuje różne modele subskrypcji w zależności od tego, jak organizacja chce kupować i rozliczać usługi chmurowe.
+
+**Pay-As-You-Go (PAYG)**
+- Płacisz tylko za zużycie, bez umów i zobowiązań — idealne na start i małe projekty.
+- PAYG nie daje żadnych stałych zniżek, ale można obniżyć koszty poprzez Reservations lub Azure Hybrid Benefit.
+
+**Enterprise Agreement (EA)**
+- Długoterminowa umowa dla dużych firm, dająca zniżki i centralne zarządzanie kosztami.
+- EA daje największe zniżki, bo są oparte na wolumenie i deklarowanym wydatku organizacji.
+
+**CSP (Cloud Solution Provider)**
+- Kupujesz Azure przez partnera, który zapewnia rozliczenia i dodatkowe wsparcie.
+- W CSP zniżki zależą od partnera, a nie od Microsoft — partner może dać rabat lub własne ceny.
 
 ---
 
