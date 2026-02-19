@@ -21,6 +21,7 @@
 - [13. Podchwytliwe pytania AZ‑900](#13-podchwytliwe-pytania-az900)
 - [14. Glosariusz skrócony](#14-glosariusz-skrócony)
 - [15. Azure Free Account - Free Tier](#15-Azure-Free-Account-FreeTier)
+- [16. SLA - Service Level Agreement](#16-SLA)
 - [Załącznik A – Diagramy ASCII](#załącznik-a--diagramy-ascii)
 
 ---
@@ -1661,6 +1662,15 @@ Serverless workflowy i automatyzacje z setkami konektorów (SAP, SQL, Salesforce
 - **US$200 kredytu** na pierwszy miesiąc (trial).
 - Po wyczerpaniu – świadomie przejdź na PAYG lub wyłącz zasoby.
 - Wybrane usługi mają **12‑miesięczny Free Tier** (limity darmowe).
+
+---
+
+## 16. SLA - Service Level Agreement
+
+- Każda usługa ma własne SLA (np. 99,9 / 99,95 / 99,99%).
+- Złożone SLA ≈ iloczyn SLA składników (przy niezależności awarii).
+- Przykład: 99,95% × 99,9% ≈ 99,85%.
+- Rozmieszczenie w wielu **AZ (Availability Zones)** zwykle podnosi SLA (np. VM).
 
 ---
 
