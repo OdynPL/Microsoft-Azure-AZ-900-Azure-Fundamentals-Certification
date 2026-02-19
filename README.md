@@ -662,153 +662,231 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
 
 ## 4. Networking (Sieci i łączność)
 
-- **VNet / Subnets / UDR**
+---
 
-    Podstawowa sieć prywatna w Azure – kontrola adresacji, segmentacji oraz tras statycznych (UDR) do kierowania ruchu.
+### **VNet / Subnets / UDR**
 
-    - **VNet (Virtual Network)**
+Podstawowa sieć prywatna w Azure – kontrola adresacji, segmentacji oraz tras statycznych (UDR) do kierowania ruchu.
 
-        Logiczna sieć prywatna w Azure, działająca podobnie do klasycznej sieci LAN.  
-        Umożliwia pełną kontrolę nad adresacją IP, komunikacją między zasobami, integracją z siecią on‑prem oraz izolacją środowisk.
+- **VNet (Virtual Network)**  
+  Logiczna sieć prywatna w Azure, działająca podobnie do klasycznej sieci LAN.  
+  Umożliwia pełną kontrolę nad adresacją IP, komunikacją między zasobami, integracją z siecią on‑prem oraz izolacją środowisk.
 
-    - **Subnets**
+- **Subnets**  
+  Podział VNet na mniejsze logiczne segmenty w celu separacji usług, zwiększenia bezpieczeństwa i kontroli dostępu.  
+  Pozwalają przypisywać różne NSG, UDR i zasady per segment, np. subnet „App”, „DB”, „Gateway”.
 
-        Podział VNet na mniejsze, logiczne segmenty w celu separacji usług, zwiększenia bezpieczeństwa i kontroli dostępu.  
-        Pozwalają przypisywać różne NSG, UDR i zasady per segment, np. subnet „App”, „DB”, „Gateway”.
+- **UDR (User Defined Routes)**  
+  Niestandardowe trasy wymuszające kierowanie ruchu przez określone urządzenia, np. firewall NVA.
 
-    - **UDR (User Defined Routes)**
+<img src="assets/azurevnets.svg">
 
-        Niestandardowe trasy, które pozwalają ręcznie kierować ruch sieciowy zamiast używać domyślnego routingu Azure.  
+Najczęstsze zastosowania:
+- kierowanie ruchu przez firewall (NVA / Azure Firewall)  
+- wymuszenie ruchu między subnetami  
+- tunelowanie ruchu do on‑prem / VPN / ExpressRoute  
+- blokowanie lub przekierowanie wybranych sieci
 
-    <img src="assets/azurevnets.svg">
+---
 
-    Najczęstsze zastosowania:
-    - kierowanie ruchu przez firewall (NVA)  
-    - wymuszenie ruchu między subnetami przez appliance  
-    - tunelowanie ruchu do on‑prem / VPN / ExpressRoute  
-    - blokowanie lub przekierowanie wybranych sieci
+### **NSG (Network Security Groups)**
 
+Podstawowy firewall warstwy L3/L4 dla subnetów i NIC VM.
 
-- **VNet Peering**
+Reguły filtrują:
+- źródło / cel (IP, zakres, tag),
+- porty,
+- protokół.
 
-    Bezpośrednie, szybkie i niskolatencyjne połączenie między dwoma sieciami (VNet) w Azure.  
+> NSG działa jak ACL – pozwala / blokuje ruch, ale go **nie inspektuje**.
 
-    Umożliwia pełną komunikację prywatną między adresacjami — **bez tuneli, bez NAT, bez bramy VPN**.  
+---
 
-    Ruch między VNetami odbywa się „przez plecy” infrastruktury Microsoft, z pominięciem Internetu i bez dodatkowego overheadu.
+### **ASG (Application Security Groups)**
 
-    <img src="assets/vnetpeering.svg">
+Logiczne grupowanie VM według funkcji (App, API, DB).  
+NSG może wskazywać ASG zamiast adresów IP — ułatwia to zarządzanie dynamicznymi środowiskami.
 
-    Najważniejsze cechy:
-    - pełna prywatna komunikacja IP‑to‑IP między VNetami  
-    - brak tuneli i konfiguracji IPsec  
-    - brak NAT → zachowanie oryginalnych adresów IP  
-    - bardzo niskie opóźnienia (jak w tej samej sieci fizycznej)  
-    - obsługa peeringu globalnego (Global VNet Peering) między regionami Azure  
+---
 
+### **Azure Firewall**
 
-- **VPN Gateway**
+Zarządzany firewall L3–L7:
 
-    Bramka VPN w Azure umożliwia zestawienie tuneli IPsec od sieci on‑prem (site‑to‑site) lub pojedynczych użytkowników (point‑to‑site) do Azure VNet.  
+- inspekcja ruchu aplikacyjnego,  
+- FQDN filtering,  
+- SNAT/DNAT,  
+- polityki centralne,  
+- integracja z Log Analytics.
 
-    <img src="assets/vpngateway.svg">
+> Azure Firewall ≠ NSG.  
+> NSG = ACL, Azure Firewall = stateful firewall z inspekcją.
 
-    Zapewnia szyfrowana komunikacje, integracje z lokalna siecia oraz dostep poprzez klienta VPN bez wystawiania publicznych usług.
+---
 
-    **Site‑to‑Site VPN (S2S)**  
+### **VNet Peering**
 
-    Stałe połączenie **całej sieci on‑prem** z **Azure VNet** za pomocą tunelu IPsec pomiędzy routerem/firewallem a Azure VPN Gateway.  
-    Wszystkie urządzenia lokalne mogą komunikować się z zasobami w Azure tak, jakby były w jednej sieci.
+Bezpośrednie, szybkie połączenie dwóch VNetów **bez tuneli, NAT i VPN**.
 
-    Najważniejsze cechy:
-    - połączenie sieć‑do‑sieci (router ↔ Azure)
-    - idealne dla biur, oddziałów i datacenter
-    - działa automatycznie, bez ingerencji użytkownika
-    - wymaga publicznego IP po stronie on‑prem i urządzenia IPsec
+<img src="assets/vnetpeering.svg">
 
-    **Point‑to‑Site VPN (P2S)**  
+Cechy:
+- komunikacja IP‑to‑IP po prywatnym backbone Azure,  
+- bardzo niskie opóźnienia,  
+- brak NAT,  
+- globalny peering między regionami.
 
-    Połączenie **pojedynczego użytkownika lub komputera** z Azure VNet.  
-    Użytkownik łączy się do Azure za pomocą klienta VPN (OpenVPN, IKEv2, Azure VPN Client) — bez potrzeby posiadania infrastruktury sieciowej.
+---
 
-    Najważniejsze cechy:
-    - połączenie urządzenie‑do‑sieci (user/laptop ↔ Azure)
-    - idealne dla administratorów, deweloperów i pracy zdalnej
-    - nie wymaga routera ani publicznego IP po stronie użytkownika
-    - obsługuje certyfikaty lub Azure AD jako metodę uwierzytelniani
+### **VPN Gateway**
 
-    <img src="assets/vpns2sp2p.svg">
+Brama VPN umożliwiająca szyfrowane połączenia IPsec.
 
-- **ExpressRoute**
+<img src="assets/vpngateway.svg">
 
-    **ExpressRoute** to dedykowane, prywatne polaczenie WAN pomiedzy infrastruktura on‑prem a Microsoft Azure.
+#### **Site‑to‑Site (S2S)**  
+- tunel router ↔ Azure (cała sieć ↔ VNet),  
+- wymaga publicznego IP po stronie on‑prem.
 
-    Omija publiczny Internet, zapewniajac stabilne parametry sieci, niskie opoznienia oraz przewidywalna przepustowosc.
+#### **Point‑to‑Site (P2S)**  
+- VPN dla pojedynczego użytkownika (OpenVPN / IKEv2 / Azure VPN Client),  
+- nie wymaga infrastruktury po stronie użytkownika.
 
-    <img src="assets/expressroute.svg">
+<img src="assets/vpns2sp2p.svg">
 
-    **Najwazniejsze cechy:**
-    - prywatny, fizyczny obwod — brak ruchu przez Internet
-    - bardzo wysoka przepustowosc (50 Mbps do 100 Gbps)
-    - stabilne opoznienia i SLA klasy operatorskiej
-    - bezpieczne polaczenie do Azure bez VPN i IPsec
-    - dwa tryby dostepu: ExpressRoute Standard i ExpressRoute Direct
-    - obsluga Microsoft peering (uslugi Office 365, Dynamics), Azure private peering (VNets) i Microsoft global backbone
+---
 
-    **Zastosowania:**
-    - krytyczne obciazenia wymagajace przewidywalnej sieci
-    - integracja z data center
-    - migracje masowe (bulk data transfer)
-    - komunikacja miedzy regionami przez globalny backbone Microsoft
+### **ExpressRoute**
 
-- **Private Endpoint / Service Endpoint**
+Prywatne łącze WAN do Azure, całkowicie poza Internetem.
 
-    Mechanizmy zapewniajace prywatny dostep do uslug PaaS (np. Storage, SQL, WebApps) bez ruchu przez publiczny Internet.
+<img src="assets/expressroute.svg">
 
-    <img src="assets/privateendpoints.svg">
+Cechy:
+- 50 Mbps – 100 Gbps,  
+- stabilne parametry i SLA operatorskie,  
+- private peering (VNet), Microsoft peering (Microsoft 365),  
+- idealny do krytycznych aplikacji i masowych migracji.
 
-    - **Private Endpoint** 
+---
 
-    Tworzy prywatny adres IP w Twoim VNet, ktory wskazuje bezposrednio na usluge PaaS.  
-    Ruch pozostaje w prywatnej sieci Azure (Azure backbone).  
-    Zapewnia najwyzszy poziom izolacji i kontroli.
+### **Private Endpoint / Service Endpoint**
 
-    - **Service Endpoint**  
+<img src="assets/privateendpoints.svg">
 
-    Umozliwia ruch do uslug PaaS z sieci VNet, ale **nie tworzy prywatnego IP**.  
-    Azure rozpoznaje Twoja siec jako zaufane zrodlo i kieruje ruch po prywatnej sciezce.  
-    Prostszy model, ale mniejsza izolacja niz Private Endpoint.
+#### **Private Endpoint**
+- prywatny IP w Twoim VNet,  
+- wymaga prywatnych stref DNS (`privatelink.azure.com`),  
+- najwyższy poziom izolacji (pełne odcięcie Internetu).
 
-**Równoważenie i edge:**
+#### **Service Endpoint**
+- nie tworzy prywatnego IP,  
+- ruch do PaaS idzie backbone Azure,  
+- prostsze, ale mniej izolacji.
 
-- **Azure Load Balancer (L4)** 
+Pułapki:
+- Private Endpoint może „ukryć” usługę przed Internetem — wymaga poprawnego DNS.  
+- Service Endpoint nie działa cross‑tenant.  
+- Private Endpoint blokuje publiczne IP usługi (jeśli wyłączysz „public network access”).
 
-  Równoważenie ruchu na warstwie 4 (TCP/UDP). Oferuje SNAT, obsługę ruchu inbound i outbound, wsparcie dla scenariuszy HA oraz integrację z VM/VMSS.  
-  Stosowany tam, gdzie wymagane jest szybkie, niskopoziomowe przekazywanie pakietów bez inspekcji HTTP.
+---
 
-  <img src="assets/azureloadbalancer.svg">
+### **Public IP (Basic vs Standard)**
 
-- **Application Gateway (L7 + WAF)**  
+- **Basic**
+  - brak stref AZ,  
+  - mniej bezpieczne,  
+  - brak SLA.
 
-  Równoważenie na warstwie 7 (HTTP/HTTPS) z funkcjami terminacji SSL, routingu URL‑based, cookie affinity oraz integracją z **Web Application Firewall (WAF)**.  
-  Idealny dla aplikacji webowych wymagających zaawansowanej inspekcji i ochrony.
+- **Standard**
+  - strefowy (zone‑redundant),  
+  - domyślnie „secure by default”,  
+  - płatny za sam przydział.
 
-  <img src="assets/applicationgateway.svg">
+---
 
-- **Traffic Manager (DNS LB)**  
+### **NAT Gateway**
 
-  Równoważenie na poziomie DNS — kieruje ruch na podstawie reguł typu geo‑routing, priority, weighted lub performance.  
-  Działa globalnie i pozwala kontrolować, gdzie użytkownicy zostaną przekierowani *przed* nawiązaniem połączenia.
+Zalecane rozwiązanie dla wychodzącego ruchu Internetowego (egress).
 
-  <img src="assets/trafficmanager.svg">
+Cechy:
+- jedno źródło ruchu (stały publiczny IP/prefix),  
+- wysoka skalowalność (miliony SNAT),  
+- lepsze niż SNAT na Load Balancer.
 
-- **Azure Front Door**  
+---
 
-  Globalny punkt wejścia zbudowany na edge network Microsoft.  
-  Zapewnia akcelerację ruchu HTTP(s), caching, globalny load balancing L7, TLS offload oraz wbudowany WAF.  
-  Idealny dla aplikacji o zasięgu globalnym i wymagających niskich opóźnień.
+### **DDoS Protection**
 
-  <img src="assets/frontdoor.svg">
+- **Basic** – zawsze włączone, automatyczne.  
+- **Standard** – ochrona warstw **L3/L4**: wolumetria, SYN flood, UDP flood.
+
+> DDoS Standard nie chroni L7 — od tego jest **WAF**.
+
+---
+
+### **WAF (Web Application Firewall)**
+
+Firewall L7 (HTTP/S), ochrona webowych aplikacji przed:
+- OWASP Top 10,  
+- botami,  
+- wstrzykiwaniem,  
+- anomaliami.
+
+Dostępny jako:
+- WAF on Application Gateway (regionalny),  
+- WAF on Azure Front Door (globalny edge).
+
+---
+
+### **Load Balancing i Edge Networking**
+
+#### **Azure Load Balancer (L4)**  
+
+<img src="assets/azureloadbalancer.svg">
+
+Warstwa 4 – TCP/UDP. Szybki, prosty, idealny dla VM/VMSS.
+
+#### **Application Gateway (L7 + WAF)**  
+
+<img src="assets/applicationgateway.svg">
+
+Warstwa 7 – routing HTTP/S, WAF, SSL termination, cookie affinity.
+
+#### **Traffic Manager (DNS LB)**  
+
+<img src="assets/trafficmanager.svg">
+
+Stosowany na poziomie DNS – georouting, failover, weighted.
+
+#### **Azure Front Door (L7 Edge)**   
+
+<img src="assets/frontdoor.svg">
+
+Globalny CDN + smart routing L7 + WAF na edge.
+
+---
+
+### **Porównanie usług LB (skrót)**
+
+| Usługa | Warstwa | Zastosowania | Zakres |
+|--------|---------|--------------|--------|
+| Load Balancer | L4 | VM/VMSS, TCP/UDP | Regional |
+| Application Gateway | L7 | Web apps + WAF | Regional |
+| Traffic Manager | DNS | Global routing DNS | Global |
+| Front Door | L7 Edge | Global web apps, WAF, caching | Global |
+
+---
+
+### **Network Watcher**
+
+Narzędzia do diagnostyki:
+- IP Flow Verify,  
+- NSG Flow Logs,  
+- Connection Troubleshoot,  
+- Packet Capture.
+
+Umożliwia analizę ruchu i debugowanie problemów sieciowych.
 
 ---
 
@@ -1129,131 +1207,161 @@ Rodzaje:
 
 ## 8. Governance & Compliance
 
-## Azure Policy
+### Azure Policy
+
+<img src="assets/azurepolicy.svg">
+
 Mechanizm wymuszający zgodność konfiguracji zasobów z wymaganiami organizacji.
 
 - **Policy Definition** – pojedyncza reguła (np. „wymagaj tagu Environment”, „blokuj publiczne IP”).
-- **Policy Initiative** – zestaw wielu reguł grupowanych jako standard (np. CIS, NIST, ISO).
+- **Policy Initiative** – zestaw wielu reguł grupowanych w standardy (np. CIS, NIST, ISO, Zero Trust).
 
-### Effects (działania polityk):
-- **Deny** – blokuje wdrożenie niezgodnego zasobu (**nawet rola Owner nie może tego ominąć**).
-- **Audit** – oznacza zasób jako niezgodny, nie blokuje wdrożenia.
+#### Effects (działania polityk)
+- **Deny** – blokuje wdrożenie **(Owner również nie może ominąć Deny)**.
+- **Audit** – oznacza zasób jako niezgodny, ale nie blokuje wdrożenia.
 - **Append** – dodaje brakujące właściwości (np. tagi).
 - **Modify** – automatycznie poprawia konfigurację podczas wdrażania.
 - **DeployIfNotExists** – tworzy brakujące zasoby towarzyszące (np. diag settings).
 
-### Exemptions (wyjątki)
-Czasowe wyłączenie polityki dla danego scope bez jej usuwania.  
-Używane dla wyjątków biznesowych, migracji lub zasobów legacy.
+#### Exemptions (wyjątki)
+Tymczasowe wyłączenie polityki dla wybranego scope — bez jej usuwania.  
+Stosowane w okresach migracji, wyjątkach biznesowych lub scenariuszach legacy.
 
-### Remediation Tasks
-Zadania naprawcze dla istniejących zasobów:
-- poprawienie konfiguracji (`Modify`),
-- dodanie brakujących elementów (`DeployIfNotExists`).
+#### Remediation Tasks
+Automatyczne zadania naprawcze działające na istniejących zasobach:
+- poprawiają konfigurację (Modify),
+- doinstalowują wymagane elementy (DeployIfNotExists).
 
-### Scope
+#### Scope i dziedziczenie
 Management Group → Subscription → Resource Group → Resource  
-(polityki dziedziczą się wyłącznie w dół)
-
-Azure Policy zapewnia automatyczną korektę, standaryzację i pełną widoczność zgodności.
+(polityki dziedziczą się **wyłącznie w dół**)
 
 ---
 
-## Resource Locks
-Zabezpieczenia przed przypadkowym lub niepożądanym usunięciem lub zmianą zasobów:
+### Resource Locks
 
-- **Delete** – blokuje usuwanie zasobów.
-- **ReadOnly** – blokuje wszystkie modyfikacje.
+<img src="assets/ks.svg">
 
-Stosowane głównie dla zasobów krytycznych (VNet, Key Vault, Storage, LAW).
+Zabezpieczają zasoby przed przypadkowym usunięciem lub edycją.
 
----
+- **Delete** – blokada usunięcia zasobu.
+- **ReadOnly** – blokada usunięcia i modyfikacji (tylko odczyt).
 
-## Tags
-Metadane opisujące zasoby na potrzeby:
-- organizacji i klasyfikacji (Environment, Owner, CostCenter),
-- chargeback/showback i analizy kosztów,
-- automatyzacji (np. auto-shutdown),
-- governance (Azure Policy może je wymuszać lub naprawiać).
-
-Pomagają w utrzymaniu ładu w dużych środowiskach.
+Stosowane szczególnie dla:
+- Key Vault,  
+- Storage (backupy),  
+- VNet / Firewall,  
+- Log Analytics Workspace.
 
 ---
 
-## Azure Blueprints
+### Tags
+
+<img src="assets/tags.svg">
+
+Metadane przypisywane do zasobów w celu:
+- organizacji i klasyfikacji (Environment, Owner, Project),
+- chargeback/showback (koszty per projekt/dział),
+- automatyzacji (np. auto‑shutdown),
+- wymuszania governance (Azure Policy może wymagać tagów).
+
+---
+
+### Azure Blueprints
+
+assets/blueprints.svg
+
 Pakiet governance łączący:
-- Azure Policy,
-- RBAC,
-- ARM/Bicep templates,
-- strukturę Resource Groups.
+- Azure Policy,  
+- RBAC,  
+- ARM/Bicep templates,  
+- strukturę Resource Groups,
 
-Służy do szybkiego tworzenia środowisk zgodnych ze standardami organizacji (np. Landing Zone).
+w jedno spójne, powtarzalne środowisko (np. Landing Zone).
 
----
-
-## Azure Arc
-Rozszerza Azure na środowiska on‑premise, multi‑cloud i edge:
-
-- stosowanie Azure Policy, Defender for Cloud, RBAC i tagów poza Azure,
-- zarządzanie serwerami, klastrami Kubernetes i bazami danych spoza Azure,
-- utrzymanie jednolitego compliance w środowiskach hybrydowych.
+Idealne dla enterprise i audytowalnych wdrożeń.
 
 ---
 
-## Shared Responsibility Model
+### Azure Arc
+
+assets/azurearc.svg
+
+Rozszerza Azure na środowiska:
+- on‑premise,  
+- multi‑cloud,  
+- edge.
+
+Umożliwia:
+- nakładanie Azure Policy poza Azure,  
+- zarządzanie serwerami, Kubernetes, SQL spoza Azure,  
+- zbieranie logów/telemetrii z różnych środowisk,  
+- utrzymanie spójnego governance.
+
+---
+
+### Shared Responsibility Model
+
+<img src="assets/sharedresponsibility.svg">
+
 Podział odpowiedzialności między Azure a klientem.
 
-### Azure odpowiada za:
-- fizyczną infrastrukturę (DC, sieć, sprzęt, hypervisor),
-- dostępność i SLA usług,
-- aktualizacje i bezpieczeństwo platformy PaaS,
-- integralność globalnej infrastruktury.
+#### Azure odpowiada za:
+- fizyczną infrastrukturę (DC, sieć, hypervisor),
+- platformę PaaS oraz jej aktualizacje,
+- dostępność usług i SLA,
+- bezpieczeństwo warstw poniżej OS (w modelu PaaS).
 
-### Klient odpowiada za:
-- tożsamość i dostęp (MFA, CA, role, PIM),
-- dane (klasyfikacja, szyfrowanie, backup),
-- konfigurację usług (NSG, firewall, polityki Key Vault),
-- zabezpieczanie kluczy, SAS, tokenów,
-- aktualizacje systemów OS w modelu IaaS.
-
----
-
-## Service Trust, Compliance i Rezydencja Danych
-- **Service Trust Portal** – dokumenty zgodności (ISO, SOC, PCI), audyty, raporty.
-- **Data Residency** – dane pozostają w wybranej geografii (np. EU).
-- **Azure Government / Azure China** – dedykowane, suwerenne cloud'y ze specjalnymi modelami zgodności.
+#### Klient odpowiada za:
+- tożsamość i dostęp (MFA, CA, RBAC, PIM),
+- dane (szyfrowanie, backup, klasyfikacja),
+- konfiguracje usług (NSG, firewall, KV access),
+- bezpieczeństwo aplikacji,
+- rotację kluczy, SAS, tokenów,
+- aktualizacje OS w VM (IaaS).
 
 ---
 
-## Well‑Architected Framework (5 filarów)
-Zestaw dobrych praktyk projektowania architektury chmurowej:
+### Service Trust, Compliance i Rezydencja Danych
 
-1. **Cost Optimization** – zarządzanie kosztami i eliminacja marnotrawstwa.
-2. **Operational Excellence** – automatyzacja, CI/CD, obserwowalność.
-3. **Performance Efficiency** – skalowanie, dobór usług, wydajność.
-4. **Reliability** – odporność, HA/DR, self‑healing.
-5. **Security** – tożsamość, szyfrowanie, Zero Trust, compliance.
+<img src="assets/servicetrust.svg">
+
+- **Microsoft Service Trust Portal** – raporty zgodności (ISO, SOC, PCI), audyty, certyfikaty.
+- **Data Residency (rezydencja danych)** – dane pozostają w wybranej geografii (np. EU).
+- **Azure Government / Azure China** – suwerenne regiony dla wymagań regulacyjnych.
 
 ---
 
-## Cloud Adoption Framework & Landing Zone
-Framework do planowania i wdrażania chmury.
+### Well‑Architected Framework (WAF – 5 filarów)
 
-### Cloud Adoption Framework (CAF) obejmuje:
-- strategię i uzasadnienie biznesowe,
-- ocenę gotowości organizacji,
-- plan migracji,
-- governance (Policy, RBAC, MG),
-- operacje (monitoring, automatyzacja, DevOps).
+<img src="assets/wellarchitected.svg">
 
-### Landing Zone
-Gotowy wzorzec środowiska produkcyjnego:
+1. **Cost Optimization** – eliminacja marnotrawstwa, right‑size, automatyzacja kosztów.  
+2. **Operational Excellence** – automatyzacja, CI/CD, versioning, monitoring.  
+3. **Performance Efficiency** – wybór właściwych usług, autoscaling, cache.  
+4. **Reliability** – HA, DR, self‑healing, multi‑zone/multi‑region.  
+5. **Security** – Zero Trust, least privilege, szyfrowanie, segmentacja.
+
+---
+
+### Cloud Adoption Framework & Landing Zone
+
+<img src="assets/wellarchitcafected.svg">
+
+**CAF** obejmuje:
+- strategię i uzasadnienie biznesowe,  
+- plan migracji,  
+- przygotowanie organizacji,  
+- governance (Policy, RBAC, MG),  
+- operacje (monitoring, DevOps).
+
+**Landing Zone** = gotowy wzorzec środowiska produkcyjnego:
 - hierarchia Management Groups,
 - polityki bezpieczeństwa,
-- sieć bazowa (hub/spoke),
+- sieć hub/spoke,
 - RBAC baseline,
-- monitoring i logowanie,
-- zgodność z najlepszymi praktykami CAF/WAF.
+- logowanie i monitoring,
+- zgodność z CAF i WAF.
 
 ---
 
