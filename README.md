@@ -1390,9 +1390,9 @@ Podział odpowiedzialności między Azure a klientem.
 
 - **Azure Advisor**
 
-assets/azureadvisor.svg
-
 **Azure Advisor** to wbudowany doradca dla platformy Azure, analizujący środowisko pod kątem najlepszych praktyk Microsoft i generujący konkretne rekomendacje dotyczące optymalizacji kosztów, wydajności, bezpieczeństwa, niezawodności i operacyjności.
+
+<img src="assets/azureadvisor.svg">
 
 ### Kategorie rekomendacji
 - **Cost** – redukcja kosztów (right-size, wyłączanie nieużywanych zasobów, Reserved Instances, Azure Hybrid Benefit).  
