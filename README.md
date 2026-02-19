@@ -21,7 +21,7 @@
 - [13. Podchwytliwe pytania AZ‑900](#13-podchwytliwe-pytania-az900)
 - [14. Glosariusz skrócony](#14-glosariusz-skrócony)
 - [15. Azure Free Account - Free Tier](#15-Azure-Free-Account-FreeTier)
-- [16. SLA - Service Level Agreement](#16-SLA)
+- [16. SLA - Service Level Agreement](#16-SLA-ServiceLevelAgreement)
 - [Załącznik A – Diagramy ASCII](#załącznik-a--diagramy-ascii)
 
 ---
