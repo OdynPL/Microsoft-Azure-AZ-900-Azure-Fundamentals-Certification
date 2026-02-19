@@ -770,24 +770,33 @@ Cechy:
 
 ---
 
-### **Private Endpoint / Service Endpoint**
+### **Public Endpoint / Private Endpoint / Service Endpoint**
 
 <img src="assets/privateendpoints.svg">
 
+#### **Public Endpoint**
+- publiczny adres IP usługi PaaS,
+- dostęp przez Internet (można ograniczyć firewallami / Access Restrictions),
+- brak izolacji sieciowej — ruch zawsze trafia na publiczny endpoint.
+
 #### **Private Endpoint**
-- prywatny IP w Twoim VNet,  
-- wymaga prywatnych stref DNS (`privatelink.azure.com`),  
+- prywatny IP w Twoim VNet (z subnetu),
+- dostęp przez Azure Private Link (prywatny backbone),
+- wymaga prywatnych stref DNS (privatelink.azure.com),
 - najwyższy poziom izolacji (pełne odcięcie Internetu).
 
 #### **Service Endpoint**
-- nie tworzy prywatnego IP,  
-- ruch do PaaS idzie backbone Azure,  
-- prostsze, ale mniej izolacji.
+- nie tworzy prywatnego IP,
+- ruch do PaaS przechodzi po prywatnym backbone Azure,
+- nadal używa publicznego endpointu usługi,
+- mniej izolacji niż Private Endpoint.
 
 Pułapki:
-- Private Endpoint może „ukryć” usługę przed Internetem — wymaga poprawnego DNS.  
-- Service Endpoint nie działa cross‑tenant.  
-- Private Endpoint blokuje publiczne IP usługi (jeśli wyłączysz „public network access”).
+- Public Endpoint + złe reguły = przypadkowe wystawienie danych do Internetu
+- Private Endpoint może „schować” usługę przed światem (konieczny poprawny DNS)
+- Service Endpoint nie działa cross‑tenant
+- Private Endpoint blokuje publiczny dostęp przy ustawieniu Deny public network access
+- Service Endpoint nie korzysta z NAT — usługa widzi regionalny adres źródłowy Azure
 
 ---
 
