@@ -20,7 +20,7 @@
 - [12. Extended Azure Services (Usługi rozszerzone)](#12-extended-azure-services-usługi-rozszerzone)
 - [13. Podchwytliwe pytania AZ‑900](#13-podchwytliwe-pytania-az900)
 - [14. Glosariusz skrócony](#14-glosariusz-skrócony)
-- [15. Azure Free Account - Free Tier](#15. Azure Free Account - Free Tier)
+- [15. Azure Free Account - Free Tier](#15-Azure-Free-Account-FreeTier)
 - [Załącznik A – Diagramy ASCII](#załącznik-a--diagramy-ascii)
 
 ---
