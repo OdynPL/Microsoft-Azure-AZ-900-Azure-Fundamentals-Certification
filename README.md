@@ -1366,6 +1366,8 @@ Podział odpowiedzialności między Azure a klientem.
 
 ### Service Trust, Compliance i Rezydencja Danych
 
+**Service Trust Portal** służy do szybkiego sprawdzania, jak Microsoft spełnia wymagania bezpieczeństwa i zgodności, co ułatwia audyty i ocenę ryzyka.
+
 <img src="assets/servicetrust.svg">
 
 - **Microsoft Service Trust Portal** – raporty zgodności (ISO, SOC, PCI), audyty, certyfikaty.
