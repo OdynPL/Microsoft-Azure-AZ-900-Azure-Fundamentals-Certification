@@ -1559,6 +1559,10 @@ Azure Advisor jest narzędziem **proaktywnym**, często wskazywanym na egzaminie
   - **ARM (JSON)** – niskopoziomowe, bardziej szczegółowe, natywne dla Azure.
   - **Bicep** – nowszy, prostszy i czytelniejszy język, który kompiluje się do ARM; wspiera moduły, lepszą walidację i łatwiejsze utrzymanie.
 
+  Uwaga!
+  - **ARM templates** definiują co wdrożyć — konkretne zasoby i ich konfigurację.
+  - **Blueprints** definiują całe środowisko — mogą zawierać ARM templates plus polityki, RBAC i strukturę zasobów, czyli pełny pakiet governance.
+
 - **Terraform**
   Popularne i uniwersalne narzędzie IaC działające w modelu multi‑cloud:
   - **Provider AzureRM** – umożliwia pełne zarządzanie zasobami Azure.
