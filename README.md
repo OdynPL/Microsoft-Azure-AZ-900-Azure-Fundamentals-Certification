@@ -537,6 +537,20 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
     **Dlaczego to ważne?**  
     Locki chronią środowisko przed błędami administratorów i pipeline’ów automatyzacji — zapewniają porządek i bezpieczeństwo operacyjne.
 
+- **Regions** to miejsca na świecie, w których Azure ma swoje centra danych — dzięki temu usługi działają szybciej, bliżej użytkowników i zgodnie z lokalnymi przepisami.
+
+  - **Public Regions**
+  - Standardowe regiony Azure dostępne globalnie dla wszystkich klientów i uruchamiające pełny zestaw usług.
+
+  - **Restricted Regions**
+  - Regiony o ograniczonym dostępie, dostępne wyłącznie po akceptacji Microsoft w specjalnych scenariuszach biznesowych.
+
+  - **Upcoming Regions**
+    - Nowo ogłoszone, budowane regiony, które poszerzą globalny zasięg i spełnią lokalne wymogi rezydencji danych.
+
+  - **Sovereign Regions** (Azure Government / China)
+  - Oddzielone, suwerenne regiony przeznaczone dla rządów i krajów o szczególnych regulacjach jak USA Gov lub Chiny.
+
 ---
 
 ## 3. Compute Services (Usługi obliczeniowe)
