@@ -1309,6 +1309,8 @@ Ważne!
 
 ### Azure Blueprints
 
+Blueprint pozwala w jednym, powtarzalnym procesie stworzyć całe środowisko Azure zgodne ze standardami organizacji — od zasad i uprawnień po strukturę zasobów.
+
 <img src="assets/blueprints.svg">
 
 Pakiet governance łączący:
