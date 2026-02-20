@@ -546,7 +546,7 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
   - Regiony o ograniczonym dostępie, dostępne wyłącznie po akceptacji Microsoft w specjalnych scenariuszach biznesowych.
 
   - **Upcoming Regions**
-    - Nowo ogłoszone, budowane regiony, które poszerzą globalny zasięg i spełnią lokalne wymogi rezydencji danych.
+  - Nowo ogłoszone, budowane regiony, które poszerzą globalny zasięg i spełnią lokalne wymogi rezydencji danych.
 
   - **Sovereign Regions** (Azure Government / China)
   - Oddzielone, suwerenne regiony przeznaczone dla rządów i krajów o szczególnych regulacjach jak USA Gov lub Chiny.
