@@ -1084,6 +1084,8 @@ Proces logowania przebiega w kilku krokach:
 3. **Kontrole dostepu** (Conditional Access) – Entra ID ocenia ryzyko logowania, lokalizacje, stan urzadzenia, zgodnosc z politykami oraz wymaga MFA jesli to konieczne.  
 4. **Wydanie tokenow** – po pozytywnym potwierdzeniu wydawane sa ID Token, Access Token i Refresh Token (OAuth2/OIDC), ktore aplikacje wykorzystuja do autoryzacji.
 
+**Access Token** i **ID Tokeny** wygasają **po 1 godzinie**, a **Refresh Token** po **maksymalnie 90 dniach** — chyba że wcześniej przestanie być używany lub polityki bezpieczeństwa wymuszą ponowne logowanie.
+
 **Jak uwierzytelniane sa aplikacje?**
 
 <img src="assets/appauthorization.svg">
