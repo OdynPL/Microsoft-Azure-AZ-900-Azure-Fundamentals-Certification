@@ -291,7 +291,9 @@ Load balancer rozprowadza ruch między instancjami, umożliwiając skuteczne sca
 #### **Stateless Architecture**
 Wymagana do efektywnego autoskalowania — stan przechowywany poza instancjami (cache/DB/redis).
 
-**Stateless** to serwer, który nie pamięta niczego między żądaniami, a **Stateful** to serwer, który musi pamiętać stan, więc kolejne żądania muszą wracać do niego.
+- Ważna różnica:
+  - **Stateless** to serwer, który nie pamięta niczego między żądaniami.
+  - **Stateful** to serwer, który musi pamiętać stan, więc kolejne żądania muszą wracać do niego.
 
 #### **Throttling / Rate Limiting**
 Kontrola obciążenia aplikacji i API w czasie autoskalowania — ochrona przed lawinowym ruchem.
