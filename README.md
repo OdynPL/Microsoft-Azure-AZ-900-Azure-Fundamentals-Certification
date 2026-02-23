@@ -1339,6 +1339,11 @@ w jedno spójne, powtarzalne środowisko (np. Landing Zone).
 
 Idealne dla enterprise i audytowalnych wdrożeń.
 
+Uwaga!
+- Obecnie Blueprints są przestarzałe i teraz zaleca się używania **Azure Landing Zones** + Bicep/ARM + Policy + GitOps.
+
+**Azure Landing Zones (ALZ)** to kompletna, gotowa architektura i zestaw najlepszych praktyk, które pozwalają szybko i poprawnie zbudować bezpieczne, skalowalne środowisko chmurowe zgodne z CAF.
+
 ---
 
 ### Azure Arc
