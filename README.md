@@ -944,9 +944,10 @@ Poniżej znajdziesz jasne i zrozumiałe wyjaśnienie, czym są poszczególne typ
 **Blob Storage** (obiekty / pliki)
 Najbardziej uniwersalne miejsce na duże, niestrukturalne dane.
 
-- **Hot** — częste odczyty, wysoka wydajność  
-- **Cool** — rzadziej używane dane, niższy koszt  
-- **Archive** — przechowywanie długoterminowe, najniższy koszt  
+- **Hot** najczęściej używane dane, najwyższy koszt przechowywania, najniższy koszt dostępu.
+- **Cool** dane rzadziej używane (dni–miesiące).
+- **Cold** dane używane bardzo rzadko (miesiące–lata), tańsze od Cool, droższe od Archive pod względem odczytu.
+- **Archive** dane długoterminowe, najniższy koszt przechowywania, ale bardzo drogi i wolny odczyt (kilka godzin).
 
 Zastosowania: kopie zapasowe, logi, obrazy, filmy, dane ML, statyczne pliki
 
