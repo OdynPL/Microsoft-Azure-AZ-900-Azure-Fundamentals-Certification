@@ -1651,7 +1651,8 @@ Idealny jako warstwa pośrednia między aplikacjami klienckimi a backendami.
 #### **Front Door / CDN / Traffic Manager**
 
 **Azure Front Door**
-Globalny gateway warstwy L7 działający na edge Microsoftu.  
+Globalny gateway warstwy L7 działający na edge Microsoftu.
+
 Oferuje:
 - inteligentny routing HTTP/HTTPS (latency‑based, path‑based, failover),
 - **WAF** na edge,
@@ -1663,6 +1664,7 @@ Oferuje:
 
 **Azure CDN**
 Content Delivery Network przeznaczony do:
+
 - szybkiego dostarczania statycznych treści (CSS, JS, obrazy, wideo),
 - redukcji obciążenia backendu poprzez cache na edge,
 - poprawy czasu ładowania aplikacji.
@@ -1671,6 +1673,7 @@ Działa świetnie samodzielnie lub jako uzupełnienie Front Door.
 
 **Azure Traffic Manager**
 Globalny load balancer oparty o **DNS** (nie przetwarza sam ruchu HTTP).  
+
 Obsługuje:
 - routing geograficzny (np. kierowanie użytkowników do najbliższego regionu),
 - **failover** między regionami,
