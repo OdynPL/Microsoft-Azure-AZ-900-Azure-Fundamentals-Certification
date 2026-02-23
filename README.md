@@ -768,7 +768,8 @@ Brama VPN umożliwiająca szyfrowane połączenia IPsec.
 
 <img src="assets/vpngateway.svg">
 
-#### **Site‑to‑Site (S2S)**  
+#### **Site‑to‑Site (S2S)**
+- Używasz S2S, gdy chcesz połączyć całą sieć on‑prem z Azure.
 - tunel router ↔ Azure (cała sieć ↔ VNet),  
 - wymaga publicznego IP po stronie on‑prem.
 
