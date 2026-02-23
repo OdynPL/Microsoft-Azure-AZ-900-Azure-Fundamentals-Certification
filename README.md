@@ -1615,23 +1615,17 @@ Azure Advisor jest narzędziem **proaktywnym**, często wskazywanym na egzaminie
 ### Integracja i zdarzenia
 
 - **Azure Service Bus**  
-  Broker komunikatów klasy enterprise — niezawodne kolejki (1:1) oraz publish/subscribe (1→n), z obsługą transakcji, DLQ i protokołu AMQP.
-
-  Idealny do integracji mikroserwisów oraz scenariuszy wymagających trwałego kolejkowania.
+  Broker komunikatów klasy enterprise — niezawodne kolejki (1:1) oraz publish/subscribe (1→n), z obsługą transakcji, DLQ i protokołu AMQP. Idealny do integracji mikroserwisów oraz scenariuszy wymagających trwałego kolejkowania.
 
   <img src="assets/servicebus.svg">
 
 - **Azure Event Hub**  
-  Platforma do zbierania i przetwarzania strumieni danych na ogromną skalę (telemetria, logi, IoT)nawet miliony zdarzeń na sekundę.
-
-  Świetnie współpracuje z Databricks, Spark, Stream Analytics i może działać jako Kafka‑as‑a‑Service.
+  Platforma do zbierania i przetwarzania strumieni danych na ogromną skalę (telemetria, logi, IoT)nawet miliony zdarzeń na sekundę. Świetnie współpracuje z Databricks, Spark, Stream Analytics i może działać jako Kafka‑as‑a‑Service.
 
   <img src="assets/eventhub.svg">
 
 - **Azure Event Grid**  
-  Lekki router zdarzeń typu push, idealny do budowania architektur event‑driven o niskich opóźnieniach.
-
-  Umożliwia reagowanie na zdarzenia z usług Azure (np. BlobCreated → Function) i integrację systemów poprzez eventy.
+  Lekki router zdarzeń typu push, idealny do budowania architektur event‑driven o niskich opóźnieniach. Umożliwia reagowanie na zdarzenia z usług Azure (np. BlobCreated → Function) i integrację systemów poprzez eventy.
 
   <img src="assets/eventgrids.svg">
 
