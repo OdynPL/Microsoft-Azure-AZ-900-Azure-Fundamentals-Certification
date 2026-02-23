@@ -1702,13 +1702,13 @@ Używany, gdy potrzebne jest sterowanie ruchem na poziomie DNS i niezależnie od
 **Data Factory / Synapse Pipelines / Databricks**
 
 - **Azure Data Factory (ADF)**  
-  ETL/ELT i integracje danych: pipeline’y, transformacje, harmonogramy, łączenie źródeł on‑prem i cloud.
+  Narzędzie do budowania i uruchamiania przepływów ETL/ELT między różnymi źródłami danych.
 
 - **Synapse Pipelines**  
-  Pipeline’y w ramach Synapse – najlepsze, gdy używasz środowiska Synapse (SQL Pools, Spark, Data Lake).
+  Pipeline’y działające w ekosystemie Synapse, idealne do orkiestracji danych w Synapse i Data Lake.
 
 - **Databricks**  
-  Spark + Delta Lake + ML: skalowalne przetwarzanie big‑data, notebooki, streaming, lakehouse, MLflow.
+  Platforma oparta na Spark do skalowalnego przetwarzania danych, analityki i uczenia maszynowego.
 
 ---
 
