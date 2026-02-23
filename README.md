@@ -411,6 +411,8 @@ Ta struktura jest fundamentem pracy z Azure — wpływa na **uprawnienia, govern
 
 <img src="assets/azure_hierarchy.svg">
 
+- Jeden **Resource** może należeć tylko do jednej **Resource Group**.
+
 ## Globalna infrastruktura Azure
 
 <img src="assets/azure_global_architecture.svg">
