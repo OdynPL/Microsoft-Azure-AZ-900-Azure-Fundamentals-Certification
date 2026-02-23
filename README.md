@@ -1348,6 +1348,8 @@ Uwaga!
 
 ### Azure Arc
 
+**Azure Arc** to usługa, która pozwala zarządzać serwerami, Kubernetesem i usługami działającymi poza Azure tak, jakby były natywnymi zasobami Azure.
+
 <img src="assets/azurearc.svg">
 
 Rozszerza Azure na środowiska:
