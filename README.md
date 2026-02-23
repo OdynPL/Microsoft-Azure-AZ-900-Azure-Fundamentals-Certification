@@ -1634,7 +1634,8 @@ Azure Advisor jest narzędziem **proaktywnym**, często wskazywanym na egzaminie
 ### API i edge
 
 **API Management (APIM)**
-APIM to centralny *API Gateway*, który pozwala w jednym miejscu wystawiać, zabezpieczać i zarządzać wszystkimi API w organizacji.  
+APIM to centralny *API Gateway*, który pozwala w jednym miejscu wystawiać, zabezpieczać i zarządzać wszystkimi API w organizacji.
+
 Zapewnia m.in.:
 - **transformacje request/response** (np. JSON ↔ XML, dodawanie nagłówków),
 - **bezpieczeństwo i autoryzację** (OAuth2, OpenID Connect, JWT, certyfikaty),
