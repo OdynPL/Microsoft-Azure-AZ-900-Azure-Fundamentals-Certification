@@ -294,6 +294,8 @@ Wymagana do efektywnego autoskalowania — stan przechowywany poza instancjami (
 #### **Throttling / Rate Limiting**
 Kontrola obciążenia aplikacji i API w czasie autoskalowania — ochrona przed lawinowym ruchem.
 
+**Stateless** to serwer, który nie pamięta niczego między żądaniami, a **Stateful** to serwer, który musi pamiętać stan, więc kolejne żądania muszą wracać do niego.
+
 ---
 
 ## Odporność, Wysoka Dostępność i Disaster Recovery
