@@ -783,7 +783,7 @@ Brama VPN umożliwiająca szyfrowane połączenia IPsec.
 
 ### **ExpressRoute**
 
-Prywatne łącze WAN do Azure, całkowicie poza Internetem.
+Prywatne łącze WAN do Azure, całkowicie poza publicznym Internetem.
 
 <img src="assets/expressroute.svg">
 
@@ -792,6 +792,11 @@ Cechy:
 - stabilne parametry i SLA operatorskie,  
 - private peering (VNet), Microsoft peering (Microsoft 365),  
 - idealny do krytycznych aplikacji i masowych migracji.
+- połączenie jest prywatne ale nie szyfrowane.
+
+Rodzaje:
+- **Standard** – połączenia do regionu w tym samym obszarze geograficznym.
+- **Premium** – dostęp do wszystkich regionów + większe limity VNetów/tras.
 
 ---
 
