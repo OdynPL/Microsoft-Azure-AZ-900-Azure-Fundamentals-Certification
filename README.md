@@ -636,6 +636,25 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
 
     Azure Functions = event‑driven + serverless + automatyczne skalowanie + bogaty ekosystem triggerów i bindingów.
 
+    **Rodzaje**:
+    - **Standard** functions
+        - Brak stanu (Stateless)
+        - Krótki stan działania
+        - Brak koordynacji, ręczna koordynacja
+        - Brak wbudowanego retry
+        - Brak natywnego wsparcia dla workflow
+    - **Durable** functions
+        - Stan zapisywany automatycznie
+        - Mogą działać długo
+        - Wbudowany orhciestrator
+        - Automatyczne retry
+        - Wzorce workflow (chaining, fan-in.out)
+              - **Function Chaining** - wykonywanie funkcji jednej po drugiej w łańcuchu (wynik wykonania poprzedniej funkcji jest wejściem do następnej) np. ValidateOrder -> ChargePayment -> PrepareShipment -> SendConfirmation (orchestrator pilnuje kolejności         wykonania funkcji w łańcuchu jednej po drugiej)
+              - **FAN-IN** - wzorzec, który czeka aż wszystkie funkcje się zakończą i łączy ich wynik (agregacja) 
+              - **FAN-OUT** - to wzorzec pozwalający uruchomić wiele funkcji równolegle (np. przetwarzanie wielu plików na raz)
+              
+      Durable Functions mają gotowe mechanizmy do budowania złożonych, wieloetapowych, równoległych i długotrwałych workflow, bez konieczności implementowania własnej logiki kolejek, retry, czekania czy przechowywania stanu.
+
 - **Azure Container Instances (ACI)**  
 
     Azure Container Instances to najszybszy sposób uruchamiania kontenerów w Azure bez potrzeby tworzenia lub zarządzania klastrem Kubernetes.
