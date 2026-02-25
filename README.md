@@ -580,7 +580,7 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
 
     <img src="assets/vm.svg">
 
-    **Managed disks** czyli niezawodne dyski zarządzane dla maszyny virtualnej.
+    **Managed disks** czyli niezawodne dyski zarządzane dla maszyny wirtualnej.
 
     **VM Extensions** czyli dodatki instalowane w VM, które automatyzują konfigurację.
 
@@ -661,7 +661,7 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
       - Wbudowany orchestrator
         - Automatyczne retry
       - Wzorce workflow (chaining, fan-in/fan-out)
-       - **Function Chaining** - wykonywanie funkcji jednej po drugiej w łańcuchu (wynik wykonania poprzedniej funkcji jest wejściem do następnej) np. ValidateOrder -> ChargePayment -> PrepareShipment -> SendConfirmation (orchestrator pilnuje kolejności         wykonania funkcji w łańcuchu jednej po drugiej)
+      - **Function Chaining** - wykonywanie funkcji jednej po drugiej w łańcuchu (wynik wykonania poprzedniej funkcji jest wejściem do następnej), np. ValidateOrder -> ChargePayment -> PrepareShipment -> SendConfirmation (orchestrator pilnuje kolejności wykonania funkcji w łańcuchu).
       - **FAN-IN** - wzorzec, który czeka aż wszystkie funkcje się zakończą i łączy ich wynik (agregacja)
       - **FAN-OUT** - to wzorzec pozwalający uruchomić wiele funkcji równolegle (np. przetwarzanie wielu plików na raz)
               
@@ -1055,7 +1055,7 @@ Dyski zarządzane przez Azure, wykorzystywane przez maszyny wirtualne.
 
 **ZRS — Zone Redundant Storage**
 - replikacja między 3 strefami Availability Zone  
-- ochrony przed awarią całej strefy  
+- ochrona przed awarią całej strefy  
 - stabilny wybór dla środowisk produkcyjnych
 
 **GRS — Geo Redundant Storage**
@@ -1406,7 +1406,7 @@ w jedno spójne, powtarzalne środowisko (np. Landing Zone).
 Idealne dla enterprise i audytowalnych wdrożeń.
 
 Uwaga!
-- Obecnie Blueprints są przestarzałe i teraz zaleca się używania **Azure Landing Zones** + Bicep/ARM + Policy + GitOps.
+- Obecnie Blueprints są przestarzałe, a zalecanym podejściem jest **Azure Landing Zones** + Bicep/ARM + Policy + GitOps.
 
 **Azure Landing Zones (ALZ)** to kompletna, gotowa architektura i zestaw najlepszych praktyk, które pozwalają szybko i poprawnie zbudować bezpieczne, skalowalne środowisko chmurowe zgodne z CAF.
 
@@ -1726,7 +1726,7 @@ Azure Advisor jest narzędziem **proaktywnym**, często wskazywanym na egzaminie
   <img src="assets/servicebus.svg">
 
 - **Azure Event Hub**  
-  Platforma do zbierania i przetwarzania **strumieni danych** na ogromną skalę (telemetria, logi, IoT)nawet miliony zdarzeń na sekundę. Świetnie współpracuje z Databricks, Spark, Stream Analytics i może działać jako Kafka‑as‑a‑Service.
+  Platforma do zbierania i przetwarzania **strumieni danych** na ogromną skalę (telemetria, logi, IoT), nawet miliony zdarzeń na sekundę. Świetnie współpracuje z Databricks, Spark, Stream Analytics i może działać jako Kafka‑as‑a‑Service.
 
   <img src="assets/eventhub.svg">
 
@@ -2106,7 +2106,7 @@ Pełny SQL Server działający na maszynie wirtualnej (IaaS).
 
 - pełna kontrola nad OS, wersją SQL, konfiguracją, agentami
 - wymaga własnego patchowania, backupów, HA
-- najlepsze dla scenariuszy, które wymagają pełnego dostępu do instancji lub - niestandardowych rozszerzeń
+- najlepsze dla scenariuszy, które wymagają pełnego dostępu do instancji lub niestandardowych rozszerzeń
 
 ### **Cosmos DB (NoSQL, global distribution)**
 Globalnie rozproszona, wysokowydajna baza NoSQL działająca w wielu modelach danych:
