@@ -432,6 +432,8 @@ Ta struktura jest fundamentem pracy z Azure — wpływa na **uprawnienia, govern
 
 - **Region** – zestaw współpołączonych centrów danych działających jako jedna lokalizacja dostarczająca usługi Azure.
 
+- **Azure Datacenters** – fizyczne obiekty Microsoft z infrastrukturą serwerową, sieciową i zasilaniem. Są podstawą regionów oraz stref AZ, ale klienci nie zarządzają nimi bezpośrednio.
+
 - **Regions** to miejsca na świecie, w których Azure ma swoje centra danych — dzięki temu usługi działają szybciej, bliżej użytkowników i zgodnie z lokalnymi przepisami.
 
   - **Public Regions**
@@ -583,6 +585,12 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
     **Managed disks** czyli niezawodne dyski zarządzane dla maszyny wirtualnej.
 
     **VM Extensions** czyli dodatki instalowane w VM, które automatyzują konfigurację.
+
+    **Zasoby wymagane dla VM (egzaminowo):**
+    - Compute (vCPU/RAM),
+    - Storage (OS Disk + opcjonalne Data Disks),
+    - Networking (VNet/Subnet/NIC/IP),
+    - Security/Access (NSG, role RBAC, klucze/hasła, opcjonalnie Bastion).
 
 - **Availability Sets**  
 
@@ -756,6 +764,15 @@ Najczęstsze zastosowania:
 - wymuszenie ruchu między subnetami  
 - tunelowanie ruchu do on‑prem / VPN / ExpressRoute  
 - blokowanie lub przekierowanie wybranych sieci
+
+### **Azure DNS**
+
+Usługa hostowania stref DNS w Azure:
+- public DNS zones dla rekordów dostępnych z Internetu,
+- private DNS zones dla rozwiązywania nazw wewnątrz VNet,
+- integracja z Private Endpoint (rekordy `privatelink`).
+
+Egzaminowo: **Azure DNS odpowiada za rozwiązywanie nazw**, a nie za filtrowanie ruchu czy balansowanie L7.
 
 ---
 
@@ -1067,6 +1084,15 @@ Dyski zarządzane przez Azure, wykorzystywane przez maszyny wirtualne.
 - jak GRS, ale region zapasowy jest możliwy do odczytu  
 - idealne dla globalnych aplikacji, które potrzebują dostępu read-only w czasie awarii
 
+### Storage account options (skrót)
+
+- **Performance tiers**: `Standard` (HDD/SSD) oraz `Premium` (SSD).
+- **Redundancy options**: LRS, ZRS, GRS, RA‑GRS (zależnie od typu konta i regionu).
+- **Access model**: public endpoint, private endpoint, firewall/VNet rules.
+- **Security options**: szyfrowanie at-rest (Microsoft-managed keys lub customer-managed keys), soft delete, immutability (dla wybranych scenariuszy).
+
+Na AZ‑900 kluczowe jest dobranie konta pod: koszt, wydajność, wymagania sieciowe i odporność.
+
 ### Backup vs Replication (częsta pułapka)
 
 - **Replication** (LRS/ZRS/GRS/RA‑GRS) zwiększa dostępność i trwałość danych, ale **nie zastępuje backupu**.
@@ -1137,6 +1163,13 @@ Kluczowe funkcje:
 - **External Identities** – bezpieczny dostep dla partnerow/klientow bez tworzenia kont wewnetrznych.  
 - **Passwordless** – logowanie bez hasla (Windows Hello, FIDO2, Phone Sign-in).  
 - **Directory roles** – role administracyjne dla zarzadzania tozsamoscia.
+
+**Microsoft Entra Domain Services (Entra DS)**
+- zarządzane usługi domenowe kompatybilne z AD (LDAP, Kerberos, NTLM),
+- przydatne dla starszych aplikacji wymagających klasycznych mechanizmów domenowych,
+- działa jako usługa zarządzana — bez stawiania własnych kontrolerów domeny.
+
+Egzaminowo: **Entra ID ≠ Entra Domain Services** (inne cele i funkcje).
 
 **Jak Entra ID uwierzytelnia uzytkownika**?
 
@@ -1288,6 +1321,18 @@ Rodzaje:
 <a id="sec-07-security"></a>
 ## 7. Security (Bezpieczeństwo)
 
+### Defense-in-depth (model warstwowy)
+
+Bezpieczeństwo realizowane przez wiele warstw ochrony:
+- **Physical** (DC),
+- **Identity & Access** (MFA, CA, RBAC, PIM),
+- **Perimeter/Network** (DDoS, Firewall, NSG, WAF),
+- **Compute** (patching, hardening, EDR),
+- **Application** (secure coding, API protection),
+- **Data** (szyfrowanie, klasyfikacja, backup, immutability).
+
+Cel: przełamanie jednej warstwy nie powinno oznaczać kompromitacji całego środowiska.
+
 - **Microsoft Defender for Cloud**  
   Kompleksowa platforma zabezpieczeń chmurowych zapewniająca:
   - **Secure Score** – miernik poziomu bezpieczeństwa środowiska z rekomendacjami działań naprawczych.
@@ -1386,6 +1431,18 @@ To specjalne **metadane** przypisywane do zasobów w celu:
 
 Ważne!
 - Management Groups **nie mogą mieć** tagów.
+
+---
+
+### Microsoft Purview
+
+**Microsoft Purview** wspiera governance danych i compliance:
+- katalogowanie i odkrywanie źródeł danych,
+- klasyfikację danych (wrażliwe/PII),
+- data lineage (śledzenie przepływu danych),
+- polityki i kontrolę dostępu do danych.
+
+Na AZ‑900: Purview to narzędzie do **zarządzania ładem danych**, nie zamiennik dla Azure Policy.
 
 ---
 
