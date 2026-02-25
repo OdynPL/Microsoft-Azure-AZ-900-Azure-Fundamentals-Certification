@@ -6,29 +6,30 @@
 ---
 
 ## Spis treści
-- [1. Cloud Concepts (Podstawy chmury)](#1-cloud-concepts-podstawy-chmury)
-- [2. Azure Architecture (Architektura i hierarchia)](#2-azure-architecture-architektura-i-hierarchia)
-- [3. Compute Services (Usługi obliczeniowe)](#3-compute-services-usługi-obliczeniowe)
-- [4. Networking (Sieci i łączność)](#4-networking-sieci-i-łączność)
-- [5. Storage (Przechowywanie danych)](#5-storage-przechowywanie-danych)
-- [6. Identity & Access (Microsoft Entra)](#6-identity--access-microsoft-entra)
-- [7. Security (Bezpieczeństwo)](#7-security-bezpieczeństwo)
-- [8. Governance & Compliance](#8-governance--compliance)
-- [9. Monitoring & Logging](#9-monitoring--logging)
-- [10. Costs & Billing (Koszty i rozliczenia)](#10-costs--billing-koszty-i-rozliczenia)
-- [11. IaC & Automation (Infrastruktura jako kod)](#11-iac--automation-infrastruktura-jako-kod)
-- [12. Extended Azure Services (Usługi rozszerzone)](#12-extended-azure-services-usługi-rozszerzone)
-- [13. Podchwytliwe pytania AZ‑900](#13-podchwytliwe-pytania-az900)
-- [14. Glosariusz skrócony](#14-glosariusz-skrócony)
-- [15. Azure Free Account - Free Tier](#15-azure-free-account-free-tier)
-- [16. SLA - Service Level Agreement](#16-sla-service-level-agreement)
-- [17. Bazy danych (Databases)](#17-bazy-danych-databases)
-- [18. Subskrypcje (Subscription Models)](#18-subskrypcje-subscription-models)
-- [19. Azure CLI](#19-azure-cli)
-- [Załącznik A – Diagramy ASCII](#załącznik-a--diagramy-ascii)
+- [1. Cloud Concepts (Podstawy chmury)](#sec-01-cloud-concepts)
+- [2. Azure Architecture (Architektura i hierarchia)](#sec-02-azure-architecture)
+- [3. Compute Services (Usługi obliczeniowe)](#sec-03-compute-services)
+- [4. Networking (Sieci i łączność)](#sec-04-networking)
+- [5. Storage (Przechowywanie danych)](#sec-05-storage)
+- [6. Identity & Access (Microsoft Entra)](#sec-06-identity-access)
+- [7. Security (Bezpieczeństwo)](#sec-07-security)
+- [8. Governance & Compliance](#sec-08-governance-compliance)
+- [9. Monitoring & Logging](#sec-09-monitoring-logging)
+- [10. Costs & Billing (Koszty i rozliczenia)](#sec-10-costs-billing)
+- [11. IaC & Automation (Infrastruktura jako kod)](#sec-11-iac-automation)
+- [12. Extended Azure Services (Usługi rozszerzone)](#sec-12-extended-services)
+- [13. Podchwytliwe pytania AZ‑900](#sec-13-pytania-az900)
+- [14. Glosariusz skrócony](#sec-14-glosariusz)
+- [15. Azure Free Account - Free Tier](#sec-15-free-account)
+- [16. SLA - Service Level Agreement](#sec-16-sla)
+- [17. Bazy danych (Databases)](#sec-17-databases)
+- [18. Subskrypcje (Subscription Models)](#sec-18-subscription-models)
+- [19. Azure CLI](#sec-19-azure-cli)
+- [Załącznik A – Diagramy ASCII](#sec-appendix-ascii)
 
 ---
 
+<a id="sec-01-cloud-concepts"></a>
 ## 1. Cloud Concepts (Podstawy chmury)
 
 ## Modele wdrożenia
@@ -223,6 +224,16 @@ Gotowe procesy biznesowe jako usługa, np. HR, płace, księgowość, CRM.
 
 ---
 
+## CAPEX vs OPEX i model konsumpcyjny
+
+- **CAPEX** – wydatki inwestycyjne (zakup serwerów, sprzętu, licencji z góry).
+- **OPEX** – wydatki operacyjne (płatność cykliczna za faktyczne zużycie usług).
+- **Azure działa głównie w modelu OPEX / pay‑as‑you‑go** – płacisz za wykorzystane zasoby, a nie za utrzymywanie własnego hardware.
+
+**Na egzamin AZ‑900:** cloud zwykle redukuje CAPEX, zwiększa elastyczność kosztów i skraca czas wdrożeń.
+
+---
+
 ## Skalowanie i elastyczność
 
 ### **Vertical Scaling (Scale Up / Scale Down)**
@@ -378,10 +389,9 @@ Skupia się na **przywróceniu pracy systemu w innym regionie**.
 
 ---
 
+<a id="sec-02-azure-architecture"></a>
 ## 2. Azure Architecture (Architektura i hierarchia)
 **Hierarchia i scope:**
-
-### 2. Azure Architecture (Architektura i hierarchia)
 
 **Hierarchia i scope — logika porządkowania zasobów w Azure**
 
@@ -483,7 +493,7 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
         "resources": [
             {
             "type": "Microsoft.Storage/storageAccounts",
-            "2022-05-01",
+            "apiVersion": "2022-05-01",
             "name": "[parameters('storageAccountName')]",
             "location": "[resourceGroup().location]",
             "sku": {
@@ -559,6 +569,7 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
 
 ---
 
+<a id="sec-03-compute-services"></a>
 ## 3. Compute Services (Usługi obliczeniowe)
 
 - **Virtual Machines (VM)**  
@@ -646,9 +657,9 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
     - **Durable** functions
         - Stan zapisywany automatycznie
         - Mogą działać długo
-        - Wbudowany orhciestrator
+      - Wbudowany orchestrator
         - Automatyczne retry
-        - Wzorce workflow (chaining, fan-in.out)
+      - Wzorce workflow (chaining, fan-in/fan-out)
        - **Function Chaining** - wykonywanie funkcji jednej po drugiej w łańcuchu (wynik wykonania poprzedniej funkcji jest wejściem do następnej) np. ValidateOrder -> ChargePayment -> PrepareShipment -> SendConfirmation (orchestrator pilnuje kolejności         wykonania funkcji w łańcuchu jednej po drugiej)
       - **FAN-IN** - wzorzec, który czeka aż wszystkie funkcje się zakończą i łączy ich wynik (agregacja)
       - **FAN-OUT** - to wzorzec pozwalający uruchomić wiele funkcji równolegle (np. przetwarzanie wielu plików na raz)
@@ -671,6 +682,20 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
     - integracja z VNet (opcjonalnie)
     - idealne do: jobów, event-driven tasks, ETL, automatyzacji, szybkich micro‑API
 
+  - **Azure Container Apps (ACA)**
+
+    Zarządzana platforma do uruchamiania kontenerów bez zarządzania klastrem Kubernetes.
+
+    Najważniejsze cechy:
+    - serverless containers (skalowanie do zera i szybkie scale-out)
+    - obsługa HTTP, event-driven (KEDA), revision-based deployment
+    - dobre do mikroserwisów, API i background workerów
+
+    **Różnica egzaminacyjna (skrót):**
+    - **ACI** = pojedyncze/krótkie zadania kontenerowe
+    - **ACA** = aplikacje kontenerowe z autoskalowaniem i prostym modelem mikroserwisów
+    - **AKS** = pełna orkiestracja Kubernetes
+
 - **AKS (Azure Kubernetes Service)**  
 
     Zarządzany Kubernetes w Azure, który automatyzuje większość złożonych zadań administracyjnych — takich jak aktualizacje węzłów, skalowanie, bezpieczeństwo i integracja z ekosystemem Azure.  
@@ -687,7 +712,7 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
     - **Network model** – Kubenet lub Azure CNI (pełna integracja z VNet).
     - **Load Balancing** – automatyczne tworzenie Load Balancera dla usług typu LoadBalancer.
     - **AKS Add‑ons** – monitoring, logi, Application Gateway Ingress, Azure Policy, KEDA.
-    - **Bezpieczeństwo** – MSI, Azure RBAC, políticas, OIDC, secret store CSI driver.
+    - **Bezpieczeństwo** – MSI, Azure RBAC, polityki, OIDC, secret store CSI driver.
 
     **AKS** to w pełni zarządzany Kubernetes + automatyczne aktualizacje + skalowanie + integracje Azure (ACR, VNet, RBAC).
 
@@ -703,6 +728,7 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
 
 ---
 
+<a id="sec-04-networking"></a>
 ## 4. Networking (Sieci i łączność)
 
 ---
@@ -809,9 +835,9 @@ Prywatne łącze WAN do Azure, całkowicie poza publicznym Internetem.
 Cechy:
 - 50 Mbps – 100 Gbps,  
 - stabilne parametry i SLA operatorskie,  
-- private peering (VNet), Microsoft peering (Microsoft 365),  
+- private peering (VNet), Microsoft peering (wybrane usługi publiczne Microsoft),  
 - idealny do krytycznych aplikacji i masowych migracji.
-- połączenie jest prywatne ale nie szyfrowane.
+- połączenie jest prywatne, ale nie szyfrowane.
 
 Rodzaje:
 - **Standard** – połączenia do regionu w tym samym obszarze geograficznym.
@@ -948,6 +974,7 @@ Umożliwia analizę ruchu i debugowanie problemów sieciowych.
 
 ---
 
+<a id="sec-05-storage"></a>
 ## 5. Storage (Przechowywanie danych)
 
 **Azure Storage** to zestaw usług do przechowywania plików, obiektów, danych NoSQL oraz dysków dla maszyn wirtualnych. 
@@ -1079,6 +1106,7 @@ Stosowane wtedy, gdy lacze sieciowe jest zbyt wolne, niestabilne lub kosztowne.
  
 ---
 
+<a id="sec-06-identity-access"></a>
 ## 6. Identity & Access (Microsoft Entra)
 
 **Microsoft Entra ID**  
@@ -1103,7 +1131,7 @@ Proces logowania przebiega w kilku krokach:
 3. **Kontrole dostepu** (Conditional Access) – Entra ID ocenia ryzyko logowania, lokalizacje, stan urzadzenia, zgodnosc z politykami oraz wymaga MFA jesli to konieczne.  
 4. **Wydanie tokenow** – po pozytywnym potwierdzeniu wydawane sa ID Token, Access Token i Refresh Token (OAuth2/OIDC), ktore aplikacje wykorzystuja do autoryzacji.
 
-**Access Token** i **ID Tokeny** wygasają **po 1 godzinie**, a **Refresh Token** po **maksymalnie 90 dniach** — chyba że wcześniej przestanie być używany lub polityki bezpieczeństwa wymuszą ponowne logowanie.
+**Access Token** i **ID Token** zwykle wygasają po około **1 godzinie**, a **Refresh Token** działa dłużej (typowo do **90 dni nieaktywności**) — dokładny czas zależy od polityk bezpieczeństwa i konfiguracji tenantu.
 
 **Jak uwierzytelniane sa aplikacje?**
 
@@ -1240,6 +1268,7 @@ Rodzaje:
 
 ---
 
+<a id="sec-07-security"></a>
 ## 7. Security (Bezpieczeństwo)
 
 - **Microsoft Defender for Cloud**  
@@ -1263,7 +1292,7 @@ Rodzaje:
 - **DDoS Protection**  
   Ochrona przed atakami DDoS:
   - **Basic** – automatyczna ochrona dla wszystkich usług publicznych Azure.
-  - **Standard** – zaawansowana ochrona (L3–L7), adaptacyjne profile ruchu, automatyczne łagodzenie, alerty, raporty, **DDoS Rapid Response (DRR)** oraz SLA finansowe.
+  - **Standard** – zaawansowana ochrona (L3/L4), adaptacyjne profile ruchu, automatyczne łagodzenie, alerty, raporty, **DDoS Rapid Response (DRR)** oraz SLA finansowe.
 
 - **WAF (Web Application Firewall)**  
   Ochrona aplikacji webowych przed atakami (OWASP Top 10):
@@ -1273,6 +1302,7 @@ Rodzaje:
 
 ---
 
+<a id="sec-08-governance-compliance"></a>
 ## 8. Governance & Compliance
 
 Governance w Azure to **zestaw zasad i narzędzi**, które pomagają utrzymać porządek, bezpieczeństwo i kontrolę nad zasobami w chmurze.
@@ -1449,6 +1479,7 @@ Podział odpowiedzialności między Azure a klientem.
 
 ---
 
+<a id="sec-09-monitoring-logging"></a>
 ## 9. Monitoring & Logging
 
 - **Azure Monitor**
@@ -1527,6 +1558,7 @@ Azure Advisor jest narzędziem **proaktywnym**, często wskazywanym na egzaminie
 
 ---
 
+<a id="sec-10-costs-billing"></a>
 ## 10. Costs & Billing (Koszty i rozliczenia)
 
 **Za co płacisz w Azure:**
@@ -1544,7 +1576,7 @@ Azure Advisor jest narzędziem **proaktywnym**, często wskazywanym na egzaminie
 
 - **Ingress sieci (wejście do Azure)**  
   Dane *wchodzące* do Azure — np. upload plików, dane z on‑prem, ruch przychodzący z Internetu.  
-  **Ingress jest zawsze darmowy**, bez ograniczeń.  
+  W modelu transferu sieciowego Azure **ingress jest zazwyczaj bezpłatny**.  
   W praktyce: za pobieranie z Azure płacisz, za wysyłanie do Azure — nie.
 
 - **Licencje**  
@@ -1587,6 +1619,7 @@ Azure Advisor jest narzędziem **proaktywnym**, często wskazywanym na egzaminie
 
 ---
 
+<a id="sec-11-iac-automation"></a>
 ## 11. IaC & Automation (Infrastruktura jako kod)
 
 **IaC (Infrastructure as Code)** to podejście, w którym całą infrastrukturę — serwery, sieci, bazy, konfiguracje — definiuje się i zarządza nią za pomocą plików kodu, zamiast ręcznych kliknięć w portal, co zapewnia automatyzację, powtarzalność i pełną kontrolę wersji.
@@ -1629,6 +1662,7 @@ Azure Advisor jest narzędziem **proaktywnym**, często wskazywanym na egzaminie
 
 ---
 
+<a id="sec-12-extended-services"></a>
 ## 12. Extended Azure Services (Usługi rozszerzone)
 
 ### Integracja i zdarzenia
@@ -1799,6 +1833,7 @@ Serverless workflowy i automatyzacje z setkami konektorów (SAP, SQL, Salesforce
 
 ---
 
+<a id="sec-13-pytania-az900"></a>
 ## 13. Podchwytliwe pytania AZ‑900
 | Pytanie | Odpowiedź |
 |---|---|
@@ -1813,6 +1848,7 @@ Serverless workflowy i automatyzacje z setkami konektorów (SAP, SQL, Salesforce
 
 ---
 
+<a id="sec-14-glosariusz"></a>
 ## 14. Glosariusz skrócony
 
 | Pojęcie | Definicja |
@@ -1958,6 +1994,7 @@ Serverless workflowy i automatyzacje z setkami konektorów (SAP, SQL, Salesforce
 
 ---
 
+<a id="sec-15-free-account"></a>
 ## 15. Azure Free Account (Free Tier)
 
 - **US$200 kredytu** na pierwszy miesiąc (trial).
@@ -1966,6 +2003,7 @@ Serverless workflowy i automatyzacje z setkami konektorów (SAP, SQL, Salesforce
 
 ---
 
+<a id="sec-16-sla"></a>
 ## 16. SLA (Service Level Agreement)
 
 - Każda usługa ma własne SLA (np. 99,9 / 99,95 / 99,99%).
@@ -1975,6 +2013,7 @@ Serverless workflowy i automatyzacje z setkami konektorów (SAP, SQL, Salesforce
 
 ---
 
+<a id="sec-17-databases"></a>
 ## 17. Bazy danych (Databases)
 
 Azure oferuje kilka modeli baz danych dostępnych jako IaaS, PaaS lub globalne, skalowalne systemy NoSQL. Poniżej najważniejsze usługi wymagane na poziomie AZ‑900.
@@ -2022,6 +2061,7 @@ Zarządzane instancje popularnych baz open‑source.
 
 ---
 
+<a id="sec-18-subscription-models"></a>
 ## 18. Subskrypcje (Subscription Models)
 
 **Azure Subscription Models**
@@ -2041,6 +2081,7 @@ Azure oferuje różne modele subskrypcji w zależności od tego, jak organizacja
 
 ---
 
+<a id="sec-19-azure-cli"></a>
 ## 19. Azure CLI
 
 Azure CLI to **narzędzie wiersza poleceń**, które pozwala zarządzać usługami Azure z terminala — szybciej i wygodniej niż przez portal.
@@ -2049,7 +2090,7 @@ Jest cross‑platform (Windows, Linux, macOS), działa też w Azure Cloud Shell.
 
 Pozwala wykonywać polecenia administracyjne oraz automatyzować zadania w skryptach.
 
-### **Officjalne API** Microsoft tutaj:
+### **Oficjalne API** Microsoft tutaj:
 - https://learn.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest
 
 ### Microsoft opisuje schemat jako:
@@ -2089,6 +2130,7 @@ Pozwala wykonywać polecenia administracyjne oraz automatyzować zadania w skryp
 
 ---
 
+<a id="sec-appendix-ascii"></a>
 ## Załącznik A – Diagramy ASCII
 **Hierarchia i scope:**
 ```
