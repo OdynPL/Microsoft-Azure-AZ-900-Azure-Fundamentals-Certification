@@ -1479,6 +1479,29 @@ Podział odpowiedzialności między Azure a klientem.
 
 ---
 
+### Support Plans (wsparcie techniczne)
+
+Na AZ‑900 warto znać różnicę między planami wsparcia:
+
+- **Basic** – podstawowe wsparcie dla billing/subscription i dokumentacja; brak wsparcia technicznego 1:1 dla problemów produkcyjnych.
+- **Developer** – najniższy płatny plan techniczny, dobry do środowisk dev/test.
+- **Standard** – szybsze czasy reakcji i wsparcie dla workloadów produkcyjnych.
+- **Professional Direct** – najwyższy poziom komercyjnego wsparcia Azure (advisory + szybsza obsługa krytycznych zgłoszeń).
+
+W dużych organizacjach spotkasz też model **Unified Support** (enterprise), ale na poziomie AZ‑900 zwykle wystarczy zrozumienie powyższych poziomów.
+
+---
+
+### Service Lifecycle (Preview vs GA)
+
+- **Public Preview** – funkcja testowa, zwykle bez pełnego SLA i z możliwymi zmianami API/feature.
+- **General Availability (GA)** – usługa produkcyjna, stabilna i objęta standardowymi zasadami SLA.
+- **Retirement / Deprecation** – usługa lub funkcja wycofywana; Microsoft publikuje harmonogram migracji.
+
+Egzaminowo: **preview ≠ produkcja krytyczna**; do workloadów produkcyjnych preferuj funkcje **GA**.
+
+---
+
 <a id="sec-09-monitoring-logging"></a>
 ## 9. Monitoring & Logging
 
@@ -2089,6 +2112,13 @@ Azure CLI to **narzędzie wiersza poleceń**, które pozwala zarządzać usługa
 Jest cross‑platform (Windows, Linux, macOS), działa też w Azure Cloud Shell.
 
 Pozwala wykonywać polecenia administracyjne oraz automatyzować zadania w skryptach.
+
+### Inne narzędzia zarządzania Azure
+
+- **Azure Portal** – GUI do administracji i szybkiej konfiguracji zasobów.
+- **Azure PowerShell** – automatyzacja i administracja skryptami PowerShell.
+- **Azure Cloud Shell** – gotowe środowisko CLI/PowerShell w przeglądarce, bez instalacji lokalnej.
+- **Azure Mobile App** – podgląd alertów i podstawowe operacje administracyjne z telefonu.
 
 ### **Oficjalne API** Microsoft tutaj:
 - https://learn.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest
