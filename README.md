@@ -1067,6 +1067,22 @@ Dyski zarządzane przez Azure, wykorzystywane przez maszyny wirtualne.
 - jak GRS, ale region zapasowy jest możliwy do odczytu  
 - idealne dla globalnych aplikacji, które potrzebują dostępu read-only w czasie awarii
 
+### Backup vs Replication (częsta pułapka)
+
+- **Replication** (LRS/ZRS/GRS/RA‑GRS) zwiększa dostępność i trwałość danych, ale **nie zastępuje backupu**.
+- **Backup** służy do odtworzenia danych po błędach logicznych (np. przypadkowe usunięcie, ransomware, nadpisanie).
+- Egzaminowo: replikacja chroni głównie przed awarią infrastruktury, backup chroni przed utratą danych z powodów operacyjnych i bezpieczeństwa.
+
+### Dostęp do Storage: Entra RBAC vs SAS vs Access Keys
+
+| Metoda | Kiedy używać | Ryzyko / uwaga |
+|---|---|---|
+| Entra ID + RBAC | domyślnie dla użytkowników i aplikacji | najlepszy model least privilege |
+| SAS Token | delegowany, czasowy dostęp do konkretnego obiektu/zakresu | kontroluj TTL i uprawnienia (Read/Write/List) |
+| Access Keys | tylko gdy nie da się użyć RBAC/SAS | szerokie uprawnienia; wymaga rotacji kluczy |
+
+Rekomendacja praktyczna: **najpierw RBAC**, potem **SAS** dla delegacji, a **Access Keys** traktuj jako opcję awaryjną/legacy.
+
 ---
 
 ## **Narzędzia i migracje**
@@ -1557,6 +1573,19 @@ Azure Advisor jest narzędziem **proaktywnym**, często wskazywanym na egzaminie
   - degradacji usług w wybranych regionach.
   Można konfigurować alerty na awarie wpływające na konkretne zasoby.
 
+- **Resource Health**
+  Stan konkretnego zasobu (np. pojedynczej VM, SQL DB, App Service):
+  - czy problem wynika z platformy Azure,
+  - czy z konfiguracji po stronie klienta,
+  - historia zmian stanu i rekomendacje działań.
+
+**Service Health vs Resource Health (skrót egzaminowy):**
+
+| Narzędzie | Zakres | Typowe pytanie egzaminacyjne |
+|---|---|---|
+| Service Health | usługi/regiony/subskrypcja | „Czy w regionie jest incydent Azure?” |
+| Resource Health | pojedynczy zasób | „Dlaczego ta konkretna VM/app nie działa?” |
+
 - **Activity Log**
   Log operacyjny na poziomie subskrypcji, zawierający:
   - **kto** wykonał operację,
@@ -1758,6 +1787,19 @@ Obsługuje:
 - scenariusze blue/green i A/B.
 
 Używany, gdy potrzebne jest sterowanie ruchem na poziomie DNS i niezależnie od protokołu.
+
+---
+
+### Azure Marketplace
+
+**Azure Marketplace** to katalog gotowych rozwiązań (obrazy VM, aplikacje, appliance’y, SaaS), które można szybko wdrożyć w swojej subskrypcji.
+
+Kiedy używać:
+- gdy potrzebujesz gotowego rozwiązania produkcyjnego bez budowania od zera,
+- gdy chcesz przyspieszyć PoC lub migrację,
+- gdy potrzebujesz komercyjnego wsparcia dostawcy rozwiązania.
+
+Na egzaminie: Marketplace to przede wszystkim **szybkie wdrażanie gotowych ofert partnerów** + rozliczenie przez Azure.
 
 ---
 
@@ -2265,6 +2307,14 @@ Pozwala wykonywać polecenia administracyjne oraz automatyzować zadania w skryp
 - Przerób 40 pułapek 2 razy (rano i wieczorem).
 - Jeśli mylisz 2 usługi, wróć do odpowiedniej tabeli porównawczej.
 - Skup się na różnicach: zakres odpowiedzialności, warstwa sieci, model płatności, poziom zarządzania.
+
+### Exam-day strategy (pod pytania podchwytliwe)
+
+- Najpierw szukaj słów‑kluczy w pytaniu: **global/regional**, **L3/L4/L7**, **IaaS/PaaS/SaaS**, **HA/DR**, **RBAC/Policy**.
+- Eliminuj odpowiedzi absolutne typu „zawsze”, „nigdy”, jeśli scenariusz dopuszcza wyjątki.
+- Jeśli pytanie dotyczy „kto odpowiada”, użyj modelu **Shared Responsibility**.
+- Jeśli pytanie dotyczy „najmniej operacji”, wybieraj bardziej zarządzane usługi (PaaS/serverless).
+- Zostaw trudne pytania na koniec i wróć po pierwszym przejściu.
 
 <a id="sec-appendix-ascii"></a>
 ## Załącznik A – Diagramy ASCII
