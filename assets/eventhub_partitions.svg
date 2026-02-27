@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480">
+  <defs>
+    <linearGradient id="partGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#6366f1"/>
+      <stop offset="100%" style="stop-color:#8b5cf6"/>
+    </linearGradient>
+    <linearGradient id="cgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f97316"/>
+      <stop offset="100%" style="stop-color:#fb923c"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="3" dy="3" stdDeviation="4" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="480" fill="#f8fafc"/>
+  
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" font-family="Segoe UI, Arial" font-size="24" font-weight="bold" fill="#1e293b">Partycje i Consumer Groups</text>
+  <text x="450" y="58" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" fill="#64748b">Skalowanie i rownolegle przetwarzanie zdarzen</text>
+
+  <!-- Partition Key explanation -->
+  <rect x="30" y="80" width="250" height="120" rx="10" fill="#dbeafe" stroke="#3b82f6" stroke-width="2" filter="url(#shadow)"/>
+  <text x="155" y="105" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="bold" fill="#1e40af">Partition Key</text>
+  <text x="155" y="130" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="#1e40af">Klucz partycji okresla,</text>
+  <text x="155" y="148" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="#1e40af">do ktorej partycji trafi zdarzenie</text>
+  <text x="155" y="175" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="#1e40af" font-style="italic">np. DeviceId, UserId, Region</text>
+
+  <!-- Event Hub Box -->
+  <rect x="310" y="80" width="280" height="260" rx="12" fill="url(#partGrad)" filter="url(#shadow)"/>
+  <text x="450" y="110" text-anchor="middle" font-family="Segoe UI, Arial" font-size="16" font-weight="bold" fill="white">Event Hub</text>
+
+  <!-- Partition 0 -->
+  <rect x="330" y="130" width="240" height="40" rx="6" fill="rgba(255,255,255,0.95)"/>
+  <text x="360" y="155" font-family="Segoe UI, Arial" font-size="12" fill="#4c1d95" font-weight="bold">P0</text>
+  <rect x="385" y="140" width="20" height="20" rx="3" fill="#22c55e"/>
+  <rect x="410" y="140" width="20" height="20" rx="3" fill="#22c55e"/>
+  <rect x="435" y="140" width="20" height="20" rx="3" fill="#22c55e"/>
+  <rect x="460" y="140" width="20" height="20" rx="3" fill="#22c55e"/>
+  <rect x="485" y="140" width="20" height="20" rx="3" fill="#22c55e"/>
+  <rect x="510" y="140" width="20" height="20" rx="3" fill="#d1d5db"/>
+  <rect x="535" y="140" width="20" height="20" rx="3" fill="#d1d5db"/>
+  <text x="555" y="158" font-family="Segoe UI, Arial" font-size="9" fill="#6b7280">offset</text>
+
+  <!-- Partition 1 -->
+  <rect x="330" y="180" width="240" height="40" rx="6" fill="rgba(255,255,255,0.95)"/>
+  <text x="360" y="205" font-family="Segoe UI, Arial" font-size="12" fill="#4c1d95" font-weight="bold">P1</text>
+  <rect x="385" y="190" width="20" height="20" rx="3" fill="#3b82f6"/>
+  <rect x="410" y="190" width="20" height="20" rx="3" fill="#3b82f6"/>
+  <rect x="435" y="190" width="20" height="20" rx="3" fill="#3b82f6"/>
+  <rect x="460" y="190" width="20" height="20" rx="3" fill="#d1d5db"/>
+  <rect x="485" y="190" width="20" height="20" rx="3" fill="#d1d5db"/>
+  <rect x="510" y="190" width="20" height="20" rx="3" fill="#d1d5db"/>
+  <rect x="535" y="190" width="20" height="20" rx="3" fill="#d1d5db"/>
+
+  <!-- Partition 2 -->
+  <rect x="330" y="230" width="240" height="40" rx="6" fill="rgba(255,255,255,0.95)"/>
+  <text x="360" y="255" font-family="Segoe UI, Arial" font-size="12" fill="#4c1d95" font-weight="bold">P2</text>
+  <rect x="385" y="240" width="20" height="20" rx="3" fill="#f97316"/>
+  <rect x="410" y="240" width="20" height="20" rx="3" fill="#f97316"/>
+  <rect x="435" y="240" width="20" height="20" rx="3" fill="#f97316"/>
+  <rect x="460" y="240" width="20" height="20" rx="3" fill="#f97316"/>
+  <rect x="485" y="240" width="20" height="20" rx="3" fill="#f97316"/>
+  <rect x="510" y="240" width="20" height="20" rx="3" fill="#f97316"/>
+  <rect x="535" y="240" width="20" height="20" rx="3" fill="#d1d5db"/>
+
+  <!-- Partition 3 -->
+  <rect x="330" y="280" width="240" height="40" rx="6" fill="rgba(255,255,255,0.95)"/>
+  <text x="360" y="305" font-family="Segoe UI, Arial" font-size="12" fill="#4c1d95" font-weight="bold">P3</text>
+  <rect x="385" y="290" width="20" height="20" rx="3" fill="#ec4899"/>
+  <rect x="410" y="290" width="20" height="20" rx="3" fill="#ec4899"/>
+  <rect x="435" y="290" width="20" height="20" rx="3" fill="#d1d5db"/>
+  <rect x="485" y="290" width="20" height="20" rx="3" fill="#d1d5db"/>
+  <rect x="510" y="290" width="20" height="20" rx="3" fill="#d1d5db"/>
+  <rect x="535" y="290" width="20" height="20" rx="3" fill="#d1d5db"/>
+
+  <!-- Consumer Groups -->
+  <rect x="620" y="80" width="250" height="260" rx="10" fill="#fff7ed" stroke="#f97316" stroke-width="2" filter="url(#shadow)"/>
+  <text x="745" y="110" text-anchor="middle" font-family="Segoe UI, Arial" font-size="16" font-weight="bold" fill="#c2410c">Consumer Groups</text>
+  
+  <!-- CG 1: $Default -->
+  <rect x="640" y="130" width="210" height="55" rx="8" fill="url(#cgGrad)"/>
+  <text x="745" y="152" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" fill="white" font-weight="bold">$Default</text>
+  <text x="745" y="172" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="white">4 consumers (1 per partition)</text>
+  
+  <!-- CG 2: Analytics -->
+  <rect x="640" y="195" width="210" height="55" rx="8" fill="url(#cgGrad)"/>
+  <text x="745" y="217" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" fill="white" font-weight="bold">Analytics</text>
+  <text x="745" y="237" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="white">Stream Analytics Job</text>
+  
+  <!-- CG 3: Archival -->
+  <rect x="640" y="260" width="210" height="55" rx="8" fill="url(#cgGrad)"/>
+  <text x="745" y="282" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" fill="white" font-weight="bold">Archival</text>
+  <text x="745" y="302" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="white">Event Hub Capture</text>
+
+  <!-- Arrows -->
+  <defs>
+    <marker id="arrowRight" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#6366f1"/>
+    </marker>
+  </defs>
+  <path d="M590 200 L620 200" stroke="#6366f1" stroke-width="3" marker-end="url(#arrowRight)"/>
+
+  <!-- Key Points -->
+  <rect x="30" y="360" width="410" height="105" rx="10" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+  <text x="235" y="385" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="bold" fill="#065f46">Partycje - Kluczowe informacje</text>
+  <text x="45" y="408" font-family="Segoe UI, Arial" font-size="11" fill="#065f46">- Min: 1, Max: 32 (Standard) / 100 (Dedicated)</text>
+  <text x="45" y="428" font-family="Segoe UI, Arial" font-size="11" fill="#065f46">- Nie mozna zmienic po utworzeniu Event Huba!</text>
+  <text x="45" y="448" font-family="Segoe UI, Arial" font-size="11" fill="#065f46">- FIFO gwarantowane tylko w obrebie jednej partycji</text>
+
+  <!-- Consumer Group info -->
+  <rect x="460" y="360" width="410" height="105" rx="10" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="665" y="385" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="bold" fill="#92400e">Consumer Groups - Kluczowe informacje</text>
+  <text x="475" y="408" font-family="Segoe UI, Arial" font-size="11" fill="#92400e">- Kazda grupa ma niezalezny widok strumienia</text>
+  <text x="475" y="428" font-family="Segoe UI, Arial" font-size="11" fill="#92400e">- Max 5 polaczen na partycje w grupie</text>
+  <text x="475" y="448" font-family="Segoe UI, Arial" font-size="11" fill="#92400e">- $Default tworzona automatycznie</text>
+</svg>

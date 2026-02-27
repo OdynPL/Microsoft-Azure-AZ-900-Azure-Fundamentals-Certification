@@ -31,6 +31,8 @@
 - [23. Azure Key Vault](#sec-23-azure-key-vault)
 - [24. Debugowanie aplikacji Azure](#sec-24-debugging)
 - [25. Azure Service Bus](#sec-25-service-bus)
+- [26. Azure Event Hub](#sec-26-event-hub)
+- [27. Azure Event Grid](#sec-27-event-grid)
 
 ---
 
@@ -5033,5 +5035,686 @@ public class OrderController : ControllerBase
 | Service Bus vs Event Grid? | Service Bus = messaging, Event Grid = event routing |
 
 > **Egzamin:** Service Bus to enterprise message broker obsługujący queues i topics (pub/sub). Basic tier NIE obsługuje topics. Sessions zapewniają FIFO. DLQ przechowuje nieprzetworzone wiadomości.
+
+---
+
+<a id="sec-26-event-hub"></a>
+## 26. Azure Event Hub
+
+Azure Event Hub to w pełni zarządzana usługa do strumieniowego przesyłania dużych ilości danych (Big Data streaming). Umożliwia przechwytywanie, przechowywanie i przetwarzanie milionów zdarzeń na sekundę z niskim opóźnieniem.
+
+<img src="assets/eventhub_overview.svg" alt="Event Hub Overview" />
+
+### Kluczowe cechy Event Hub
+
+| Cecha | Opis |
+|-------|------|
+| **Przepustowość** | Miliony zdarzeń na sekundę |
+| **Protokoły** | AMQP 1.0, Kafka, HTTPS |
+| **Retencja** | 1-90 dni (zależnie od tier) |
+| **Partycje** | 1-2000 (zależnie od tier) |
+| **Rozmiar zdarzenia** | Max 1 MB |
+| **Integracja** | IoT Hub, Stream Analytics, Databricks, Spark |
+
+### Tworzenie Event Hub (CLI)
+
+```bash
+# Tworzenie namespace
+az eventhubs namespace create \
+  --name myEventHubNS \
+  --resource-group myRG \
+  --location westeurope \
+  --sku Standard
+
+# Tworzenie Event Hub z 4 partycjami
+az eventhubs eventhub create \
+  --name myEventHub \
+  --namespace-name myEventHubNS \
+  --resource-group myRG \
+  --partition-count 4 \
+  --message-retention 7
+
+# Tworzenie Consumer Group
+az eventhubs eventhub consumer-group create \
+  --eventhub-name myEventHub \
+  --namespace-name myEventHubNS \
+  --resource-group myRG \
+  --name AnalyticsGroup
+```
+
+### Partycje i Consumer Groups
+
+<img src="assets/eventhub_partitions.svg" alt="Partycje i Consumer Groups" />
+
+**Partycje:**
+- Strumień danych jest dzielony na partycje dla skalowalności
+- Partition Key określa, do której partycji trafi zdarzenie
+- **FIFO gwarantowane tylko w obrębie jednej partycji**
+- Liczby partycji **nie można zmienić** po utworzeniu Event Hub!
+
+**Consumer Groups:**
+- Każda grupa ma niezależny widok całego strumienia
+- Umożliwia wielu konsumentom odczytywanie tych samych danych
+- `$Default` tworzona automatycznie
+- Max 5 połączeń na partycję w grupie (AMQP)
+
+### Wysyłanie i odbieranie zdarzeń (C#)
+
+```csharp
+using Azure.Messaging.EventHubs;
+using Azure.Messaging.EventHubs.Producer;
+using Azure.Messaging.EventHubs.Consumer;
+using Azure.Messaging.EventHubs.Processor;
+using Azure.Storage.Blobs;
+
+// === WYSYŁANIE ZDARZEŃ ===
+public class EventHubProducer
+{
+    private readonly EventHubProducerClient _producer;
+    
+    public EventHubProducer(string connectionString, string eventHubName)
+    {
+        _producer = new EventHubProducerClient(connectionString, eventHubName);
+    }
+    
+    // Wysyłanie batch zdarzeń
+    public async Task SendEventsAsync(IEnumerable<SensorData> sensorReadings)
+    {
+        using EventDataBatch batch = await _producer.CreateBatchAsync();
+        
+        foreach (var reading in sensorReadings)
+        {
+            var eventData = new EventData(BinaryData.FromObjectAsJson(reading));
+            
+            // Dodawanie właściwości
+            eventData.Properties["DeviceId"] = reading.DeviceId;
+            eventData.Properties["Timestamp"] = reading.Timestamp.ToString("O");
+            
+            if (!batch.TryAdd(eventData))
+            {
+                // Batch pełny - wyślij i utwórz nowy
+                await _producer.SendAsync(batch);
+                batch = await _producer.CreateBatchAsync();
+                batch.TryAdd(eventData);
+            }
+        }
+        
+        // Wyślij pozostałe zdarzenia
+        if (batch.Count > 0)
+        {
+            await _producer.SendAsync(batch);
+        }
+    }
+    
+    // Wysyłanie z Partition Key (zdarzenia z tym samym kluczem trafiają do tej samej partycji)
+    public async Task SendWithPartitionKeyAsync(string deviceId, SensorData data)
+    {
+        var options = new SendEventOptions { PartitionKey = deviceId };
+        var eventData = new EventData(BinaryData.FromObjectAsJson(data));
+        
+        await _producer.SendAsync(new[] { eventData }, options);
+    }
+}
+
+// === ODBIERANIE ZDARZEŃ (Event Processor) ===
+public class EventHubProcessor
+{
+    private readonly EventProcessorClient _processor;
+    
+    public EventHubProcessor(
+        string eventHubConnectionString,
+        string eventHubName,
+        string consumerGroup,
+        string storageConnectionString,
+        string containerName)
+    {
+        var storageClient = new BlobContainerClient(storageConnectionString, containerName);
+        
+        _processor = new EventProcessorClient(
+            storageClient,
+            consumerGroup,
+            eventHubConnectionString,
+            eventHubName);
+            
+        _processor.ProcessEventAsync += ProcessEventHandler;
+        _processor.ProcessErrorAsync += ProcessErrorHandler;
+    }
+    
+    public async Task StartAsync() => await _processor.StartProcessingAsync();
+    public async Task StopAsync() => await _processor.StopProcessingAsync();
+    
+    private async Task ProcessEventHandler(ProcessEventArgs args)
+    {
+        if (args.Data != null)
+        {
+            var sensorData = args.Data.EventBody.ToObjectFromJson<SensorData>();
+            var partitionId = args.Partition.PartitionId;
+            
+            Console.WriteLine($"Partition {partitionId}: Device {sensorData.DeviceId}, Value: {sensorData.Value}");
+            
+            // Checkpoint - zapisz pozycję (offset) w storage
+            // Pozwala kontynuować od tego miejsca po restarcie
+            await args.UpdateCheckpointAsync();
+        }
+    }
+    
+    private Task ProcessErrorHandler(ProcessErrorEventArgs args)
+    {
+        Console.WriteLine($"Error in partition {args.PartitionId}: {args.Exception.Message}");
+        return Task.CompletedTask;
+    }
+}
+
+// Model danych
+public record SensorData(string DeviceId, double Value, DateTime Timestamp);
+```
+
+### Event Hub Capture
+
+<img src="assets/eventhub_capture.svg" alt="Event Hub Capture" />
+
+Capture automatycznie archiwizuje strumień danych do Azure Storage lub ADLS Gen2:
+
+```bash
+# Włączenie Capture
+az eventhubs eventhub update \
+  --name myEventHub \
+  --namespace-name myEventHubNS \
+  --resource-group myRG \
+  --enable-capture true \
+  --capture-destination-name EventHubArchive.AzureBlockBlob \
+  --storage-account mystorageaccount \
+  --blob-container capture \
+  --capture-interval 300 \
+  --capture-size-limit 314572800
+```
+
+**Konfiguracja Capture:**
+| Parametr | Opis | Wartości |
+|----------|------|----------|
+| Time Window | Interwał zapisu | 1-15 minut (default: 5) |
+| Size Window | Rozmiar do zapisu | 10-500 MB (default: 300 MB) |
+| Format | Format pliku | Apache Avro |
+| Skip Empty | Pomijaj puste okna | true/false |
+
+### Warstwy cenowe Event Hub
+
+<img src="assets/eventhub_tiers.svg" alt="Event Hub Tiers" />
+
+| Cecha | Basic | Standard | Premium | Dedicated |
+|-------|-------|----------|---------|-----------|
+| **Throughput Units** | 1-20 | 1-40 (Auto-inflate) | 1-16 PU | 1-24 CU |
+| **Partycje** | max 32 | max 32 | max 100 | max 2000 |
+| **Retencja** | 1 dzień | 1-7 dni | do 90 dni | do 90 dni |
+| **Consumer Groups** | 1 | 20 | 100 | bez limitu |
+| **Capture** | NIE | TAK | TAK | TAK |
+| **Kafka Protocol** | NIE | TAK | TAK | TAK |
+| **VNet/Private Endpoint** | NIE | NIE | TAK | TAK |
+| **Zone Redundancy** | NIE | NIE | TAK | TAK |
+| **Cena (za jednostkę)** | ~$11/msc | ~$22/msc | ~$690/msc | ~$6900/msc |
+
+### Integracja z Apache Kafka
+
+Event Hub Standard i wyżej obsługuje protokół Apache Kafka bez zmian w kodzie aplikacji:
+
+```csharp
+// Konfiguracja Kafka dla Event Hub
+var config = new ProducerConfig
+{
+    BootstrapServers = "myeventhubns.servicebus.windows.net:9093",
+    SecurityProtocol = SecurityProtocol.SaslSsl,
+    SaslMechanism = SaslMechanism.Plain,
+    SaslUsername = "$ConnectionString",
+    SaslPassword = "<Your-Event-Hub-Connection-String>"
+};
+
+// Od teraz możesz używać standardowego Kafka client
+using var producer = new ProducerBuilder<string, string>(config).Build();
+await producer.ProduceAsync("myeventhub", new Message<string, string> 
+{ 
+    Key = "device001", 
+    Value = "{\"temp\": 25.5}" 
+});
+```
+
+### Event Hub vs Service Bus vs Event Grid
+
+| Aspekt | Event Hub | Service Bus | Event Grid |
+|--------|-----------|-------------|------------|
+| **Scenariusz** | Big Data streaming | Enterprise messaging | Event routing |
+| **Model** | Pub/Sub streaming | Queue/Topic | Pub/Sub reactive |
+| **Przepustowość** | Miliony/sek | Tysiące/sek | Miliony/sek |
+| **Rozmiar wiadomości** | 1 MB | 256 KB - 100 MB | 1 MB |
+| **Retencja** | 1-90 dni | Do przetworzenia | 24h retry |
+| **Kolejność** | FIFO per partition | FIFO (sessions) | Nie gwarantowana |
+| **Protokół** | AMQP, Kafka, HTTP | AMQP, HTTP | HTTP, webhooks |
+| **Typowe użycie** | IoT telemetry, logs | Orders, transactions | Blob events, alerts |
+
+### Przykład: IoT Telemetry Pipeline
+
+```csharp
+// Kompletny pipeline: IoT -> Event Hub -> Processing -> Storage
+public class IoTTelemetryPipeline
+{
+    private readonly EventHubProducerClient _producer;
+    private readonly EventProcessorClient _processor;
+    private readonly TableClient _tableClient;
+    
+    public async Task ProcessTelemetryAsync(ProcessEventArgs args)
+    {
+        var telemetry = args.Data.EventBody.ToObjectFromJson<DeviceTelemetry>();
+        
+        // Walidacja
+        if (telemetry.Temperature > 100)
+        {
+            // Alert - przekroczono próg temperatury
+            await SendAlertAsync(telemetry);
+        }
+        
+        // Agregacja per minuta
+        var aggregated = new TableEntity(
+            partitionKey: telemetry.DeviceId,
+            rowKey: telemetry.Timestamp.ToString("yyyyMMddHHmm"))
+        {
+            { "AvgTemp", telemetry.Temperature },
+            { "MaxTemp", telemetry.Temperature },
+            { "ReadingCount", 1 }
+        };
+        
+        await _tableClient.UpsertEntityAsync(aggregated, TableUpdateMode.Merge);
+        
+        // Checkpoint
+        await args.UpdateCheckpointAsync();
+    }
+}
+
+public record DeviceTelemetry(
+    string DeviceId, 
+    double Temperature, 
+    double Humidity, 
+    DateTime Timestamp);
+```
+
+---
+
+### FAQ - Egzamin
+
+| Pytanie | Odpowiedź |
+|---------|----------|
+| Ile zdarzeń na sekundę obsługuje Event Hub? | Miliony |
+| Czy Event Hub gwarantuje FIFO? | Tylko w obrębie partycji |
+| Co to jest Consumer Group? | Niezależny widok strumienia dla konsumentów |
+| Czy można zmienić liczbę partycji? | NIE, trzeba utworzyć nowy Event Hub |
+| Co robi Capture? | Automatycznie archiwizuje do Blob/ADLS |
+| Który tier obsługuje Kafka? | Standard i wyżej |
+| Event Hub vs Service Bus? | Event Hub = streaming, Service Bus = messaging |
+
+> **Egzamin:** Event Hub służy do Big Data streaming (miliony zdarzeń/sek). Partycje zapewniają skalowalność ale FIFO tylko per partition. Capture archiwizuje do storage. Kafka protocol wymaga Standard tier lub wyższego.
+
+---
+
+<a id="sec-27-event-grid"></a>
+## 27. Azure Event Grid
+
+Azure Event Grid to w pełni zarządzana usługa routingu zdarzeń oparta na modelu publikuj-subskrybuj (pub/sub). Umożliwia reaktywne programowanie z sub-sekundowym opóźnieniem i płatnością per zdarzenie.
+
+<img src="assets/eventgrid_overview.svg" alt="Event Grid Overview" />
+
+### Kluczowe cechy Event Grid
+
+| Cecha | Opis |
+|-------|------|
+| **Model** | Reaktywny pub/sub (event-driven) |
+| **Latencja** | Sub-sekundowa |
+| **Przepustowość** | 10 milionów zdarzeń/sek per region |
+| **Schema** | CloudEvents 1.0 / Event Grid schema |
+| **Max event size** | 1 MB |
+| **SLA** | 99.99% |
+| **Cena** | ~$0.60 per milion zdarzeń |
+
+### Podstawowe koncepty
+
+**Topics** - Endpoint do wysyłania zdarzeń:
+- **System Topics** - automatycznie tworzone dla usług Azure (Blob, VM, etc.)
+- **Custom Topics** - tworzone przez użytkownika dla własnych aplikacji
+- **Partner Topics** - zdarzenia od partnerów (Auth0, SAP, Datadog)
+
+**Subscriptions** - łączą Topic z Handlerem:
+- Definiują filtrowanie zdarzeń
+- Konfigurują retry policy i dead-letter
+- Wskazują destination (handler)
+
+**Event Handlers** - przetwarzają zdarzenia:
+- Azure Functions, Logic Apps, Webhooks
+- Event Hubs, Service Bus, Storage Queues
+
+### Typy Topics
+
+<img src="assets/eventgrid_topics.svg" alt="Event Grid Topics" />
+
+### Tworzenie Event Grid (CLI)
+
+```bash
+# Tworzenie Custom Topic
+az eventgrid topic create \
+  --name myCustomTopic \
+  --resource-group myRG \
+  --location westeurope
+
+# Pobieranie endpoint i klucza
+endpoint=$(az eventgrid topic show --name myCustomTopic --resource-group myRG --query "endpoint" -o tsv)
+key=$(az eventgrid topic key list --name myCustomTopic --resource-group myRG --query "key1" -o tsv)
+
+# Tworzenie subskrypcji z webhook
+az eventgrid event-subscription create \
+  --name mySubscription \
+  --source-resource-id "/subscriptions/{sub-id}/resourceGroups/myRG/providers/Microsoft.EventGrid/topics/myCustomTopic" \
+  --endpoint "https://myapp.azurewebsites.net/api/events" \
+  --endpoint-type webhook
+
+# Tworzenie subskrypcji na zdarzenia Blob Storage
+az eventgrid event-subscription create \
+  --name blobSubscription \
+  --source-resource-id "/subscriptions/{sub-id}/resourceGroups/myRG/providers/Microsoft.Storage/storageAccounts/mystorageaccount" \
+  --endpoint "/subscriptions/{sub-id}/resourceGroups/myRG/providers/Microsoft.Web/sites/myFunctionApp/functions/ProcessBlob" \
+  --endpoint-type azurefunction \
+  --included-event-types Microsoft.Storage.BlobCreated \
+  --subject-begins-with "/blobServices/default/containers/images/" \
+  --subject-ends-with ".jpg"
+```
+
+### Filtrowanie zdarzeń
+
+<img src="assets/eventgrid_filtering.svg" alt="Event Grid Filtering" />
+
+```bash
+# Subscription z advanced filtering
+az eventgrid event-subscription create \
+  --name filteredSubscription \
+  --source-resource-id "/subscriptions/{sub-id}/resourceGroups/myRG/providers/Microsoft.Storage/storageAccounts/mystorageaccount" \
+  --endpoint "https://myfunction.azurewebsites.net/api/processLargeImages" \
+  --advanced-filter data.contentLength NumberGreaterThan 1048576 \
+  --advanced-filter data.contentType StringIn image/jpeg image/png
+```
+
+**Typy filtrów:**
+
+| Typ filtra | Opis | Przykład |
+|------------|------|----------|
+| **Event Type** | Typ zdarzenia | `Microsoft.Storage.BlobCreated` |
+| **Subject** | Ścieżka zasobu | `beginsWith: /images/`, `endsWith: .jpg` |
+| **Advanced** | Filtrowanie po danych | `data.contentLength > 1000` |
+
+**Operatory Advanced Filter:**
+- `StringIn`, `StringNotIn`, `StringBeginsWith`, `StringEndsWith`, `StringContains`
+- `NumberIn`, `NumberNotIn`, `NumberGreaterThan`, `NumberLessThan`
+- `BoolEquals`, `IsNullOrUndefined`, `IsNotNull`
+
+### Wysyłanie i odbieranie zdarzeń (C#)
+
+```csharp
+using Azure.Messaging.EventGrid;
+using Azure.Messaging.EventGrid.SystemEvents;
+using Microsoft.Azure.Functions.Worker;
+
+// === PUBLIKOWANIE ZDARZEŃ DO CUSTOM TOPIC ===
+public class EventGridPublisher
+{
+    private readonly EventGridPublisherClient _client;
+    
+    public EventGridPublisher(string topicEndpoint, string topicKey)
+    {
+        _client = new EventGridPublisherClient(
+            new Uri(topicEndpoint),
+            new Azure.AzureKeyCredential(topicKey));
+    }
+    
+    // Wysyłanie pojedynczego zdarzenia
+    public async Task PublishOrderCreatedAsync(Order order)
+    {
+        var eventGridEvent = new EventGridEvent(
+            subject: $"orders/{order.Id}",
+            eventType: "Contoso.Orders.OrderCreated",
+            dataVersion: "1.0",
+            data: new OrderCreatedEventData
+            {
+                OrderId = order.Id,
+                CustomerId = order.CustomerId,
+                TotalAmount = order.TotalAmount,
+                Items = order.Items.Select(i => i.Name).ToList()
+            });
+        
+        await _client.SendEventAsync(eventGridEvent);
+    }
+    
+    // Wysyłanie batch zdarzeń (CloudEvents format)
+    public async Task PublishCloudEventsAsync(IEnumerable<OrderEvent> events)
+    {
+        var cloudEvents = events.Select(e => new CloudEvent(
+            source: "https://contoso.com/orders",
+            type: e.EventType,
+            jsonSerializableData: e.Data));
+        
+        await _client.SendEventsAsync(cloudEvents);
+    }
+}
+
+// === ODBIERANIE ZDARZEŃ (Azure Function - Event Grid Trigger) ===
+public class EventGridFunctions
+{
+    private readonly ILogger<EventGridFunctions> _logger;
+    private readonly IOrderService _orderService;
+    
+    public EventGridFunctions(ILogger<EventGridFunctions> logger, IOrderService orderService)
+    {
+        _logger = logger;
+        _orderService = orderService;
+    }
+    
+    // Obsługa Custom Events
+    [Function("ProcessOrderEvent")]
+    public async Task ProcessOrderEvent(
+        [EventGridTrigger] EventGridEvent eventGridEvent)
+    {
+        _logger.LogInformation($"Event Type: {eventGridEvent.EventType}");
+        _logger.LogInformation($"Subject: {eventGridEvent.Subject}");
+        
+        switch (eventGridEvent.EventType)
+        {
+            case "Contoso.Orders.OrderCreated":
+                var orderData = eventGridEvent.Data.ToObjectFromJson<OrderCreatedEventData>();
+                await _orderService.ProcessNewOrderAsync(orderData);
+                break;
+                
+            case "Contoso.Orders.OrderCancelled":
+                var cancelData = eventGridEvent.Data.ToObjectFromJson<OrderCancelledEventData>();
+                await _orderService.HandleCancellationAsync(cancelData);
+                break;
+        }
+    }
+    
+    // Obsługa System Events (Blob Storage)
+    [Function("ProcessBlobEvent")]
+    public async Task ProcessBlobEvent(
+        [EventGridTrigger] EventGridEvent eventGridEvent)
+    {
+        if (eventGridEvent.EventType == "Microsoft.Storage.BlobCreated")
+        {
+            var blobData = eventGridEvent.Data.ToObjectFromJson<StorageBlobCreatedEventData>();
+            
+            _logger.LogInformation($"New blob: {blobData.Url}");
+            _logger.LogInformation($"Size: {blobData.ContentLength} bytes");
+            _logger.LogInformation($"Content-Type: {blobData.ContentType}");
+            
+            // Przetwarzanie obrazu
+            if (blobData.ContentType.StartsWith("image/"))
+            {
+                await ProcessImageAsync(blobData.Url);
+            }
+        }
+    }
+}
+
+// Event Data classes
+public record OrderCreatedEventData(
+    Guid OrderId, 
+    string CustomerId, 
+    decimal TotalAmount, 
+    List<string> Items);
+
+public record OrderCancelledEventData(
+    Guid OrderId, 
+    string Reason, 
+    DateTime CancelledAt);
+```
+
+### Retry Policy i Dead-Letter
+
+<img src="assets/eventgrid_retry.svg" alt="Event Grid Retry" />
+
+```bash
+# Konfiguracja retry i dead-letter
+az eventgrid event-subscription create \
+  --name mySubscription \
+  --source-resource-id "/subscriptions/{sub-id}/resourceGroups/myRG/providers/Microsoft.EventGrid/topics/myTopic" \
+  --endpoint "https://myapp.com/api/events" \
+  --max-delivery-attempts 10 \
+  --event-ttl 1440 \
+  --deadletter-endpoint "/subscriptions/{sub-id}/resourceGroups/myRG/providers/Microsoft.Storage/storageAccounts/mystorage/blobServices/default/containers/deadletter"
+```
+
+**Retry Policy:**
+| Parametr | Opis | Default | Zakres |
+|----------|------|---------|--------|
+| Max Delivery Attempts | Liczba prób dostawy | 30 | 1-30 |
+| Event TTL | Czas życia zdarzenia | 1440 min (24h) | 1-1440 min |
+
+**Kody odpowiedzi:**
+- **Sukces:** 200, 201, 202, 204
+- **Retry:** 408, 429, 500-599
+- **No Retry (drop):** 400, 401, 403, 404, 413
+
+### Walidacja Webhook Endpoint
+
+Event Grid wymaga walidacji endpointu przed pierwszą dostawą zdarzeń:
+
+```csharp
+// Obsługa walidacji w Azure Function
+[Function("WebhookEndpoint")]
+public async Task<IActionResult> WebhookEndpoint(
+    [HttpTrigger(AuthorizationLevel.Anonymous, "post")] HttpRequest req)
+{
+    var requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+    var events = JsonSerializer.Deserialize<EventGridEvent[]>(requestBody);
+    
+    foreach (var eventGridEvent in events)
+    {
+        // Obsługa walidacji subskrypcji
+        if (eventGridEvent.EventType == "Microsoft.EventGrid.SubscriptionValidationEvent")
+        {
+            var validationData = eventGridEvent.Data.ToObjectFromJson<SubscriptionValidationEventData>();
+            
+            return new OkObjectResult(new SubscriptionValidationResponse
+            {
+                ValidationResponse = validationData.ValidationCode
+            });
+        }
+        
+        // Przetwarzanie normalnych zdarzeń
+        await ProcessEventAsync(eventGridEvent);
+    }
+    
+    return new OkResult();
+}
+```
+
+### Przykład: Reaktywna architektura
+
+```csharp
+// Scenariusz: Upload obrazu -> resize -> CDN purge -> notification
+// Wszystko orkiestrowane przez Event Grid
+
+// 1. Blob Storage emituje BlobCreated event
+// 2. Azure Function przetwarza obraz
+[Function("ResizeImage")]
+public async Task ResizeImage([EventGridTrigger] EventGridEvent evt)
+{
+    var blobData = evt.Data.ToObjectFromJson<StorageBlobCreatedEventData>();
+    await _imageProcessor.ResizeAsync(blobData.Url);
+    
+    // Publikuj własne zdarzenie o zakończeniu przetwarzania
+    await _eventGridClient.SendEventAsync(new EventGridEvent(
+        subject: $"images/{Path.GetFileName(blobData.Url)}",
+        eventType: "Contoso.Images.Processed",
+        dataVersion: "1.0",
+        data: new { OriginalUrl = blobData.Url, ProcessedAt = DateTime.UtcNow }));
+}
+
+// 3. Logic App subskrybuje Contoso.Images.Processed -> purge CDN
+// 4. Azure Function subskrybuje Contoso.Images.Processed -> wyślij email
+[Function("NotifyImageProcessed")]
+public async Task NotifyImageProcessed([EventGridTrigger] EventGridEvent evt)
+{
+    var data = evt.Data.ToObjectFromJson<ImageProcessedData>();
+    await _emailService.SendAsync(
+        to: "admin@contoso.com",
+        subject: "Image processed",
+        body: $"Image {data.OriginalUrl} has been processed");
+}
+```
+
+### Event Grid vs Event Hub vs Service Bus
+
+| Aspekt | Event Grid | Event Hub | Service Bus |
+|--------|------------|-----------|-------------|
+| **Model** | Reactive pub/sub | Streaming | Enterprise messaging |
+| **Przypadek użycia** | Event routing, automation | Telemetry, logs, IoT | Transactions, orders |
+| **Latencja** | Sub-sekundowa | Sub-sekundowa | Milisekundy |
+| **Przepustowość** | 10M events/sec/region | Millions/sec | Thousands/sec |
+| **Retencja** | 24h (retry) | 1-90 dni | Do przetworzenia |
+| **Kolejność** | Nie gwarantowana | FIFO per partition | FIFO (sessions) |
+| **Filtrowanie** | Event Type, Subject, Advanced | Brak (consumer side) | SQL/Correlation filters |
+| **Cena** | Per event (~$0.60/M) | Per TU/PU | Per operation |
+| **Główne źródła** | Azure services, custom apps | IoT, logs, clickstream | Business apps |
+| **Główne handlery** | Functions, Logic Apps, webhooks | Stream Analytics, Spark | Workers, Functions |
+
+### Kiedy użyć którego?
+
+```
+Event Grid:
+✓ Reakcje na zmiany w Azure (blob created, VM started)
+✓ Automatyzacja i orchestracja (serverless workflows)
+✓ Wysoka liczba źródeł, niski wolumen per źródło
+✓ Nie potrzebujesz retencji danych
+
+Event Hub:
+✓ Big Data streaming (miliony zdarzeń/sek)
+✓ IoT telemetry, logi aplikacji, clickstream
+✓ Potrzebujesz retencji (replay, Capture)
+✓ Integracja z Apache Kafka
+
+Service Bus:
+✓ Enterprise messaging (zamówienia, transakcje)
+✓ Gwarantowane przetworzenie (at-least-once)
+✓ Potrzebujesz FIFO, sessions, transactions
+✓ Pub/sub z filtrowanymi subskrypcjami
+```
+
+---
+
+### FAQ - Egzamin
+
+| Pytanie | Odpowiedź |
+|---------|----------|
+| Co to jest Event Grid? | Usługa reaktywnego routingu zdarzeń (pub/sub) |
+| Ile kosztuje Event Grid? | ~$0.60 per milion zdarzeń |
+| Jaka jest latencja? | Sub-sekundowa |
+| Czy Event Grid gwarantuje kolejność? | NIE |
+| Czym są System Topics? | Automatyczne topics dla usług Azure |
+| Jakie handlery obsługuje Event Grid? | Functions, Logic Apps, webhooks, Event Hubs, Service Bus |
+| Event Grid vs Service Bus? | Event Grid = event routing, Service Bus = messaging |
+| Event Grid vs Event Hub? | Event Grid = reactive, Event Hub = streaming |
+
+> **Egzamin:** Event Grid to reaktywny pub/sub do routingu zdarzeń z sub-sekundową latencją. System Topics automatycznie tworzą się dla usług Azure (Blob, VMs). NIE gwarantuje kolejności. Cena per event (~$0.60/M). Filtrowanie: Event Type, Subject, Advanced Filters.
 
 ---

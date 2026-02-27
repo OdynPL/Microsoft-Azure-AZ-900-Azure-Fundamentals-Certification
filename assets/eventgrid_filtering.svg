@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 450">
+  <defs>
+    <linearGradient id="topicGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0ea5e9"/>
+      <stop offset="100%" style="stop-color:#0284c7"/>
+    </linearGradient>
+    <linearGradient id="subGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f97316"/>
+      <stop offset="100%" style="stop-color:#fb923c"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="3" dy="3" stdDeviation="4" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="450" fill="#f8fafc"/>
+  
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" font-family="Segoe UI, Arial" font-size="24" font-weight="bold" fill="#1e293b">Event Grid - Filtrowanie zdarzen</text>
+  <text x="450" y="58" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" fill="#64748b">Event Type, Subject Filtering, Advanced Filtering</text>
+
+  <!-- Topic -->
+  <rect x="50" y="100" width="180" height="100" rx="12" fill="url(#topicGrad)" filter="url(#shadow)"/>
+  <text x="140" y="140" text-anchor="middle" font-family="Segoe UI, Arial" font-size="16" font-weight="bold" fill="white">Topic</text>
+  <text x="140" y="165" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="rgba(255,255,255,0.9)">Wszystkie zdarzenia</text>
+  <text x="140" y="185" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="rgba(255,255,255,0.8)">(BlobCreated, BlobDeleted, ...)</text>
+
+  <!-- Arrow -->
+  <defs>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#0ea5e9"/>
+    </marker>
+  </defs>
+  <path d="M230 150 L300 150" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arrowBlue)"/>
+
+  <!-- Filter Types Box -->
+  <rect x="310" y="85" width="280" height="300" rx="10" fill="#f0f9ff" stroke="#0ea5e9" stroke-width="2" filter="url(#shadow)"/>
+  <text x="450" y="115" text-anchor="middle" font-family="Segoe UI, Arial" font-size="16" font-weight="bold" fill="#0369a1">Typy filtrow</text>
+  
+  <!-- Filter 1: Event Type -->
+  <rect x="330" y="135" width="240" height="65" rx="8" fill="white" stroke="#3b82f6" stroke-width="1"/>
+  <text x="450" y="158" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="bold" fill="#1d4ed8">1. Event Type Filter</text>
+  <text x="450" y="178" text-anchor="middle" font-family="Courier New" font-size="10" fill="#3b82f6">"eventType": ["Microsoft.Storage.</text>
+  <text x="450" y="192" text-anchor="middle" font-family="Courier New" font-size="10" fill="#3b82f6">BlobCreated"]</text>
+
+  <!-- Filter 2: Subject Filter -->
+  <rect x="330" y="210" width="240" height="65" rx="8" fill="white" stroke="#10b981" stroke-width="1"/>
+  <text x="450" y="233" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="bold" fill="#047857">2. Subject Filter</text>
+  <text x="450" y="253" text-anchor="middle" font-family="Courier New" font-size="10" fill="#10b981">"subjectBeginsWith": "/images/"</text>
+  <text x="450" y="267" text-anchor="middle" font-family="Courier New" font-size="10" fill="#10b981">"subjectEndsWith": ".jpg"</text>
+
+  <!-- Filter 3: Advanced Filter -->
+  <rect x="330" y="285" width="240" height="85" rx="8" fill="white" stroke="#f97316" stroke-width="1"/>
+  <text x="450" y="308" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="bold" fill="#c2410c">3. Advanced Filter</text>
+  <text x="450" y="328" text-anchor="middle" font-family="Courier New" font-size="10" fill="#ea580c">"advancedFilters": [{</text>
+  <text x="450" y="342" text-anchor="middle" font-family="Courier New" font-size="10" fill="#ea580c">"key": "data.contentLength",</text>
+  <text x="450" y="356" text-anchor="middle" font-family="Courier New" font-size="10" fill="#ea580c">"operatorType": "NumberGreaterThan",</text>
+  <text x="450" y="370" text-anchor="middle" font-family="Courier New" font-size="10" fill="#ea580c">"value": 1000 }]</text>
+
+  <!-- Arrows to subscriptions -->
+  <path d="M590 170 L630 120" stroke="#3b82f6" stroke-width="2"/>
+  <path d="M590 240 L630 220" stroke="#10b981" stroke-width="2"/>
+  <path d="M590 330 L630 320" stroke="#f97316" stroke-width="2"/>
+
+  <!-- Subscriptions -->
+  <rect x="640" y="90" width="220" height="65" rx="8" fill="url(#subGrad)" filter="url(#shadow)"/>
+  <text x="750" y="115" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="bold" fill="white">Subscription 1</text>
+  <text x="750" y="135" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="white">Only BlobCreated events</text>
+  <text x="750" y="148" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="rgba(255,255,255,0.8)">Handler: Azure Function</text>
+
+  <rect x="640" y="175" width="220" height="65" rx="8" fill="url(#subGrad)" filter="url(#shadow)"/>
+  <text x="750" y="200" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="bold" fill="white">Subscription 2</text>
+  <text x="750" y="220" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="white">Only /images/*.jpg files</text>
+  <text x="750" y="233" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="rgba(255,255,255,0.8)">Handler: Logic App</text>
+
+  <rect x="640" y="280" width="220" height="65" rx="8" fill="url(#subGrad)" filter="url(#shadow)"/>
+  <text x="750" y="305" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="bold" fill="white">Subscription 3</text>
+  <text x="750" y="325" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="white">Only files greater than 1KB</text>
+  <text x="750" y="338" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="rgba(255,255,255,0.8)">Handler: Webhook</text>
+
+  <!-- Advanced Filter Operators -->
+  <rect x="50" y="250" width="200" height="135" rx="8" fill="#fff7ed" stroke="#f97316" stroke-width="2"/>
+  <text x="150" y="275" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="bold" fill="#c2410c">Advanced Operators</text>
+  <text x="60" y="298" font-family="Segoe UI, Arial" font-size="10" fill="#92400e">- StringIn / StringNotIn</text>
+  <text x="60" y="316" font-family="Segoe UI, Arial" font-size="10" fill="#92400e">- StringBeginsWith / EndsWith</text>
+  <text x="60" y="334" font-family="Segoe UI, Arial" font-size="10" fill="#92400e">- NumberIn / NumberNotIn</text>
+  <text x="60" y="352" font-family="Segoe UI, Arial" font-size="10" fill="#92400e">- NumberGreater/LessThan</text>
+  <text x="60" y="370" font-family="Segoe UI, Arial" font-size="10" fill="#92400e">- BoolEquals / IsNullOrUndefined</text>
+
+  <!-- Bottom tip -->
+  <rect x="50" y="400" width="810" height="40" rx="8" fill="#dbeafe"/>
+  <text x="455" y="425" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" fill="#1e40af" font-weight="bold">Filtrowanie zmniejsza koszty i szum - subskrybenci otrzymuja tylko potrzebne zdarzenia | Max 25 advanced filters per subscription</text>
+</svg>

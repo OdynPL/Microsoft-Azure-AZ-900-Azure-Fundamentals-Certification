@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 500">
+  <defs>
+    <linearGradient id="egGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0ea5e9"/>
+      <stop offset="100%" style="stop-color:#0284c7"/>
+    </linearGradient>
+    <linearGradient id="sourceGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#8b5cf6"/>
+      <stop offset="100%" style="stop-color:#a78bfa"/>
+    </linearGradient>
+    <linearGradient id="handlerGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f97316"/>
+      <stop offset="100%" style="stop-color:#fb923c"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="3" dy="3" stdDeviation="4" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="920" height="500" fill="#f8fafc"/>
+  
+  <!-- Title -->
+  <text x="460" y="35" text-anchor="middle" font-family="Segoe UI, Arial" font-size="24" font-weight="bold" fill="#1e293b">Azure Event Grid - Architektura</text>
+  <text x="460" y="58" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" fill="#64748b">Reaktywna architektura oparta na zdarzeniach (Event-Driven)</text>
+
+  <!-- Event Sources Section -->
+  <rect x="30" y="90" width="180" height="350" rx="10" fill="#f3e8ff" stroke="#8b5cf6" stroke-width="2" filter="url(#shadow)"/>
+  <text x="120" y="120" text-anchor="middle" font-family="Segoe UI, Arial" font-size="16" font-weight="bold" fill="#6b21a8">Zrodla zdarzen</text>
+  
+  <!-- Source 1: Azure Services -->
+  <rect x="45" y="140" width="150" height="45" rx="8" fill="url(#sourceGrad)" filter="url(#shadow)"/>
+  <text x="120" y="168" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" fill="white" font-weight="bold">Azure Services</text>
+  
+  <!-- Source 2: Blob Storage -->
+  <rect x="45" y="195" width="150" height="45" rx="8" fill="url(#sourceGrad)" filter="url(#shadow)"/>
+  <text x="120" y="223" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" fill="white" font-weight="bold">Blob Storage</text>
+  
+  <!-- Source 3: Resource Groups -->
+  <rect x="45" y="250" width="150" height="45" rx="8" fill="url(#sourceGrad)" filter="url(#shadow)"/>
+  <text x="120" y="278" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" fill="white" font-weight="bold">Resource Groups</text>
+  
+  <!-- Source 4: Custom Topics -->
+  <rect x="45" y="305" width="150" height="45" rx="8" fill="url(#sourceGrad)" filter="url(#shadow)"/>
+  <text x="120" y="333" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" fill="white" font-weight="bold">Custom Topics</text>
+  
+  <!-- Source 5: IoT Hub -->
+  <rect x="45" y="360" width="150" height="45" rx="8" fill="url(#sourceGrad)" filter="url(#shadow)"/>
+  <text x="120" y="388" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" fill="white" font-weight="bold">IoT Hub</text>
+
+  <!-- Arrows to Event Grid -->
+  <defs>
+    <marker id="arrowPurple" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#8b5cf6"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#0ea5e9"/>
+    </marker>
+    <marker id="arrowOrange" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#f97316"/>
+    </marker>
+  </defs>
+  
+  <path d="M210 162 L280 265" stroke="#8b5cf6" stroke-width="2" fill="none"/>
+  <path d="M210 217 L280 265" stroke="#8b5cf6" stroke-width="2" fill="none"/>
+  <path d="M210 272 L280 265" stroke="#8b5cf6" stroke-width="2" fill="none"/>
+  <path d="M210 327 L280 265" stroke="#8b5cf6" stroke-width="2" fill="none"/>
+  <path d="M210 382 L280 265" stroke="#8b5cf6" stroke-width="2" fill="none" marker-end="url(#arrowPurple)"/>
+
+  <!-- Event Grid (Center) -->
+  <rect x="290" y="130" width="340" height="270" rx="15" fill="url(#egGrad)" filter="url(#shadow)"/>
+  <text x="460" y="165" text-anchor="middle" font-family="Segoe UI, Arial" font-size="20" font-weight="bold" fill="white">Azure Event Grid</text>
+  
+  <!-- Topics -->
+  <rect x="315" y="185" width="145" height="90" rx="8" fill="rgba(255,255,255,0.9)"/>
+  <text x="387" y="210" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="bold" fill="#0369a1">Topics</text>
+  <text x="387" y="230" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#0369a1">System Topics</text>
+  <text x="387" y="248" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#0369a1">Custom Topics</text>
+  <text x="387" y="266" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#0369a1">Partner Topics</text>
+  
+  <!-- Subscriptions -->
+  <rect x="475" y="185" width="130" height="90" rx="8" fill="rgba(255,255,255,0.9)"/>
+  <text x="540" y="210" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="bold" fill="#0369a1">Subscriptions</text>
+  <text x="540" y="235" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#0369a1">Event Filtering</text>
+  <text x="540" y="255" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#0369a1">Retry Policy</text>
+  <text x="540" y="270" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#0369a1">Dead-Letter</text>
+
+  <!-- Event Schema -->
+  <rect x="315" y="290" width="290" height="95" rx="8" fill="rgba(255,255,255,0.2)" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+  <text x="460" y="315" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" font-weight="bold" fill="white">Event Schema (CloudEvents 1.0)</text>
+  <text x="460" y="338" text-anchor="middle" font-family="Courier New" font-size="9" fill="white">{ "id", "source", "type", "subject",</text>
+  <text x="460" y="355" text-anchor="middle" font-family="Courier New" font-size="9" fill="white">"time", "data", "datacontenttype" }</text>
+  <text x="460" y="375" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="rgba(255,255,255,0.8)">Max event size: 1 MB</text>
+
+  <!-- Arrows to Handlers -->
+  <path d="M630 165 L700 165" stroke="#0ea5e9" stroke-width="2" fill="none"/>
+  <path d="M630 220 L700 220" stroke="#0ea5e9" stroke-width="2" fill="none"/>
+  <path d="M630 275 L700 275" stroke="#0ea5e9" stroke-width="2" fill="none"/>
+  <path d="M630 330 L700 330" stroke="#0ea5e9" stroke-width="2" fill="none"/>
+  <path d="M630 375 L700 375" stroke="#0ea5e9" stroke-width="2" fill="none" marker-end="url(#arrowBlue)"/>
+
+  <!-- Event Handlers Section -->
+  <rect x="710" y="90" width="180" height="350" rx="10" fill="#fff7ed" stroke="#f97316" stroke-width="2" filter="url(#shadow)"/>
+  <text x="800" y="120" text-anchor="middle" font-family="Segoe UI, Arial" font-size="16" font-weight="bold" fill="#c2410c">Handlery</text>
+  
+  <!-- Handler 1: Azure Functions -->
+  <rect x="725" y="140" width="150" height="45" rx="8" fill="url(#handlerGrad)" filter="url(#shadow)"/>
+  <text x="800" y="168" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" fill="white" font-weight="bold">Azure Functions</text>
+  
+  <!-- Handler 2: Logic Apps -->
+  <rect x="725" y="195" width="150" height="45" rx="8" fill="url(#handlerGrad)" filter="url(#shadow)"/>
+  <text x="800" y="223" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" fill="white" font-weight="bold">Logic Apps</text>
+  
+  <!-- Handler 3: Webhooks -->
+  <rect x="725" y="250" width="150" height="45" rx="8" fill="url(#handlerGrad)" filter="url(#shadow)"/>
+  <text x="800" y="278" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" fill="white" font-weight="bold">Webhooks</text>
+  
+  <!-- Handler 4: Event Hubs -->
+  <rect x="725" y="305" width="150" height="45" rx="8" fill="url(#handlerGrad)" filter="url(#shadow)"/>
+  <text x="800" y="333" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" fill="white" font-weight="bold">Event Hubs</text>
+  
+  <!-- Handler 5: Service Bus -->
+  <rect x="725" y="360" width="150" height="45" rx="8" fill="url(#handlerGrad)" filter="url(#shadow)"/>
+  <text x="800" y="388" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" fill="white" font-weight="bold">Service Bus</text>
+
+  <!-- Bottom stats -->
+  <rect x="30" y="455" width="860" height="35" rx="8" fill="#dbeafe"/>
+  <text x="460" y="478" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" fill="#1e40af" font-weight="bold">SLA: 99.99% | Latencja: sub-sekundowa | Cena: per million zdarzen (~$0.60)</text>
+</svg>
