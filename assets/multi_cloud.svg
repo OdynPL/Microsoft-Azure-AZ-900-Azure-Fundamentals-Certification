@@ -1,11 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="360" height="200">
-  <ellipse cx="90" cy="90" rx="70" ry="40" fill="#fff" stroke="#0078d4" stroke-width="3"/>
-  <ellipse cx="180" cy="60" rx="70" ry="40" fill="#fff" stroke="#ff9900" stroke-width="3"/>
-  <ellipse cx="270" cy="90" rx="70" ry="40" fill="#fff" stroke="#34a853" stroke-width="3"/>
-
-  <text x="90" y="95" font-size="16" font-family="Arial" fill="#0078d4" text-anchor="middle">Azure</text>
-  <text x="180" y="65" font-size="16" font-family="Arial" fill="#ff9900" text-anchor="middle">AWS</text>
-  <text x="270" y="95" font-size="16" font-family="Arial" fill="#34a853" text-anchor="middle">GCP</text>
-
-  <text x="180" y="165" font-size="18" font-family="Arial" fill="#333" text-anchor="middle">Multi‑Cloud</text>
+﻿<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 220' width='500' height='220'>
+  <title>Multi-Cloud</title>
+  <defs>
+    <marker id='arrow' markerWidth='10' markerHeight='7' refX='9' refY='3.5' orient='auto'>
+      <polygon points='0 0, 10 3.5, 0 7' fill='#475569'/>
+    </marker>
+    <marker id='arrowBlue' markerWidth='10' markerHeight='7' refX='9' refY='3.5' orient='auto'>
+      <polygon points='0 0, 10 3.5, 0 7' fill='#2563EB'/>
+    </marker>
+  </defs>
+  <rect width='500' height='220' fill='#FFFFFF'/>
+  <ellipse cx='100' cy='90' rx='70' ry='45' fill='#DBEAFE' stroke='#2563EB' stroke-width='2'/>
+    <text x='100' y='95' text-anchor='middle' font-family='Segoe UI' font-size='14' fill='#334155'>Azure</text>
+  <ellipse cx='250' cy='90' rx='70' ry='45' fill='#FEF3C7' stroke='#D97706' stroke-width='2'/>
+    <text x='250' y='95' text-anchor='middle' font-family='Segoe UI' font-size='14' fill='#334155'>AWS</text>
+  <ellipse cx='400' cy='90' rx='70' ry='45' fill='#DCFCE7' stroke='#16A34A' stroke-width='2'/>
+    <text x='400' y='95' text-anchor='middle' font-family='Segoe UI' font-size='14' fill='#334155'>GCP</text>
+    <text x='250' y='180' text-anchor='middle' font-family='Segoe UI' font-size='14' fill='#334155'>Multiple cloud providers</text>
+    <text x='250' y='205' text-anchor='middle' font-family='Segoe UI' font-size='12' fill='#334155'>Avoid vendor lock-in</text>
 </svg>

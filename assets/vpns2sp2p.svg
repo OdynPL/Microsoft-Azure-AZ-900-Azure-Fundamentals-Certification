@@ -1,48 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="520">
-  <style>
-    .box { fill:#eef4ff; stroke:#4a84f4; stroke-width:2; rx:10; }
-    .sub { fill:#ffffff; stroke:#7aa3f0; stroke-width:1.5; rx:8; }
-    .title { font-family: Arial; font-size: 22px; font-weight: bold; }
-    text { font-family: Arial; font-size: 14px; }
-  </style>
-
-  <text x="550" y="40" text-anchor="middle" class="title">
-    VPN Gateway — Site-to-Site vs Point-to-Site
-  </text>
-
-  <rect x="50" y="70" width="1000" height="420" class="box"/>
-  <text x="550" y="105" text-anchor="middle" style="font-size:16px;font-weight:bold;">
-    Encrypted IPsec connectivity to Azure VNet
-  </text>
-
-  <!-- SITE TO SITE -->
-  <rect x="100" y="150" width="360" height="160" class="sub"/>
-  <text x="280" y="180" text-anchor="middle" style="font-weight:bold;">Site-to-Site VPN</text>
-  <text x="280" y="205" text-anchor="middle">Network-to-network</text>
-  <text x="280" y="225" text-anchor="middle">Router/firewall to Azure</text>
-  <text x="280" y="245" text-anchor="middle">Office or datacenter</text>
-
-  <text x="550" y="235" text-anchor="middle" style="font-size:28px;">⇄</text>
-  <text x="550" y="260" text-anchor="middle">IPsec tunnel</text>
-
-  <!-- P2S -->
-  <rect x="100" y="330" width="360" height="140" class="sub"/>
-  <text x="280" y="360" text-anchor="middle" style="font-weight:bold;">Point-to-Site VPN</text>
-  <text x="280" y="385" text-anchor="middle">User-to-network</text>
-  <text x="280" y="405" text-anchor="middle">VPN client on device</text>
-
-  <!-- GATEWAY -->
-  <rect x="520" y="150" width="260" height="320" class="sub"/>
-  <text x="650" y="185" text-anchor="middle" style="font-weight:bold;">VPN Gateway</text>
-  <text x="650" y="210" text-anchor="middle">S2S and P2S support</text>
-  <text x="650" y="230" text-anchor="middle">IPsec / IKEv2 / OpenVPN</text>
-  <text x="650" y="250" text-anchor="middle">Auth: cert or AAD</text>
-
-  <!-- AZURE -->
-  <rect x="820" y="200" width="230" height="180" class="sub"/>
-  <text x="935" y="230" text-anchor="middle" style="font-weight:bold;">Azure VNet</text>
-  <text x="935" y="255" text-anchor="middle">Private IP space</text>
-  <text x="935" y="275" text-anchor="middle">Subnets and services</text>
-
-  <text x="780" y="290" text-anchor="middle" style="font-size:28px;">→</text>
+﻿<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 250' width='500' height='250'>
+  <title>VPN Types</title>
+  <defs>
+    <marker id='arrow' markerWidth='10' markerHeight='7' refX='9' refY='3.5' orient='auto'>
+      <polygon points='0 0, 10 3.5, 0 7' fill='#475569'/>
+    </marker>
+    <marker id='arrowBlue' markerWidth='10' markerHeight='7' refX='9' refY='3.5' orient='auto'>
+      <polygon points='0 0, 10 3.5, 0 7' fill='#2563EB'/>
+    </marker>
+  </defs>
+  <rect width='500' height='250' fill='#FFFFFF'/>
+    <text x='250' y='25' text-anchor='middle' font-family='Segoe UI' font-size='14' fill='#0F172A'>Site-to-Site vs Point-to-Site</text>
+    <text x='125' y='55' text-anchor='middle' font-family='Segoe UI' font-size='12' fill='#0F172A'>Site-to-Site (S2S)</text>
+  <rect x='30' y='70' width='80' height='50' rx='6' fill='#F1F5F9' stroke='#64748B' stroke-width='2'/>
+    <text x='70' y='100' text-anchor='middle' font-family='Segoe UI' font-size='10' fill='#334155'>Office</text>
+  <line x1='110' y1='95' x2='150' y2='95' stroke='#059669' stroke-width='2'/>
+  <rect x='150' y='70' width='80' height='50' rx='6' fill='#DBEAFE' stroke='#2563EB' stroke-width='2'/>
+    <text x='190' y='100' text-anchor='middle' font-family='Segoe UI' font-size='10' fill='#334155'>Azure</text>
+    <text x='375' y='55' text-anchor='middle' font-family='Segoe UI' font-size='12' fill='#0F172A'>Point-to-Site (P2S)</text>
+    <circle cx='310' cy='95' r='20' fill='#F1F5F9' stroke='#64748B' stroke-width='2'/>
+  <text x='310' y='100' text-anchor='middle' font-family='Segoe UI' font-size='14' fill='#1E293B'></text>
+    <text x='310' y='100' text-anchor='middle' font-family='Segoe UI' font-size='8' fill='#334155'>User</text>
+  <line x1='330' y1='95' x2='380' y2='95' stroke='#059669' stroke-width='2'/>
+  <rect x='380' y='70' width='80' height='50' rx='6' fill='#DBEAFE' stroke='#2563EB' stroke-width='2'/>
+    <text x='420' y='100' text-anchor='middle' font-family='Segoe UI' font-size='10' fill='#334155'>Azure</text>
+    <text x='125' y='155' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#334155'>Network to Network</text>
+    <text x='375' y='155' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#334155'>Device to Network</text>
 </svg>

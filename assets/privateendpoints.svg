@@ -1,44 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="520">
-  <style>
-    .box { fill:#eef4ff; stroke:#4a84f4; stroke-width:2; rx:10; }
-    .sub { fill:#ffffff; stroke:#7aa3f0; stroke-width:1.5; rx:8; }
-    .title { font-family: Arial; font-size: 22px; font-weight: bold; }
-    text { font-family: Arial; font-size: 14px; }
-  </style>
-
-  <text x="550" y="40" text-anchor="middle" class="title">
-    Private Endpoint vs Service Endpoint
-  </text>
-
-  <rect x="50" y="70" width="1000" height="420" class="box"/>
-  <text x="550" y="105" text-anchor="middle" style="font-size:16px;font-weight:bold;">
-    Secure access to PaaS services without public Internet
-  </text>
-
-  <!-- PRIVATE ENDPOINT -->
-  <rect x="100" y="150" width="400" height="180" class="sub"/>
-  <text x="300" y="180" text-anchor="middle" style="font-weight:bold;">Private Endpoint</text>
-  <text x="300" y="205" text-anchor="middle">Private IP inside VNet</text>
-  <text x="300" y="225" text-anchor="middle">Private Azure backbone routing</text>
-  <text x="300" y="245" text-anchor="middle">Highest isolation</text>
-  <text x="300" y="265" text-anchor="middle">Storage / SQL / WebApps</text>
-
-  <!-- ARROW -->
-  <text x="550" y="240" text-anchor="middle" style="font-size:28px;">⇄</text>
-
-  <!-- SERVICE ENDPOINT -->
-  <rect x="600" y="150" width="400" height="180" class="sub"/>
-  <text x="800" y="180" text-anchor="middle" style="font-weight:bold;">Service Endpoint</text>
-  <text x="800" y="205" text-anchor="middle">No private IP created</text>
-  <text x="800" y="225" text-anchor="middle">Trusted VNet source routing</text>
-  <text x="800" y="245" text-anchor="middle">Simple configuration</text>
-  <text x="800" y="265" text-anchor="middle">Less isolation</text>
-
-  <!-- PaaS SERVICE BOX -->
-  <rect x="300" y="360" width="500" height="100" class="sub"/>
-  <text x="550" y="395" text-anchor="middle" style="font-weight:bold;">
-    PaaS Service (Storage / SQL / WebApps)
-  </text>
-  <text x="550" y="420" text-anchor="middle">Private access only</text>
-
+﻿<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 200' width='500' height='200'>
+  <title>Private Endpoints</title>
+  <defs>
+    <marker id='arrow' markerWidth='10' markerHeight='7' refX='9' refY='3.5' orient='auto'>
+      <polygon points='0 0, 10 3.5, 0 7' fill='#475569'/>
+    </marker>
+    <marker id='arrowBlue' markerWidth='10' markerHeight='7' refX='9' refY='3.5' orient='auto'>
+      <polygon points='0 0, 10 3.5, 0 7' fill='#2563EB'/>
+    </marker>
+  </defs>
+  <rect width='500' height='200' fill='#FFFFFF'/>
+    <text x='250' y='25' text-anchor='middle' font-family='Segoe UI' font-size='16' fill='#0F172A'>Private Endpoint</text>
+  <rect x='30' y='55' width='200' height='110' rx='10' fill='#DBEAFE' stroke='#2563EB' stroke-width='2'/>
+    <text x='130' y='80' text-anchor='middle' font-family='Segoe UI' font-size='12' fill='#334155'>Your VNet</text>
+    <rect x='50' y='95' width='80' height='50' rx='8' fill='#FFFFFF' stroke='#64748B' stroke-width='2'/>
+  <text x='90' y='125' text-anchor='middle' font-family='Segoe UI' font-size='12' fill='#1E293B'>VM</text>
+    <circle cx='180' cy='120' r='20' fill='#D1FAE5' stroke='#059669' stroke-width='2'/>
+  <text x='180' y='125' text-anchor='middle' font-family='Segoe UI' font-size='14' fill='#1E293B'>PE</text>
+  <rect x='300' y='70' width='160' height='80' rx='8' fill='#E0E7FF' stroke='#4F46E5' stroke-width='2'/>
+    <text x='380' y='100' text-anchor='middle' font-family='Segoe UI' font-size='12' fill='#334155'>Azure PaaS</text>
+    <text x='380' y='120' text-anchor='middle' font-family='Segoe UI' font-size='10' fill='#334155'>(SQL, Storage)</text>
+  <line x1='200' y1='120' x2='300' y2='110' stroke='#059669' stroke-width='2' stroke-dasharray='5,3'/>
+    <text x='250' y='185' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#334155'>Private IP to access PaaS services</text>
 </svg>

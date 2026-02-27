@@ -1,68 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="650">
-  <style>
-    .box { fill:#eef4ff; stroke:#4a84f4; stroke-width:2; rx:10; }
-    .sub { fill:#ffffff; stroke:#7aa3f0; stroke-width:1.5; rx:8; }
-    .title { font-family: Arial; font-size: 20px; font-weight: bold; }
-    text { font-family: Arial; font-size: 14px; }
-  </style>
-
-  <!-- Title -->
-  <text x="550" y="40" text-anchor="middle" class="title">
-    Architektura Azure Virtual Machine
-  </text>
-
-  <!-- VNet -->
-  <rect x="50" y="70" width="1000" height="520" class="box"/>
-  <text x="550" y="100" text-anchor="middle" style="font-size:16px;font-weight:bold;">
-    VNet (Virtual Network)
-  </text>
-
-  <!-- Subnet -->
-  <rect x="100" y="130" width="900" height="450" class="sub"/>
-  <text x="550" y="165" text-anchor="middle" style="font-size:15px;font-weight:bold;">
-    Subnet
-  </text>
-
-  <!-- VM -->
-  <rect x="180" y="220" width="260" height="290" class="box"/>
-  <text x="310" y="255" text-anchor="middle" style="font-size:16px;font-weight:bold;">
-    Virtual Machine
-  </text>
-
-  <!-- Inside VM -->
-  <text x="310" y="285" text-anchor="middle">Compute (vCPU, RAM)</text>
-  <text x="310" y="305" text-anchor="middle">OS (Linux/Windows)</text>
-  <text x="310" y="325" text-anchor="middle">Extensions</text>
-  <text x="310" y="345" text-anchor="middle">Diagnostics Agent</text>
-
-  <!-- NIC -->
-  <rect x="480" y="250" width="200" height="80" class="sub"/>
-  <text x="580" y="295" text-anchor="middle">NIC (Network Interface)</text>
-
-  <!-- NSG -->
-  <rect x="750" y="240" width="200" height="60" class="sub"/>
-  <text x="850" y="275" text-anchor="middle">NSG (Security Rules)</text>
-
-  <!-- Public IP -->
-  <rect x="750" y="330" width="200" height="60" class="sub"/>
-  <text x="850" y="365" text-anchor="middle">Public IP (opcjonalnie)</text>
-
-  <!-- Managed Identity -->
-  <rect x="480" y="360" width="200" height="60" class="sub"/>
-  <text x="580" y="395" text-anchor="middle">Managed Identity</text>
-
-  <!-- Storage -->
-  <rect x="180" y="520" width="260" height="80" class="sub"/>
-  <text x="310" y="555" text-anchor="middle">OS Disk (Managed Disk)</text>
-  <text x="310" y="575" text-anchor="middle">Data Disks (opcjonalnie)</text>
-
-  <!-- Logs -->
-  <rect x="750" y="425" width="200" height="80" class="sub"/>
-  <text x="850" y="460" text-anchor="middle">Diagnostics Logs</text>
-  <text x="850" y="480" text-anchor="middle">Azure Monitor / Log Analytics</text>
-
-  <!-- Arrows -->
-  <line x1="440" y1="300" x2="480" y2="300" stroke="#666" stroke-width="2"/>
-  <line x1="680" y1="280" x2="750" y2="270" stroke="#666" stroke-width="2"/>
-  <line x1="680" y1="390" x2="750" y2="360" stroke="#666" stroke-width="2"/>
+﻿<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 350 200' width='350' height='200'>
+  <title>Virtual Machine</title>
+  <defs>
+    <marker id='arrow' markerWidth='10' markerHeight='7' refX='9' refY='3.5' orient='auto'>
+      <polygon points='0 0, 10 3.5, 0 7' fill='#475569'/>
+    </marker>
+    <marker id='arrowBlue' markerWidth='10' markerHeight='7' refX='9' refY='3.5' orient='auto'>
+      <polygon points='0 0, 10 3.5, 0 7' fill='#2563EB'/>
+    </marker>
+  </defs>
+  <rect width='350' height='200' fill='#FFFFFF'/>
+    <text x='175' y='30' text-anchor='middle' font-family='Segoe UI' font-size='16' fill='#0F172A'>Virtual Machine (VM)</text>
+  <rect x='75' y='50' width='200' height='120' rx='10' fill='#F1F5F9' stroke='#64748B' stroke-width='2'/>
+    <text x='175' y='80' text-anchor='middle' font-family='Segoe UI' font-size='12' fill='#334155'>Guest OS</text>
+    <rect x='95' y='90' width='160' height='30' rx='8' fill='#DBEAFE' stroke='#2563EB' stroke-width='2'/>
+  <text x='175' y='110' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#1E293B'>Your Application</text>
+    <rect x='95' y='125' width='160' height='30' rx='8' fill='#E0E7FF' stroke='#4F46E5' stroke-width='2'/>
+  <text x='175' y='145' text-anchor='middle' font-family='Segoe UI' font-size='10' fill='#1E293B'>OS (Windows/Linux)</text>
+    <text x='175' y='185' text-anchor='middle' font-family='Segoe UI' font-size='12' fill='#334155'>Full control over OS</text>
 </svg>

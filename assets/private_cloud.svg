@@ -1,6 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="300" height="180">
-  <rect width="300" height="180" fill="#f2e8ff"/>
-  <rect x="40" y="40" width="220" height="100" fill="#fff" stroke="#7a3db8" stroke-width="3"/>
-  <text x="150" y="90" font-size="20" font-family="Arial" fill="#7a3db8" text-anchor="middle">Private Cloud</text>
-  <text x="150" y="130" font-size="14" font-family="Arial" fill="#333" text-anchor="middle">Dedicated to organization</text>
+﻿<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 250' width='400' height='250'>
+  <title>Private Cloud</title>
+  <defs>
+    <marker id='arrow' markerWidth='10' markerHeight='7' refX='9' refY='3.5' orient='auto'>
+      <polygon points='0 0, 10 3.5, 0 7' fill='#475569'/>
+    </marker>
+    <marker id='arrowBlue' markerWidth='10' markerHeight='7' refX='9' refY='3.5' orient='auto'>
+      <polygon points='0 0, 10 3.5, 0 7' fill='#2563EB'/>
+    </marker>
+  </defs>
+  <rect width='400' height='250' fill='#FFFFFF'/>
+  <rect x='100' y='40' width='200' height='120' rx='10' fill='#F1F5F9' stroke='#475569' stroke-width='2'/>
+    <text x='200' y='80' text-anchor='middle' font-family='Segoe UI' font-size='18' fill='#0F172A'>Private Cloud</text>
+    <text x='200' y='110' text-anchor='middle' font-family='Segoe UI' font-size='12' fill='#334155'>On-premises DC</text>
+    <text x='200' y='130' text-anchor='middle' font-family='Segoe UI' font-size='12' fill='#334155'>or hosted</text>
+    <text x='200' y='190' text-anchor='middle' font-family='Segoe UI' font-size='14' fill='#334155'>You own infrastructure</text>
+    <text x='200' y='215' text-anchor='middle' font-family='Segoe UI' font-size='14' fill='#334155'>Full control</text>
+    <text x='200' y='240' text-anchor='middle' font-family='Segoe UI' font-size='14' fill='#334155'>Single tenant</text>
 </svg>

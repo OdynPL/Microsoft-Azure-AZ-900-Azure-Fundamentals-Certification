@@ -1,39 +1,59 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="980" height="330">
-  <style>
-    .box { fill:#f5f8ff; stroke:#3f78e0; stroke-width:2; }
-    .col { fill:#ffffff; stroke:#8fb3f7; stroke-width:1.6; }
-    .title { font-family:Arial; font-size:22px; font-weight:bold; }
-    .cap { font-family:Arial; font-size:18px; font-weight:bold; }
-    .txt { font-family:Arial; font-size:15px; }
-    .tag { font-family:Arial; font-size:15px; fill:#1e3d7a; font-weight:bold; }
-  </style>
-
-  <text x="490" y="30" text-anchor="middle" class="title">
-    Shared Responsibility Model
-  </text>
-
-  <rect x="20" y="50" width="940" height="230" rx="12" class="box"/>
-
-  <rect x="40" y="70" width="420" height="200" rx="10" class="col"/>
-  <text x="250" y="100" text-anchor="middle" class="cap">Azure</text>
-
-  <text x="60" y="140" class="txt">Infrastruktura • Sieć • Sprzęt</text>
-  <text x="60" y="165" class="txt">Aktualizacje platformy PaaS</text>
-  <text x="60" y="190" class="txt">Dostępność usług i SLA</text>
-  <text x="60" y="215" class="txt">Bezpieczeństwo poniżej OS</text>
-
-  <rect x="520" y="70" width="420" height="200" rx="10" class="col"/>
-  <text x="730" y="100" text-anchor="middle" class="cap">Klient</text>
-
-  <text x="540" y="140" class="txt">Tożsamość i dostęp</text>
-  <text x="540" y="165" class="txt">Dane i szyfrowanie</text>
-  <text x="540" y="190" class="txt">Konfiguracje usług</text>
-  <text x="540" y="215" class="txt">Aplikacje &amp; sekrety</text>
-
-  <rect x="260" y="270" width="460" height="10" rx="3"
-        fill="#d4e3ff" stroke="#8fb3f7" stroke-width="1"/>
-
-  <text x="260" y="300" class="tag">IaaS</text>
-  <text x="490" y="300" text-anchor="middle" class="tag">PaaS</text>
-  <text x="720" y="300" text-anchor="end" class="tag">SaaS</text>
+﻿<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 280' width='500' height='280'>
+  <title>Shared Responsibility</title>
+  <defs>
+    <marker id='arrow' markerWidth='10' markerHeight='7' refX='9' refY='3.5' orient='auto'>
+      <polygon points='0 0, 10 3.5, 0 7' fill='#475569'/>
+    </marker>
+    <marker id='arrowBlue' markerWidth='10' markerHeight='7' refX='9' refY='3.5' orient='auto'>
+      <polygon points='0 0, 10 3.5, 0 7' fill='#2563EB'/>
+    </marker>
+  </defs>
+  <rect width='500' height='280' fill='#FFFFFF'/>
+    <text x='250' y='25' text-anchor='middle' font-family='Segoe UI' font-size='14' fill='#0F172A'>Shared Responsibility Model</text>
+    <text x='100' y='55' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#334155'>On-prem</text>
+    <text x='200' y='55' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#334155'>IaaS</text>
+    <text x='300' y='55' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#334155'>PaaS</text>
+    <text x='400' y='55' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#334155'>SaaS</text>
+    <rect x='50' y='70' width='100' height='30' rx='8' fill='#DBEAFE' stroke='#2563EB' stroke-width='2'/>
+  <text x='100' y='90' text-anchor='middle' font-family='Segoe UI' font-size='9' fill='#1E293B'>Data</text>
+    <rect x='150' y='70' width='100' height='30' rx='8' fill='#DBEAFE' stroke='#2563EB' stroke-width='2'/>
+  <text x='200' y='90' text-anchor='middle' font-family='Segoe UI' font-size='9' fill='#1E293B'>Data</text>
+    <rect x='250' y='70' width='100' height='30' rx='8' fill='#DBEAFE' stroke='#2563EB' stroke-width='2'/>
+  <text x='300' y='90' text-anchor='middle' font-family='Segoe UI' font-size='9' fill='#1E293B'>Data</text>
+    <rect x='350' y='70' width='100' height='30' rx='8' fill='#DBEAFE' stroke='#2563EB' stroke-width='2'/>
+  <text x='400' y='90' text-anchor='middle' font-family='Segoe UI' font-size='9' fill='#1E293B'>Data</text>
+    <rect x='50' y='105' width='100' height='30' rx='8' fill='#DBEAFE' stroke='#2563EB' stroke-width='2'/>
+  <text x='100' y='125' text-anchor='middle' font-family='Segoe UI' font-size='9' fill='#1E293B'>Apps</text>
+    <rect x='150' y='105' width='100' height='30' rx='8' fill='#DBEAFE' stroke='#2563EB' stroke-width='2'/>
+  <text x='200' y='125' text-anchor='middle' font-family='Segoe UI' font-size='9' fill='#1E293B'>Apps</text>
+    <rect x='250' y='105' width='100' height='30' rx='8' fill='#DBEAFE' stroke='#2563EB' stroke-width='2'/>
+  <text x='300' y='125' text-anchor='middle' font-family='Segoe UI' font-size='9' fill='#1E293B'>Apps</text>
+    <rect x='350' y='105' width='100' height='30' rx='8' fill='#D1FAE5' stroke='#059669' stroke-width='2'/>
+  <text x='400' y='125' text-anchor='middle' font-family='Segoe UI' font-size='9' fill='#1E293B'>Apps</text>
+    <rect x='50' y='140' width='100' height='30' rx='8' fill='#DBEAFE' stroke='#2563EB' stroke-width='2'/>
+  <text x='100' y='160' text-anchor='middle' font-family='Segoe UI' font-size='9' fill='#1E293B'>OS</text>
+    <rect x='150' y='140' width='100' height='30' rx='8' fill='#DBEAFE' stroke='#2563EB' stroke-width='2'/>
+  <text x='200' y='160' text-anchor='middle' font-family='Segoe UI' font-size='9' fill='#1E293B'>OS</text>
+    <rect x='250' y='140' width='100' height='30' rx='8' fill='#D1FAE5' stroke='#059669' stroke-width='2'/>
+  <text x='300' y='160' text-anchor='middle' font-family='Segoe UI' font-size='9' fill='#1E293B'>OS</text>
+    <rect x='350' y='140' width='100' height='30' rx='8' fill='#D1FAE5' stroke='#059669' stroke-width='2'/>
+  <text x='400' y='160' text-anchor='middle' font-family='Segoe UI' font-size='9' fill='#1E293B'>OS</text>
+    <rect x='50' y='175' width='100' height='30' rx='8' fill='#DBEAFE' stroke='#2563EB' stroke-width='2'/>
+  <text x='100' y='195' text-anchor='middle' font-family='Segoe UI' font-size='9' fill='#1E293B'>Infra</text>
+    <rect x='150' y='175' width='100' height='30' rx='8' fill='#D1FAE5' stroke='#059669' stroke-width='2'/>
+  <text x='200' y='195' text-anchor='middle' font-family='Segoe UI' font-size='9' fill='#1E293B'>Infra</text>
+    <rect x='250' y='175' width='100' height='30' rx='8' fill='#D1FAE5' stroke='#059669' stroke-width='2'/>
+  <text x='300' y='195' text-anchor='middle' font-family='Segoe UI' font-size='9' fill='#1E293B'>Infra</text>
+    <rect x='350' y='175' width='100' height='30' rx='8' fill='#D1FAE5' stroke='#059669' stroke-width='2'/>
+  <text x='400' y='195' text-anchor='middle' font-family='Segoe UI' font-size='9' fill='#1E293B'>Infra</text>
+    <rect x='50' y='210' width='100' height='30' rx='8' fill='#DBEAFE' stroke='#2563EB' stroke-width='2'/>
+  <text x='100' y='230' text-anchor='middle' font-family='Segoe UI' font-size='9' fill='#1E293B'>Physical</text>
+    <rect x='150' y='210' width='100' height='30' rx='8' fill='#D1FAE5' stroke='#059669' stroke-width='2'/>
+  <text x='200' y='230' text-anchor='middle' font-family='Segoe UI' font-size='9' fill='#1E293B'>Physical</text>
+    <rect x='250' y='210' width='100' height='30' rx='8' fill='#D1FAE5' stroke='#059669' stroke-width='2'/>
+  <text x='300' y='230' text-anchor='middle' font-family='Segoe UI' font-size='9' fill='#1E293B'>Physical</text>
+    <rect x='350' y='210' width='100' height='30' rx='8' fill='#D1FAE5' stroke='#059669' stroke-width='2'/>
+  <text x='400' y='230' text-anchor='middle' font-family='Segoe UI' font-size='9' fill='#1E293B'>Physical</text>
+    <text x='120' y='265' text-anchor='middle' font-family='Segoe UI' font-size='10' fill='#2563EB'>You manage</text>
+    <text x='380' y='265' text-anchor='middle' font-family='Segoe UI' font-size='10' fill='#059669'>Provider manages</text>
 </svg>

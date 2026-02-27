@@ -1,33 +1,23 @@
-<svg width="420" height="270" viewBox="0 0 420 270" xmlns="http://www.w3.org/2000/svg">
-  <style>
-    .title { font-family: Arial, sans-serif; font-size: 20px; font-weight: 600; fill: #005fb8; }
-    .label { font-family: Arial, sans-serif; font-size: 14px; fill: #222; }
-    .box   { fill: #e6f2ff; stroke: #005fb8; stroke-width: 1.6; rx: 6; }
-    .link  { stroke: #005fb8; stroke-width: 2; }
-  </style>
-
-  <!-- Title -->
-  <text x="20" y="35" class="title">Azure Blueprints</text>
-
-  <!-- Main Blueprint box -->
-  <rect x="15" y="55" width="390" height="190" rx="10" fill="#f5faff" stroke="#006cd1" stroke-width="2"/>
-
-  <!-- Policy -->
-  <rect x="40" y="90" width="150" height="45" class="box"/>
-  <text x="55" y="118" class="label">Azure Policy</text>
-
-  <!-- RBAC -->
-  <rect x="230" y="90" width="150" height="45" class="box"/>
-  <text x="265" y="118" class="label">RBAC</text>
-
-  <!-- ARM/Bicep -->
-  <rect x="40" y="160" width="150" height="45" class="box"/>
-  <text x="55" y="188" class="label">ARM/Bicep Templates</text>
-
-  <!-- RG Structure -->
-  <rect x="230" y="160" width="150" height="45" class="box"/>
-  <text x="243" y="188" class="label">Resource Groups</text>
-
-  <!-- Lines -->
-  <line x1="210" y1="78" x2="210" y2="220" class="link" stroke-dasharray="4 4"/>
+﻿<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 450 200' width='450' height='200'>
+  <title>Azure Blueprints</title>
+  <defs>
+    <marker id='arrow' markerWidth='10' markerHeight='7' refX='9' refY='3.5' orient='auto'>
+      <polygon points='0 0, 10 3.5, 0 7' fill='#475569'/>
+    </marker>
+    <marker id='arrowBlue' markerWidth='10' markerHeight='7' refX='9' refY='3.5' orient='auto'>
+      <polygon points='0 0, 10 3.5, 0 7' fill='#2563EB'/>
+    </marker>
+  </defs>
+  <rect width='450' height='200' fill='#FFFFFF'/>
+    <text x='225' y='25' text-anchor='middle' font-family='Segoe UI' font-size='16' fill='#0F172A'>Azure Blueprints</text>
+    <rect x='100' y='55' width='250' height='110' rx='8' fill='#DBEAFE' stroke='#2563EB' stroke-width='2'/>
+  <text x='225' y='115' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#1E293B'></text>
+    <text x='225' y='80' text-anchor='middle' font-family='Segoe UI' font-size='12' fill='#334155'>Blueprint Package</text>
+    <rect x='120' y='95' width='70' height='50' rx='8' fill='#FFFFFF' stroke='#64748B' stroke-width='2'/>
+  <text x='155' y='125' text-anchor='middle' font-family='Segoe UI' font-size='10' fill='#1E293B'>ARM</text>
+    <rect x='200' y='95' width='70' height='50' rx='8' fill='#FFFFFF' stroke='#64748B' stroke-width='2'/>
+  <text x='235' y='125' text-anchor='middle' font-family='Segoe UI' font-size='10' fill='#1E293B'>Policy</text>
+    <rect x='280' y='95' width='50' height='50' rx='8' fill='#FFFFFF' stroke='#64748B' stroke-width='2'/>
+  <text x='305' y='125' text-anchor='middle' font-family='Segoe UI' font-size='10' fill='#1E293B'>RBAC</text>
+    <text x='225' y='185' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#334155'>Repeatable environment setup</text>
 </svg>

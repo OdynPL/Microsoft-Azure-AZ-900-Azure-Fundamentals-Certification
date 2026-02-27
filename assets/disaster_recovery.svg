@@ -1,14 +1,24 @@
-
-<svg xmlns='http://www.w3.org/2000/svg' width='420' height='220'>
-  <rect width='420' height='220' fill='#fff4f4'/>
-  <text x='210' y='30' font-size='22' font-family='Arial' fill='#a30000' text-anchor='middle'>Disaster Recovery</text>
-  <rect x='60' y='80' width='120' height='60' fill='#fff' stroke='#c00000' stroke-width='3'/>
-  <rect x='240' y='80' width='120' height='60' fill='#fff' stroke='#c00000' stroke-width='3'/>
-  <line x1='180' y1='110' x2='240' y2='110' stroke='#c00000' stroke-width='3' marker-end='url(#arrow)'/>
+﻿<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 500 200' width='500' height='200'>
+  <title>Disaster Recovery</title>
   <defs>
-    <marker id='arrow' markerWidth='10' markerHeight='10' refX='5' refY='3' orient='auto' markerUnits='strokeWidth'>
-      <path d='M0,0 L0,6 L9,3 z' fill='#c00000' />
+    <marker id='arrow' markerWidth='10' markerHeight='7' refX='9' refY='3.5' orient='auto'>
+      <polygon points='0 0, 10 3.5, 0 7' fill='#475569'/>
+    </marker>
+    <marker id='arrowBlue' markerWidth='10' markerHeight='7' refX='9' refY='3.5' orient='auto'>
+      <polygon points='0 0, 10 3.5, 0 7' fill='#2563EB'/>
     </marker>
   </defs>
-  <text x='210' y='170' font-size='14' font-family='Arial' fill='#333' text-anchor='middle'>Region-to-region replication • RTO/RPO</text>
+  <rect width='500' height='200' fill='#FFFFFF'/>
+    <text x='250' y='25' text-anchor='middle' font-family='Segoe UI' font-size='16' fill='#0F172A'>Disaster Recovery</text>
+  <rect x='30' y='60' width='170' height='100' rx='10' fill='#DBEAFE' stroke='#2563EB' stroke-width='2'/>
+    <text x='115' y='85' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#334155'>Primary Region</text>
+    <rect x='55' y='100' width='120' height='45' rx='8' fill='#FFFFFF' stroke='#059669' stroke-width='2'/>
+  <text x='115' y='127.5' text-anchor='middle' font-family='Segoe UI' font-size='10' fill='#1E293B'>Production</text>
+  <rect x='300' y='60' width='170' height='100' rx='10' fill='#FEF3C7' stroke='#D97706' stroke-width='2'/>
+    <text x='385' y='85' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#334155'>Secondary Region</text>
+    <rect x='325' y='100' width='120' height='45' rx='8' fill='#FFFFFF' stroke='#94A3B8' stroke-width='2'/>
+  <text x='385' y='127.5' text-anchor='middle' font-family='Segoe UI' font-size='10' fill='#1E293B'>DR Site</text>
+    <line x1='200' y1='110' x2='300' y2='110' stroke='#475569' stroke-width='2' marker-end='url(#arrow)'/>
+    <text x='250' y='100' text-anchor='middle' font-family='Segoe UI' font-size='10' fill='#334155'>Failover</text>
+    <text x='250' y='185' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#334155'>Recovery in another region</text>
 </svg>

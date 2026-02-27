@@ -1,82 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="1250" height="720" viewBox="0 0 1250 720">
+﻿<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 480 180' width='480' height='180'>
+  <title>Azure Event Grid</title>
   <defs>
-    <style>
-      .title { font: 700 26px Inter, Segoe UI, Arial, sans-serif; fill:#0b3a75; }
-      .subtitle { font: 600 14px Inter, Segoe UI, Arial, sans-serif; fill:#0b3a75; }
-      .text { font: 13px Inter, Segoe UI, Arial, sans-serif; fill:#333; }
-      .muted { font: 12px Inter, Segoe UI, Arial, sans-serif; fill:#666; }
-      .lane { fill:#ffffff; stroke:#d7dee9; stroke-width:2; rx:14; }
-      .source { fill:#f6f9fc; stroke:#8a9dbd; stroke-width:2; rx:10; }
-      .grid { fill:#f0fff6; stroke:#2f8f4e; stroke-width:2.2; rx:14; }
-      .handler { fill:#fff7ee; stroke:#cc7a00; stroke-width:2; rx:10; }
-      .arrow { stroke:#333; stroke-width:2.2; marker-end:url(#arrowhead); }
-    </style>
-    <marker id="arrowhead" markerWidth="12" markerHeight="8" refX="10" refY="4" orient="auto">
-      <polygon points="0 0, 12 4, 0 8" fill="#333"/>
+    <marker id='arrow' markerWidth='10' markerHeight='7' refX='9' refY='3.5' orient='auto'>
+      <polygon points='0 0, 10 3.5, 0 7' fill='#475569'/>
+    </marker>
+    <marker id='arrowBlue' markerWidth='10' markerHeight='7' refX='9' refY='3.5' orient='auto'>
+      <polygon points='0 0, 10 3.5, 0 7' fill='#2563EB'/>
     </marker>
   </defs>
-
-  <text x="625" y="40" text-anchor="middle" class="title">Azure Event Grid — router zdarzeń</text>
-  <text x="625" y="64" text-anchor="middle" class="muted">serverless · event-driven · reactive integrations</text>
-
-  <!-- Sources -->
-  <rect x="40" y="100" width="350" height="580" class="lane"/>
-  <text x="60" y="130" class="subtitle">Event Sources</text>
-
-  <rect x="70" y="160" width="300" height="90" class="source"/>
-  <text x="220" y="190" text-anchor="middle" class="subtitle">Blob Storage</text>
-  <text x="220" y="212" text-anchor="middle" class="muted">BlobCreated / Deleted</text>
-
-  <rect x="70" y="270" width="300" height="90" class="source"/>
-  <text x="220" y="300" text-anchor="middle" class="subtitle">Event Hub</text>
-  <text x="220" y="322" text-anchor="middle" class="muted">capture events</text>
-
-  <rect x="70" y="380" width="300" height="90" class="source"/>
-  <text x="220" y="410" text-anchor="middle" class="subtitle">Resource Groups</text>
-  <text x="220" y="430" text-anchor="middle" class="muted">ARM events</text>
-
-  <rect x="70" y="490" width="300" height="90" class="source"/>
-  <text x="220" y="520" text-anchor="middle" class="subtitle">APIM</text>
-  <text x="220" y="542" text-anchor="middle" class="muted">request events</text>
-
-  <!-- Event Grid -->
-  <rect x="420" y="100" width="410" height="580" class="lane"/>
-  <text x="440" y="130" class="subtitle">Event Grid</text>
-
-  <rect x="450" y="160" width="350" height="500" class="grid"/>
-  <text x="625" y="200" class="subtitle" text-anchor="middle">Event Grid Topic</text>
-
-  <text x="625" y="230" class="muted" text-anchor="middle">sub-second delivery · retries · guaranteed push</text>
-
-  <!-- Handlers -->
-  <rect x="860" y="100" width="350" height="580" class="lane"/>
-  <text x="880" y="130" class="subtitle">Event Handlers</text>
-
-  <rect x="890" y="160" width="300" height="90" class="handler"/>
-  <text x="1040" y="190" text-anchor="middle" class="subtitle">Azure Function</text>
-  <text x="1040" y="212" text-anchor="middle" class="muted">event trigger</text>
-
-  <rect x="890" y="270" width="300" height="90" class="handler"/>
-  <text x="1040" y="300" text-anchor="middle" class="subtitle">Logic App</text>
-  <text x="1040" y="322" text-anchor="middle" class="muted">no‑code workflows</text>
-
-  <rect x="890" y="380" width="300" height="90" class="handler"/>
-  <text x="1040" y="410" text-anchor="middle" class="subtitle">WebHook</text>
-  <text x="1040" y="432" text-anchor="middle" class="muted">custom integrations</text>
-
-  <rect x="890" y="490" width="300" height="90" class="handler"/>
-  <text x="1040" y="520" text-anchor="middle" class="subtitle">Event Hub</text>
-  <text x="1040" y="542" text-anchor="middle" class="muted">fan-in / fan-out</text>
-
-  <!-- Arrows -->
-  <line x1="350" y1="200" x2="450" y2="210" class="arrow"/>
-  <line x1="350" y1="310" x2="450" y2="230" class="arrow"/>
-  <line x1="350" y1="420" x2="450" y2="260" class="arrow"/>
-  <line x1="350" y1="530" x2="450" y2="300" class="arrow"/>
-
-  <line x1="800" y1="210" x2="890" y2="205" class="arrow"/>
-  <line x1="800" y1="310" x2="890" y2="315" class="arrow"/>
-  <line x1="800" y1="440" x2="890" y2="430" class="arrow"/>
-  <line x1="800" y1="550" x2="890" y2="540" class="arrow"/>
+  <rect width='480' height='180' fill='#FFFFFF'/>
+    <text x='240' y='25' text-anchor='middle' font-family='Segoe UI' font-size='13' fill='#0F172A'>Event Grid (Reactive Events)</text>
+    <rect x='30' y='70' width='100' height='60' rx='8' fill='#DBEAFE' stroke='#2563EB' stroke-width='2'/>
+  <text x='80' y='105' text-anchor='middle' font-family='Segoe UI' font-size='9' fill='#1E293B'>Blob Created</text>
+    <line x1='130' y1='100' x2='180' y2='100' stroke='#475569' stroke-width='2' marker-end='url(#arrow)'/>
+    <rect x='190' y='60' width='100' height='80' rx='8' fill='#FEF3C7' stroke='#D97706' stroke-width='2'/>
+  <text x='240' y='105' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#1E293B'></text>
+    <text x='240' y='90' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#334155'>Event Grid</text>
+    <text x='240' y='115' text-anchor='middle' font-family='Segoe UI' font-size='9' fill='#334155'>Router</text>
+    <line x1='290' y1='85' x2='340' y2='65' stroke='#475569' stroke-width='2' marker-end='url(#arrow)'/>
+    <line x1='290' y1='115' x2='340' y2='135' stroke='#475569' stroke-width='2' marker-end='url(#arrow)'/>
+    <rect x='350' y='45' width='100' height='40' rx='8' fill='#D1FAE5' stroke='#059669' stroke-width='2'/>
+  <text x='400' y='70' text-anchor='middle' font-family='Segoe UI' font-size='9' fill='#1E293B'>Function</text>
+    <rect x='350' y='105' width='100' height='40' rx='8' fill='#D1FAE5' stroke='#059669' stroke-width='2'/>
+  <text x='400' y='130' text-anchor='middle' font-family='Segoe UI' font-size='9' fill='#1E293B'>Logic App</text>
+    <text x='240' y='165' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#334155'>Event-driven serverless</text>
 </svg>
