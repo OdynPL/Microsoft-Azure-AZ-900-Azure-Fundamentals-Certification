@@ -1,11 +1,21 @@
 
-# Microsoft Azure – AZ‑900 Fundamentals (Kompendium w 1 pliku)
+<div align="center">
 
-> Kompletny, praktyczny README do szybkiej nauki i utrwalenia wiedzy pod egzamin **AZ‑900 Microsoft Azure Fundamentals**. Zawiera: podstawy chmury, architekturę Azure, kluczowe usługi (Compute/Networking/Storage), tożsamość i bezpieczeństwo (Microsoft Entra), governance i koszty, monitoring, IaC & automatyzację, rozszerzone usługi oraz **podchwytliwe pytania egzaminacyjne**.
+# Microsoft Azure AZ-900 Fundamentals
+
+### Kompletne kompendium do certyfikacji
+
+[![Azure](https://img.shields.io/badge/Microsoft%20Azure-0078D4?style=for-the-badge&logo=microsoft-azure&logoColor=white)](https://azure.microsoft.com)
+[![AZ-900](https://img.shields.io/badge/AZ--900-Fundamentals-5C2D91?style=for-the-badge)](https://learn.microsoft.com/pl-pl/certifications/azure-fundamentals/)
+[![Status](https://img.shields.io/badge/Status-Aktualne%202026-107C10?style=for-the-badge)](.)
+
+</div>
+
+> Kompletny, praktyczny przewodnik do szybkiej nauki i utrwalenia wiedzy pod egzamin **AZ-900 Microsoft Azure Fundamentals**. Zawiera: podstawy chmury, architekture Azure, kluczowe uslugi (Compute/Networking/Storage), tozsamosc i bezpieczenstwo (Microsoft Entra), governance i koszty, monitoring, IaC & automatyzacje, rozszerzone uslugi oraz **podchwytliwe pytania egzaminacyjne**.
 
 ---
 
-## Spis treści
+## Spis tresci
 - [1. Cloud Concepts (Podstawy chmury)](#sec-01-cloud-concepts)
 - [2. Azure Architecture (Architektura i hierarchia)](#sec-02-azure-architecture)
 - [3. Compute Services (Usługi obliczeniowe)](#sec-03-compute-services)
