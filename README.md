@@ -29,7 +29,6 @@
 - [21. Wdrażanie aplikacji na Azure (Deployment)](#sec-21-deployment)
 - [22. Last-minute cram (pulapki + porownania)](#sec-22-last-minute-cram)
 - [23. Azure Key Vault](#sec-23-azure-key-vault)
-- [Zalacznik A – Diagramy ASCII](#sec-appendix-ascii)
 
 ---
 
@@ -870,27 +869,6 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
             // Synchronizuj z innym systemem, indeksuj w Search, etc.
         }
     }
-    ```
-
-    **JavaScript/Node.js (HTTP Trigger):**
-    ```javascript
-    module.exports = async function (context, req) {
-        const name = req.query.name || req.body?.name || 'World';
-        
-        context.res = {
-            status: 200,
-            body: `Hello, ${name}!`
-        };
-    };
-    ```
-
-    **Python (HTTP Trigger):**
-    ```python
-    import azure.functions as func
-
-    def main(req: func.HttpRequest) -> func.HttpResponse:
-        name = req.params.get('name', 'World')
-        return func.HttpResponse(f"Hello, {name}!")
     ```
 
     ### Tworzenie przez Azure CLI
@@ -3739,25 +3717,6 @@ az container create --resource-group myRG \
 - Jeśli pytanie dotyczy „najmniej operacji”, wybieraj bardziej zarządzane usługi (PaaS/serverless).
 - Zostaw trudne pytania na koniec i wróć po pierwszym przejściu.
 
-<a id="sec-appendix-ascii"></a>
-## Załącznik A – Diagramy ASCII
-**Hierarchia i scope:**
-```
-Tenant
- └─ Management Groups
-     └─ Subscription(s)
-         └─ Resource Group(s)
-             └─ Resource(s)
-```
-
-**Region i strefy AZ:**
-```
-Region (low-latency network)
- ├─ AZ1 (independent power/cooling/network)
- ├─ AZ2 (independent power/cooling/network)
- └─ AZ3 (independent power/cooling/network)
-```
-
 ---
 <a id="sec-23-azure-key-vault"></a>
 ## 23. Azure Key Vault
@@ -3956,38 +3915,9 @@ KeyVaultSecret secret = await client.GetSecretAsync("DatabaseConnectionString");
 string connectionString = secret.Value;
 ```
 
-**3. Kod aplikacji (Python)**
-
-```python
-from azure.identity import DefaultAzureCredential
-from azure.keyvault.secrets import SecretClient
-
-credential = DefaultAzureCredential()
-client = SecretClient(vault_url="https://mykeyvault.vault.azure.net/", 
-                      credential=credential)
-
-secret = client.get_secret("DatabaseConnectionString")
-connection_string = secret.value
-```
-
-**4. Kod aplikacji (JavaScript/Node.js)**
-
-```javascript
-const { SecretClient } = require("@azure/keyvault-secrets");
-const { DefaultAzureCredential } = require("@azure/identity");
-
-const client = new SecretClient(
-    "https://mykeyvault.vault.azure.net/",
-    new DefaultAzureCredential()
-);
-
-const secret = await client.getSecret("DatabaseConnectionString");
-const connectionString = secret.value;
-```
-
 ---
 
-### Zarządzanie certyfikatami
+### Zarzadzanie certyfikatami
 
 ```bash
 # Import istniejącego certyfikatu (PFX)
