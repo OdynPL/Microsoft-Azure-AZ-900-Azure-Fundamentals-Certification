@@ -1,0 +1,250 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 950 650">
+  <defs>
+    <linearGradient id="kvGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a5276;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2980b9;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="secretGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7d3c98;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#9b59b6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="keyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#b7950b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f1c40f;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="certGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e8449;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#27ae60;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="hsmGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#922b21;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#c0392b;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="appGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1f618d;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3498db;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="entraGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e67e22;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f39c12;stop-opacity:1" />
+    </linearGradient>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2980b9"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#27ae60"/>
+    </marker>
+    <marker id="arrowOrange" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#e67e22"/>
+    </marker>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="950" height="650" fill="#f8f9fa"/>
+  
+  <!-- Title -->
+  <text x="475" y="30" text-anchor="middle" font-family="Segoe UI, Arial" font-size="22" font-weight="600" fill="#2c3e50">Azure Key Vault - Architektura i przepływ dostępu</text>
+  
+  <!-- Left section: Key Vault Structure -->
+  <rect x="20" y="50" width="320" height="280" rx="10" fill="#ecf0f1" stroke="#bdc3c7"/>
+  <text x="180" y="75" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="600" fill="#2c3e50">ZAWARTOŚĆ KEY VAULT</text>
+  
+  <!-- Key Vault main box -->
+  <rect x="40" y="90" width="280" height="225" rx="8" fill="url(#kvGrad)"/>
+  <text x="180" y="115" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="600" fill="white">my-keyvault</text>
+  
+  <!-- Secrets -->
+  <rect x="55" y="130" width="120" height="80" rx="5" fill="url(#secretGrad)"/>
+  <text x="115" y="152" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" font-weight="600" fill="white">SECRETS</text>
+  <text x="115" y="168" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">• ConnectionStrings</text>
+  <text x="115" y="180" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">• API Keys</text>
+  <text x="115" y="192" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">• Passwords</text>
+  <text x="115" y="204" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">• Tokeny</text>
+  
+  <!-- Keys -->
+  <rect x="185" y="130" width="120" height="80" rx="5" fill="url(#keyGrad)"/>
+  <text x="245" y="152" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" font-weight="600" fill="#5d4037">KEYS</text>
+  <text x="245" y="168" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#5d4037">• RSA 2048/4096</text>
+  <text x="245" y="180" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#5d4037">• EC P-256/384/521</text>
+  <text x="245" y="192" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#5d4037">• Szyfrowanie</text>
+  <text x="245" y="204" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#5d4037">• Podpisywanie</text>
+  
+  <!-- Certificates -->
+  <rect x="55" y="220" width="120" height="80" rx="5" fill="url(#certGrad)"/>
+  <text x="115" y="242" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" font-weight="600" fill="white">CERTIFICATES</text>
+  <text x="115" y="258" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">• TLS/SSL</text>
+  <text x="115" y="270" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">• Auto-renewal</text>
+  <text x="115" y="282" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">• DigiCert/Let's Encrypt</text>
+  <text x="115" y="294" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">• Self-signed</text>
+  
+  <!-- HSM -->
+  <rect x="185" y="220" width="120" height="80" rx="5" fill="url(#hsmGrad)"/>
+  <text x="245" y="242" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" font-weight="600" fill="white">HSM (Premium)</text>
+  <text x="245" y="258" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">• FIPS 140-2 L2/L3</text>
+  <text x="245" y="270" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">• Hardware protection</text>
+  <text x="245" y="282" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">• Managed HSM</text>
+  <text x="245" y="294" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">• BYOK support</text>
+  
+  <!-- Middle section: Access Flow -->
+  <rect x="360" y="50" width="280" height="280" rx="10" fill="#ecf0f1" stroke="#bdc3c7"/>
+  <text x="500" y="75" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="600" fill="#2c3e50">PRZEPŁYW DOSTĘPU</text>
+  
+  <!-- Application -->
+  <rect x="380" y="95" width="100" height="50" rx="5" fill="url(#appGrad)"/>
+  <text x="430" y="118" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="white">App Service</text>
+  <text x="430" y="132" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">(Managed Identity)</text>
+  
+  <!-- Step 1 arrow -->
+  <line x1="480" y1="120" x2="515" y2="120" stroke="#e67e22" stroke-width="2" marker-end="url(#arrowOrange)"/>
+  <text x="498" y="112" font-family="Segoe UI, Arial" font-size="9" fill="#e67e22" font-weight="600">1</text>
+  
+  <!-- Entra ID -->
+  <rect x="520" y="95" width="100" height="50" rx="5" fill="url(#entraGrad)"/>
+  <text x="570" y="118" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="white">Microsoft</text>
+  <text x="570" y="132" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">Entra ID</text>
+  
+  <!-- Step 2 arrow (down) -->
+  <line x1="570" y1="145" x2="570" y2="175" stroke="#e67e22" stroke-width="2" marker-end="url(#arrowOrange)"/>
+  <text x="580" y="165" font-family="Segoe UI, Arial" font-size="9" fill="#e67e22" font-weight="600">2</text>
+  
+  <!-- Access Token -->
+  <rect x="520" y="180" width="100" height="35" rx="5" fill="#fff3cd" stroke="#ffc107"/>
+  <text x="570" y="202" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" font-weight="600" fill="#856404">Access Token</text>
+  
+  <!-- Step 3 arrow (left) -->
+  <line x1="520" y1="200" x2="480" y2="200" stroke="#e67e22" stroke-width="2" marker-end="url(#arrowOrange)"/>
+  <text x="498" y="192" font-family="Segoe UI, Arial" font-size="9" fill="#e67e22" font-weight="600">3</text>
+  
+  <!-- App with token -->
+  <rect x="380" y="180" width="100" height="35" rx="5" fill="url(#appGrad)"/>
+  <text x="430" y="202" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">App + Token</text>
+  
+  <!-- Step 4 arrow (down) -->
+  <line x1="430" y1="215" x2="430" y2="245" stroke="#27ae60" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <text x="440" y="235" font-family="Segoe UI, Arial" font-size="9" fill="#27ae60" font-weight="600">4</text>
+  
+  <!-- Key Vault -->
+  <rect x="380" y="250" width="100" height="50" rx="5" fill="url(#kvGrad)"/>
+  <text x="430" y="273" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="white">Key Vault</text>
+  <text x="430" y="287" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">(RBAC check)</text>
+  
+  <!-- Step 5 arrow (to app response) -->
+  <line x1="480" y1="275" x2="515" y2="275" stroke="#27ae60" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <text x="498" y="267" font-family="Segoe UI, Arial" font-size="9" fill="#27ae60" font-weight="600">5</text>
+  
+  <!-- Secret value -->
+  <rect x="520" y="250" width="100" height="50" rx="5" fill="url(#secretGrad)"/>
+  <text x="570" y="273" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="white">Secret Value</text>
+  <text x="570" y="287" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">(returned)</text>
+  
+  <!-- Flow legend -->
+  <rect x="375" y="305" width="250" height="20" rx="3" fill="#d4edda" stroke="#28a745"/>
+  <text x="500" y="319" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#155724">1: Auth - 2: Token - 3,4: Request + Verify - 5: Secret</text>
+  
+  <!-- Right section: Access Control -->
+  <rect x="660" y="50" width="270" height="280" rx="10" fill="#ecf0f1" stroke="#bdc3c7"/>
+  <text x="795" y="75" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="600" fill="#2c3e50">KONTROLA DOSTĘPU</text>
+  
+  <!-- RBAC section -->
+  <rect x="680" y="90" width="230" height="110" rx="5" fill="white" stroke="#3498db"/>
+  <text x="795" y="110" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" font-weight="600" fill="#2980b9">RBAC (zalecane)</text>
+  
+  <text x="690" y="130" font-family="Segoe UI, Arial" font-size="9" fill="#2c3e50">• Key Vault Administrator</text>
+  <text x="690" y="145" font-family="Segoe UI, Arial" font-size="9" fill="#2c3e50">• Key Vault Secrets Officer</text>
+  <text x="690" y="160" font-family="Segoe UI, Arial" font-size="9" fill="#2c3e50">• Key Vault Secrets User</text>
+  <text x="690" y="175" font-family="Segoe UI, Arial" font-size="9" fill="#2c3e50">• Key Vault Crypto Officer</text>
+  <text x="690" y="190" font-family="Segoe UI, Arial" font-size="9" fill="#2c3e50">• Key Vault Certificates Officer</text>
+  
+  <!-- Access Policy section -->
+  <rect x="680" y="210" width="230" height="90" rx="5" fill="white" stroke="#7f8c8d"/>
+  <text x="795" y="230" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" font-weight="600" fill="#7f8c8d">Access Policy (legacy)</text>
+  
+  <text x="690" y="250" font-family="Segoe UI, Arial" font-size="9" fill="#2c3e50">• Get, List, Set, Delete</text>
+  <text x="690" y="265" font-family="Segoe UI, Arial" font-size="9" fill="#2c3e50">• Per principal (user/app)</text>
+  <text x="690" y="280" font-family="Segoe UI, Arial" font-size="9" fill="#2c3e50">• Separate: Keys/Secrets/Certs</text>
+  <text x="690" y="295" font-family="Segoe UI, Arial" font-size="9" fill="#7f8c8d">! Nie zalecane dla nowych wdrozen</text>
+  
+  <!-- Bottom section: Integration scenarios -->
+  <rect x="20" y="345" width="910" height="140" rx="10" fill="#ecf0f1" stroke="#bdc3c7"/>
+  <text x="475" y="370" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="600" fill="#2c3e50">TYPOWE SCENARIUSZE INTEGRACJI</text>
+  
+  <!-- Scenario 1: App Service -->
+  <rect x="40" y="390" width="170" height="80" rx="5" fill="white" stroke="#3498db"/>
+  <text x="125" y="410" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#2980b9">App Service / Functions</text>
+  <text x="125" y="428" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#2c3e50">@Microsoft.KeyVault(</text>
+  <text x="125" y="440" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#2c3e50">SecretUri=https://...)</text>
+  <text x="125" y="458" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#27ae60">[OK] Managed Identity</text>
+  
+  <!-- Scenario 2: AKS -->
+  <rect x="230" y="390" width="170" height="80" rx="5" fill="white" stroke="#3498db"/>
+  <text x="315" y="410" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#2980b9">AKS / Kontenery</text>
+  <text x="315" y="428" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#2c3e50">CSI Secret Store Driver</text>
+  <text x="315" y="440" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#2c3e50">Workload Identity</text>
+  <text x="315" y="458" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#27ae60">[OK] Pod Identity</text>
+  
+  <!-- Scenario 3: Storage encryption -->
+  <rect x="420" y="390" width="170" height="80" rx="5" fill="white" stroke="#3498db"/>
+  <text x="505" y="410" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#2980b9">Storage / SQL</text>
+  <text x="505" y="428" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#2c3e50">Customer-Managed Keys</text>
+  <text x="505" y="440" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#2c3e50">(CMK) for encryption</text>
+  <text x="505" y="458" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#27ae60">[OK] TDE / Encryption at Rest</text>
+  
+  <!-- Scenario 4: DevOps -->
+  <rect x="610" y="390" width="170" height="80" rx="5" fill="white" stroke="#3498db"/>
+  <text x="695" y="410" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#2980b9">CI/CD Pipelines</text>
+  <text x="695" y="428" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#2c3e50">Azure DevOps / GitHub</text>
+  <text x="695" y="440" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#2c3e50">Variable Groups linked</text>
+  <text x="695" y="458" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#27ae60">[OK] Service Connection</text>
+  
+  <!-- Scenario 5: Certificates -->
+  <rect x="800" y="390" width="110" height="80" rx="5" fill="white" stroke="#3498db"/>
+  <text x="855" y="410" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#2980b9">App Gateway</text>
+  <text x="855" y="428" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#2c3e50">TLS Cert</text>
+  <text x="855" y="440" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#2c3e50">Auto-renewal</text>
+  <text x="855" y="458" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#27ae60">[OK] Managed Cert</text>
+  
+  <!-- Bottom section: Security features -->
+  <rect x="20" y="500" width="450" height="140" rx="10" fill="#ecf0f1" stroke="#bdc3c7"/>
+  <text x="245" y="525" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="600" fill="#2c3e50">FUNKCJE BEZPIECZEŃSTWA</text>
+  
+  <rect x="40" y="540" width="130" height="85" rx="5" fill="#d4edda" stroke="#28a745"/>
+  <text x="105" y="558" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#155724">Soft Delete</text>
+  <text x="105" y="575" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#155724">90 dni retencji</text>
+  <text x="105" y="590" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#155724">Odzyskanie po</text>
+  <text x="105" y="605" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#155724">przypadkowym delete</text>
+  <text x="105" y="620" text-anchor="middle" font-family="Segoe UI, Arial" font-size="7" fill="#155724">[OK] Domyslnie wlaczone</text>
+  
+  <rect x="180" y="540" width="130" height="85" rx="5" fill="#d4edda" stroke="#28a745"/>
+  <text x="245" y="558" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#155724">Purge Protection</text>
+  <text x="245" y="575" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#155724">Blokuje trwałe</text>
+  <text x="245" y="590" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#155724">usunięcie w okresie</text>
+  <text x="245" y="605" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#155724">retencji</text>
+  <text x="245" y="620" text-anchor="middle" font-family="Segoe UI, Arial" font-size="7" fill="#155724">! Wymagane dla CMK</text>
+  
+  <rect x="320" y="540" width="130" height="85" rx="5" fill="#d4edda" stroke="#28a745"/>
+  <text x="385" y="558" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#155724">Private Endpoint</text>
+  <text x="385" y="575" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#155724">Prywatny dostęp</text>
+  <text x="385" y="590" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#155724">przez VNet</text>
+  <text x="385" y="605" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#155724">Bez publicznego IP</text>
+  <text x="385" y="620" text-anchor="middle" font-family="Segoe UI, Arial" font-size="7" fill="#155724">[OK] Firewall rules</text>
+  
+  <!-- Right bottom: Pricing tiers -->
+  <rect x="490" y="500" width="440" height="140" rx="10" fill="#ecf0f1" stroke="#bdc3c7"/>
+  <text x="710" y="525" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="600" fill="#2c3e50">WARSTWY CENOWE</text>
+  
+  <!-- Standard tier -->
+  <rect x="510" y="545" width="190" height="85" rx="5" fill="url(#kvGrad)"/>
+  <text x="605" y="567" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="white">STANDARD</text>
+  <text x="605" y="585" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">Software-protected keys</text>
+  <text x="605" y="600" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">Secrets + Certificates</text>
+  <text x="605" y="615" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">~0.03$/10K operations</text>
+  <text x="605" y="628" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#d4edda">[OK] Wiekszosc scenariuszy</text>
+  
+  <!-- Premium tier -->
+  <rect x="720" y="545" width="190" height="85" rx="5" fill="url(#hsmGrad)"/>
+  <text x="815" y="567" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="white">PREMIUM</text>
+  <text x="815" y="585" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">• HSM-protected keys</text>
+  <text x="815" y="600" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">• FIPS 140-2 Level 2</text>
+  <text x="815" y="615" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">• ~1$/key/month + ops</text>
+  <text x="815" y="628" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#d4edda">[OK] Compliance (banking)</text>
+</svg>
