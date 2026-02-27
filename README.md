@@ -45,7 +45,7 @@
 Usługi uruchamiane w infrastrukturze dostawcy (np. Microsoft Azure). Dostępność i skalowanie zapewnia provider, a Ty płacisz za zużycie. Szybki time‑to‑market, szeroka oferta usług, brak konieczności utrzymywania hardware’u.
 <br>
 
-<img src="assets/public_cloud.svg">
+<img src="assets/public_cloud.svg" alt="Public Cloud - model chmury publicznej">
 
 **Kiedy używać:** projekty o zmiennym obciążeniu, potrzeba globalnego zasięgu, krótkie cykle wdrożeniowe.  
 **Ryzyka/uwagi:** lock‑in, zgodność/regulacje, kontrola nad siecią niższa niż on‑prem.
@@ -56,7 +56,7 @@ Usługi uruchamiane w infrastrukturze dostawcy (np. Microsoft Azure). Dostępno�
 Dedykowana chmura dla jednej organizacji (własne DC / hosting dedykowany / Azure Stack HCI). Najwyższa kontrola i możliwość dopasowania do rygorów zgodności, kosztem zwinności i CAPEX/OPEX.
 <br>
 
-<img src="assets/private_cloud.svg">
+<img src="assets/private_cloud.svg" alt="Private Cloud - model chmury prywatnej">
 
 **Kiedy używać:** silne wymagania compliance, izolacja, specyficzne potrzeby bezpieczeństwa/latencji.  
 **Ryzyka/uwagi:** większe koszty utrzymania, mniejsza elastyczność skalowania.
@@ -67,7 +67,7 @@ Dedykowana chmura dla jednej organizacji (własne DC / hosting dedykowany / Azur
 Połączenie środowisk on‑prem/private z public cloud. Umożliwia przenoszenie obciążeń, burst do chmury i stopniową migrację, z zachowaniem kontroli nad danymi krytycznymi.
 <br>
 
-<img src="assets/hybrid_cloud.svg">
+<img src="assets/hybrid_cloud.svg" alt="Hybrid Cloud - model chmury hybrydowej">
 
 **Kiedy używać:** modernizacja etapowa, wymogi rezydencji danych, integracje z istniejącymi systemami.  
 **Ryzyka/uwagi:** złożoność sieci/identyfikacji/monitoringu, potrzeba spójnego governance.
@@ -78,7 +78,7 @@ Połączenie środowisk on‑prem/private z public cloud. Umożliwia przenoszeni
 Chmura współdzielona przez grupę organizacji o wspólnych wymaganiach — np. sektor publiczny, medyczny, edukacyjny lub finansowy. Zapewnia wspólne standardy bezpieczeństwa, zgodność regulacyjną i kontrolę nad środowiskiem.
 <br>
 
-<img src="assets/community_cloud.svg">
+<img src="assets/community_cloud.svg" alt="Community Cloud - model chmury spolecznosciowej">
 
 **Kiedy używać:** organizacje o wspólnych regulacjach (RODO, HIPAA, FINREP), współdzielone koszty, potrzeba jednolitych polityk bezpieczeństwa.  
 **Ryzyka/uwagi:** uzgodnienie governance między uczestnikami, współdzielona odpowiedzialność, potencjalnie mniejsza elastyczność niż public cloud.
@@ -89,7 +89,7 @@ Chmura współdzielona przez grupę organizacji o wspólnych wymaganiach — np.
 Wykorzystanie wielu dostawców chmury (np. Azure, AWS, GCP) jednocześnie. Pozwala redukować vendor lock‑in, wybierać najlepsze usługi z różnych platform oraz zwiększyć odporność na awarie jednego providera.
 <br>
 
-<img src="assets/multi_cloud.svg">
+<img src="assets/multi_cloud.svg" alt="Multi-Cloud - model wielu dostawcow chmury">
 
 **Kiedy używać:** minimalizacja zależności od jednego dostawcy, strategia „best‑of‑breed”, wymagania biznesowe lub prawne dotyczące dywersyfikacji.  
 **Ryzyka/uwagi:** wyższa złożoność operacyjna, trudniejsze bezpieczeństwo i monitoring, konieczność ujednolicenia narzędzi i procesów (IaC/CI/CD).
@@ -100,7 +100,7 @@ Wykorzystanie wielu dostawców chmury (np. Azure, AWS, GCP) jednocześnie. Pozwa
 Model, w którym usługi chmurowe dostawcy (np. Azure, AWS, GCP) są fizycznie uruchamiane bliżej użytkownika — w lokalnych centrach danych, edge‑location, on‑prem lub w regionach partnerskich. Pozwala zachować jedno zarządzanie chmurą, ale wykonywać obliczenia tam, gdzie są potrzebne.
 <br>
 
-<img src="assets/distributed_cloud.svg">
+<img src="assets/distributed_cloud.svg" alt="Distributed Cloud - model chmury rozproszonej">
 
 **Kiedy używać:** niska latencja, wymagania rezydencji danych, obciążenia przemysłowe/IoT, obliczenia blisko fabryki lub oddziału.  
 **Ryzyka/uwagi:** większa złożoność wdrożeń, koordynacja między lokalnymi zasobami a centralną chmurą, zależność od infrastruktury partnerów.
@@ -111,7 +111,7 @@ Model, w którym usługi chmurowe dostawcy (np. Azure, AWS, GCP) są fizycznie u
 Przetwarzanie danych bezpośrednio na „krawędzi” sieci — blisko urządzeń IoT, fabryk, sklepów, samochodów autonomicznych czy systemów przemysłowych. Minimalizuje opóźnienia i redukuje transfer danych do regionów chmurowych.
 <br>
 
-<img src="assets/edge_cloud.svg">
+<img src="assets/edge_cloud.svg" alt="Edge Cloud - przetwarzanie na krawedzi sieci">
 
 **Kiedy używać:** ultra‑niska latencja, IoT, urządzenia mobilne, autonomiczne systemy, lokalne decyzje w czasie rzeczywistym.  
 **Ryzyka/uwagi:** konieczność zarządzania wieloma lokalizacjami, ograniczone zasoby sprzętowe, bardziej złożone bezpieczeństwo.
@@ -124,7 +124,7 @@ Przetwarzanie danych bezpośrednio na „krawędzi” sieci — blisko urządze�
 Dostawca udostępnia zasoby infrastruktury: maszyny wirtualne, sieci, load balancery, firewalle, dyski.  
 Użytkownik zarządza systemem operacyjnym, aplikacjami i konfiguracją.
 
-<img src="assets/iaas.svg">
+<img src="assets/iaas.svg" alt="IaaS - Infrastructure as a Service">
 
 **Przykłady:** Azure VM, VNet, Load Balancer, Storage.  
 **Kiedy używać:** migracje lift‑and‑shift, systemy wymagające pełnej kontroli nad OS.  
@@ -136,7 +136,7 @@ Użytkownik zarządza systemem operacyjnym, aplikacjami i konfiguracją.
 Środowisko uruchomieniowe dla aplikacji bez konieczności zarządzania OS, patchami i infrastrukturą.  
 Odpowiadasz jedynie za kod i dane.
 
-<img src="assets/paas.svg">
+<img src="assets/paas.svg" alt="PaaS - Platform as a Service">
 
 **Przykłady:** Azure App Service, Azure SQL, Functions (Premium).  
 **Kiedy używać:** API, mikroserwisy, aplikacje web.  
@@ -147,7 +147,7 @@ Odpowiadasz jedynie za kod i dane.
 ### SaaS (Software as a Service)
 W pełni gotowe aplikacje dostarczane jako usługa — bez instalacji i utrzymania.
 
-<img src="assets/saas.svg">
+<img src="assets/saas.svg" alt="SaaS - Software as a Service">
 
 **Przykłady:** Microsoft 365, Power BI, Salesforce.  
 **Kiedy używać:** poczta, dokumenty, CRM, HR, analiza danych.  
@@ -158,7 +158,7 @@ W pełni gotowe aplikacje dostarczane jako usługa — bez instalacji i utrzyman
 ### Serverless / FaaS (Function as a Service)
 Kod uruchamiany na żądanie, bez serwerów i bez opłat stałych — płacisz tylko za wykonanie.
 
-<img src="assets/faas.svg">
+<img src="assets/faas.svg" alt="FaaS - Function as a Service / Serverless">
 
 **Przykłady:** Azure Functions (Consumption), AWS Lambda.  
 **Kiedy używać:** event‑driven, automatyzacje, integracje, IoT.  
@@ -169,7 +169,7 @@ Kod uruchamiany na żądanie, bez serwerów i bez opłat stałych — płacisz t
 ### NaaS (Network as a Service)
 Sieć jako usługa — routing, VPN, SD‑WAN, firewalle, połączenia między chmurami, edge networking.
 
-<img src="assets/naas.svg">
+<img src="assets/naas.svg" alt="NaaS - Network as a Service">
 
 **Przykłady:** Azure Virtual WAN, AWS Cloud WAN.  
 **Kiedy używać:** globalna sieć firmy, integracje multi‑cloud, oddziały.  
@@ -180,7 +180,7 @@ Sieć jako usługa — routing, VPN, SD‑WAN, firewalle, połączenia między c
 ### CaaS (Container as a Service)
 Zarządzane środowisko kontenerowe — bez utrzymywania VM czy orkiestracji.
 
-<img src="assets/caas.svg">
+<img src="assets/caas.svg" alt="CaaS - Container as a Service">
 
 **Przykłady:** Azure Container Instances, AWS Fargate, Cloud Run.  
 **Kiedy używać:** mikroserwisy, API, krótkie zadania batch.  
@@ -191,7 +191,7 @@ Zarządzane środowisko kontenerowe — bez utrzymywania VM czy orkiestracji.
 ### DaaS (Desktop as a Service)
 Zdalne, hostowane w chmurze środowiska pulpitu użytkownika.
 
-<img src="assets/daas.svg">
+<img src="assets/daas.svg" alt="DaaS - Desktop as a Service">
 
 **Przykłady:** Azure Virtual Desktop, Windows 365.  
 **Kiedy używać:** praca zdalna, call‑center, access z dowolnego urządzenia.  
@@ -202,7 +202,7 @@ Zdalne, hostowane w chmurze środowiska pulpitu użytkownika.
 ### iPaaS (Integration Platform as a Service)
 Platformy integracyjne do łączenia systemów, API, ETL i workflow.
 
-<img src="assets/ipaas.svg">
+<img src="assets/ipaas.svg" alt="iPaaS - Integration Platform as a Service">
 
 **Przykłady:** Azure Logic Apps, MuleSoft, Boomi.  
 **Kiedy używać:** integracje ERP/CRM, automatyzacja procesów.  
@@ -213,7 +213,7 @@ Platformy integracyjne do łączenia systemów, API, ETL i workflow.
 ### MBaaS / BaaS (Mobile/Backend as a Service)
 Backend dostarczany jako usługa — auth, bazy, storage, push, API.
 
-<img src="assets/mbaas.svg">
+<img src="assets/mbaas.svg" alt="MBaaS - Mobile Backend as a Service">
 
 **Przykłady:** Firebase, AWS Amplify.  
 **Kiedy używać:** aplikacje mobilne, prototypy, szybki development.
@@ -223,7 +223,7 @@ Backend dostarczany jako usługa — auth, bazy, storage, push, API.
 ### BPaaS (Business Process as a Service)
 Gotowe procesy biznesowe jako usługa, np. HR, płace, księgowość, CRM.
 
-<img src="assets/bpaas.svg">
+<img src="assets/bpaas.svg" alt="BPaaS - Business Process as a Service">
 
 **Przykłady:** Workday, Dynamics 365, Salesforce.  
 **Kiedy używać:** outsourcing procesów biznesowych.  
@@ -235,7 +235,7 @@ Gotowe procesy biznesowe jako usługa, np. HR, płace, księgowość, CRM.
 
 Egzamin AZ-900 wymaga znajomości **4 kluczowych obszarów korzyści** wynikających z korzystania z chmury:
 
-<img src="assets/cloudbenefits.svg">
+<img src="assets/cloudbenefits.svg" alt="Korzysci chmury - dostepnosc, skalowalnosc, niezawodnosc, przewidywalnosc">
 
 ### 1. Wysoka dostępność i skalowalność (High Availability & Scalability)
 
@@ -303,7 +303,7 @@ Egzamin AZ-900 wymaga znajomości **4 kluczowych obszarów korzyści** wynikają
 
 ## Modele cenowe Azure (Cloud Pricing Models)
 
-<img src="assets/pricingmodels.svg">
+<img src="assets/pricingmodels.svg" alt="Modele cenowe Azure - Pay-As-You-Go, Reserved, Spot">
 
 Azure oferuje trzy główne modele cenowe dla zasobów compute:
 
@@ -325,7 +325,7 @@ Azure oferuje trzy główne modele cenowe dla zasobów compute:
 ### **Vertical Scaling (Scale Up / Scale Down)**
 Zwiększanie lub zmniejszanie *mocy pojedynczej instancji* zasobu — np. większy rozmiar VM (więcej CPU/RAM/dysk), mocniejsza baza danych, większy plan App Service.
 
-<img src="assets/vertical_scaling.svg">
+<img src="assets/vertical_scaling.svg" alt="Vertical Scaling - skalowanie pionowe">
 
 **Charakterystyka:**
 - Skalowanie „w górę” = mocniejsza maszyna.
@@ -340,7 +340,7 @@ Zwiększanie lub zmniejszanie *mocy pojedynczej instancji* zasobu — np. więks
 ### **Horizontal Scaling (Scale Out / Scale In)**
 Dodawanie lub usuwanie *instancji zasobu*. Zamiast jednej mocnej maszyny — wiele mniejszych pracujących równolegle.
 
-<img src="assets/horizontal_scaling.svg">
+<img src="assets/horizontal_scaling.svg" alt="Horizontal Scaling - skalowanie poziome">
 
 **Charakterystyka:**
 - Scale out = dodawanie instancji.
@@ -360,7 +360,7 @@ Dodawanie lub usuwanie *instancji zasobu*. Zamiast jednej mocnej maszyny — wie
 ### **Autoskalowanie (Automatic Scaling / Auto‑Scale)**
 Automatyczne zwiększanie/zmniejszanie liczby instancji lub mocy zasobu na podstawie *metryk, progów i reguł*.
 
-<img src="assets/autoscaling.svg">
+<img src="assets/autoscaling.svg" alt="Autoskalowanie - automatyczne skalowanie zasobow">
 
 **Rodzaje autoskalowania:**
 - **Metric-based** – CPU, RAM, latency, queue depth, request count.
@@ -402,7 +402,7 @@ Kontrola obciążenia aplikacji i API w czasie autoskalowania — ochrona przed 
 ### **High Availability (HA) – Wysoka dostępność**
 Projektowanie infrastruktury w taki sposób, aby usługa pozostawała dostępna mimo awarii pojedynczych elementów.
 
-<img src="assets/high_availability.svg">
+<img src="assets/high_availability.svg" alt="High Availability - wysoka dostepnosc">
 
 **Kluczowe mechanizmy:**
 - **Redundancja zasobów** – co najmniej 2 instancje (VM, kontenery, App Service) pracujące równolegle.
@@ -418,7 +418,7 @@ Projektowanie infrastruktury w taki sposób, aby usługa pozostawała dostępna 
 ### **Fault Tolerance – Odporność na awarie**
 System działa nawet wtedy, gdy część komponentów ulegnie całkowitej awarii — bez utraty usługi i bez przerwy.
 
-<img src="assets/resilience.svg">
+<img src="assets/resilience.svg" alt="Fault Tolerance - odpornosc na awarie">
 
 **Cechy architektury odpornej na awarie:**
 - **Brak pojedynczego punktu awarii (SPOF)** — każdy element ma co najmniej jeden duplikat.
@@ -434,7 +434,7 @@ System działa nawet wtedy, gdy część komponentów ulegnie całkowitej awarii
 Zabezpieczenie na wypadek katastrofalnej awarii całego regionu lub utraty danych.  
 Skupia się na **przywróceniu pracy systemu w innym regionie**.
 
-<img src="assets/disaster_recovery.svg">
+<img src="assets/disaster_recovery.svg" alt="Disaster Recovery - odzyskiwanie po awarii">
 
 **Podstawowe pojęcia:**
 - **RTO (Recovery Time Objective)** – jak szybko system musi zostać przywrócony (czas).
@@ -483,7 +483,7 @@ Skupia się na **przywróceniu pracy systemu w innym regionie**.
 
 Poniższy diagram przedstawia pełną hierarchię zarządzania w Azure — od najwyższego poziomu tożsamości (Tenant), przez struktury organizacyjne (Management Groups), aż po subskrypcje, grupy zasobów i pojedyncze zasoby.
 
-<img src="assets/hierarchy_scope.svg">
+<img src="assets/hierarchy_scope.svg" alt="Hierarchia zasobow Azure - Tenant, Management Groups, Subscriptions">
 
 ### Hierarchia definiuje:
 - **zakres (scope)**, na którym można przypisywać uprawnienia (RBAC),
@@ -505,13 +505,13 @@ Ta struktura jest fundamentem pracy z Azure — wpływa na **uprawnienia, govern
 - **Resource Group (RG)** – logiczny kontener na powiązane ze sobą zasoby (np. aplikację i jej bazę danych).
 - **Resource** – pojedynczy zasób lub usługa, np. VM, VNet, konto Storage, App Service itd.
 
-<img src="assets/azure_hierarchy.svg">
+<img src="assets/azure_hierarchy.svg" alt="Hierarchia Azure - Tenant, Management Group, Subscription, Resource Group">
 
 - Jeden **Resource** może należeć tylko do jednej **Resource Group**.
 
 ## Globalna infrastruktura Azure
 
-<img src="assets/azure_global_architecture.svg">
+<img src="assets/azure_global_architecture.svg" alt="Globalna architektura Azure - regiony, strefy dostepnosci">
 
 - **Geography** – obszar składający się z jednego lub kilku regionów, stanowiący granicę rezydencji i zgodności danych (np. EU, US).
 
@@ -542,7 +542,7 @@ Ta struktura jest fundamentem pracy z Azure — wpływa na **uprawnienia, govern
 **Azure Resource Manager (ARM)** to centralna warstwa zarządzania platformą Azure.  
 Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezależnie od tego, z jakiego narzędzia korzystasz.
 
-<img src="assets/arm_layer.svg">
+<img src="assets/arm_layer.svg" alt="Azure Resource Manager - warstwa zarzadzania">
 
 - **Spójne API** – ujednolicony mechanizm zarządzania zasobami Azure.
 
@@ -665,7 +665,7 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
     Elastyczne maszyny wirtualne w wielu seriach (B, Dv5/Ev5, pamięciochłonne, obliczeniowe, GPU).  
     Obsługują **managed disks**, **VM Extensions** i dowolne systemy operacyjne.
 
-    <img src="assets/vm.svg">
+    <img src="assets/vm.svg" alt="Azure Virtual Machines - maszyny wirtualne">
 
     **Managed disks** czyli niezawodne dyski zarządzane dla maszyny wirtualnej.
 
@@ -682,7 +682,7 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
     Zapewniają odporność na awarie dzięki podziałowi na **Fault Domains** i **Update Domains**.  
     Chronią przed skutkami awarii sprzętu oraz planowanych aktualizacji.
 
-    <img src="assets/avsets.svg">
+    <img src="assets/avsets.svg" alt="Availability Sets - Fault Domains i Update Domains">
 
     **Fault Domains** czyli niezależne fizyczne strefy (różne racki, zasilanie, sieć).  
 
@@ -692,7 +692,7 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
 
     **VM Scale Sets** to usługa umożliwiająca automatyczne uruchamianie, skalowanie i zarządzanie wieloma identycznymi maszynami wirtualnymi (VM). Wszystkie instancje oparte są na jednym *modelu* konfiguracji, co zapewnia spójność środowiska przy dużej skali.
 
-    <img src="assets/vmss.svg">
+    <img src="assets/vmss.svg" alt="VM Scale Sets - automatyczne skalowanie maszyn wirtualnych">
 
   - **Autoscaling** – automatyczne zwiększanie lub zmniejszanie liczby VM na podstawie metryk (CPU, RAM, Queue Length, HTTP load) lub harmonogramów.
 
@@ -714,7 +714,7 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
 
     Zarządzana platforma do uruchamiania aplikacji Web, API i Mobile — bez konieczności zarządzania infrastrukturą.  
 
-    <img src="assets/appservice.svg">
+    <img src="assets/appservice.svg" alt="Azure App Service - zarzadzana platforma aplikacji webowych">
 
     Umożliwia łatwe wdrażanie aplikacji, obsługuje **deployment slots**, integruje się z CI/CD  
     (GitHub Actions, Azure DevOps) i zapewnia automatyczne skalowanie instancji w zależności od obciążenia.
@@ -725,13 +725,13 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
    
     Funkcje działają w planach **Consumption** (auto‑skalowanie, płatność za wykonania) oraz **Premium** (stałe instancje, VNET, dłuższe timeouty), obsługując dziesiątki triggerów i bindingów.
 
-    <img src="assets/azurefunctions.svg">
+    <img src="assets/azurefunctions.svg" alt="Azure Functions - serverless compute">
 
     Azure Functions = event‑driven + serverless + automatyczne skalowanie + bogaty ekosystem triggerów i bindingów.
 
     ### Plany hostingowe (Hosting Plans)
 
-    <img src="assets/functions_hosting_plans.svg">
+    <img src="assets/functions_hosting_plans.svg" alt="Azure Functions - plany hostingowe">
 
     | Plan | Cold Start | Timeout | VNet | Skalowanie | Kiedy używać |
     |------|------------|---------|------|------------|--------------|
@@ -746,7 +746,7 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
 
     ### Triggers i Bindings
 
-    <img src="assets/functions_triggers_bindings.svg">
+    <img src="assets/functions_triggers_bindings.svg" alt="Azure Functions - triggers i bindings">
 
     **Triggers** – zdarzenia uruchamiające funkcję:
     | Trigger | Opis | Przykład użycia |
@@ -778,7 +778,7 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
     ### Rodzaje Functions
     - **Standard** functions
         
-        <img src="assets/azurefunctions_standard.svg">
+        <img src="assets/azurefunctions_standard.svg" alt="Standard Functions - funkcje bezstanowe">
         
         - Brak stanu (Stateless)
         - Krótki stan działania
@@ -787,7 +787,7 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
         - Brak natywnego wsparcia dla workflow
     - **Durable** functions
         
-        <img src="assets/azurefunctions_durable.svg">
+        <img src="assets/azurefunctions_durable.svg" alt="Durable Functions - funkcje z trwalym stanem">
         
         - Stan zapisywany automatycznie
         - Mogą działać długo
@@ -914,7 +914,7 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
 
     Azure Container Instances to najszybszy sposób uruchamiania kontenerów w Azure bez potrzeby tworzenia lub zarządzania klastrem Kubernetes.
 
-    <img src="assets/aci.svg">
+    <img src="assets/aci.svg" alt="Azure Container Instances - szybkie uruchamianie kontenerow">
 
     Idealne do krótkotrwałych, jednorazowych lub prostych workloadów — batch jobs, API workers, testów, automatyzacji.
 
@@ -944,7 +944,7 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
 
     Zarządzany Kubernetes w Azure, który automatyzuje większość złożonych zadań administracyjnych — takich jak aktualizacje węzłów, skalowanie, bezpieczeństwo i integracja z ekosystemem Azure.  
 
-    <img src="assets/azurekubernetesservice.svg">
+    <img src="assets/azurekubernetesservice.svg" alt="Azure Kubernetes Service - zarzadzany Kubernetes">
 
     Umożliwia uruchamianie kontenerów w modelu produkcyjnym bez konieczności samodzielnego zarządzania control plane.
     
@@ -964,7 +964,7 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
 
     Azure Bastion umożliwia bezpieczne połączenia RDP i SSH do maszyn wirtualnych **bez potrzeby wystawiania publicznych adresów IP**.  
 
-    <img src="assets/azurebastion.svg">
+    <img src="assets/azurebastion.svg" alt="Azure Bastion - bezpieczny dostep RDP/SSH">
 
     Działa przez przeglądarkę (HTML5), minimalizuje powierzchnię ataku, usuwa konieczność otwierania portów 3389/22. 
 
@@ -992,7 +992,7 @@ Podstawowa sieć prywatna w Azure – kontrola adresacji, segmentacji oraz tras 
 - **UDR (User Defined Routes)**  
   Niestandardowe trasy wymuszające kierowanie ruchu przez określone urządzenia, np. firewall NVA.
 
-<img src="assets/azurevnets.svg">
+<img src="assets/azurevnets.svg" alt="Azure VNet - sieci wirtualne i subnety">
 
 Najczęstsze zastosowania:
 - kierowanie ruchu przez firewall (NVA / Azure Firewall)  
@@ -1013,7 +1013,7 @@ Egzaminowo: **Azure DNS odpowiada za rozwiązywanie nazw**, a nie za filtrowanie
 
 ### **NSG (Network Security Groups)**
 
-<img src="assets/nsg_network_security_groups.svg">
+<img src="assets/nsg_network_security_groups.svg" alt="NSG - Network Security Groups - firewall L3/L4">
 
 **NSG (Network Security Group)** to podstawowy firewall warstwy 3/4 (L3/L4) filtrujący ruch sieciowy na poziomie IP i portów. Może być przypisany do subnetu lub bezpośrednio do karty sieciowej (NIC) maszyny wirtualnej.
 
@@ -1161,7 +1161,7 @@ az network watcher flow-log create --name myFlowLog \
 
 ### **ASG (Application Security Groups)**
 
-<img src="assets/asg_application_security_groups.svg">
+<img src="assets/asg_application_security_groups.svg" alt="ASG - Application Security Groups - grupowanie logiczne VM">
 
 **ASG (Application Security Groups)** to logiczne grupowanie maszyn wirtualnych według ich funkcji w aplikacji. Zamiast pisać reguły NSG z konkretnymi adresami IP, używasz nazw grup aplikacyjnych.
 
@@ -1260,7 +1260,7 @@ az network nsg rule create --nsg-name myNSG \
 
 ### **Azure Firewall**
 
-<img src="assets/azure_firewall.svg">
+<img src="assets/azure_firewall.svg" alt="Azure Firewall - zarzadzany firewall L3-L7">
 
 **Azure Firewall** to w pełni zarządzany, stanowy firewall warstwy L3–L7, wdrażany jako usługa PaaS w dedykowanym subnecie (`AzureFirewallSubnet`).
 
@@ -1393,7 +1393,7 @@ az network firewall update --name myFirewall \
 
 #### Hub-Spoke Architecture
 
-<img src="assets/hub_spoke_architecture.svg">
+<img src="assets/hub_spoke_architecture.svg" alt="Hub-Spoke Architecture - centralna architektura sieciowa">
 
 **Hub-Spoke** to najpopularniejsza architektura sieciowa w Azure dla środowisk enterprise. Opiera się na centralnym VNecie (Hub), który łączy się z wieloma VNetami aplikacyjnymi (Spokes) za pomocą VNet Peering.
 
@@ -1519,7 +1519,7 @@ az network route-table route create --name ToInternet \
 
 Bezpośrednie, szybkie połączenie dwóch VNetów **bez tuneli, NAT i VPN**.
 
-<img src="assets/vnetpeering.svg">
+<img src="assets/vnetpeering.svg" alt="VNet Peering - polaczenie dwoch VNetow">
 
 Cechy:
 - komunikacja IP‑to‑IP po prywatnym backbone Azure,  
@@ -1533,7 +1533,7 @@ Cechy:
 
 Brama VPN umożliwiająca szyfrowane połączenia IPsec.
 
-<img src="assets/vpngateway.svg">
+<img src="assets/vpngateway.svg" alt="VPN Gateway - brama VPN IPsec">
 
 #### **Site‑to‑Site (S2S)**
 - Używasz S2S, gdy chcesz połączyć całą sieć on‑prem z Azure.
@@ -1544,7 +1544,7 @@ Brama VPN umożliwiająca szyfrowane połączenia IPsec.
 - VPN dla pojedynczego użytkownika (OpenVPN / IKEv2 / Azure VPN Client),  
 - nie wymaga infrastruktury po stronie użytkownika.
 
-<img src="assets/vpns2sp2p.svg">
+<img src="assets/vpns2sp2p.svg" alt="VPN Site-to-Site i Point-to-Site">
 
 ---
 
@@ -1552,7 +1552,7 @@ Brama VPN umożliwiająca szyfrowane połączenia IPsec.
 
 Prywatne łącze WAN do Azure, całkowicie poza publicznym Internetem.
 
-<img src="assets/expressroute.svg">
+<img src="assets/expressroute.svg" alt="ExpressRoute - prywatne lacze WAN do Azure">
 
 Cechy:
 - 50 Mbps – 100 Gbps,  
@@ -1569,7 +1569,7 @@ Rodzaje:
 
 ### **Public Endpoint / Private Endpoint / Service Endpoint**
 
-<img src="assets/privateendpoints.svg">
+<img src="assets/privateendpoints.svg" alt="Private Endpoint vs Service Endpoint vs Public Endpoint">
 
 #### **Public Endpoint**
 - publiczny adres IP usługi PaaS,
@@ -1649,25 +1649,25 @@ Dostępny jako:
 
 #### **Azure Load Balancer (L4)**  
 
-<img src="assets/azureloadbalancer.svg">
+<img src="assets/azureloadbalancer.svg" alt="Azure Load Balancer - rownowazenie obciazenia L4">
 
 Warstwa 4 – TCP/UDP. Szybki, prosty, idealny dla VM/VMSS.
 
 #### **Application Gateway (L7 + WAF)**  
 
-<img src="assets/applicationgateway.svg">
+<img src="assets/applicationgateway.svg" alt="Application Gateway - load balancer L7 z WAF">
 
 Warstwa 7 – routing HTTP/S, WAF, SSL termination, cookie affinity.
 
 #### **Traffic Manager (DNS LB)**  
 
-<img src="assets/trafficmanager.svg">
+<img src="assets/trafficmanager.svg" alt="Traffic Manager - DNS load balancing">
 
 Stosowany na poziomie DNS – georouting, failover, weighted.
 
 #### **Azure Front Door (L7 Edge)**   
 
-<img src="assets/frontdoor.svg">
+<img src="assets/frontdoor.svg" alt="Azure Front Door - globalny CDN i WAF">
 
 Globalny CDN + smart routing L7 + WAF na edge.
 
@@ -1703,7 +1703,7 @@ Umożliwia analizę ruchu i debugowanie problemów sieciowych.
 
 Poniżej znajdziesz jasne i zrozumiałe wyjaśnienie, czym są poszczególne typy storage, po co się ich używa oraz jak działa redundancja danych.
 
-<img src="assets/storagetypes.svg">
+<img src="assets/storagetypes.svg" alt="Azure Storage - typy przechowywania danych">
 
 ---
 
@@ -1767,7 +1767,7 @@ Dyski zarządzane przez Azure, wykorzystywane przez maszyny wirtualne.
 
 ## **Redundancja danych (odporność na awarie)**
 
-<img src="assets/storageredundancy.svg">
+<img src="assets/storageredundancy.svg" alt="Storage Redundancy - LRS, ZRS, GRS, RA-GRS">
 
 **LRS — Locally Redundant Storage**
 - 3 kopie danych w jednym datacenter  
@@ -1817,7 +1817,7 @@ Rekomendacja praktyczna: **najpierw RBAC**, potem **SAS** dla delegacji, a **Acc
 
 ## **Narzędzia i migracje**
 
-<img src="assets/storagetools.svg">
+<img src="assets/storagetools.svg" alt="Storage Explorer i AzCopy - narzedzia do zarzadzania Storage">
 
 **Storage Explorer**
 Narzędzie GUI do zarządzania Blob/Files/Queue/Table.
@@ -1833,7 +1833,7 @@ Najszybsze narzędzie do przesyłania danych do/z Azure Storage.
 - wysoka wydajność  
 - idealne do migracji dużych wolumenów
 
-<img src="assets/azuremigrate.svg">
+<img src="assets/azuremigrate.svg" alt="Azure Migrate - migracja do chmury">
 
 **Azure Migrate**
 Aplikacje, VM‑ki i dane mogą być analizowane i migrowane do Azure.
@@ -1842,7 +1842,7 @@ Aplikacje, VM‑ki i dane mogą być analizowane i migrowane do Azure.
 - integracja z Azure Storage (np. blob staging)
 
 
-<img src="assets/databox.svg">
+<img src="assets/databox.svg" alt="Data Box - fizyczny transfer danych offline">
 
 **Data Box**  
 Fizyczne urzadzenia Azure do przenoszenia bardzo duzych ilosci danych **offline**, bez wykorzystania Internetu.  
@@ -1865,7 +1865,7 @@ Stosowane wtedy, gdy lacze sieciowe jest zbyt wolne, niestabilne lub kosztowne.
 **Microsoft Entra ID**  
 Centralny system tożsamości w Azure i Microsoft 365. Odpowiada za uwierzytelnianie użytkowników, aplikacji i urządzeń. 
 
-<img src="assets/msentraid.svg">
+<img src="assets/msentraid.svg" alt="Microsoft Entra ID - centralny system tozsamosci">
  
 Kluczowe funkcje:
 - **SSO (Single Sign-On)** – jedno logowanie do wielu aplikacji (SaaS, on-prem, Azure).  
@@ -1883,7 +1883,7 @@ Egzaminowo: **Entra ID ≠ Entra Domain Services** (inne cele i funkcje).
 
 **Jak Entra ID uwierzytelnia użytkownika**?
 
-<img src="assets/userauthorization.svg">
+<img src="assets/userauthorization.svg" alt="Autoryzacja uzytkownika w Entra ID">
 
 Proces logowania przebiega w kilku krokach:
 1. **Identyfikacja** – użytkownik podaje login (UPN), Entra ID ustala tenant i polityki.  
@@ -1895,7 +1895,7 @@ Proces logowania przebiega w kilku krokach:
 
 **Jak uwierzytelniane są aplikacje?**
 
-<img src="assets/appauthorization.svg">
+<img src="assets/appauthorization.svg" alt="Autoryzacja aplikacji w Entra ID">
 
 Aplikacje korzystają z własnej tożsamości aplikacyjnej:
 - sekret klienta,  
@@ -1904,7 +1904,7 @@ Aplikacje korzystają z własnej tożsamości aplikacyjnej:
 
 **Managed Identity** to mechanizm nadawania aplikacjom tożsamości zarządzanej w pełni przez Azure — bez sekretów, bez haseł, bez certyfikatów.  
 
-<img src="assets/managedidentity.svg">
+<img src="assets/managedidentity.svg" alt="Managed Identity - tozsamosc zarzadzana dla aplikacji">
 
 **Jak działa Managed Identity**:
 - aplikacja nie przechowuje żadnych sekretów ani kluczy  
@@ -1921,7 +1921,7 @@ Aplikacja uwierzytelnia sie w Entra ID, a nastepnie otrzymuje **Access Token** d
 
 **Jak uwierzytelniane są urządzenia?**
 
-<img src="assets/deviceauthorization.svg">
+<img src="assets/deviceauthorization.svg" alt="Autoryzacja urzadzen w Entra ID">
 
 Urządzenia mogą być:
 - Azure AD Registered (BYOD),  
@@ -1941,7 +1941,7 @@ Dzięki temu możliwe jest SSO, wymuszanie MFA, lub blokada dostępu dla niezauf
 Mechanizm autoryzacji w Azure oparty na rolach przypisywanych do określonych zakresów zasobów (scope).  
 Umożliwia precyzyjne kontrolowanie, kto co może zrobić w danym zasobie — zgodnie z zasadą least privilege.
 
-<img src="assets/rbac.svg">
+<img src="assets/rbac.svg" alt="RBAC - Role-Based Access Control">
 
 Najważniejsze elementy:
 
@@ -1982,7 +1982,7 @@ Mechanizm kontroli dostępu, który ocenia kontekst logowania i decyduje, czy u�
 
 Jest to kluczowy element modelu **Zero Trust — zasada: „never trust, always verify”**.
 
-<img src="assets/conditionalaccess.svg">
+<img src="assets/conditionalaccess.svg" alt="Conditional Access - kontrola dostepu warunkowego">
 
 **Kluczowe atrybuty oceniane podczas logowania:**
 - **Ryzyko logowania / ryzyko użytkownika** – wykrywanie anomalii, podejrzanych lokalizacji, nietypowych zachowań.  
@@ -2033,7 +2033,7 @@ Rodzaje:
 
 ### Defense-in-depth (model warstwowy)
 
-<img src="assets/defenseindepth.svg">
+<img src="assets/defenseindepth.svg" alt="Defense in Depth - model warstwowy bezpieczenstwa">
 
 Bezpieczeństwo realizowane przez wiele warstw ochrony:
 - **Physical** (DC),
@@ -2056,7 +2056,7 @@ Cel: przełamanie jednej warstwy nie powinno oznaczać kompromitacji całego śr
   - **Defender for Containers** – analiza obrazów, runtime protection, integracja z AKS.
   - **Defender for APIs** – wykrywanie ryzyk i nadużyć API.
 
-<img src="assets/keyvault.svg">
+<img src="assets/keyvault.svg" alt="Azure Key Vault - przechowywanie sekretow i kluczy">
 
 - **Key Vault**  
   Bezpieczne przechowywanie i zarządzanie:
@@ -2085,7 +2085,7 @@ Governance w Azure to **zestaw zasad i narzędzi**, które pomagają utrzymać p
 
 ### Azure Policy
 
-<img src="assets/azurepolicy.svg">
+<img src="assets/azurepolicy.svg" alt="Azure Policy - wymuszanie zgodnosci konfiguracji">
 
 Mechanizm wymuszający zgodność konfiguracji zasobów z wymaganiami organizacji.
 
@@ -2116,7 +2116,7 @@ Management Group → Subscription → Resource Group → Resource
 
 ### Resource Locks
 
-<img src="assets/resourceLocks.svg">
+<img src="assets/resourceLocks.svg" alt="Resource Locks - blokady zasobow">
 
 Zabezpieczają zasoby przed przypadkowym usunięciem lub edycją.
 
@@ -2133,7 +2133,7 @@ Stosowane szczególnie dla:
 
 ### Tags
 
-<img src="assets/tags.svg">
+<img src="assets/tags.svg" alt="Tags - metadane zasobow Azure">
 
 To specjalne **metadane** przypisywane do zasobów w celu:
 - mają klucz i wartość
@@ -2164,7 +2164,7 @@ Na AZ‑900: Purview to narzędzie do **zarządzania ładem danych**, nie zamien
 
 Blueprint pozwala w jednym, powtarzalnym procesie stworzyć całe środowisko Azure zgodne ze standardami organizacji — od zasad i uprawnień po strukturę zasobów.
 
-<img src="assets/blueprints.svg">
+<img src="assets/blueprints.svg" alt="Azure Blueprints - powtarzalne srodowiska">
 
 Pakiet governance łączący:
 - Azure Policy,  
@@ -2187,7 +2187,7 @@ Uwaga!
 
 **Azure Arc** to usługa, która pozwala zarządzać serwerami, Kubernetesem i usługami działającymi poza Azure tak, jakby były natywnymi zasobami Azure.
 
-<img src="assets/azurearc.svg">
+<img src="assets/azurearc.svg" alt="Azure Arc - zarzadzanie zasobami poza Azure">
 
 Rozszerza Azure na środowiska:
 - on‑premise,  
@@ -2204,7 +2204,7 @@ Umożliwia:
 
 ### Shared Responsibility Model
 
-<img src="assets/sharedresponsibility.svg">
+<img src="assets/sharedresponsibility.svg" alt="Shared Responsibility Model - podzial odpowiedzialnosci">
 
 Podział odpowiedzialności między Azure a klientem.
 
@@ -2228,7 +2228,7 @@ Podział odpowiedzialności między Azure a klientem.
 
 **Service Trust Portal** służy do szybkiego sprawdzania, jak Microsoft spełnia wymagania bezpieczeństwa i zgodności, co ułatwia audyty i ocenę ryzyka.
 
-<img src="assets/servicetrust.svg">
+<img src="assets/servicetrust.svg" alt="Service Trust Portal - raporty zgodnosci">
 
 - **Microsoft Service Trust Portal** – raporty zgodności (ISO, SOC, PCI), audyty, certyfikaty.
 - **Data Residency (rezydencja danych)** – dane pozostają w wybranej geografii (np. EU).
@@ -2238,7 +2238,7 @@ Podział odpowiedzialności między Azure a klientem.
 
 ### Well‑Architected Framework (WAF – 5 filarów)
 
-<img src="assets/wellarchitected.svg">
+<img src="assets/wellarchitected.svg" alt="Well-Architected Framework - 5 filarow">
 
 1. **Cost Optimization** – eliminacja marnotrawstwa, right‑size, automatyzacja kosztów.  
 2. **Operational Excellence** – automatyzacja, CI/CD, versioning, monitoring.  
@@ -2269,7 +2269,7 @@ Podział odpowiedzialności między Azure a klientem.
 
 ### Support Plans (wsparcie techniczne)
 
-<img src="assets/supportplans.svg">
+<img src="assets/supportplans.svg" alt="Support Plans - plany wsparcia technicznego">
 
 Na AZ‑900 warto znać różnicę między planami wsparcia:
 
@@ -2295,7 +2295,7 @@ Egzaminowo: **preview ≠ produkcja krytyczna**; do workloadów produkcyjnych pr
 <a id="sec-09-monitoring-logging"></a>
 ## 9. Monitoring & Logging
 
-<img src="assets/azuremonitor.svg">
+<img src="assets/azuremonitor.svg" alt="Azure Monitor - centralna platforma monitoringu">
 
 - **Azure Monitor**
   Centralna platforma monitoringu w Azure, która zbiera, przechowuje, analizuje i wizualizuje dane operacyjne z zasobów.
@@ -2324,7 +2324,7 @@ Egzaminowo: **preview ≠ produkcja krytyczna**; do workloadów produkcyjnych pr
 
 **Azure Advisor** to wbudowany doradca dla platformy Azure, analizujący środowisko pod kątem najlepszych praktyk Microsoft i generujący konkretne rekomendacje dotyczące optymalizacji kosztów, wydajności, bezpieczeństwa, niezawodności i operacyjności.
 
-<img src="assets/azureadvisor.svg">
+<img src="assets/azureadvisor.svg" alt="Azure Advisor - rekomendacje optymalizacji">
 
 ### Kategorie rekomendacji
 - **Cost** – redukcja kosztów (right-size, wyłączanie nieużywanych zasobów, Reserved Instances, Azure Hybrid Benefit).  
@@ -2389,7 +2389,7 @@ Azure Advisor jest narzędziem **proaktywnym**, często wskazywanym na egzaminie
 <a id="sec-10-costs-billing"></a>
 ## 10. Costs & Billing (Koszty i rozliczenia)
 
-<img src="assets/costsbilling.svg">
+<img src="assets/costsbilling.svg" alt="Azure Costs and Billing - koszty i rozliczenia">
 
 **Za co płacisz w Azure:**
 - **Compute (czas działania)**  
@@ -2454,7 +2454,7 @@ Azure Advisor jest narzędziem **proaktywnym**, często wskazywanym na egzaminie
 
 **IaC (Infrastructure as Code)** to podejście, w którym całą infrastrukturę — serwery, sieci, bazy, konfiguracje — definiuje się i zarządza nią za pomocą plików kodu, zamiast ręcznych kliknięć w portal, co zapewnia automatyzację, powtarzalność i pełną kontrolę wersji.
 
-<img src="assets/iac.svg">
+<img src="assets/iac.svg" alt="Infrastructure as Code - automatyzacja infrastruktury">
 
 - **ARM Templates (JSON) / Bicep**
   Deklaratywne podejście do definiowania infrastruktury:
@@ -2500,23 +2500,23 @@ Azure Advisor jest narzędziem **proaktywnym**, często wskazywanym na egzaminie
 - **Azure Service Bus**  
   Broker komunikatów klasy enterprise — **niezawodne kolejki** (1:1) oraz publish/subscribe (1→n), z obsługą transakcji, DLQ i protokołu AMQP. Idealny do integracji mikroserwisów oraz scenariuszy wymagających trwałego kolejkowania.
 
-  <img src="assets/servicebus.svg">
+  <img src="assets/servicebus.svg" alt="Azure Service Bus - enterprise broker komunikatow">
 
 - **Azure Event Hub**  
   Platforma do zbierania i przetwarzania **strumieni danych** na ogromną skalę (telemetria, logi, IoT), nawet miliony zdarzeń na sekundę. Świetnie współpracuje z Databricks, Spark, Stream Analytics i może działać jako Kafka‑as‑a‑Service.
 
-  <img src="assets/eventhub.svg">
+  <img src="assets/eventhub.svg" alt="Azure Event Hub - przetwarzanie strumieni danych">
 
 - **Azure Event Grid**  
   Lekki **router zdarzeń** typu push, idealny do budowania architektur event‑driven o niskich opóźnieniach. Umożliwia reagowanie na zdarzenia z usług Azure (np. BlobCreated → Function) i integrację systemów poprzez eventy.
 
-  <img src="assets/eventgrids.svg">
+  <img src="assets/eventgrids.svg" alt="Azure Event Grid - router zdarzen event-driven">
 
 ---
 
 ### API i edge
 
-<img src="assets/apiedge.svg">
+<img src="assets/apiedge.svg" alt="API Management i Edge Services">
 
 **API Management (APIM)**
 APIM to centralny *API Gateway*, który pozwala w jednym miejscu wystawiać, zabezpieczać i zarządzać wszystkimi API w organizacji.
@@ -2584,7 +2584,7 @@ Na egzaminie: Marketplace to przede wszystkim **szybkie wdrażanie gotowych ofer
 
 ### AI i Data
 
-<img src="assets/aiservices.svg">
+<img src="assets/aiservices.svg" alt="Azure AI Services - Cognitive, OpenAI, ML">
 
 **Cognitive Services / Azure OpenAI / Azure ML**
 
@@ -2599,7 +2599,7 @@ Na egzaminie: Marketplace to przede wszystkim **szybkie wdrażanie gotowych ofer
 
 ---
 
-<img src="assets/dataplatform.svg">
+<img src="assets/dataplatform.svg" alt="Azure Data Platform - Data Factory, Synapse, Databricks">
 
 **Data Factory / Synapse Pipelines / Databricks**
 
@@ -2618,7 +2618,7 @@ Na egzaminie: Marketplace to przede wszystkim **szybkie wdrażanie gotowych ofer
 
 **IoT (Internet of Things)** to koncepcja, w której fizyczne urządzenia łączą się z internetem, wymieniają dane i pozwalają zdalnie monitorować oraz sterować realnym światem w sposób automatyczny i inteligentny.
 
-<img src="assets/iotschema.svg">
+<img src="assets/iotschema.svg" alt="Azure IoT - Hub, Central, Digital Twins, Sphere">
 
 **IoT Hub**
 Zarządzany hub komunikacyjny IoT obsługujący MQTT/AMQP/HTTPS, z dwukierunkową komunikacją między urządzeniami a chmurą.  
@@ -2855,7 +2855,7 @@ Serverless workflowy i automatyzacje z setkami konektorów (SAP, SQL, Salesforce
 <a id="sec-16-sla"></a>
 ## 16. SLA (Service Level Agreement)
 
-<img src="assets/sla.svg">
+<img src="assets/sla.svg" alt="SLA - Service Level Agreement">
 
 - Każda usługa ma własne SLA (np. 99,9 / 99,95 / 99,99%).
 - Złożone SLA ≈ iloczyn SLA składników (przy niezależności awarii).
@@ -2867,7 +2867,7 @@ Serverless workflowy i automatyzacje z setkami konektorów (SAP, SQL, Salesforce
 <a id="sec-17-databases"></a>
 ## 17. Bazy danych (Databases)
 
-<img src="assets/databases.svg">
+<img src="assets/databases.svg" alt="Azure Databases - SQL, Cosmos DB, PostgreSQL, MySQL">
 
 Azure oferuje kilka modeli baz danych dostępnych jako IaaS, PaaS lub globalne, skalowalne systemy NoSQL. Poniżej najważniejsze usługi wymagane na poziomie AZ‑900.
 
@@ -2912,7 +2912,7 @@ Pełny SQL Server działający na maszynie wirtualnej (IaaS).
 <a id="cosmosdb-intro"></a>
 #### Co to jest Cosmos DB?
 
-<img src="assets/cosmosdb_architecture.svg">
+<img src="assets/cosmosdb_architecture.svg" alt="Cosmos DB Architecture - globalna architektura">
 
 **Azure Cosmos DB** to w pełni zarządzana, globalnie rozproszona baza danych NoSQL, zaprojektowana dla aplikacji wymagających:
 - **Ultra-niskich opóźnień** (single-digit milliseconds)
@@ -2943,7 +2943,7 @@ Cosmos DB automatycznie replikuje dane do wybranych regionów Azure:
 <a id="cosmosdb-apis"></a>
 #### Multi-Model APIs
 
-<img src="assets/cosmosdb_apis.svg">
+<img src="assets/cosmosdb_apis.svg" alt="Cosmos DB APIs - SQL, MongoDB, Cassandra, Gremlin, Table">
 
 Cosmos DB obsługuje **5 różnych interfejsów API** — wybierasz ten, który pasuje do Twojej aplikacji:
 
@@ -3028,7 +3028,7 @@ Cosmos DB automatycznie **partycjonuje dane** na podstawie **Partition Key**:
 <a id="cosmosdb-comparison"></a>
 #### Porównanie z innymi bazami NoSQL w Azure
 
-<img src="assets/cosmosdb_comparison.svg">
+<img src="assets/cosmosdb_comparison.svg" alt="Cosmos DB - porownanie z innymi bazami NoSQL">
 
 | Cecha | Cosmos DB | Table Storage | Redis Cache | MongoDB Atlas |
 |-------|-----------|---------------|-------------|---------------|
@@ -3085,7 +3085,7 @@ Zarządzane instancje popularnych baz open‑source.
 <a id="sec-18-subscription-models"></a>
 ## 18. Subskrypcje (Subscription Models)
 
-<img src="assets/subscriptions.svg">
+<img src="assets/subscriptions.svg" alt="Azure Subscription Models - PAYG, EA, CSP">
 
 **Azure Subscription Models**
 Azure oferuje różne modele subskrypcji w zależności od tego, jak organizacja chce kupować i rozliczać usługi chmurowe.
@@ -3725,7 +3725,7 @@ az container create --resource-group myRG \
 <a id="sec-23-azure-key-vault"></a>
 ## 23. Azure Key Vault
 
-<img src="assets/keyvault_structure.svg">
+<img src="assets/keyvault_structure.svg" alt="Azure Key Vault - struktura i typy obiektow">
 
 ### Czym jest Azure Key Vault?
 
@@ -3771,7 +3771,7 @@ Wrap / Unwrap        - owijanie kluczy (key encryption keys)
 
 ### Kontrola dostępu
 
-<img src="assets/keyvault_access_flow.svg">
+<img src="assets/keyvault_access_flow.svg" alt="Key Vault Access Flow - przeplyw dostepu">
 
 Key Vault obsługuje dwa modele dostępu:
 
@@ -3885,7 +3885,7 @@ az keyvault secret show --vault-name myKeyVault \
 
 ### Integracja z aplikacjami
 
-<img src="assets/keyvault_integration.svg">
+<img src="assets/keyvault_integration.svg" alt="Key Vault Integration - integracja z aplikacjami">
 
 **1. App Service / Azure Functions (Key Vault Reference)**
 
@@ -3990,7 +3990,7 @@ az storage account update --name mystorageaccount \
 
 ### Bezpieczeństwo Key Vault
 
-<img src="assets/keyvault_security_tiers.svg">
+<img src="assets/keyvault_security_tiers.svg" alt="Key Vault Security - warstwy bezpieczenstwa">
 
 **Soft Delete (domyślnie włączone):**
 - Usunięty vault/secret/key trafia do "soft deleted" state
@@ -4108,7 +4108,7 @@ Dla najwyższych wymagań compliance:
 <a id="sec-24-debugging"></a>
 ## 24. Debugowanie aplikacji Azure
 
-<img src="assets/debug_monitoring_flow.svg">
+<img src="assets/debug_monitoring_flow.svg" alt="Azure Debugging - przeplyw monitoringu">
 
 ### Przegląd narzędzi do debugowania
 
@@ -4272,7 +4272,7 @@ Zaawansowana konsola diagnostyczna dla App Service.
 
 ### Remote Debugging
 
-<img src="assets/debug_tools_interactive.svg">
+<img src="assets/debug_tools_interactive.svg" alt="Remote Debugging - interaktywne debugowanie">
 
 Debugowanie aplikacji bezpośrednio z Visual Studio.
 
@@ -4303,7 +4303,7 @@ az webapp config show --name myApp \
 
 ### Snapshot Debugger
 
-<img src="assets/debug_tools_diagnostic.svg">
+<img src="assets/debug_tools_diagnostic.svg" alt="Snapshot Debugger - diagnostyka produkcyjna">
 
 Przechwytuje stan aplikacji w momencie wyjątku - bez zatrzymywania produkcji.
 
@@ -4423,7 +4423,7 @@ app.MapHealthChecks("/health");
 
 ### Alerts i powiadomienia
 
-<img src="assets/debug_alerts.svg">
+<img src="assets/debug_alerts.svg" alt="Azure Alerts - alerty i powiadomienia">
 
 ```bash
 # Alert na wysokie CPU
@@ -4479,7 +4479,7 @@ az monitor scheduled-query create --name Http5xxAlert \
 <a id="sec-25-service-bus"></a>
 ## 25. Azure Service Bus
 
-<img src="assets/servicebus_queue_vs_topic.svg">
+<img src="assets/servicebus_queue_vs_topic.svg" alt="Service Bus - Queue vs Topic porownanie">
 
 ### Czym jest Azure Service Bus?
 
@@ -4513,7 +4513,7 @@ Azure Service Bus to w pełni zarządzana usługa **enterprise message broker** 
 
 ### Tiers - porównanie
 
-<img src="assets/servicebus_tiers.svg">
+<img src="assets/servicebus_tiers.svg" alt="Service Bus Tiers - Basic, Standard, Premium">
 
 | Cecha | Basic | Standard | Premium |
 |-------|-------|----------|---------|
@@ -4735,7 +4735,7 @@ await processor.StartProcessingAsync();
 
 ### Subscription Filters
 
-<img src="assets/servicebus_filters.svg">
+<img src="assets/servicebus_filters.svg" alt="Service Bus Filters - SQL, Correlation, True/False">
 
 Filtrowanie wiadomości na poziomie subscription:
 
@@ -4762,7 +4762,7 @@ new CorrelationRuleFilter
 
 ### Dead-Letter Queue (DLQ)
 
-<img src="assets/servicebus_dlq.svg">
+<img src="assets/servicebus_dlq.svg" alt="Service Bus Dead-Letter Queue">
 
 Wiadomości trafiają do DLQ gdy:
 - Przekroczona liczba prób dostarczenia (MaxDeliveryCount)
@@ -4795,7 +4795,7 @@ dlqProcessor.ProcessMessageAsync += async args =>
 
 ### Sessions (Ordered Processing)
 
-<img src="assets/servicebus_sessions.svg">
+<img src="assets/servicebus_sessions.svg" alt="Service Bus Sessions - ordered processing">
 
 Sessions gwarantują FIFO processing dla wiadomości z tym samym SessionId:
 
@@ -4828,7 +4828,7 @@ sessionProcessor.ProcessMessageAsync += async args =>
 
 ### Message TTL (Time-To-Live)
 
-<img src="assets/servicebus_ttl.svg">
+<img src="assets/servicebus_ttl.svg" alt="Service Bus TTL - Time-To-Live">
 
 TTL określa jak długo wiadomość może pozostać w kolejce zanim wygaśnie.
 
@@ -4907,7 +4907,7 @@ processor.ProcessMessageAsync += async args =>
 
 ### Scheduled Messages
 
-<img src="assets/servicebus_scheduled.svg">
+<img src="assets/servicebus_scheduled.svg" alt="Service Bus Scheduled Messages">
 
 ```csharp
 // Zaplanuj wiadomość na później

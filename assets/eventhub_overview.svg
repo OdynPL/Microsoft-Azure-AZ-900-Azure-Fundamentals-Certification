@@ -94,7 +94,7 @@
   <text x="520" y="330" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="white">Analytics</text>
   
   <!-- Retention info -->
-  <text x="450" y="410" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="rgba(255,255,255,0.9)">Retention: 1-90 dni (Premium: do 90 dni)</text>
+  <text x="380" y="415" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="rgba(255,255,255,0.9)">Retention: 1-90 dni</text>
 
   <!-- Arrows to Consumers -->
   <path d="M610 200 L680 175" stroke="#764ba2" stroke-width="3" fill="none" marker-end="url(#arrowPurple)"/>
