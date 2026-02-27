@@ -2909,6 +2909,42 @@ Pełny SQL Server działający na maszynie wirtualnej (IaaS).
 - wymaga własnego patchowania, backupów, HA
 - najlepsze dla scenariuszy, które wymagają pełnego dostępu do instancji lub niestandardowych rozszerzeń
 
+#### C# - Microsoft.Data.SqlClient
+
+```csharp
+using Microsoft.Data.SqlClient;
+
+string connectionString = "Server=myserver.database.windows.net;Database=mydb;User Id=admin;Password=xxx;";
+
+// Query - odczyt danych
+await using var connection = new SqlConnection(connectionString);
+await connection.OpenAsync();
+
+await using var command = new SqlCommand("SELECT Id, Name FROM Products WHERE Price > @price", connection);
+command.Parameters.AddWithValue("@price", 100);
+
+await using var reader = await command.ExecuteReaderAsync();
+while (await reader.ReadAsync())
+{
+    Console.WriteLine($"{reader["Id"]}: {reader["Name"]}");
+}
+
+// INSERT/UPDATE/DELETE - ExecuteNonQueryAsync
+await using var insertCmd = new SqlCommand(
+    "INSERT INTO Products (Name, Price) VALUES (@name, @price)", connection);
+insertCmd.Parameters.AddWithValue("@name", "NewProduct");
+insertCmd.Parameters.AddWithValue("@price", 49.99);
+int affected = await insertCmd.ExecuteNonQueryAsync();
+
+// Scalar - pojedyncza wartość
+await using var countCmd = new SqlCommand("SELECT COUNT(*) FROM Products", connection);
+int count = (int)await countCmd.ExecuteScalarAsync();
+```
+
+**NuGet:** `Microsoft.Data.SqlClient`
+
+**Tip:** Użyj Entity Framework Core dla ORM lub Dapper dla micro-ORM.
+
 ### **Cosmos DB (NoSQL, global distribution)**
 
 #### Spis treści - Cosmos DB
@@ -3084,6 +3120,63 @@ Cosmos DB automatycznie **partycjonuje dane** na podstawie **Partition Key**:
 | **Scaling** | Automatic partitioning, unlimited |
 | **Pricing** | RU/s + Storage (pay-per-use) |
 | **Best for** | Global apps, IoT, gaming, e-commerce |
+
+---
+
+#### C# - Microsoft.Azure.Cosmos
+
+```csharp
+using Microsoft.Azure.Cosmos;
+
+// Połączenie
+var cosmosClient = new CosmosClient(
+    "https://myaccount.documents.azure.com:443/",
+    "primaryKey",
+    new CosmosClientOptions { ApplicationRegion = Regions.WestEurope }
+);
+
+// Utwórz bazę i kontener
+Database database = await cosmosClient.CreateDatabaseIfNotExistsAsync("OrdersDB");
+Container container = await database.CreateContainerIfNotExistsAsync(
+    id: "Orders",
+    partitionKeyPath: "/customerId",
+    throughput: 400
+);
+
+// Model dokumentu
+public record Order(string id, string customerId, decimal total, List<string> items);
+
+// CREATE - dodaj dokument
+var order = new Order("order-1", "cust-123", 99.99m, new() { "Item1", "Item2" });
+await container.CreateItemAsync(order, new PartitionKey(order.customerId));
+
+// READ - pobierz dokument po ID + partition key
+var response = await container.ReadItemAsync<Order>("order-1", new PartitionKey("cust-123"));
+Order fetched = response.Resource;
+double ruUsed = response.RequestCharge;  // Zużyte RU
+
+// QUERY - wyszukaj dokumenty (SQL-like syntax)
+var query = container.GetItemQueryIterator<Order>(
+    "SELECT * FROM c WHERE c.total > 50 ORDER BY c.total DESC"
+);
+while (query.HasMoreResults)
+{
+    var results = await query.ReadNextAsync();
+    foreach (var item in results) Console.WriteLine(item.id);
+}
+
+// UPDATE - zamień dokument
+order = order with { total = 149.99m };
+await container.ReplaceItemAsync(order, order.id, new PartitionKey(order.customerId));
+
+// DELETE
+await container.DeleteItemAsync<Order>("order-1", new PartitionKey("cust-123"));
+
+// UPSERT - wstaw lub zaktualizuj
+await container.UpsertItemAsync(order, new PartitionKey(order.customerId));
+```
+
+**NuGet:** `Microsoft.Azure.Cosmos`
 
 ---
 
@@ -6668,6 +6761,99 @@ Console.WriteLine(sasUri);
 ```
 
 **NuGet:** `Azure.Storage.Blobs`
+
+---
+
+### C# - Azure.Storage.Queues
+
+```csharp
+using Azure.Storage.Queues;
+using Azure.Storage.Queues.Models;
+
+// Połączenie
+var queueClient = new QueueClient("<connection-string>", "myqueue");
+await queueClient.CreateIfNotExistsAsync();
+
+// Wyślij wiadomość
+await queueClient.SendMessageAsync("Hello Queue!");
+await queueClient.SendMessageAsync(Base64Encode(JsonSerializer.Serialize(order)));
+
+// Odbierz wiadomości (peek - bez usuwania)
+PeekedMessage[] peeked = await queueClient.PeekMessagesAsync(maxMessages: 5);
+
+// Odbierz i przetwórz (z visibility timeout)
+QueueMessage[] messages = await queueClient.ReceiveMessagesAsync(
+    maxMessages: 5,
+    visibilityTimeout: TimeSpan.FromMinutes(5)
+);
+
+foreach (var msg in messages)
+{
+    Console.WriteLine(msg.Body.ToString());
+    // Po przetworzeniu - usuń
+    await queueClient.DeleteMessageAsync(msg.MessageId, msg.PopReceipt);
+}
+
+// Sprawdź liczbę wiadomości
+QueueProperties props = await queueClient.GetPropertiesAsync();
+Console.WriteLine($"Messages: {props.ApproximateMessagesCount}");
+```
+
+**NuGet:** `Azure.Storage.Queues`
+
+---
+
+### C# - Azure.Data.Tables (Table Storage)
+
+```csharp
+using Azure.Data.Tables;
+
+// Połączenie
+var tableClient = new TableClient("<connection-string>", "Products");
+await tableClient.CreateIfNotExistsAsync();
+
+// Model encji
+public class ProductEntity : ITableEntity
+{
+    public string PartitionKey { get; set; }  // np. Category
+    public string RowKey { get; set; }         // np. ProductId
+    public string Name { get; set; }
+    public double Price { get; set; }
+    public DateTimeOffset? Timestamp { get; set; }
+    public ETag ETag { get; set; }
+}
+
+// Dodaj encję
+var product = new ProductEntity
+{
+    PartitionKey = "Electronics",
+    RowKey = "PROD001",
+    Name = "Laptop",
+    Price = 999.99
+};
+await tableClient.AddEntityAsync(product);
+
+// Pobierz po PartitionKey + RowKey
+var entity = await tableClient.GetEntityAsync<ProductEntity>("Electronics", "PROD001");
+
+// Query - wyszukaj encje
+var results = tableClient.QueryAsync<ProductEntity>(
+    filter: $"PartitionKey eq 'Electronics' and Price gt 500"
+);
+await foreach (var item in results)
+{
+    Console.WriteLine($"{item.Name}: {item.Price}");
+}
+
+// Update
+product.Price = 899.99;
+await tableClient.UpdateEntityAsync(product, product.ETag, TableUpdateMode.Replace);
+
+// Delete
+await tableClient.DeleteEntityAsync("Electronics", "PROD001");
+```
+
+**NuGet:** `Azure.Data.Tables`
 
 ---
 
