@@ -1050,16 +1050,178 @@ NSG może wskazywać ASG zamiast adresów IP — ułatwia to zarządzanie dynami
 
 ### **Azure Firewall**
 
-Zarządzany firewall L3–L7:
+<img src="assets/azure_firewall.svg">
 
-- inspekcja ruchu aplikacyjnego,  
-- FQDN filtering,  
-- SNAT/DNAT,  
-- polityki centralne,  
-- integracja z Log Analytics.
+Azure Firewall to w pełni zarządzany, stanowy firewall warstwy L3–L7, wdrażany jako usługa PaaS w dedykowanym subnecie (`AzureFirewallSubnet`).
 
-> Azure Firewall ≠ NSG.  
-> NSG = ACL, Azure Firewall = stateful firewall z inspekcją.
+**Kluczowe funkcje:**
+| Funkcja | Opis |
+|---------|------|
+| **FQDN Filtering** | Filtrowanie po nazwach domenowych (np. `*.microsoft.com`) |
+| **URL Filtering** | Filtrowanie po pełnych URL (Premium) |
+| **Web Categories** | Blokowanie kategorii stron (gambling, adult, etc.) |
+| **Threat Intelligence** | Automatyczne blokowanie znanych malicious IPs |
+| **TLS Inspection** | Deszyfrowanie i inspekcja HTTPS (Premium) |
+| **SNAT/DNAT** | Source/Destination NAT dla ruchu sieciowego |
+| **IDPS** | Intrusion Detection & Prevention (Premium) |
+
+#### Warstwy Azure Firewall
+
+| Cecha | Standard | Premium |
+|-------|----------|---------|
+| L3-L4 filtering | Tak | Tak |
+| FQDN filtering | Tak | Tak |
+| Threat Intelligence | Alert/Deny | Alert/Deny |
+| TLS Inspection | Nie | Tak |
+| IDPS | Nie | Tak |
+| URL Filtering | Nie | Tak |
+| Web Categories | Podstawowe | Rozszerzone |
+| Cena | ~$1.25/godz | ~$1.75/godz |
+
+#### Kolekcje reguł (Rule Collections)
+
+Reguły są przetwarzane w kolejności priorytetu (niższy numer = wyższy priorytet):
+
+**1. NAT Rules (DNAT)** - priorytet 100-300
+```
+Przekierowanie ruchu przychodzącego z Internetu do wewnętrznych zasobów.
+
+Przykład:
+  Source: * (Internet)
+  Destination: Firewall Public IP:443
+  Translated: 10.0.1.5:443 (internal web server)
+```
+
+**2. Network Rules (L3/L4)** - priorytet 200-65000
+```
+Filtrowanie po IP, porcie i protokole.
+
+Przykład:
+  Source: 10.0.0.0/16 (VNet)
+  Destination: 8.8.8.8
+  Port: 53
+  Protocol: UDP
+  Action: Allow
+```
+
+**3. Application Rules (L7)** - priorytet 200-65000
+```
+Filtrowanie HTTP/HTTPS po FQDN lub URL.
+
+Przykład:
+  Source: 10.0.0.0/16
+  Target FQDNs: *.windowsupdate.com, *.microsoft.com
+  Protocol: Https:443
+  Action: Allow
+```
+
+#### Konfiguracja przez Azure CLI
+
+```bash
+# Utworzenie Resource Group i VNet
+az group create --name myFWRG --location westeurope
+az network vnet create --name myVNet --resource-group myFWRG \
+    --address-prefix 10.0.0.0/16
+
+# Utworzenie AzureFirewallSubnet (wymagana nazwa!)
+az network vnet subnet create --name AzureFirewallSubnet \
+    --resource-group myFWRG --vnet-name myVNet \
+    --address-prefix 10.0.1.0/26
+
+# Utworzenie Public IP dla Firewall
+az network public-ip create --name myFW-PIP --resource-group myFWRG \
+    --sku Standard --allocation-method Static
+
+# Utworzenie Azure Firewall
+az network firewall create --name myFirewall \
+    --resource-group myFWRG --location westeurope
+
+# Konfiguracja IP
+az network firewall ip-config create --firewall-name myFirewall \
+    --name myFWConfig --public-ip-address myFW-PIP \
+    --resource-group myFWRG --vnet-name myVNet
+
+# Dodanie Network Rule Collection
+az network firewall network-rule create \
+    --firewall-name myFirewall --resource-group myFWRG \
+    --collection-name "AllowDNS" --priority 200 \
+    --action Allow --name "DNS" \
+    --source-addresses "10.0.0.0/16" \
+    --destination-addresses "8.8.8.8" "8.8.4.4" \
+    --destination-ports 53 --protocols UDP
+
+# Dodanie Application Rule Collection
+az network firewall application-rule create \
+    --firewall-name myFirewall --resource-group myFWRG \
+    --collection-name "AllowWeb" --priority 300 \
+    --action Allow --name "MicrosoftUpdates" \
+    --source-addresses "10.0.0.0/16" \
+    --target-fqdns "*.windowsupdate.com" "*.microsoft.com" \
+    --protocols Https=443
+```
+
+#### Firewall Policy (zalecane)
+
+Firewall Policy to centralny obiekt zarządzania regułami, który można przypisać do wielu firewalli:
+
+```bash
+# Utworzenie Firewall Policy
+az network firewall policy create --name myPolicy \
+    --resource-group myFWRG --location westeurope
+
+# Utworzenie Rule Collection Group
+az network firewall policy rule-collection-group create \
+    --name DefaultRuleCollectionGroup \
+    --policy-name myPolicy --resource-group myFWRG \
+    --priority 100
+
+# Przypisanie Policy do Firewall
+az network firewall update --name myFirewall \
+    --resource-group myFWRG \
+    --firewall-policy myPolicy
+```
+
+#### Hub-Spoke Architecture
+
+Typowa architektura z Azure Firewall:
+
+1. **Hub VNet** - centralny VNet z Azure Firewall
+2. **Spoke VNets** - VNety aplikacyjne (peered z Hub)
+3. **UDR (User Defined Routes)** - wymuszenie ruchu przez Firewall
+
+```bash
+# Route Table dla Spoke VNet
+az network route-table create --name Spoke-RT --resource-group myFWRG
+
+# Default route przez Firewall (0.0.0.0/0 -> Firewall private IP)
+az network route-table route create --name ToFirewall \
+    --route-table-name Spoke-RT --resource-group myFWRG \
+    --address-prefix 0.0.0.0/0 \
+    --next-hop-type VirtualAppliance \
+    --next-hop-ip-address 10.0.1.4  # Firewall private IP
+
+# Przypisanie RT do Spoke subnet
+az network vnet subnet update --name SpokeSubnet \
+    --vnet-name SpokeVNet --resource-group myFWRG \
+    --route-table Spoke-RT
+```
+
+#### Porównanie z NSG
+
+| Cecha | NSG | Azure Firewall |
+|-------|-----|----------------|
+| Warstwa | L3/L4 | L3-L7 |
+| Stateful | Tak | Tak |
+| FQDN filtering | Nie | Tak |
+| URL filtering | Nie | Tak (Premium) |
+| Threat Intelligence | Nie | Tak |
+| TLS Inspection | Nie | Tak (Premium) |
+| Centralne zarządzanie | Nie | Tak (Policy) |
+| Logging | Flow Logs | Azure Monitor |
+| Koszt | Darmowe | ~$1.25-1.75/godz |
+| Kiedy używać | Per-subnet ACL | Centralny firewall |
+
+> **Egzamin:** NSG = prosty ACL na poziomie subnet/NIC, Azure Firewall = enterprise-grade firewall z inspekcją ruchu.
 
 ---
 
