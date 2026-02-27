@@ -6125,18 +6125,18 @@ Recurrence Trigger (every hour)
 <a id="sec-29-load-balancing"></a>
 ## 29. Load Balancing w Azure
 
-Load balancing to technika dystrybucji ruchu sieciowego miedzy wiele serwerow w celu zwiekszenia dostepnosci, skalowalnosci i wydajnosci aplikacji.
+Load balancing rozdziela ruch sieciowy między wiele serwerów, zwiększając dostępność i wydajność aplikacji.
 
-### Uslugi Load Balancing w Azure
+### Usługi Load Balancing w Azure
 
-<img src="assets/lb_azure_services.svg" alt="Azure Load Balancing Services - porownanie uslug">
+<img src="assets/lb_azure_services.svg" alt="Azure Load Balancing Services">
 
-| Usluga | Warstwa | Zakres | Protokol | Glowne cechy |
+| Usługa | Warstwa | Zakres | Protokół | Główne cechy |
 |--------|---------|--------|----------|---------------|
-| **Azure Load Balancer** | L4 | Regional | TCP/UDP | Ultra-niska latencja, miliony req/s |
+| **Azure Load Balancer** | L4 | Regional | TCP/UDP | Ultra-niska latencja |
 | **Application Gateway** | L7 | Regional | HTTP/S | WAF, SSL offload, URL routing |
-| **Traffic Manager** | DNS | Global | Any | DNS-based failover, geo-routing |
-| **Front Door** | L7 | Global | HTTP/S | CDN + WAF + Global L7 LB |
+| **Traffic Manager** | DNS | Global | Any | DNS failover, geo-routing |
+| **Front Door** | L7 | Global | HTTP/S | CDN + WAF + Global LB |
 
 ---
 
@@ -6144,32 +6144,28 @@ Load balancing to technika dystrybucji ruchu sieciowego miedzy wiele serwerow w 
 
 #### 1. Round Robin
 
-<img src="assets/lb_round_robin.svg" alt="Round Robin - algorytm rownej dystrybucji">
+<img src="assets/lb_round_robin.svg" alt="Round Robin">
 
-Najprostszy algorytm - requesty sa rozdzielane rowno miedzy serwery po kolei.
+Najprostszy algorytm - requesty rozdzielane równo między serwery po kolei.
 
-**Charakterystyka:**
-- Prosta implementacja
-- Rownomierna dystrybucja
-- Nie uwzglednia obciazenia serwerow
-- Idealny gdy serwery maja identyczna wydajnosc
+- Prosta implementacja, równomierna dystrybucja
+- Nie uwzględnia obciążenia serwerów
+- Idealny gdy serwery mają identyczną wydajność
 
-**Azure:** Load Balancer (domyslnie), Application Gateway
+**Azure:** Load Balancer (domyślnie), Application Gateway
 
 ---
 
 #### 2. Weighted Round Robin
 
-<img src="assets/lb_weighted_round_robin.svg" alt="Weighted Round Robin - dystrybucja z wagami">
+<img src="assets/lb_weighted_round_robin.svg" alt="Weighted Round Robin">
 
-Rozszerzenie Round Robin z wagami - serwery z wieksza waga otrzymuja proporcjonalnie wiecej ruchu.
+Round Robin z wagami - serwery z większą wagą otrzymują więcej ruchu.
 
-**Charakterystyka:**
-- Uwzglednia roznice w wydajnosci serwerow
-- Elastyczna konfiguracja
+- Uwzględnia różnice w wydajności serwerów
 - Idealny przy heterogenicznych serwerach
 
-**Azure:** Traffic Manager (Weighted routing), Front Door (Weighted)
+**Azure:** Traffic Manager (Weighted), Front Door (Weighted)
 
 ```bash
 # Traffic Manager z weighted routing
@@ -6194,33 +6190,27 @@ az network traffic-manager endpoint create \
 
 #### 3. Least Connections
 
-<img src="assets/lb_least_connections.svg" alt="Least Connections - najmniej polaczen">
+<img src="assets/lb_least_connections.svg" alt="Least Connections">
 
-Nowe requesty trafiaja do serwera z najmniejsza liczba aktywnych polaczen.
+Nowe requesty trafiają do serwera z najmniejszą liczbą aktywnych połączeń.
 
-**Charakterystyka:**
-- Dynamiczne balansowanie obciazenia
-- Idealny dla dlugich polaczen (WebSocket, keep-alive)
-- Wymaga sledzenia stanu polaczen
+- Dynamiczne balansowanie obciążenia
+- Idealny dla długich połączeń (WebSocket, keep-alive)
 
-**Azure:** Application Gateway (Connection Draining wsparcie)
+**Azure:** Application Gateway
 
 ---
 
 #### 4. Source IP Hash (Session Affinity)
 
-<img src="assets/lb_source_ip_hash.svg" alt="Source IP Hash - sticky sessions">
+<img src="assets/lb_source_ip_hash.svg" alt="Source IP Hash">
 
-Hash z adresu IP klienta determinuje, do ktorego serwera trafi request. Ten sam klient zawsze trafia do tego samego serwera.
+Hash z IP klienta określa docelowy serwer. Ten sam klient zawsze trafia do tego samego serwera.
 
-**Charakterystyka:**
 - Sticky sessions bez cookie
-- Zachowuje stan sesji po stronie serwera
-- Problematyczne przy NAT (wielu klientow za jednym IP)
+- Problematyczne przy NAT (wielu klientów za jednym IP)
 
-**Azure:** 
-- Load Balancer: Session Persistence (Source IP, Source IP + Protocol)
-- Application Gateway: Cookie-based Affinity
+**Azure:** Load Balancer (Source IP), Application Gateway (Cookie Affinity)
 
 ```bash
 # Load Balancer z session persistence
@@ -6240,13 +6230,12 @@ az network lb rule create \
 
 #### 5. URL Path-based Routing
 
-<img src="assets/lb_url_path.svg" alt="URL Path-based Routing - routing po sciezce">
+<img src="assets/lb_url_path.svg" alt="URL Path-based Routing">
 
-Routing na podstawie sciezki URL do roznych backend pools.
+Routing na podstawie ścieżki URL do różnych backend pools.
 
-**Charakterystyka:**
 - Microservices-friendly
-- Rozne backendy dla roznych funkcji
+- Różne backendy dla różnych funkcji
 - Wymaga L7 load balancera
 
 **Azure:** Application Gateway, Front Door
@@ -6277,16 +6266,14 @@ az network application-gateway url-path-map rule create \
 
 #### 6. Priority-based Routing
 
-<img src="assets/lb_priority.svg" alt="Priority-based Routing - priorytetowy failover">
+<img src="assets/lb_priority.svg" alt="Priority-based Routing">
 
-Ruch kierowany do endpointu o najwyzszym priorytecie. Jesli endpoint jest niedostepny, ruch przechodzi do nastepnego w kolejnosci.
+Ruch kierowany do endpointu o najwyższym priorytecie. Przy awarii przechodzi do następnego.
 
-**Charakterystyka:**
 - Active-Passive failover
 - Disaster Recovery scenarios
-- Niski priorytet = standby
 
-**Azure:** Traffic Manager (Priority routing), Front Door (Priority)
+**Azure:** Traffic Manager (Priority), Front Door (Priority)
 
 ```bash
 # Traffic Manager z priority routing
@@ -6319,14 +6306,14 @@ az network traffic-manager endpoint create \
 
 | Metoda | Opis | Azure Service |
 |--------|------|---------------|
-| **Performance** | Najnizsza latencja do klienta | Traffic Manager |
-| **Geographic** | Na podstawie lokalizacji DNS klienta | Traffic Manager |
-| **Multivalue** | Zwraca wiele zdrowych endpointow | Traffic Manager |
-| **Subnet** | Na podstawie podsieci klienta | Traffic Manager |
+| **Performance** | Najniższa latencja do klienta | Traffic Manager |
+| **Geographic** | Lokalizacja DNS klienta | Traffic Manager |
+| **Multivalue** | Wiele zdrowych endpointów | Traffic Manager |
+| **Subnet** | Podsieć klienta | Traffic Manager |
 
 ---
 
-### Porownanie uslug Azure LB
+### Porównanie usług Azure LB
 
 | Cecha | Load Balancer | App Gateway | Traffic Manager | Front Door |
 |-------|---------------|-------------|-----------------|------------|
@@ -6336,119 +6323,99 @@ az network traffic-manager endpoint create \
 | **WAF** | Nie | Tak | Nie | Tak |
 | **URL Routing** | Nie | Tak | Nie | Tak |
 | **Session Affinity** | Source IP | Cookie | - | Tak |
-| **Health Probes** | TCP/HTTP | HTTP/S | HTTP/S/TCP | HTTP/S |
-| **Latencja** | Ultra-niska | Niska | Zalezna od DNS | Niska |
 
 ---
 
-### Scenariusze uzycia
+### Scenariusze użycia
 
-| Scenariusz | Rekomendowana usluga |
+| Scenariusz | Rekomendowana usługa |
 |------------|----------------------|
-| Wewnetrzny ruch miedzy VM | **Load Balancer Internal** |
+| Wewnętrzny ruch między VM | **Load Balancer Internal** |
 | Publiczny ruch TCP/UDP non-HTTP | **Load Balancer Public** |
-| Aplikacja webowa regionalna z WAF | **Application Gateway** |
+| Aplikacja webowa z WAF | **Application Gateway** |
 | Globalna aplikacja web z CDN | **Front Door** |
-| DNS-based failover multi-region | **Traffic Manager** |
-| Hybrydowe (on-prem + cloud) | **Traffic Manager** |
+| DNS failover multi-region | **Traffic Manager** |
 
 ---
 
 ### Best Practices
 
-| Praktyka | Opis |
-|----------|------|
-| **Health probes** | Zawsze konfiguruj custom health probes |
-| **Zones** | Uzyj zone-redundant LB dla HA |
-| **Standard SKU** | Zawsze Standard (nie Basic) dla produkcji |
-| **WAF** | Wlacz WAF dla publicznych aplikacji webowych |
-| **CDN + Front Door** | Dla globalnych aplikacji statycznych |
-| **Monitoring** | Azure Monitor + Connection Monitor |
+- Zawsze konfiguruj custom health probes
+- Użyj zone-redundant LB dla HA
+- Standard SKU (nie Basic) dla produkcji
+- Włącz WAF dla publicznych aplikacji web
+- Azure Monitor + Connection Monitor
 
 ---
 
 ### FAQ - Egzamin
 
-| Pytanie | Odpowiedz |
+| Pytanie | Odpowiedź |
 |---------|----------|
 | Load Balancer vs App Gateway? | LB = L4 (TCP/UDP), AppGW = L7 (HTTP) |
 | Kiedy Traffic Manager? | Global DNS failover, geo-routing |
-| Kiedy Front Door? | Global L7 + CDN + WAF w jednym |
-| Czy LB obsluguje SSL? | NIE, to L4 - uzyj App Gateway |
-| Round Robin w Azure? | Load Balancer (domyslnie), App Gateway |
-| Session affinity jak? | LB = Source IP, AppGW = Cookie |
-| Ktory dla microservices? | App Gateway (path routing) lub Front Door |
-| Ktory ma najnizsza latencje? | Load Balancer (L4, ultra-low latency) |
+| Kiedy Front Door? | Global L7 + CDN + WAF |
+| Czy LB obsługuje SSL? | NIE, to L4 - użyj App Gateway |
+| Session affinity? | LB = Source IP, AppGW = Cookie |
 
-> **Egzamin:** Azure Load Balancer = L4 (TCP/UDP), regional, ultra-niska latencja. Application Gateway = L7 (HTTP/S), WAF, SSL offload, URL routing. Traffic Manager = DNS-based, global, failover. Front Door = L7 global + CDN + WAF. Round Robin to domyslny algorytm. Session Affinity = Source IP (LB) lub Cookie (AppGW).
+> **Egzamin:** Load Balancer = L4 (TCP/UDP), regional. Application Gateway = L7 (HTTP/S), WAF, SSL offload. Traffic Manager = DNS global. Front Door = L7 global + CDN + WAF.
 
 ---
 
 <a id="sec-30-data-factory"></a>
 ## 30. Azure Data Factory
 
-Azure Data Factory (ADF) to w pelni zarzadzana usluga **ETL/ELT** (Extract-Transform-Load) w chmurze. Pozwala na tworzenie, planowanie i monitorowanie **pipeline'ow danych** - czyli automatycznych przepływow, ktore pobieraja dane z roznych zrodel, przeksztalcaja je i laduja do systemow docelowych.
+Azure Data Factory (ADF) to serverless usługa **ETL/ELT** do tworzenia pipeline'ów danych - automatycznych przepływów, które pobierają dane ze źródeł, przekształcają je i ładują do systemów docelowych.
 
-### Po co to jest?
+### Po co Data Factory?
 
-Wyobraz sobie, ze masz:
-- Dane sprzedazowe w **SQL Server** (on-premises)
-- Dane klientow w **Salesforce** (SaaS)
-- Logi aplikacji w **Azure Blob Storage**
-- Dane produktow w **Oracle Database**
+Masz dane w różnych miejscach: SQL Server, Salesforce, Blob Storage, Oracle. Chcesz je **połączyć i załadować** do hurtowni danych (Azure Synapse). Data Factory robi to automatycznie!
 
-Chcesz to wszystko **polaczyc, oczyscic i zaladowac** do hurtowni danych (Azure Synapse), zeby analitycy mogli tworzyc raporty. Reczne kopiowanie? Niemozliwe. Skrypty? Trudne w utrzymaniu. **Data Factory** robi to automatycznie!
+### Jak to działa?
 
-### Jak to dziala?
+<img src="assets/adf_overview.svg" alt="Azure Data Factory - ETL/ELT Pipeline">
 
-<img src="assets/adf_overview.svg" alt="Azure Data Factory - ETL/ELT Pipeline overview">
-
-**Przepływ danych w Data Factory:**
-
-1. **EXTRACT (Pobierz)** - Polacz sie ze zrodlami danych (SQL, Oracle, API, pliki)
-2. **TRANSFORM (Przeksztalc)** - Oczyscic, polaczyc, zagregowac dane
-3. **LOAD (Zaladuj)** - Zapisz do systemu docelowego (Synapse, Data Lake, Cosmos DB)
+1. **EXTRACT** - Połącz się ze źródłami (SQL, API, pliki)
+2. **TRANSFORM** - Oczyść, połącz, zagreguj dane
+3. **LOAD** - Zapisz do systemu docelowego
 
 ---
 
-### Glowne komponenty
+### Główne komponenty
 
 <img src="assets/adf_components.svg" alt="Azure Data Factory - komponenty">
 
-| Komponent | Co to robi? | Przyklad |
-|-----------|-------------|----------|
-| **Pipeline** | Kontener na kroki (activities) | "Pipeline_Sprzedaz_Dzienna" |
-| **Activity** | Pojedyncza operacja | Copy Data, Data Flow, Lookup |
-| **Dataset** | Wskaznik na dane | Tabela SQL, plik CSV, folder |
-| **Linked Service** | Polaczenie do zrodla | Connection string do SQL Server |
-| **Trigger** | Kiedy uruchomic? | Co godzine, po uploadzoe pliku |
-| **Integration Runtime** | Gdzie wykonac? | Azure (cloud), Self-hosted (on-prem) |
+| Komponent | Opis |
+|-----------|------|
+| **Pipeline** | Kontener na Activities (kroki) |
+| **Activity** | Pojedyncza operacja: Copy, Data Flow, Lookup |
+| **Dataset** | Wskaźnik na dane: tabela SQL, plik CSV |
+| **Linked Service** | Połączenie do źródła danych |
+| **Trigger** | Kiedy uruchomić: schedule, event |
+| **Integration Runtime** | Silnik wykonawczy: Azure lub Self-hosted |
 
 ---
 
-### Typy Activities (operacji)
+### Typy Activities
 
-| Typ | Opis | Przyklady |
-|-----|------|----------|
-| **Data Movement** | Kopiowanie danych | Copy Activity |
-| **Data Transformation** | Przeksztalcenia | Data Flow, Databricks, HDInsight |
-| **Control Flow** | Logika przepływu | If, ForEach, Until, Wait |
-| **External** | Wywolanie zewnetrzne | Azure Function, Web Activity, Stored Procedure |
+| Typ | Opis |
+|-----|------|
+| **Data Movement** | Copy Activity |
+| **Data Transformation** | Data Flow, Databricks |
+| **Control Flow** | If, ForEach, Until |
+| **External** | Azure Function, Stored Procedure |
 
 ---
 
-### Integration Runtime - gdzie sie wykonuje?
+### Integration Runtime
 
-| Typ IR | Uzycie | Gdzie dziala |
-|--------|--------|---------------|
-| **Azure IR** | Cloud-to-cloud | W Azure (domyslny) |
-| **Self-hosted IR** | Cloud-to-on-premises | Na Twojej maszynie (VM/serwer) |
-| **Azure-SSIS IR** | Pakiety SSIS | Azure (dla migracji SSIS) |
+| Typ IR | Użycie |
+|--------|--------|
+| **Azure IR** | Cloud-to-cloud (domyślny) |
+| **Self-hosted IR** | Cloud-to-on-premises |
+| **Azure-SSIS IR** | Migracja pakietów SSIS |
 
-**Kiedy Self-hosted IR?**
-- Dane w sieci firmowej (on-premises)
-- Firewall blokuje dostep z internetu
-- Dane w prywatnej sieci VNet
+**Self-hosted IR** - gdy dane są on-premises lub firewall blokuje dostęp.
 
 ---
 
@@ -6513,54 +6480,34 @@ az datafactory pipeline create-run \
 
 ---
 
-### Cennik (uproszczony)
+### Cennik
 
-| Skladnik | Cena (przyklad) |
-|----------|----------------|
-| **Orkiestracja** | ~$1 / 1000 uruchomien |
-| **Data Movement** | ~$0.25 / DIU-godzina |
-| **Data Flow** | ~$0.27 / vCore-godzina |
-| **Self-hosted IR** | Bezplatne (Twoj hardware) |
-
-> **DIU** = Data Integration Unit - jednostka mocy obliczeniowej dla Copy Activity
-
----
-
-### ADF vs inne narzedzia
-
-| Cecha | Data Factory | Logic Apps | Azure Synapse Pipelines |
-|-------|--------------|------------|------------------------|
-| **Fokus** | ETL/ELT danych | Workflow/integracja | Analytics + ETL |
-| **Transformacje** | Data Flow (Spark) | Ograniczone | Data Flow (Spark) |
-| **Kod** | No-code / Low-code | No-code | No-code / SQL / Spark |
-| **90+ connectorow** | Tak | 450+ | Tak |
-| **Kiedy?** | Pipeline danych | Automatyzacja procesow | Kompleksowa analityka |
+| Składnik | Cena |
+|----------|------|
+| **Orkiestracja** | ~$1/1000 uruchomień |
+| **Data Movement** | ~$0.25/DIU-godz |
+| **Data Flow** | ~$0.27/vCore-godz |
+| **Self-hosted IR** | Bezpłatne |
 
 ---
 
 ### Best Practices
 
-| Praktyka | Opis |
-|----------|------|
-| **Parametryzuj pipeline'y** | Unikaj hardcodowania wartosci |
-| **Uzywaj Linked Service z Key Vault** | Nie przechowuj hasel w ADF |
-| **Monitoruj uruchomienia** | Azure Monitor + alerty |
-| **Partycjonuj dane** | Dla lepszej wydajnosci Copy |
-| **Testuj na malych danych** | Debug mode przed produkcja |
-| **Git integration** | Wersjonowanie pipeline'ow |
+- Parametryzuj pipeline'y (bez hardcode)
+- Hasła w Key Vault, nie w ADF
+- Monitoruj z Azure Monitor
+- Git integration dla wersjonowania
 
 ---
 
 ### FAQ - Egzamin
 
-| Pytanie | Odpowiedz |
+| Pytanie | Odpowiedź |
 |---------|----------|
-| Co to jest Azure Data Factory? | Serverless ETL/ELT service w chmurze |
-| Do czego sluzy ADF? | Integracja i transformacja danych z roznych zrodel |
-| Co to jest Pipeline? | Kontener na Activities (kroki) |
-| Co to jest Activity? | Pojedyncza operacja (Copy, DataFlow, Lookup) |
-| Co to jest Linked Service? | Connection string do zrodla danych |
-| Czym jest Integration Runtime? | Silnik wykonawczy (Azure, Self-hosted, SSIS) |
+| Co to ADF? | Serverless ETL/ELT w chmurze |
+| Co to Pipeline? | Kontener na Activities |
+| Co to Linked Service? | Połączenie do źródła danych |
+| Co to Integration Runtime? | Silnik wykonawczy (Azure/Self-hosted) |
 | Kiedy Self-hosted IR? | Dane on-premises lub w prywatnej sieci |
 | ADF vs Synapse Pipelines? | Synapse = ADF + Analytics w jednym |
 | Ile connectorow ma ADF? | 90+ wbudowanych |
@@ -6573,326 +6520,194 @@ az datafactory pipeline create-run \
 <a id="sec-31-azure-storage"></a>
 ## 31. Azure Storage i Blob Storage
 
-Azure Storage to podstawowa usluga przechowywania danych w chmurze Azure. Oferuje wysoce dostepne, skalowalne i bezpieczne storage dla roznych typow danych.
+Azure Storage to podstawowa usługa przechowywania danych w chmurze Azure.
 
-### Storage Account - co to jest?
+### Storage Account
 
-**Storage Account** to kontener zarzadzania dla uslug storage. Kazdy Storage Account ma unikalna nazwe (globalnie unikalna w Azure!) i zawiera wszystkie obiekty danych.
+**Storage Account** to kontener dla usług storage z unikalną globalnie nazwą.
 
-<img src="assets/storage_account_overview.svg" alt="Azure Storage Account - 4 uslugi">
+<img src="assets/storage_account_overview.svg" alt="Azure Storage Account - 4 usługi">
 
-### 4 uslugi w Storage Account
+### 4 usługi w Storage Account
 
-| Usluga | Typ danych | Protokol | Uzycie |
-|--------|------------|----------|--------|
-| **Blob Storage** | Obiekty (pliki binarne) | REST/HTTP | Obrazy, video, backupy, logi |
-| **File Storage** | Udzialy plikowe | SMB 3.0 / NFS | Lift-and-shift, file servers |
-| **Queue Storage** | Wiadomosci kolejkowe | REST/HTTP | Async processing, decoupling |
-| **Table Storage** | Dane strukturalne NoSQL | REST/HTTP | Logi, IoT, proste dane |
+| Usługa | Opis | Użycie |
+|--------|------|--------|
+| **Blob Storage** | Pliki binarne (REST API) | Obrazy, video, backupy |
+| **File Storage** | Udziały SMB/NFS | File servery, lift-and-shift |
+| **Queue Storage** | Kolejki wiadomości | Async processing |
+| **Table Storage** | NoSQL (key-value) | Logi, IoT |
 
 ---
 
-## Azure Blob Storage - szczegolowo
+## Azure Blob Storage
 
-Blob = **B**inary **L**arge **OB**ject. Najpopularniejsza usluga storage do przechowywania niestrukturalnych danych (pliki, obrazy, video, backupy).
+Blob = **B**inary **L**arge **OB**ject - pliki, obrazy, video, backupy.
 
-### Hierarchia Blob Storage
+### Hierarchia
 
 <img src="assets/blob_hierarchy.svg" alt="Blob Storage - hierarchia">
 
-**Struktura:**
 ```
-Storage Account
-  └── Container (folder glowny)
-        └── Blob (plik)
-        └── Virtual folder / (opcjonalnie)
-              └── Blob
+Storage Account → Container → Blob
 ```
 
-### 3 typy Blobow
+### 3 typy Blobów
 
-| Typ | Opis | Max rozmiar | Uzycie |
-|-----|------|-------------|--------|
-| **Block Blob** | Bloki danych do uploadu | 190.7 TB | Pliki, obrazy, video, dokumenty |
-| **Append Blob** | Tylko dopisywanie na koncu | 195 GB | Logi, audit trails |
-| **Page Blob** | Random read/write | 8 TB | Dyski VM (VHD), bazy danych |
-
-**Block Blob** - najbardziej uniwersalny, uzywa blokow (do 4000) ktore mozna uploadowac rownolegle.
+| Typ | Max | Użycie |
+|-----|-----|--------|
+| **Block Blob** | 190 TB | Pliki, obrazy, video |
+| **Append Blob** | 195 GB | Logi (dopisywanie) |
+| **Page Blob** | 8 TB | Dyski VM (VHD) |
 
 ---
 
-### Access Tiers (Warstwy dostepu)
+### Access Tiers
 
-Blob Storage oferuje rozne warstwy kosztowe w zaleznosci od czestotliwosci dostepu do danych.
+<img src="assets/blob_access_tiers.svg" alt="Access Tiers">
 
-<img src="assets/blob_access_tiers.svg" alt="Access Tiers - warstwy dostepu">
-
-| Tier | Min. czas | Storage cost | Access cost | Kiedy? |
-|------|-----------|--------------|-------------|--------|
-| **Hot** | Brak | Wysoki | Niski | Czesty dostep, aplikacje web |
-| **Cool** | 30 dni | Sredni | Sredni | Backup krotkoterminowy |
-| **Cold** | 90 dni | Niski | Wysoki | Rzadki dostep, compliance |
-| **Archive** | 180 dni | Najnizszy | Najwyzszy | Archiwum, OFFLINE! |
-
-> **WAZNE:** Archive tier jest **OFFLINE**! Dane nie sa dostepne natychmiast. Rehydratacja (przywrocenie do Hot/Cool) trwa:
-> - Standard: do 15 godzin
-> - High Priority: do 1 godziny (drozsze)
+| Tier | Min. czas | Użycie |
+|------|-----------|--------|
+| **Hot** | - | Częsty dostęp |
+| **Cool** | 30 dni | Backup krótkoterminowy |
+| **Cold** | 90 dni | Rzadki dostęp |
+| **Archive** | 180 dni | OFFLINE, rehydratacja 1-15h |
 
 ---
 
-### Redundancja (Replikacja)
+### Redundancja
 
-Azure automatycznie replikuje dane dla ochrony przed awariami.
+<img src="assets/storage_redundancy.svg" alt="Redundancja">
 
-<img src="assets/storage_redundancy.svg" alt="Redundancja - replikacja danych">
+| Typ | Kopie | Ochrona |
+|-----|-------|----------|
+| **LRS** | 3 | 1 datacenter |
+| **ZRS** | 3 | 3 strefy (zone) |
+| **GRS** | 6 | 2 regiony |
+| **RA-GRS** | 6 | 2 regiony + read |
 
-| Typ | Kopie | Lokalizacja | Ochrona przed | SLA |
-|-----|-------|-------------|---------------|-----|
-| **LRS** | 3 | 1 datacenter | Awaria dysku/rack | 99.9% |
-| **ZRS** | 3 | 3 Availability Zones | Awaria strefy | 99.9% |
-| **GRS** | 6 | 2 regiony (paired) | Awaria regionu | 99.9% |
-| **RA-GRS** | 6 | 2 regiony + READ | Awaria regionu + read HA | 99.99% |
-| **GZRS** | 6 | 3 AZ + paired region | Zone + region failure | 99.9% |
-| **RA-GZRS** | 6 | 3 AZ + paired + READ | Max protection | 99.99% |
-
-**Wybor redundancji:**
-- **Dev/Test:** LRS (najtanszy)
-- **Produkcja regionalna:** ZRS
-- **Disaster Recovery:** GRS lub GZRS
-- **Read HA globally:** RA-GRS lub RA-GZRS
+**Wskazówka:** Dev/Test → LRS, Produkcja → ZRS, DR → GRS
 
 ---
 
 ### Typy Storage Account
 
-| Typ | Uslugi | Performance | Uzycie |
-|-----|--------|-------------|--------|
-| **Standard general-purpose v2** | Blob, File, Queue, Table | Standard (HDD) | Wiekszoss zastosowań |
-| **Premium block blobs** | Blob (block) | Premium (SSD) | Low latency, high transactions |
-| **Premium file shares** | File | Premium (SSD) | Enterprise file shares |
-| **Premium page blobs** | Blob (page) | Premium (SSD) | VM disks, databases |
+| Typ | Użycie |
+|-----|--------|
+| **Standard v2** | Większość zastosowań (HDD) |
+| **Premium block blobs** | Low latency (SSD) |
+| **Premium file shares** | Enterprise file shares |
+| **Premium page blobs** | Dyski VM |
 
 ---
 
-### Bezpieczenstwo
+### Bezpieczeństwo
 
-| Funkcja | Opis |
-|---------|------|
-| **SSE (Storage Service Encryption)** | Szyfrowanie at-rest (automatyczne, AES-256) |
-| **Encryption in transit** | HTTPS/TLS wymagane |
-| **Shared Access Signature (SAS)** | Token z ograniczonym dostepem |
-| **Access Keys** | Pelny dostep (2 klucze do rotacji) |
-| **Microsoft Entra ID** | RBAC dla Blob i Queue |
-| **Private Endpoint** | Dostep przez VNet (bez public IP) |
-| **Firewall rules** | Ograniczenie po IP/VNet |
-| **Immutable storage (WORM)** | Write Once Read Many - compliance |
-| **Soft delete** | Odzyskiwanie usunietych danych |
-| **Versioning** | Historia wersji blobow |
+- **SSE** - szyfrowanie at-rest (AES-256, automatyczne)
+- **HTTPS/TLS** - szyfrowanie in-transit
+- **SAS** - token z ograniczonym dostępem
+- **Access Keys** - pełny dostęp (2 klucze)
+- **Private Endpoint** - dostęp przez VNet
+- **Soft delete** - odzyskiwanie usuniętych danych
 
 ---
 
 ### Lifecycle Management
 
-Automatyczne przenoszenie danych miedzy tierami na podstawie regul.
+Automatyczne przenoszenie między tierami:
 
 ```json
 {
-  "rules": [
-    {
-      "name": "moveToArchive",
-      "type": "Lifecycle",
-      "definition": {
-        "filters": {
-          "blobTypes": ["blockBlob"],
-          "prefixMatch": ["logs/"]
-        },
-        "actions": {
-          "baseBlob": {
-            "tierToCool": { "daysAfterModificationGreaterThan": 30 },
-            "tierToArchive": { "daysAfterModificationGreaterThan": 90 },
-            "delete": { "daysAfterModificationGreaterThan": 365 }
-          }
+  "rules": [{
+    "name": "moveToArchive",
+    "definition": {
+      "actions": {
+        "baseBlob": {
+          "tierToCool": { "daysAfterModificationGreaterThan": 30 },
+          "tierToArchive": { "daysAfterModificationGreaterThan": 90 }
         }
       }
     }
-  ]
+  }]
 }
 ```
 
 ---
 
-### Azure CLI - podstawowe operacje
+### C# - Azure.Storage.Blobs
 
-```bash
-# Utworz Storage Account
-az storage account create \
-  --name mystorageaccount \
-  --resource-group myRG \
-  --location westeurope \
-  --sku Standard_LRS \
-  --kind StorageV2 \
-  --access-tier Hot
+```csharp
+using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
+using Azure.Storage.Sas;
 
-# Utworz container
-az storage container create \
-  --name mycontainer \
-  --account-name mystorageaccount
+// Połączenie
+var blobServiceClient = new BlobServiceClient("<connection-string>");
+var containerClient = blobServiceClient.GetBlobContainerClient("mycontainer");
+await containerClient.CreateIfNotExistsAsync();
 
-# Upload pliku
-az storage blob upload \
-  --account-name mystorageaccount \
-  --container-name mycontainer \
-  --name myfile.txt \
-  --file ./localfile.txt
+// Upload
+var blobClient = containerClient.GetBlobClient("myfile.txt");
+await blobClient.UploadAsync("./localfile.txt", overwrite: true);
 
-# Lista blobow
-az storage blob list \
-  --account-name mystorageaccount \
-  --container-name mycontainer \
-  --output table
+// Download
+await blobClient.DownloadToAsync("./downloaded.txt");
 
-# Zmien access tier
-az storage blob set-tier \
-  --account-name mystorageaccount \
-  --container-name mycontainer \
-  --name myfile.txt \
-  --tier Archive
+// Lista blobów
+await foreach (var blob in containerClient.GetBlobsAsync())
+{
+    Console.WriteLine($"{blob.Name} - {blob.Properties.ContentLength} bytes");
+}
 
-# Generuj SAS token
-az storage blob generate-sas \
-  --account-name mystorageaccount \
-  --container-name mycontainer \
-  --name myfile.txt \
-  --permissions r \
-  --expiry 2026-12-31T23:59:59Z
+// Usuń blob
+await blobClient.DeleteIfExistsAsync();
+
+// Generuj SAS token (1 godzina, read-only)
+var sasBuilder = new BlobSasBuilder(BlobSasPermissions.Read, DateTimeOffset.UtcNow.AddHours(1));
+var sasUri = blobClient.GenerateSasUri(sasBuilder);
+Console.WriteLine(sasUri);
 ```
 
----
-
-### Static Website Hosting
-
-Blob Storage moze hostowac statyczne strony (HTML, CSS, JS) bez serwera!
-
-```bash
-# Wlacz static website
-az storage blob service-properties update \
-  --account-name mystorageaccount \
-  --static-website \
-  --index-document index.html \
-  --404-document 404.html
-
-# Upload plikow do $web container
-az storage blob upload-batch \
-  --account-name mystorageaccount \
-  --destination '$web' \
-  --source ./website-files
-```
-
-**URL:** `https://mystorageaccount.z6.web.core.windows.net/`
+**NuGet:** `Azure.Storage.Blobs`
 
 ---
 
-### Azure Files vs Blob Storage
+### Static Website
 
-| Cecha | Blob Storage | Azure Files |
-|-------|--------------|-------------|
-| **Protokol** | REST/HTTP | SMB 3.0 / NFS |
-| **Dostep** | URL/API | Mount jako dysk |
-| **Uzycie** | Aplikacje web, backup | File servers, lift-and-shift |
-| **Mapowanie dysku** | NIE | TAK (Z:\\, /mnt) |
-| **Wspoldzielenie** | URL + SAS | UNC path |
-| **Max file size** | 190.7 TB (block blob) | 4 TB (pojedynczy plik) |
+Blob Storage może hostować statyczne strony (HTML, CSS, JS).
+
+**URL:** `https://<account>.z6.web.core.windows.net/`
 
 ---
 
-### Data Lake Storage Gen2
+### Blob vs Files vs Data Lake
 
-Hierarchical Namespace (HNS) na Blob Storage - dla Big Data analytics.
-
-| Cecha | Blob Storage | Data Lake Gen2 |
-|-------|--------------|----------------|
-| **Namespace** | Flat | Hierarchical (foldery) |
-| **Operacje folderow** | Rename = copy+delete | Atomic rename |
-| **ACL** | Container level | File/folder level |
-| **Big Data** | Ograniczone | Optimized (Hadoop, Spark) |
-| **Koszt** | Standardowy | Taki sam |
-
-```bash
-# Utworz Storage z HNS (Data Lake Gen2)
-az storage account create \
-  --name mydatalake \
-  --resource-group myRG \
-  --location westeurope \
-  --sku Standard_LRS \
-  --kind StorageV2 \
-  --enable-hierarchical-namespace true
-```
-
----
-
-### Cennik (przyklady West Europe)
-
-| Tier | Storage (per GB/mies) | Read (per 10k) | Write (per 10k) |
-|------|----------------------|----------------|----------------|
-| **Hot LRS** | ~$0.0184 | ~$0.004 | ~$0.05 |
-| **Cool LRS** | ~$0.01 | ~$0.01 | ~$0.10 |
-| **Cold LRS** | ~$0.0036 | ~$0.10 | ~$0.18 |
-| **Archive LRS** | ~$0.00099 | ~$5.00 | ~$0.10 |
-
-> **Optymalizacja kosztow:** Uzyj Lifecycle Management do automatycznego przenoszenia danych do tanszych tierow!
-
----
-
-### AzCopy - szybkie kopiowanie
-
-Narzedzie CLI do szybkiego transferu danych do/z Azure Storage.
-
-```bash
-# Upload folderu
-azcopy copy "./lokalny-folder" "https://mystorageaccount.blob.core.windows.net/container?SAS_TOKEN" --recursive
-
-# Download
-azcopy copy "https://mystorageaccount.blob.core.windows.net/container/blob?SAS_TOKEN" "./lokalny-plik"
-
-# Sync (jak rsync)
-azcopy sync "./lokalny-folder" "https://mystorageaccount.blob.core.windows.net/container?SAS_TOKEN"
-```
+| Cecha | Blob | Files | Data Lake Gen2 |
+|-------|------|-------|----------------|
+| **Protokół** | REST | SMB/NFS | REST + HNS |
+| **Użycie** | Aplikacje web | File servery | Big Data |
+| **ACL** | Container | Share | Plik/folder |
 
 ---
 
 ### Best Practices
 
-| Praktyka | Opis |
-|----------|------|
-| **Wybierz odpowiedni tier** | Hot dla aktywnych, Archive dla archiwum |
-| **Lifecycle Management** | Automatyzuj przenoszenie miedzy tierami |
-| **Uzyj ZRS/GRS dla produkcji** | LRS tylko dla dev/test |
-| **Private Endpoint** | Dla wrazliwych danych - bez public access |
-| **Soft delete** | Wlacz dla ochrony przed przypadkowym usunieciem |
-| **Versioning** | Dla waznych dokumentow |
-| **Immutable storage** | Dla compliance (WORM) |
-| **Monitoring** | Azure Monitor + Storage Analytics |
-| **Rotuj Access Keys** | Regularna rotacja (Key Vault) |
+- Odpowiedni tier: Hot dla aktywnych, Archive dla archiwum
+- Lifecycle Management dla automatyzacji
+- ZRS/GRS dla produkcji (LRS tylko dev/test)
+- Soft delete dla ochrony przed usunięciem
+- Private Endpoint dla wrażliwych danych
 
 ---
 
 ### FAQ - Egzamin
 
-| Pytanie | Odpowiedz |
+| Pytanie | Odpowiedź |
 |---------|----------|
 | Co zawiera Storage Account? | Blob, File, Queue, Table |
-| Ile kopii tworzy LRS? | 3 kopie w 1 datacenter |
-| Ile kopii tworzy GRS? | 6 kopii (3+3 w 2 regionach) |
-| Co to jest RA-GRS? | GRS + Read Access do secondary |
-| Ktory tier jest OFFLINE? | Archive (wymaga rehydratacji) |
-| Ile trwa rehydratacja Archive? | Standard: do 15h, High: do 1h |
-| Block vs Page vs Append Blob? | Block=pliki, Page=VHD, Append=logi |
-| Max rozmiar Block Blob? | 190.7 TB |
-| Co to jest HNS? | Hierarchical Namespace (Data Lake Gen2) |
-| Czy Blob moze hostowac strone? | TAK - Static Website Hosting |
-| Jak ograniczyc dostep czasowo? | SAS (Shared Access Signature) |
-| Co to jest SSE? | Storage Service Encryption (at-rest) |
-
-> **Egzamin:** Storage Account zawiera 4 uslugi: Blob, File, Queue, Table. Blob ma 3 typy: Block (pliki), Page (VHD), Append (logi). Access Tiers: Hot (czesty), Cool (30 dni), Cold (90 dni), Archive (180 dni, OFFLINE!). Redundancja: LRS (3 kopie, 1 DC), ZRS (3 AZ), GRS (6 kopii, 2 regiony), RA-GRS (GRS + read). Archive wymaga rehydratacji (godziny). Data Lake Gen2 = Blob + HNS.
+| Ile kopii tworzy LRS? | 3 w 1 datacenter |
+| Ile kopii tworzy GRS? | 6 (2 regiony) |
+| Który tier jest OFFLINE? | Archive |
+| Block vs Page Blob? | Block = pliki, Page = VHD |
+| Co to HNS? | Data Lake Gen2 |
 
 ---
