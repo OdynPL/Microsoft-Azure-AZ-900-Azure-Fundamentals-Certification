@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 400">
+  <defs>
+    <linearGradient id="redisGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#DC382D"/>
+      <stop offset="100%" style="stop-color:#A61B1B"/>
+    </linearGradient>
+    <linearGradient id="appGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6"/>
+      <stop offset="100%" style="stop-color:#1D4ED8"/>
+    </linearGradient>
+    <linearGradient id="dbGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10B981"/>
+      <stop offset="100%" style="stop-color:#059669"/>
+    </linearGradient>
+    <marker id="arrowCache" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#6B7280"/>
+    </marker>
+    <marker id="arrowFast" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#10B981"/>
+    </marker>
+    <marker id="arrowSlow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#EF4444"/>
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="450" y="30" text-anchor="middle" font-family="Segoe UI, Arial" font-size="20" font-weight="600" fill="#1E3A5F">Azure Cache for Redis - jak dziala cache</text>
+  
+  <!-- Without Cache Section -->
+  <rect x="30" y="50" width="400" height="160" rx="10" fill="#FEF2F2" stroke="#FCA5A5" stroke-width="2"/>
+  <text x="230" y="75" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="600" fill="#DC2626">BEZ CACHE (wolne)</text>
+  
+  <!-- App without cache -->
+  <rect x="50" y="95" width="100" height="60" rx="8" fill="url(#appGrad)"/>
+  <text x="100" y="125" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" font-weight="600" fill="white">Aplikacja</text>
+  <text x="100" y="142" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#BFDBFE">Web App</text>
+  
+  <!-- DB without cache -->
+  <rect x="280" y="95" width="130" height="60" rx="8" fill="url(#dbGrad)"/>
+  <text x="345" y="125" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" font-weight="600" fill="white">Baza danych</text>
+  <text x="345" y="142" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#A7F3D0">SQL / Cosmos</text>
+  
+  <!-- Slow arrow -->
+  <line x1="155" y1="115" x2="270" y2="115" stroke="#EF4444" stroke-width="3" marker-end="url(#arrowSlow)"/>
+  <line x1="270" y1="135" x2="155" y2="135" stroke="#EF4444" stroke-width="3" marker-end="url(#arrowSlow)"/>
+  <text x="212" y="105" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#DC2626">Kazde zapytanie</text>
+  <text x="212" y="180" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#991B1B">100-500ms latency</text>
+  
+  <!-- With Cache Section -->
+  <rect x="470" y="50" width="410" height="160" rx="10" fill="#ECFDF5" stroke="#6EE7B7" stroke-width="2"/>
+  <text x="675" y="75" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="600" fill="#059669">Z CACHE (szybkie)</text>
+  
+  <!-- App with cache -->
+  <rect x="490" y="95" width="100" height="60" rx="8" fill="url(#appGrad)"/>
+  <text x="540" y="125" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" font-weight="600" fill="white">Aplikacja</text>
+  <text x="540" y="142" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#BFDBFE">Web App</text>
+  
+  <!-- Redis cache -->
+  <rect x="630" y="95" width="100" height="60" rx="8" fill="url(#redisGrad)"/>
+  <text x="680" y="125" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" font-weight="600" fill="white">Redis</text>
+  <text x="680" y="142" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#FECACA">Cache</text>
+  
+  <!-- DB with cache -->
+  <rect x="760" y="95" width="100" height="60" rx="8" fill="url(#dbGrad)"/>
+  <text x="810" y="125" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" font-weight="600" fill="white">Baza</text>
+  <text x="810" y="142" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#A7F3D0">danych</text>
+  
+  <!-- Fast arrow to cache -->
+  <line x1="595" y1="115" x2="620" y2="115" stroke="#10B981" stroke-width="3" marker-end="url(#arrowFast)"/>
+  <line x1="620" y1="135" x2="595" y2="135" stroke="#10B981" stroke-width="3" marker-end="url(#arrowFast)"/>
+  <text x="607" y="105" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#059669">1-5ms</text>
+  
+  <!-- Occasional arrow to DB -->
+  <line x1="735" y1="125" x2="755" y2="125" stroke="#6B7280" stroke-width="2" stroke-dasharray="4,2" marker-end="url(#arrowCache)"/>
+  <text x="745" y="115" text-anchor="middle" font-family="Segoe UI, Arial" font-size="7" fill="#6B7280">miss</text>
+  
+  <text x="675" y="180" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#047857">1-5ms latency (cache hit)</text>
+  
+  <!-- Cache Patterns Section -->
+  <text x="450" y="240" text-anchor="middle" font-family="Segoe UI, Arial" font-size="16" font-weight="600" fill="#1E3A5F">Wzorce uzycia cache</text>
+  
+  <!-- Pattern 1: Cache-Aside -->
+  <rect x="30" y="260" width="200" height="120" rx="10" fill="#EFF6FF" stroke="#3B82F6" stroke-width="2"/>
+  <text x="130" y="285" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#1E40AF">Cache-Aside</text>
+  <text x="130" y="305" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#374151">1. Sprawdz cache</text>
+  <text x="130" y="320" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#374151">2. Jesli brak - czytaj z DB</text>
+  <text x="130" y="335" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#374151">3. Zapisz do cache</text>
+  <text x="130" y="360" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#6B7280">Najpopularniejszy wzorzec</text>
+  
+  <!-- Pattern 2: Write-Through -->
+  <rect x="250" y="260" width="200" height="120" rx="10" fill="#FEF3C7" stroke="#F59E0B" stroke-width="2"/>
+  <text x="350" y="285" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#B45309">Write-Through</text>
+  <text x="350" y="305" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#374151">1. Zapisz do cache</text>
+  <text x="350" y="320" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#374151">2. Cache zapisuje do DB</text>
+  <text x="350" y="335" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#374151">Synchroniczne</text>
+  <text x="350" y="360" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#6B7280">Dane zawsze aktualne</text>
+  
+  <!-- Pattern 3: Write-Behind -->
+  <rect x="470" y="260" width="200" height="120" rx="10" fill="#F3E8FF" stroke="#A855F7" stroke-width="2"/>
+  <text x="570" y="285" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#7C3AED">Write-Behind</text>
+  <text x="570" y="305" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#374151">1. Zapisz do cache</text>
+  <text x="570" y="320" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#374151">2. Async zapis do DB</text>
+  <text x="570" y="335" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#374151">Asynchroniczne</text>
+  <text x="570" y="360" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#6B7280">Najszybszy zapis</text>
+  
+  <!-- Pattern 4: Session Store -->
+  <rect x="690" y="260" width="190" height="120" rx="10" fill="#ECFDF5" stroke="#10B981" stroke-width="2"/>
+  <text x="785" y="285" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#047857">Session Store</text>
+  <text x="785" y="305" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#374151">Przechowuj sesje</text>
+  <text x="785" y="320" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#374151">uzytkownikow w Redis</text>
+  <text x="785" y="335" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#374151">zamiast w pamieci app</text>
+  <text x="785" y="360" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#6B7280">Dla load balancera</text>
+</svg>

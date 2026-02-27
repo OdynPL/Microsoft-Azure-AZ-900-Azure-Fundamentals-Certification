@@ -25,8 +25,9 @@
 - [17. Bazy danych (Databases)](#sec-17-databases)
 - [18. Subskrypcje (Subscription Models)](#sec-18-subscription-models)
 - [19. Azure CLI](#sec-19-azure-cli)
-- [20. Wdrażanie aplikacji na Azure (Deployment)](#sec-20-deployment)
-- [21. Last-minute cram (pułapki + porównania)](#sec-21-last-minute-cram)
+- [20. Azure Cache for Redis](#sec-20-redis-cache)
+- [21. Wdrażanie aplikacji na Azure (Deployment)](#sec-21-deployment)
+- [22. Last-minute cram (pułapki + porównania)](#sec-22-last-minute-cram)
 - [Załącznik A – Diagramy ASCII](#sec-appendix-ascii)
 
 ---
@@ -2542,8 +2543,170 @@ Pozwala wykonywać polecenia administracyjne oraz automatyzować zadania w skryp
 
 ---
 
-<a id="sec-20-deployment"></a>
-## 20. Wdrażanie aplikacji na Azure (Deployment)
+<a id="sec-20-redis-cache"></a>
+## 20. Azure Cache for Redis
+
+Azure Cache for Redis to w pelni zarzadzana usluga cache w pamieci, oparta na popularnym silniku Redis. Umozliwia drastyczne przyspieszenie aplikacji poprzez przechowywanie czesto uzywanych danych w szybkiej pamieci zamiast odpytywania bazy danych.
+
+<img src="assets/redis_cache_overview.svg" alt="Azure Cache for Redis - jak dziala cache" width="100%">
+
+### 20.1 Po co uzywac cache?
+
+| Problem | Rozwiazanie z Redis |
+|---------|--------------------|
+| Wolne odpowiedzi z bazy danych | Cache przechowuje dane w pamieci (1-5ms vs 100-500ms) |
+| Wysokie obciazenie bazy | Redis przejmuje 80-90% odczytow |
+| Sesje uzytkownikow rozrzucone | Centralne przechowywanie sesji |
+| Kosztowne obliczenia | Cache wynikow, nie powtarzaj obliczen |
+| Limity polaczen do DB | Mniej zapytan = mniej polaczen |
+
+### 20.2 Typowe przypadki uzycia
+
+**1. Cache danych (Data Caching)**
+- Wyniki zapytan SQL/NoSQL
+- Odpowiedzi z zewnetrznych API
+- Dane konfiguracyjne
+
+**2. Session Store**
+- Sesje uzytkownikow dla load-balanced aplikacji
+- Koszyki zakupowe
+- Tokeny uwierzytelniania
+
+**3. Message Broker**
+- Pub/Sub dla real-time powiadomien
+- Kolejki zadan (job queues)
+- Event streaming
+
+**4. Leaderboards / Counting**
+- Rankingi w grach (sorted sets)
+- Liczniki odwiedzin, lajkow
+- Rate limiting
+
+### 20.3 Warstwy cenowe (Tiers)
+
+<img src="assets/redis_tiers.svg" alt="Azure Cache for Redis - warstwy cenowe" width="100%">
+
+| Tier | SLA | Replikacja | Persistence | Clustering | Kiedy uzywac |
+|------|-----|------------|-------------|------------|-------------|
+| **Basic** | Brak | Brak | Nie | Nie | Dev/Test |
+| **Standard** | 99.9% | Primary + Replica | Nie | Nie | Wiekszosc produkcji |
+| **Premium** | 99.9% | P + R + Geo | RDB/AOF | Do 10 shardow | Duze obciazenia |
+| **Enterprise** | 99.999% | Active-Active | Pelna | Tak | Mission-critical |
+
+### 20.4 Kluczowe funkcje
+
+**Persistence (tylko Premium+):**
+- **RDB** - snapshoty w regularnych odstepach
+- **AOF** - zapisuje kazda operacje zapisu (wiecej danych, mniej utraty)
+
+**Clustering (tylko Premium+):**
+- Rozdziela dane na wiele shardow
+- Do 1.2 TB danych (Premium) / 14 TB (Enterprise)
+- Automatyczne resharding
+
+**Geo-replication:**
+- Premium: Active-Passive (DR)
+- Enterprise: Active-Active (multi-region write)
+
+**VNet Integration (Premium+):**
+- Redis w prywatnej sieci
+- Brak publicznego IP
+- Private Endpoints
+
+### 20.5 Wzorce cache - szczegoly
+
+**Cache-Aside (Lazy Loading):**
+```
+1. App sprawdza cache
+2. Cache HIT -> zwroc dane
+3. Cache MISS -> czytaj z DB -> zapisz do cache -> zwroc
+```
+Zalety: Tylko potrzebne dane w cache
+Wady: Pierwsze zapytanie zawsze wolne (cold start)
+
+**Write-Through:**
+```
+1. App zapisuje do cache
+2. Cache synchronicznie zapisuje do DB
+3. Potwierdzenie dla App
+```
+Zalety: Dane zawsze aktualne
+Wady: Wyzsza latencja zapisu
+
+**Write-Behind (Write-Back):**
+```
+1. App zapisuje do cache
+2. Cache potwierdza natychmiast
+3. Cache asynchronicznie zapisuje do DB
+```
+Zalety: Najszybszy zapis
+Wady: Ryzyko utraty danych przy awarii
+
+### 20.6 Tworzenie przez CLI
+
+```bash
+# Utworzenie Resource Group
+az group create --name myRG --location westeurope
+
+# Utworzenie Redis Cache (Standard C1)
+az redis create --name myrediscache --resource-group myRG \
+    --location westeurope --sku Standard --vm-size C1
+
+# Pobranie connection string
+az redis list-keys --name myrediscache --resource-group myRG
+
+# Wynik:
+# primaryKey: "abc123..."
+# secondaryKey: "xyz789..."
+```
+
+**Connection string format:**
+```
+myrediscache.redis.cache.windows.net:6380,password=<primaryKey>,ssl=True,abortConnect=False
+```
+
+### 20.7 Przyklad uzycia w kodzie (.NET)
+
+```csharp
+// NuGet: StackExchange.Redis
+var redis = ConnectionMultiplexer.Connect("myrediscache.redis.cache.windows.net:6380,password=xxx,ssl=True");
+var db = redis.GetDatabase();
+
+// Zapis
+db.StringSet("user:123", JsonSerializer.Serialize(user), TimeSpan.FromMinutes(30));
+
+// Odczyt
+var cached = db.StringGet("user:123");
+if (cached.HasValue)
+{
+    return JsonSerializer.Deserialize<User>(cached);
+}
+```
+
+### 20.8 Best Practices
+
+**Klucze:**
+- Uzywaj prefixow: `user:123`, `product:456`, `session:abc`
+- Unikaj bardzo dlugich kluczy (max 1KB, optymalnie < 100 bajtow)
+
+**TTL (Time To Live):**
+- Zawsze ustawiaj TTL dla danych cache
+- Typowe wartosci: 5-60 minut dla danych, 30 min - 24h dla sesji
+
+**Eviction Policy:**
+- `volatile-lru` - usun najstarsze klucze z TTL (domyslne)
+- `allkeys-lru` - usun najstarsze ze wszystkich kluczy
+- `noeviction` - blad gdy brak pamieci
+
+**Monitoring:**
+- Azure Monitor dla metryk (hits, misses, memory)
+- Cache Hit Ratio powinna byc > 90%
+- Alerts na wysokie uzycie pamieci
+
+---
+
+<a id="sec-21-deployment"></a>
+## 21. Wdrażanie aplikacji na Azure (Deployment)
 
 Wdrażanie (deployment) to proces przeniesienia aplikacji ze środowiska deweloperskiego do produkcji. Azure oferuje wiele metod wdrażania, od prostych (przez portal) po zaawansowane (CI/CD pipelines).
 
@@ -2804,8 +2967,8 @@ az container create --resource-group myRG \
 
 ---
 
-<a id="sec-21-last-minute-cram"></a>
-## 21. Last-minute cram (pułapki + porównania)
+<a id="sec-22-last-minute-cram"></a>
+## 22. Last-minute cram (pułapki + porównania)
 
 ### 40 najczęstszych pułapek egzaminacyjnych AZ‑900
 
