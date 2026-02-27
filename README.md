@@ -4733,6 +4733,8 @@ await processor.StartProcessingAsync();
 
 ### Subscription Filters
 
+<img src="assets/servicebus_filters.svg">
+
 Filtrowanie wiadomosci na poziomie subscription:
 
 | Typ filtra | Opis | Przyklad |
@@ -4757,6 +4759,8 @@ new CorrelationRuleFilter
 ---
 
 ### Dead-Letter Queue (DLQ)
+
+<img src="assets/servicebus_dlq.svg">
 
 Wiadomosci trafiaja do DLQ gdy:
 - Przekroczona liczba prob dostarczenia (MaxDeliveryCount)
@@ -4789,6 +4793,8 @@ dlqProcessor.ProcessMessageAsync += async args =>
 
 ### Sessions (Ordered Processing)
 
+<img src="assets/servicebus_sessions.svg">
+
 Sessions gwarantuja FIFO processing dla wiadomosci z tym samym SessionId:
 
 ```csharp
@@ -4818,7 +4824,88 @@ sessionProcessor.ProcessMessageAsync += async args =>
 
 ---
 
+### Message TTL (Time-To-Live)
+
+<img src="assets/servicebus_ttl.svg">
+
+TTL okresla jak dlugo wiadomosc moze pozostac w kolejce zanim wygasnie.
+
+**Default values:**
+
+| Poziom | Default TTL | Max TTL |
+|--------|-------------|---------|
+| **Queue/Topic** | 14 dni | TimeSpan.MaxValue (unlimited) |
+| **Message** | Dziedziczy z Queue | TimeSpan.MaxValue |
+| **Subscription** | Dziedziczy z Topic | TimeSpan.MaxValue |
+
+**Co sie dzieje po wygasnieciu TTL:**
+- Jezeli `DeadLetteringOnMessageExpiration = true` -> wiadomosc trafia do DLQ
+- Jezeli `DeadLetteringOnMessageExpiration = false` -> wiadomosc jest usuwana
+
+**Ustawienie TTL na Queue (CLI):**
+
+```bash
+# Utworz queue z TTL 7 dni
+az servicebus queue create --name myQueue \
+    --namespace-name myServiceBusNS \
+    --resource-group myRG \
+    --default-message-time-to-live P7D \
+    --dead-lettering-on-message-expiration true
+
+# Zmien TTL na istniejącej queue (30 dni)
+az servicebus queue update --name myQueue \
+    --namespace-name myServiceBusNS \
+    --resource-group myRG \
+    --default-message-time-to-live P30D
+```
+
+**Format TTL (ISO 8601 Duration):**
+- `P14D` = 14 dni
+- `P7D` = 7 dni
+- `PT1H` = 1 godzina
+- `PT30M` = 30 minut
+- `P1DT12H` = 1 dzien i 12 godzin
+
+**Ustawienie TTL na pojedynczej wiadomosci (C#):**
+
+```csharp
+// TTL na poziomie wiadomosci (nadpisuje default z queue)
+var message = new ServiceBusMessage("Important data")
+{
+    TimeToLive = TimeSpan.FromHours(1)  // Wygasnie za 1 godzine
+};
+await sender.SendMessageAsync(message);
+
+// Wiadomosc bez TTL (uzyje default z queue)
+var message2 = new ServiceBusMessage("Normal data");
+await sender.SendMessageAsync(message2);
+```
+
+**Sprawdzenie kiedy wiadomosc wygasnie:**
+
+```csharp
+processor.ProcessMessageAsync += async args =>
+{
+    // ExpiresAt = EnqueuedTime + TTL
+    var expiresAt = args.Message.ExpiresAt;
+    var enqueuedTime = args.Message.EnqueuedTime;
+    var ttl = args.Message.TimeToLive;
+    
+    Console.WriteLine($"Enqueued: {enqueuedTime}");
+    Console.WriteLine($"TTL: {ttl}");
+    Console.WriteLine($"Expires: {expiresAt}");
+    
+    await args.CompleteMessageAsync(args.Message);
+};
+```
+
+> **Tip:** Ustawiaj rozsadne TTL! Zbyt dlugi = zalegajace wiadomosci i koszty. Zbyt krotki = utrata danych.
+
+---
+
 ### Scheduled Messages
+
+<img src="assets/servicebus_scheduled.svg">
 
 ```csharp
 // Zaplanuj wiadomosc na pozniej

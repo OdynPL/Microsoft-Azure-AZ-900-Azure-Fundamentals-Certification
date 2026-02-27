@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 230">
+  <defs>
+    <linearGradient id="sessionGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7d3c98;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#9b59b6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="msgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a5276;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2980b9;stop-opacity:1" />
+    </linearGradient>
+    <marker id="arrowPurple" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#9b59b6"/>
+    </marker>
+  </defs>
+  
+  <rect width="520" height="230" fill="#f8f9fa"/>
+  <text x="260" y="22" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="600" fill="#2c3e50">Sessions - Ordered FIFO Processing</text>
+  
+  <!-- Session A -->
+  <rect x="20" y="50" width="200" height="75" rx="6" fill="url(#sessionGrad)"/>
+  <text x="30" y="70" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="white">Session: Order-123</text>
+  
+  <rect x="30" y="80" width="50" height="35" rx="3" fill="url(#msgGrad)"/>
+  <text x="55" y="95" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">Msg 1</text>
+  <text x="55" y="108" text-anchor="middle" font-family="Segoe UI, Arial" font-size="7" fill="white">Item A</text>
+  
+  <rect x="90" y="80" width="50" height="35" rx="3" fill="url(#msgGrad)"/>
+  <text x="115" y="95" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">Msg 2</text>
+  <text x="115" y="108" text-anchor="middle" font-family="Segoe UI, Arial" font-size="7" fill="white">Item B</text>
+  
+  <rect x="150" y="80" width="50" height="35" rx="3" fill="url(#msgGrad)"/>
+  <text x="175" y="95" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">Msg 3</text>
+  <text x="175" y="108" text-anchor="middle" font-family="Segoe UI, Arial" font-size="7" fill="white">Item C</text>
+  
+  <!-- Session B -->
+  <rect x="20" y="140" width="200" height="75" rx="6" fill="url(#sessionGrad)"/>
+  <text x="30" y="160" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="white">Session: Order-456</text>
+  
+  <rect x="30" y="170" width="50" height="35" rx="3" fill="url(#msgGrad)"/>
+  <text x="55" y="185" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">Msg 1</text>
+  <text x="55" y="198" text-anchor="middle" font-family="Segoe UI, Arial" font-size="7" fill="white">Item X</text>
+  
+  <rect x="90" y="170" width="50" height="35" rx="3" fill="url(#msgGrad)"/>
+  <text x="115" y="185" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">Msg 2</text>
+  <text x="115" y="198" text-anchor="middle" font-family="Segoe UI, Arial" font-size="7" fill="white">Item Y</text>
+  
+  <!-- Arrows -->
+  <line x1="220" y1="87" x2="280" y2="87" stroke="#9b59b6" stroke-width="2" marker-end="url(#arrowPurple)"/>
+  <line x1="220" y1="177" x2="280" y2="177" stroke="#9b59b6" stroke-width="2" marker-end="url(#arrowPurple)"/>
+  
+  <!-- Processors -->
+  <rect x="285" y="50" width="100" height="75" rx="6" fill="#ecf0f1" stroke="#bdc3c7"/>
+  <text x="335" y="75" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#2c3e50">Processor 1</text>
+  <text x="335" y="95" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#7f8c8d">Handles</text>
+  <text x="335" y="110" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#9b59b6">Order-123</text>
+  
+  <rect x="285" y="140" width="100" height="75" rx="6" fill="#ecf0f1" stroke="#bdc3c7"/>
+  <text x="335" y="165" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#2c3e50">Processor 2</text>
+  <text x="335" y="185" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#7f8c8d">Handles</text>
+  <text x="335" y="200" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#9b59b6">Order-456</text>
+  
+  <!-- Key points -->
+  <rect x="400" y="50" width="110" height="165" rx="6" fill="#e8f8f5" stroke="#1abc9c"/>
+  <text x="455" y="72" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#1e8449">Gwarancje</text>
+  <text x="410" y="95" font-family="Segoe UI, Arial" font-size="8" fill="#2c3e50">FIFO w sesji</text>
+  <text x="410" y="115" font-family="Segoe UI, Arial" font-size="8" fill="#2c3e50">1 session =</text>
+  <text x="410" y="130" font-family="Segoe UI, Arial" font-size="8" fill="#2c3e50">1 consumer</text>
+  <text x="410" y="155" font-family="Segoe UI, Arial" font-size="8" fill="#2c3e50">Session state</text>
+  <text x="410" y="170" font-family="Segoe UI, Arial" font-size="8" fill="#2c3e50">przechowywany</text>
+  <text x="410" y="195" font-family="Segoe UI, Arial" font-size="8" fill="#2c3e50">Parallel sessions</text>
+</svg>
