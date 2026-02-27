@@ -1876,6 +1876,8 @@ Na egzaminie: Marketplace to przede wszystkim **szybkie wdrażanie gotowych ofer
 
 ### AI i Data
 
+<img src="assets/aiservices.svg">
+
 **Cognitive Services / Azure OpenAI / Azure ML**
 
 - **Cognitive Services**  
@@ -1888,6 +1890,8 @@ Na egzaminie: Marketplace to przede wszystkim **szybkie wdrażanie gotowych ofer
   Platforma MLOps: trening modeli, eksperymenty, rejestr modeli, pipeline’y, wdrożenia do endpointów, monitorowanie jakości i driftu.
 
 ---
+
+<img src="assets/dataplatform.svg">
 
 **Data Factory / Synapse Pipelines / Databricks**
 
@@ -2142,6 +2146,8 @@ Serverless workflowy i automatyzacje z setkami konektorów (SAP, SQL, Salesforce
 
 <a id="sec-16-sla"></a>
 ## 16. SLA (Service Level Agreement)
+
+<img src="assets/sla.svg">
 
 - Każda usługa ma własne SLA (np. 99,9 / 99,95 / 99,99%).
 - Złożone SLA ≈ iloczyn SLA składników (przy niezależności awarii).
