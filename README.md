@@ -658,12 +658,18 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
 
     **Rodzaje**:
     - **Standard** functions
+        
+        <img src="assets/azurefunctions_standard.svg">
+        
         - Brak stanu (Stateless)
         - Krótki stan działania
         - Brak koordynacji, ręczna koordynacja
         - Brak wbudowanego retry
         - Brak natywnego wsparcia dla workflow
     - **Durable** functions
+        
+        <img src="assets/azurefunctions_durable.svg">
+        
         - Stan zapisywany automatycznie
         - Mogą działać długo
       - Wbudowany orchestrator

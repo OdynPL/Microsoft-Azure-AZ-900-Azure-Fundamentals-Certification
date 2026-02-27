@@ -1,0 +1,30 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 450 200' width='450' height='200'>
+  <title>Standard Azure Functions</title>
+  <defs>
+    <marker id='arrow' markerWidth='10' markerHeight='7' refX='9' refY='3.5' orient='auto'>
+      <polygon points='0 0, 10 3.5, 0 7' fill='#475569'/>
+    </marker>
+  </defs>
+  <rect width='450' height='200' fill='#FFFFFF'/>
+  <text x='225' y='25' text-anchor='middle' font-family='Segoe UI, Arial' font-size='14' font-weight='600' fill='#0F172A'>Standard Functions (Stateless)</text>
+  
+  <rect x='30' y='60' width='90' height='60' rx='8' fill='#FEF3C7' stroke='#D97706' stroke-width='2'/>
+  <text x='75' y='85' text-anchor='middle' font-family='Segoe UI, Arial' font-size='11' font-weight='600' fill='#1E293B'>Trigger</text>
+  <text x='75' y='105' text-anchor='middle' font-family='Segoe UI, Arial' font-size='9' fill='#334155'>HTTP/Timer</text>
+  
+  <line x1='120' y1='90' x2='160' y2='90' stroke='#475569' stroke-width='2' marker-end='url(#arrow)'/>
+  
+  <rect x='170' y='50' width='110' height='80' rx='8' fill='#DBEAFE' stroke='#2563EB' stroke-width='2'/>
+  <text x='225' y='80' text-anchor='middle' font-family='Segoe UI, Arial' font-size='12' font-weight='600' fill='#1E293B'>Function</text>
+  <text x='225' y='100' text-anchor='middle' font-family='Segoe UI, Arial' font-size='9' fill='#334155'>Single task</text>
+  <text x='225' y='115' text-anchor='middle' font-family='Segoe UI, Arial' font-size='9' fill='#64748B'>No state</text>
+  
+  <line x1='280' y1='90' x2='320' y2='90' stroke='#475569' stroke-width='2' marker-end='url(#arrow)'/>
+  
+  <rect x='330' y='60' width='90' height='60' rx='8' fill='#D1FAE5' stroke='#059669' stroke-width='2'/>
+  <text x='375' y='85' text-anchor='middle' font-family='Segoe UI, Arial' font-size='11' font-weight='600' fill='#1E293B'>Output</text>
+  <text x='375' y='105' text-anchor='middle' font-family='Segoe UI, Arial' font-size='9' fill='#334155'>Result</text>
+  
+  <text x='225' y='160' text-anchor='middle' font-family='Segoe UI, Arial' font-size='10' fill='#64748B'>Short-lived, no coordination</text>
+  <text x='225' y='178' text-anchor='middle' font-family='Segoe UI, Arial' font-size='10' fill='#64748B'>Manual retry, independent execution</text>
+</svg>

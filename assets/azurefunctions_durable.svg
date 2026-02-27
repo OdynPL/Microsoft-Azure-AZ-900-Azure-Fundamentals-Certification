@@ -1,0 +1,63 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 550 280' width='550' height='280'>
+  <title>Durable Functions</title>
+  <defs>
+    <marker id='arrow' markerWidth='10' markerHeight='7' refX='9' refY='3.5' orient='auto'>
+      <polygon points='0 0, 10 3.5, 0 7' fill='#475569'/>
+    </marker>
+  </defs>
+  <rect width='550' height='280' fill='#FFFFFF'/>
+  <text x='275' y='22' text-anchor='middle' font-family='Segoe UI, Arial' font-size='14' font-weight='600' fill='#0F172A'>Durable Functions (Stateful)</text>
+  
+  <!-- Orchestrator box -->
+  <rect x='30' y='45' width='490' height='180' rx='12' fill='#F1F5F9' stroke='#64748B' stroke-width='2' stroke-dasharray='5,3'/>
+  <text x='275' y='68' text-anchor='middle' font-family='Segoe UI, Arial' font-size='11' font-weight='600' fill='#475569'>Orchestrator (manages state &amp; flow)</text>
+  
+  <!-- Trigger -->
+  <rect x='50' y='90' width='70' height='50' rx='6' fill='#FEF3C7' stroke='#D97706' stroke-width='2'/>
+  <text x='85' y='112' text-anchor='middle' font-family='Segoe UI, Arial' font-size='10' font-weight='600' fill='#1E293B'>Start</text>
+  <text x='85' y='127' text-anchor='middle' font-family='Segoe UI, Arial' font-size='8' fill='#334155'>Trigger</text>
+  
+  <line x1='120' y1='115' x2='145' y2='115' stroke='#475569' stroke-width='2' marker-end='url(#arrow)'/>
+  
+  <!-- Activity 1 -->
+  <rect x='155' y='90' width='80' height='50' rx='6' fill='#DBEAFE' stroke='#2563EB' stroke-width='2'/>
+  <text x='195' y='112' text-anchor='middle' font-family='Segoe UI, Arial' font-size='10' font-weight='600' fill='#1E293B'>Activity 1</text>
+  <text x='195' y='127' text-anchor='middle' font-family='Segoe UI, Arial' font-size='8' fill='#334155'>Validate</text>
+  
+  <line x1='235' y1='115' x2='260' y2='115' stroke='#475569' stroke-width='2' marker-end='url(#arrow)'/>
+  
+  <!-- Activity 2 -->
+  <rect x='270' y='90' width='80' height='50' rx='6' fill='#DBEAFE' stroke='#2563EB' stroke-width='2'/>
+  <text x='310' y='112' text-anchor='middle' font-family='Segoe UI, Arial' font-size='10' font-weight='600' fill='#1E293B'>Activity 2</text>
+  <text x='310' y='127' text-anchor='middle' font-family='Segoe UI, Arial' font-size='8' fill='#334155'>Process</text>
+  
+  <line x1='350' y1='115' x2='375' y2='115' stroke='#475569' stroke-width='2' marker-end='url(#arrow)'/>
+  
+  <!-- Activity 3 -->
+  <rect x='385' y='90' width='80' height='50' rx='6' fill='#DBEAFE' stroke='#2563EB' stroke-width='2'/>
+  <text x='425' y='112' text-anchor='middle' font-family='Segoe UI, Arial' font-size='10' font-weight='600' fill='#1E293B'>Activity 3</text>
+  <text x='425' y='127' text-anchor='middle' font-family='Segoe UI, Arial' font-size='8' fill='#334155'>Complete</text>
+  
+  <!-- Fan-out section -->
+  <text x='195' y='165' text-anchor='middle' font-family='Segoe UI, Arial' font-size='9' font-weight='600' fill='#475569'>Fan-out (parallel)</text>
+  <rect x='155' y='175' width='35' height='30' rx='4' fill='#E0E7FF' stroke='#4F46E5' stroke-width='1'/>
+  <text x='172' y='194' text-anchor='middle' font-family='Segoe UI, Arial' font-size='8' fill='#1E293B'>F1</text>
+  <rect x='195' y='175' width='35' height='30' rx='4' fill='#E0E7FF' stroke='#4F46E5' stroke-width='1'/>
+  <text x='212' y='194' text-anchor='middle' font-family='Segoe UI, Arial' font-size='8' fill='#1E293B'>F2</text>
+  <rect x='235' y='175' width='35' height='30' rx='4' fill='#E0E7FF' stroke='#4F46E5' stroke-width='1'/>
+  <text x='252' y='194' text-anchor='middle' font-family='Segoe UI, Arial' font-size='8' fill='#1E293B'>F3</text>
+  
+  <!-- Fan-in section -->
+  <line x1='280' y1='190' x2='310' y2='190' stroke='#475569' stroke-width='1' marker-end='url(#arrow)'/>
+  <text x='380' y='165' text-anchor='middle' font-family='Segoe UI, Arial' font-size='9' font-weight='600' fill='#475569'>Fan-in (aggregate)</text>
+  <rect x='320' y='175' width='120' height='30' rx='4' fill='#D1FAE5' stroke='#059669' stroke-width='1'/>
+  <text x='380' y='194' text-anchor='middle' font-family='Segoe UI, Arial' font-size='9' fill='#1E293B'>Combine results</text>
+  
+  <!-- Bottom labels -->
+  <text x='140' y='248' text-anchor='middle' font-family='Segoe UI, Arial' font-size='9' fill='#059669'>✓ Auto state</text>
+  <text x='245' y='248' text-anchor='middle' font-family='Segoe UI, Arial' font-size='9' fill='#059669'>✓ Auto retry</text>
+  <text x='350' y='248' text-anchor='middle' font-family='Segoe UI, Arial' font-size='9' fill='#059669'>✓ Long-running</text>
+  <text x='460' y='248' text-anchor='middle' font-family='Segoe UI, Arial' font-size='9' fill='#059669'>✓ Chaining</text>
+  
+  <text x='275' y='270' text-anchor='middle' font-family='Segoe UI, Arial' font-size='10' fill='#64748B'>Complex workflows with built-in orchestration</text>
+</svg>
