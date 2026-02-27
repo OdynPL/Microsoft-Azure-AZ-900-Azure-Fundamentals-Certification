@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 280">
+  <!-- Background -->
+  <rect width="500" height="280" fill="#ffffff"/>
+  
+  <!-- Title -->
+  <text x="250" y="25" text-anchor="middle" fill="#333333" font-size="16" font-weight="bold" font-family="Segoe UI, Arial">Priority-based Routing</text>
+  
+  <!-- Traffic Manager -->
+  <rect x="180" y="75" width="100" height="55" rx="6" fill="#0078D4"/>
+  <text x="230" y="97" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold" font-family="Segoe UI, Arial">Traffic</text>
+  <text x="230" y="115" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold" font-family="Segoe UI, Arial">Manager</text>
+  
+  <!-- Request -->
+  <circle cx="80" cy="102" r="20" fill="#FFB900"/>
+  <text x="80" y="107" text-anchor="middle" fill="#333333" font-size="10" font-weight="bold" font-family="Segoe UI, Arial">REQ</text>
+  
+  <!-- Arrow to TM -->
+  <path d="M105 102 L175 102" stroke="#333333" stroke-width="2" fill="none"/>
+  <polygon points="175,102 168,97 168,107" fill="#333333"/>
+  
+  <!-- Endpoints with priority -->
+  <rect x="350" y="35" width="120" height="50" rx="5" fill="#107C10"/>
+  <text x="410" y="55" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="bold" font-family="Segoe UI, Arial">Primary</text>
+  <text x="410" y="75" text-anchor="middle" fill="#FFB900" font-size="11" font-weight="bold" font-family="Segoe UI, Arial">Priority: 1</text>
+  
+  <rect x="350" y="95" width="120" height="50" rx="5" fill="#5C2D91"/>
+  <text x="410" y="115" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="bold" font-family="Segoe UI, Arial">Secondary</text>
+  <text x="410" y="135" text-anchor="middle" fill="#B4A0FF" font-size="11" font-weight="bold" font-family="Segoe UI, Arial">Priority: 2</text>
+  
+  <rect x="350" y="155" width="120" height="50" rx="5" fill="#D13438"/>
+  <text x="410" y="175" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="bold" font-family="Segoe UI, Arial">DR Site</text>
+  <text x="410" y="195" text-anchor="middle" fill="#FF9999" font-size="11" font-weight="bold" font-family="Segoe UI, Arial">Priority: 3</text>
+  
+  <!-- Arrow to Primary (active) -->
+  <path d="M285 90 L345 60" stroke="#107C10" stroke-width="3" fill="none"/>
+  <polygon points="345,60 337,58 338,66" fill="#107C10"/>
+  
+  <!-- Checkmark -->
+  <circle cx="330" cy="60" r="12" fill="#107C10"/>
+  <path d="M324 60 L328 64 L336 54" stroke="#ffffff" stroke-width="2" fill="none"/>
+  
+  <!-- Inactive indicators -->
+  <text x="320" y="122" text-anchor="middle" fill="#999999" font-size="9" font-family="Segoe UI, Arial">standby</text>
+  <text x="320" y="182" text-anchor="middle" fill="#999999" font-size="9" font-family="Segoe UI, Arial">standby</text>
+  
+  <!-- Dashed lines to standby -->
+  <path d="M285 102 L345 120" stroke="#999999" stroke-width="1" stroke-dasharray="4,2" fill="none"/>
+  <path d="M285 115 L345 180" stroke="#999999" stroke-width="1" stroke-dasharray="4,2" fill="none"/>
+  
+  <!-- Description -->
+  <rect x="30" y="220" width="440" height="45" rx="6" fill="#F3F3F3" stroke="#E0E0E0"/>
+  <text x="250" y="248" text-anchor="middle" fill="#333333" font-size="11" font-family="Segoe UI, Arial">Ruch do endpointu o najwyzszym priorytecie (failover przy awarii)</text>
+</svg>

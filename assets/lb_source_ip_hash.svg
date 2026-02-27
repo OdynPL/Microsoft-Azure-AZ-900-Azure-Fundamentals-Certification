@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 280">
+  <!-- Background -->
+  <rect width="500" height="280" fill="#ffffff"/>
+  
+  <!-- Title -->
+  <text x="250" y="25" text-anchor="middle" fill="#333333" font-size="16" font-weight="bold" font-family="Segoe UI, Arial">Source IP Hash (Session Affinity)</text>
+  
+  <!-- Load Balancer -->
+  <rect x="200" y="90" width="100" height="50" rx="6" fill="#0078D4"/>
+  <text x="250" y="112" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold" font-family="Segoe UI, Arial">Load Balancer</text>
+  <text x="250" y="128" text-anchor="middle" fill="#50E6FF" font-size="9" font-family="Segoe UI, Arial">hash(IP)</text>
+  
+  <!-- Clients -->
+  <rect x="30" y="45" width="90" height="35" rx="5" fill="#5C2D91"/>
+  <text x="75" y="68" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="bold" font-family="Segoe UI, Arial">10.0.0.1</text>
+  
+  <rect x="30" y="95" width="90" height="35" rx="5" fill="#107C10"/>
+  <text x="75" y="118" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="bold" font-family="Segoe UI, Arial">10.0.0.2</text>
+  
+  <rect x="30" y="145" width="90" height="35" rx="5" fill="#D13438"/>
+  <text x="75" y="168" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="bold" font-family="Segoe UI, Arial">10.0.0.3</text>
+  
+  <!-- Arrows to LB -->
+  <path d="M125 62 L195 100" stroke="#5C2D91" stroke-width="2" fill="none"/>
+  <path d="M125 112 L195 115" stroke="#107C10" stroke-width="2" fill="none"/>
+  <path d="M125 162 L195 130" stroke="#D13438" stroke-width="2" fill="none"/>
+  
+  <!-- Servers -->
+  <rect x="380" y="45" width="80" height="35" rx="5" fill="#5C2D91"/>
+  <text x="420" y="68" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="bold" font-family="Segoe UI, Arial">Server A</text>
+  
+  <rect x="380" y="95" width="80" height="35" rx="5" fill="#107C10"/>
+  <text x="420" y="118" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="bold" font-family="Segoe UI, Arial">Server B</text>
+  
+  <rect x="380" y="145" width="80" height="35" rx="5" fill="#D13438"/>
+  <text x="420" y="168" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="bold" font-family="Segoe UI, Arial">Server C</text>
+  
+  <!-- Arrows from LB to Servers (same colors) -->
+  <path d="M305 100 L375 62" stroke="#5C2D91" stroke-width="2" fill="none"/>
+  <polygon points="375,62 367,60 368,68" fill="#5C2D91"/>
+  
+  <path d="M305 115 L375 112" stroke="#107C10" stroke-width="2" fill="none"/>
+  <polygon points="375,112 368,107 368,117" fill="#107C10"/>
+  
+  <path d="M305 130 L375 162" stroke="#D13438" stroke-width="2" fill="none"/>
+  <polygon points="375,162 368,157 368,167" fill="#D13438"/>
+  
+  <!-- Session persistence indicator -->
+  <text x="340" y="50" text-anchor="middle" fill="#5C2D91" font-size="9" font-weight="bold" font-family="Segoe UI, Arial">zawsze</text>
+  <text x="340" y="108" text-anchor="middle" fill="#107C10" font-size="9" font-weight="bold" font-family="Segoe UI, Arial">zawsze</text>
+  <text x="340" y="175" text-anchor="middle" fill="#D13438" font-size="9" font-weight="bold" font-family="Segoe UI, Arial">zawsze</text>
+  
+  <!-- Description -->
+  <rect x="30" y="200" width="440" height="65" rx="6" fill="#F3F3F3" stroke="#E0E0E0"/>
+  <text x="250" y="225" text-anchor="middle" fill="#333333" font-size="11" font-family="Segoe UI, Arial">Ten sam klient (IP) zawsze trafia do tego samego serwera</text>
+  <text x="250" y="245" text-anchor="middle" fill="#0078D4" font-size="10" font-family="Segoe UI, Arial">Azure: Load Balancer (Session Persistence), App Gateway (Cookie Affinity)</text>
+</svg>

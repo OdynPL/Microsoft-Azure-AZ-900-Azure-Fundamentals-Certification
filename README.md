@@ -34,6 +34,7 @@
 - [26. Azure Event Hub](#sec-26-event-hub)
 - [27. Azure Event Grid](#sec-27-event-grid)
 - [28. Azure Logic Apps](#sec-28-logic-apps)
+- [29. Load Balancing w Azure](#sec-29-load-balancing)
 
 ---
 
@@ -6106,5 +6107,267 @@ Recurrence Trigger (every hour)
 | Czy Logic Apps jest serverless? | Consumption = TAK, Standard = NIE (App Service Plan) |
 
 > **Egzamin:** Logic Apps to iPaaS do automatyzacji workflow z 450+ connectorami. Consumption = serverless (pay-per-execution), Standard = dedicated (VNet, VS Code debug). Integration Account wymagany dla B2B/EDI. Low-code/no-code - nie wymaga programowania.
+
+---
+
+<a id="sec-29-load-balancing"></a>
+## 29. Load Balancing w Azure
+
+Load balancing to technika dystrybucji ruchu sieciowego miedzy wiele serwerow w celu zwiekszenia dostepnosci, skalowalnosci i wydajnosci aplikacji.
+
+### Uslugi Load Balancing w Azure
+
+<img src="assets/lb_azure_services.svg" alt="Azure Load Balancing Services - porownanie uslug">
+
+| Usluga | Warstwa | Zakres | Protokol | Glowne cechy |
+|--------|---------|--------|----------|---------------|
+| **Azure Load Balancer** | L4 | Regional | TCP/UDP | Ultra-niska latencja, miliony req/s |
+| **Application Gateway** | L7 | Regional | HTTP/S | WAF, SSL offload, URL routing |
+| **Traffic Manager** | DNS | Global | Any | DNS-based failover, geo-routing |
+| **Front Door** | L7 | Global | HTTP/S | CDN + WAF + Global L7 LB |
+
+---
+
+### Algorytmy Load Balancing
+
+#### 1. Round Robin
+
+<img src="assets/lb_round_robin.svg" alt="Round Robin - algorytm rownej dystrybucji">
+
+Najprostszy algorytm - requesty sa rozdzielane rowno miedzy serwery po kolei.
+
+**Charakterystyka:**
+- Prosta implementacja
+- Rownomierna dystrybucja
+- Nie uwzglednia obciazenia serwerow
+- Idealny gdy serwery maja identyczna wydajnosc
+
+**Azure:** Load Balancer (domyslnie), Application Gateway
+
+---
+
+#### 2. Weighted Round Robin
+
+<img src="assets/lb_weighted_round_robin.svg" alt="Weighted Round Robin - dystrybucja z wagami">
+
+Rozszerzenie Round Robin z wagami - serwery z wieksza waga otrzymuja proporcjonalnie wiecej ruchu.
+
+**Charakterystyka:**
+- Uwzglednia roznice w wydajnosci serwerow
+- Elastyczna konfiguracja
+- Idealny przy heterogenicznych serwerach
+
+**Azure:** Traffic Manager (Weighted routing), Front Door (Weighted)
+
+```bash
+# Traffic Manager z weighted routing
+az network traffic-manager endpoint create \
+  --resource-group myRG \
+  --profile-name myTMProfile \
+  --name endpoint-west \
+  --type azureEndpoints \
+  --target-resource-id /subscriptions/.../westus-app \
+  --weight 3
+
+az network traffic-manager endpoint create \
+  --resource-group myRG \
+  --profile-name myTMProfile \
+  --name endpoint-east \
+  --type azureEndpoints \
+  --target-resource-id /subscriptions/.../eastus-app \
+  --weight 1
+```
+
+---
+
+#### 3. Least Connections
+
+<img src="assets/lb_least_connections.svg" alt="Least Connections - najmniej polaczen">
+
+Nowe requesty trafiaja do serwera z najmniejsza liczba aktywnych polaczen.
+
+**Charakterystyka:**
+- Dynamiczne balansowanie obciazenia
+- Idealny dla dlugich polaczen (WebSocket, keep-alive)
+- Wymaga sledzenia stanu polaczen
+
+**Azure:** Application Gateway (Connection Draining wsparcie)
+
+---
+
+#### 4. Source IP Hash (Session Affinity)
+
+<img src="assets/lb_source_ip_hash.svg" alt="Source IP Hash - sticky sessions">
+
+Hash z adresu IP klienta determinuje, do ktorego serwera trafi request. Ten sam klient zawsze trafia do tego samego serwera.
+
+**Charakterystyka:**
+- Sticky sessions bez cookie
+- Zachowuje stan sesji po stronie serwera
+- Problematyczne przy NAT (wielu klientow za jednym IP)
+
+**Azure:** 
+- Load Balancer: Session Persistence (Source IP, Source IP + Protocol)
+- Application Gateway: Cookie-based Affinity
+
+```bash
+# Load Balancer z session persistence
+az network lb rule create \
+  --resource-group myRG \
+  --lb-name myLB \
+  --name myRule \
+  --protocol Tcp \
+  --frontend-port 80 \
+  --backend-port 80 \
+  --frontend-ip-name myFrontEnd \
+  --backend-pool-name myBackEndPool \
+  --load-distribution SourceIP
+```
+
+---
+
+#### 5. URL Path-based Routing
+
+<img src="assets/lb_url_path.svg" alt="URL Path-based Routing - routing po sciezce">
+
+Routing na podstawie sciezki URL do roznych backend pools.
+
+**Charakterystyka:**
+- Microservices-friendly
+- Rozne backendy dla roznych funkcji
+- Wymaga L7 load balancera
+
+**Azure:** Application Gateway, Front Door
+
+```bash
+# Application Gateway z path-based routing
+az network application-gateway url-path-map create \
+  --gateway-name myAppGateway \
+  --name myPathMap \
+  --resource-group myRG \
+  --paths /api/* \
+  --address-pool apiPool \
+  --http-settings apiSettings \
+  --default-address-pool defaultPool \
+  --default-http-settings defaultSettings
+
+az network application-gateway url-path-map rule create \
+  --gateway-name myAppGateway \
+  --name imagesRule \
+  --resource-group myRG \
+  --path-map-name myPathMap \
+  --paths /images/* \
+  --address-pool imagesPool \
+  --http-settings imagesSettings
+```
+
+---
+
+#### 6. Priority-based Routing
+
+<img src="assets/lb_priority.svg" alt="Priority-based Routing - priorytetowy failover">
+
+Ruch kierowany do endpointu o najwyzszym priorytecie. Jesli endpoint jest niedostepny, ruch przechodzi do nastepnego w kolejnosci.
+
+**Charakterystyka:**
+- Active-Passive failover
+- Disaster Recovery scenarios
+- Niski priorytet = standby
+
+**Azure:** Traffic Manager (Priority routing), Front Door (Priority)
+
+```bash
+# Traffic Manager z priority routing
+az network traffic-manager profile create \
+  --resource-group myRG \
+  --name myTMProfile \
+  --routing-method Priority \
+  --unique-dns-name myapp
+
+az network traffic-manager endpoint create \
+  --resource-group myRG \
+  --profile-name myTMProfile \
+  --name primary-endpoint \
+  --type azureEndpoints \
+  --target-resource-id /subscriptions/.../primary-app \
+  --priority 1
+
+az network traffic-manager endpoint create \
+  --resource-group myRG \
+  --profile-name myTMProfile \
+  --name secondary-endpoint \
+  --type azureEndpoints \
+  --target-resource-id /subscriptions/.../secondary-app \
+  --priority 2
+```
+
+---
+
+### Inne metody routingu
+
+| Metoda | Opis | Azure Service |
+|--------|------|---------------|
+| **Performance** | Najnizsza latencja do klienta | Traffic Manager |
+| **Geographic** | Na podstawie lokalizacji DNS klienta | Traffic Manager |
+| **Multivalue** | Zwraca wiele zdrowych endpointow | Traffic Manager |
+| **Subnet** | Na podstawie podsieci klienta | Traffic Manager |
+
+---
+
+### Porownanie uslug Azure LB
+
+| Cecha | Load Balancer | App Gateway | Traffic Manager | Front Door |
+|-------|---------------|-------------|-----------------|------------|
+| **Warstwa** | L4 | L7 | DNS | L7 |
+| **Zakres** | Regional | Regional | Global | Global |
+| **SSL Offload** | Nie | Tak | Nie | Tak |
+| **WAF** | Nie | Tak | Nie | Tak |
+| **URL Routing** | Nie | Tak | Nie | Tak |
+| **Session Affinity** | Source IP | Cookie | - | Tak |
+| **Health Probes** | TCP/HTTP | HTTP/S | HTTP/S/TCP | HTTP/S |
+| **Latencja** | Ultra-niska | Niska | Zalezna od DNS | Niska |
+
+---
+
+### Scenariusze uzycia
+
+| Scenariusz | Rekomendowana usluga |
+|------------|----------------------|
+| Wewnetrzny ruch miedzy VM | **Load Balancer Internal** |
+| Publiczny ruch TCP/UDP non-HTTP | **Load Balancer Public** |
+| Aplikacja webowa regionalna z WAF | **Application Gateway** |
+| Globalna aplikacja web z CDN | **Front Door** |
+| DNS-based failover multi-region | **Traffic Manager** |
+| Hybrydowe (on-prem + cloud) | **Traffic Manager** |
+
+---
+
+### Best Practices
+
+| Praktyka | Opis |
+|----------|------|
+| **Health probes** | Zawsze konfiguruj custom health probes |
+| **Zones** | Uzyj zone-redundant LB dla HA |
+| **Standard SKU** | Zawsze Standard (nie Basic) dla produkcji |
+| **WAF** | Wlacz WAF dla publicznych aplikacji webowych |
+| **CDN + Front Door** | Dla globalnych aplikacji statycznych |
+| **Monitoring** | Azure Monitor + Connection Monitor |
+
+---
+
+### FAQ - Egzamin
+
+| Pytanie | Odpowiedz |
+|---------|----------|
+| Load Balancer vs App Gateway? | LB = L4 (TCP/UDP), AppGW = L7 (HTTP) |
+| Kiedy Traffic Manager? | Global DNS failover, geo-routing |
+| Kiedy Front Door? | Global L7 + CDN + WAF w jednym |
+| Czy LB obsluguje SSL? | NIE, to L4 - uzyj App Gateway |
+| Round Robin w Azure? | Load Balancer (domyslnie), App Gateway |
+| Session affinity jak? | LB = Source IP, AppGW = Cookie |
+| Ktory dla microservices? | App Gateway (path routing) lub Front Door |
+| Ktory ma najnizsza latencje? | Load Balancer (L4, ultra-low latency) |
+
+> **Egzamin:** Azure Load Balancer = L4 (TCP/UDP), regional, ultra-niska latencja. Application Gateway = L7 (HTTP/S), WAF, SSL offload, URL routing. Traffic Manager = DNS-based, global, failover. Front Door = L7 global + CDN + WAF. Round Robin to domyslny algorytm. Session Affinity = Source IP (LB) lub Cookie (AppGW).
 
 ---

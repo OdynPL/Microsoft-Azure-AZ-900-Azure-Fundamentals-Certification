@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 280">
+  <!-- Background -->
+  <rect width="500" height="280" fill="#ffffff"/>
+  
+  <!-- Title -->
+  <text x="250" y="25" text-anchor="middle" fill="#333333" font-size="16" font-weight="bold" font-family="Segoe UI, Arial">Least Connections</text>
+  
+  <!-- Load Balancer -->
+  <rect x="180" y="80" width="100" height="50" rx="6" fill="#0078D4"/>
+  <text x="230" y="110" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="Segoe UI, Arial">Load Balancer</text>
+  
+  <!-- New Request -->
+  <circle cx="80" cy="105" r="18" fill="#FFB900" stroke="#E6A600" stroke-width="2"/>
+  <text x="80" y="110" text-anchor="middle" fill="#333333" font-size="10" font-weight="bold" font-family="Segoe UI, Arial">NEW</text>
+  
+  <!-- Arrow to LB -->
+  <path d="M100 105 L175 105" stroke="#333333" stroke-width="2" fill="none"/>
+  <polygon points="175,105 168,100 168,110" fill="#333333"/>
+  
+  <!-- Servers with connection count -->
+  <rect x="350" y="35" width="110" height="50" rx="5" fill="#D13438"/>
+  <text x="405" y="55" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold" font-family="Segoe UI, Arial">Server A</text>
+  <text x="405" y="75" text-anchor="middle" fill="#ffffff" font-size="12" font-family="Segoe UI, Arial">8 connections</text>
+  
+  <rect x="350" y="95" width="110" height="50" rx="5" fill="#107C10"/>
+  <text x="405" y="115" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold" font-family="Segoe UI, Arial">Server B</text>
+  <text x="405" y="135" text-anchor="middle" fill="#ffffff" font-size="12" font-family="Segoe UI, Arial">2 connections</text>
+  
+  <rect x="350" y="155" width="110" height="50" rx="5" fill="#FFB900"/>
+  <text x="405" y="175" text-anchor="middle" fill="#333333" font-size="11" font-weight="bold" font-family="Segoe UI, Arial">Server C</text>
+  <text x="405" y="195" text-anchor="middle" fill="#333333" font-size="12" font-family="Segoe UI, Arial">5 connections</text>
+  
+  <!-- Arrow to least loaded server -->
+  <path d="M280 105 L345 120" stroke="#107C10" stroke-width="3" fill="none"/>
+  <polygon points="345,120 337,115 337,125" fill="#107C10"/>
+  
+  <!-- Checkmark on Server B -->
+  <circle cx="340" cy="120" r="12" fill="#107C10"/>
+  <path d="M334 120 L338 124 L346 114" stroke="#ffffff" stroke-width="2" fill="none"/>
+  
+  <!-- Description -->
+  <rect x="30" y="220" width="440" height="45" rx="6" fill="#F3F3F3" stroke="#E0E0E0"/>
+  <text x="250" y="248" text-anchor="middle" fill="#333333" font-size="11" font-family="Segoe UI, Arial">Nowy request trafia do serwera z najmniejsza liczba aktywnych polaczen</text>
+</svg>
