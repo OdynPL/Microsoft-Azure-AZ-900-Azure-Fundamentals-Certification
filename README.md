@@ -2373,7 +2373,7 @@ Cosmos DB oferuje **5 poziomów spójności** — balans między wydajnością a
 |--------|-----------|---------|--------------|
 | **Strong** | Zawsze najnowsze dane | Najwyższa | Finanse, krytyczne dane |
 | **Bounded Staleness** | Max opóźnienie K operacji lub T czasu | Wysoka | Gaming leaderboards |
-| **Session** | Spójność w ramach sesji | Średnia | ✅ **Domyślny, najczęściej używany** |
+| **Session** | Spójność w ramach sesji | Średnia | **Domyślny, najczęściej używany** |
 | **Consistent Prefix** | Kolejność operacji zachowana | Niska | Analityka, logi |
 | **Eventual** | Brak gwarancji kolejności | Najniższa | Liczniki, statystyki |
 
@@ -2396,8 +2396,8 @@ Cosmos DB automatycznie **partycjonuje dane** na podstawie **Partition Key**:
 ```
 
 **Zasady wyboru Partition Key:**
-| ✅ Dobre praktyki | ❌ Złe praktyki |
-|-------------------|-----------------|
+| Dobre praktyki | Złe praktyki |
+|----------------|---------------|
 | Wysoka kardynalność (dużo unikalnych wartości) | Status: "active/inactive" (tylko 2 wartości) |
 | Query najczęściej filtrują po tym kluczu | Timestamp (hot partition) |
 | Równomierna dystrybucja danych | ID użytkownika VIP (80% danych w 1 partycji) |
@@ -2414,25 +2414,25 @@ Cosmos DB automatycznie **partycjonuje dane** na podstawie **Partition Key**:
 | Cecha | Cosmos DB | Table Storage | Redis Cache | MongoDB Atlas |
 |-------|-----------|---------------|-------------|---------------|
 | **Typ** | Multi-model NoSQL | Key-Value | In-memory cache | Document DB |
-| **Global dist.** | ✅ Native | ❌ Single region | ⚠️ Premium only | ✅ Self-managed |
-| **Latency SLA** | ✅ <10ms P99 | ❌ Brak | ⚡ <1ms | ❌ Brak |
-| **Multi-region write** | ✅ Tak | ❌ Nie | ❌ Nie | ✅ Tak |
+| **Global dist.** | Tak (native) | Nie (single region) | Premium only | Tak (self-managed) |
+| **Latency SLA** | <10ms P99 | Brak | <1ms | Brak |
+| **Multi-region write** | Tak | Nie | Nie | Tak |
 | **SLA availability** | 99.999% | 99.9% | 99.9% | 99.95% |
-| **Koszt** | 💰💰💰 | 💰 | 💰💰 | 💰💰 |
+| **Koszt** | Wysoki | Niski | Średni | Średni |
 
 ---
 
 <a id="cosmosdb-when"></a>
 #### Kiedy wybrać Cosmos DB?
 
-**✅ Wybierz Cosmos DB gdy:**
+**Wybierz Cosmos DB gdy:**
 - Potrzebujesz **globalnej dystrybucji** z niskimi opóźnieniami
 - Aplikacja wymaga **99.999% SLA**
 - Masz **zmienny, nieprzewidywalny ruch** (autoscale)
 - Potrzebujesz **wielu modeli danych** (dokumenty, grafy, key-value)
 - Budujesz aplikacje **IoT, gaming, e-commerce, real-time**
 
-**❌ Nie wybieraj Cosmos DB gdy:**
+**Nie wybieraj Cosmos DB gdy:**
 - Potrzebujesz prostego, taniego storage → **Table Storage**
 - Potrzebujesz cache w pamięci → **Redis Cache**
 - Masz relacyjne dane z transakcjami ACID → **Azure SQL**
