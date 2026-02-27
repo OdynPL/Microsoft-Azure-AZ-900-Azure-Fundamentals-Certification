@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 280">
+  <!-- Background -->
+  <rect width="600" height="280" fill="#ffffff"/>
+  
+  <!-- Title -->
+  <text x="300" y="25" text-anchor="middle" fill="#333333" font-size="16" font-weight="bold" font-family="Segoe UI, Arial">Access Tiers - Warstwy dostepu</text>
+  
+  <!-- Hot -->
+  <rect x="30" y="50" width="125" height="140" rx="6" fill="#D13438"/>
+  <text x="92" y="80" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="Segoe UI, Arial">Hot</text>
+  <text x="92" y="100" text-anchor="middle" fill="#ffffff" font-size="9" font-family="Segoe UI, Arial">Czesty dostep</text>
+  <line x1="50" y1="115" x2="135" y2="115" stroke="#ffffff" stroke-width="1"/>
+  <text x="92" y="135" text-anchor="middle" fill="#ffffff" font-size="9" font-family="Segoe UI, Arial">Storage: $$$</text>
+  <text x="92" y="152" text-anchor="middle" fill="#ffffff" font-size="9" font-family="Segoe UI, Arial">Access: $</text>
+  <text x="92" y="175" text-anchor="middle" fill="#FFB900" font-size="8" font-family="Segoe UI, Arial">Aplikacje, web</text>
+  
+  <!-- Cool -->
+  <rect x="170" y="50" width="125" height="140" rx="6" fill="#FFB900"/>
+  <text x="232" y="80" text-anchor="middle" fill="#333333" font-size="13" font-weight="bold" font-family="Segoe UI, Arial">Cool</text>
+  <text x="232" y="100" text-anchor="middle" fill="#333333" font-size="9" font-family="Segoe UI, Arial">Min. 30 dni</text>
+  <line x1="190" y1="115" x2="275" y2="115" stroke="#333333" stroke-width="1"/>
+  <text x="232" y="135" text-anchor="middle" fill="#333333" font-size="9" font-family="Segoe UI, Arial">Storage: $$</text>
+  <text x="232" y="152" text-anchor="middle" fill="#333333" font-size="9" font-family="Segoe UI, Arial">Access: $$</text>
+  <text x="232" y="175" text-anchor="middle" fill="#996600" font-size="8" font-family="Segoe UI, Arial">Backup krotki</text>
+  
+  <!-- Cold -->
+  <rect x="310" y="50" width="125" height="140" rx="6" fill="#0078D4"/>
+  <text x="372" y="80" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="Segoe UI, Arial">Cold</text>
+  <text x="372" y="100" text-anchor="middle" fill="#ffffff" font-size="9" font-family="Segoe UI, Arial">Min. 90 dni</text>
+  <line x1="330" y1="115" x2="415" y2="115" stroke="#ffffff" stroke-width="1"/>
+  <text x="372" y="135" text-anchor="middle" fill="#ffffff" font-size="9" font-family="Segoe UI, Arial">Storage: $</text>
+  <text x="372" y="152" text-anchor="middle" fill="#ffffff" font-size="9" font-family="Segoe UI, Arial">Access: $$$</text>
+  <text x="372" y="175" text-anchor="middle" fill="#50E6FF" font-size="8" font-family="Segoe UI, Arial">Rzadki dostep</text>
+  
+  <!-- Archive -->
+  <rect x="450" y="50" width="125" height="140" rx="6" fill="#5C2D91"/>
+  <text x="512" y="80" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="Segoe UI, Arial">Archive</text>
+  <text x="512" y="100" text-anchor="middle" fill="#ffffff" font-size="9" font-family="Segoe UI, Arial">Min. 180 dni</text>
+  <line x1="470" y1="115" x2="555" y2="115" stroke="#ffffff" stroke-width="1"/>
+  <text x="512" y="135" text-anchor="middle" fill="#ffffff" font-size="9" font-family="Segoe UI, Arial">Storage: 0.1x</text>
+  <text x="512" y="152" text-anchor="middle" fill="#ffffff" font-size="9" font-family="Segoe UI, Arial">Access: $$$$</text>
+  <text x="512" y="175" text-anchor="middle" fill="#B4A0FF" font-size="8" font-family="Segoe UI, Arial">Offline! Rehydrate</text>
+  
+  <!-- Cost arrow -->
+  <text x="30" y="220" fill="#107C10" font-size="10" font-weight="bold" font-family="Segoe UI, Arial">Storage cost:</text>
+  <path d="M120 217 L550 217" stroke="#107C10" stroke-width="2" fill="none"/>
+  <polygon points="550,217 543,212 543,222" fill="#107C10"/>
+  <text x="560" y="221" fill="#107C10" font-size="9" font-family="Segoe UI, Arial">nizej</text>
+  
+  <text x="30" y="245" fill="#D13438" font-size="10" font-weight="bold" font-family="Segoe UI, Arial">Access cost:</text>
+  <path d="M120 242 L550 242" stroke="#D13438" stroke-width="2" fill="none"/>
+  <polygon points="550,242 543,237 543,247" fill="#D13438"/>
+  <text x="560" y="246" fill="#D13438" font-size="9" font-family="Segoe UI, Arial">wyzej</text>
+  
+  <!-- Note -->
+  <rect x="30" y="258" width="540" height="18" rx="3" fill="#F3F3F3"/>
+  <text x="300" y="271" text-anchor="middle" fill="#333333" font-size="9" font-family="Segoe UI, Arial">Archive = OFFLINE! Rehydratacja do Hot/Cool: godziny (Standard) lub minuty (High Priority)</text>
+</svg>

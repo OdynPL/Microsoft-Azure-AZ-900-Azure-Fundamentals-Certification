@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 320">
+  <!-- Background -->
+  <rect width="600" height="320" fill="#ffffff"/>
+  
+  <!-- Title -->
+  <text x="300" y="25" text-anchor="middle" fill="#333333" font-size="16" font-weight="bold" font-family="Segoe UI, Arial">Azure Storage Account - 4 uslugi</text>
+  
+  <!-- Storage Account container -->
+  <rect x="30" y="45" width="540" height="250" rx="10" fill="#F3F3F3" stroke="#0078D4" stroke-width="2"/>
+  <text x="300" y="70" text-anchor="middle" fill="#0078D4" font-size="13" font-weight="bold" font-family="Segoe UI, Arial">Storage Account: mystorageaccount</text>
+  
+  <!-- Blob Storage -->
+  <rect x="50" y="90" width="120" height="90" rx="6" fill="#0078D4"/>
+  <text x="110" y="120" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="Segoe UI, Arial">Blob Storage</text>
+  <text x="110" y="140" text-anchor="middle" fill="#ffffff" font-size="9" font-family="Segoe UI, Arial">Obiekty (pliki)</text>
+  <text x="110" y="155" text-anchor="middle" fill="#50E6FF" font-size="9" font-family="Segoe UI, Arial">Images, Videos</text>
+  <text x="110" y="170" text-anchor="middle" fill="#50E6FF" font-size="9" font-family="Segoe UI, Arial">Backups, Logs</text>
+  
+  <!-- File Storage -->
+  <rect x="190" y="90" width="120" height="90" rx="6" fill="#5C2D91"/>
+  <text x="250" y="120" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="Segoe UI, Arial">File Storage</text>
+  <text x="250" y="140" text-anchor="middle" fill="#ffffff" font-size="9" font-family="Segoe UI, Arial">SMB/NFS shares</text>
+  <text x="250" y="155" text-anchor="middle" fill="#B4A0FF" font-size="9" font-family="Segoe UI, Arial">Lift-and-shift</text>
+  <text x="250" y="170" text-anchor="middle" fill="#B4A0FF" font-size="9" font-family="Segoe UI, Arial">File servers</text>
+  
+  <!-- Queue Storage -->
+  <rect x="330" y="90" width="120" height="90" rx="6" fill="#107C10"/>
+  <text x="390" y="120" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="Segoe UI, Arial">Queue Storage</text>
+  <text x="390" y="140" text-anchor="middle" fill="#ffffff" font-size="9" font-family="Segoe UI, Arial">Kolejki wiadomosci</text>
+  <text x="390" y="155" text-anchor="middle" fill="#7FBA00" font-size="9" font-family="Segoe UI, Arial">Async processing</text>
+  <text x="390" y="170" text-anchor="middle" fill="#7FBA00" font-size="9" font-family="Segoe UI, Arial">Decoupling</text>
+  
+  <!-- Table Storage -->
+  <rect x="470" y="90" width="120" height="90" rx="6" fill="#FFB900"/>
+  <text x="530" y="120" text-anchor="middle" fill="#333333" font-size="12" font-weight="bold" font-family="Segoe UI, Arial">Table Storage</text>
+  <text x="530" y="140" text-anchor="middle" fill="#333333" font-size="9" font-family="Segoe UI, Arial">NoSQL key-value</text>
+  <text x="530" y="155" text-anchor="middle" fill="#996600" font-size="9" font-family="Segoe UI, Arial">Structured data</text>
+  <text x="530" y="170" text-anchor="middle" fill="#996600" font-size="9" font-family="Segoe UI, Arial">Logs, IoT</text>
+  
+  <!-- Features row -->
+  <rect x="50" y="200" width="250" height="80" rx="6" fill="#E8F4FD" stroke="#0078D4"/>
+  <text x="175" y="225" text-anchor="middle" fill="#0078D4" font-size="11" font-weight="bold" font-family="Segoe UI, Arial">Wspolne cechy</text>
+  <text x="175" y="245" text-anchor="middle" fill="#333333" font-size="9" font-family="Segoe UI, Arial">Replikacja: LRS, ZRS, GRS, RA-GRS</text>
+  <text x="175" y="260" text-anchor="middle" fill="#333333" font-size="9" font-family="Segoe UI, Arial">Szyfrowanie: SSE (at-rest), HTTPS (in-transit)</text>
+  
+  <!-- Access tiers -->
+  <rect x="320" y="200" width="250" height="80" rx="6" fill="#F3EBFA" stroke="#5C2D91"/>
+  <text x="445" y="225" text-anchor="middle" fill="#5C2D91" font-size="11" font-weight="bold" font-family="Segoe UI, Arial">Access Tiers (Blob)</text>
+  <text x="445" y="245" text-anchor="middle" fill="#333333" font-size="9" font-family="Segoe UI, Arial">Hot | Cool | Cold | Archive</text>
+  <text x="445" y="260" text-anchor="middle" fill="#333333" font-size="9" font-family="Segoe UI, Arial">Czesty dostep -> Rzadki dostep</text>
+</svg>

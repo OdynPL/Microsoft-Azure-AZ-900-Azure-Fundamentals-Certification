@@ -46,6 +46,7 @@
 - [28. Azure Logic Apps](#sec-28-logic-apps)
 - [29. Load Balancing w Azure](#sec-29-load-balancing)
 - [30. Azure Data Factory](#sec-30-data-factory)
+- [31. Azure Storage i Blob Storage](#sec-31-azure-storage)
 
 ---
 
@@ -6566,5 +6567,332 @@ az datafactory pipeline create-run \
 | Czy ADF jest serverless? | TAK - pay-per-use |
 
 > **Egzamin:** Azure Data Factory to serverless ETL/ELT service do integracji danych. Pipeline = kontener na Activities. Activity = operacja (Copy, Data Flow). Linked Service = polaczenie do zrodla. Integration Runtime = silnik wykonawczy (Azure dla cloud, Self-hosted dla on-premises). 90+ wbudowanych connectorow. Data Flow uzywa Apache Spark do transformacji.
+
+---
+
+<a id="sec-31-azure-storage"></a>
+## 31. Azure Storage i Blob Storage
+
+Azure Storage to podstawowa usluga przechowywania danych w chmurze Azure. Oferuje wysoce dostepne, skalowalne i bezpieczne storage dla roznych typow danych.
+
+### Storage Account - co to jest?
+
+**Storage Account** to kontener zarzadzania dla uslug storage. Kazdy Storage Account ma unikalna nazwe (globalnie unikalna w Azure!) i zawiera wszystkie obiekty danych.
+
+<img src="assets/storage_account_overview.svg" alt="Azure Storage Account - 4 uslugi">
+
+### 4 uslugi w Storage Account
+
+| Usluga | Typ danych | Protokol | Uzycie |
+|--------|------------|----------|--------|
+| **Blob Storage** | Obiekty (pliki binarne) | REST/HTTP | Obrazy, video, backupy, logi |
+| **File Storage** | Udzialy plikowe | SMB 3.0 / NFS | Lift-and-shift, file servers |
+| **Queue Storage** | Wiadomosci kolejkowe | REST/HTTP | Async processing, decoupling |
+| **Table Storage** | Dane strukturalne NoSQL | REST/HTTP | Logi, IoT, proste dane |
+
+---
+
+## Azure Blob Storage - szczegolowo
+
+Blob = **B**inary **L**arge **OB**ject. Najpopularniejsza usluga storage do przechowywania niestrukturalnych danych (pliki, obrazy, video, backupy).
+
+### Hierarchia Blob Storage
+
+<img src="assets/blob_hierarchy.svg" alt="Blob Storage - hierarchia">
+
+**Struktura:**
+```
+Storage Account
+  └── Container (folder glowny)
+        └── Blob (plik)
+        └── Virtual folder / (opcjonalnie)
+              └── Blob
+```
+
+### 3 typy Blobow
+
+| Typ | Opis | Max rozmiar | Uzycie |
+|-----|------|-------------|--------|
+| **Block Blob** | Bloki danych do uploadu | 190.7 TB | Pliki, obrazy, video, dokumenty |
+| **Append Blob** | Tylko dopisywanie na koncu | 195 GB | Logi, audit trails |
+| **Page Blob** | Random read/write | 8 TB | Dyski VM (VHD), bazy danych |
+
+**Block Blob** - najbardziej uniwersalny, uzywa blokow (do 4000) ktore mozna uploadowac rownolegle.
+
+---
+
+### Access Tiers (Warstwy dostepu)
+
+Blob Storage oferuje rozne warstwy kosztowe w zaleznosci od czestotliwosci dostepu do danych.
+
+<img src="assets/blob_access_tiers.svg" alt="Access Tiers - warstwy dostepu">
+
+| Tier | Min. czas | Storage cost | Access cost | Kiedy? |
+|------|-----------|--------------|-------------|--------|
+| **Hot** | Brak | Wysoki | Niski | Czesty dostep, aplikacje web |
+| **Cool** | 30 dni | Sredni | Sredni | Backup krotkoterminowy |
+| **Cold** | 90 dni | Niski | Wysoki | Rzadki dostep, compliance |
+| **Archive** | 180 dni | Najnizszy | Najwyzszy | Archiwum, OFFLINE! |
+
+> **WAZNE:** Archive tier jest **OFFLINE**! Dane nie sa dostepne natychmiast. Rehydratacja (przywrocenie do Hot/Cool) trwa:
+> - Standard: do 15 godzin
+> - High Priority: do 1 godziny (drozsze)
+
+---
+
+### Redundancja (Replikacja)
+
+Azure automatycznie replikuje dane dla ochrony przed awariami.
+
+<img src="assets/storage_redundancy.svg" alt="Redundancja - replikacja danych">
+
+| Typ | Kopie | Lokalizacja | Ochrona przed | SLA |
+|-----|-------|-------------|---------------|-----|
+| **LRS** | 3 | 1 datacenter | Awaria dysku/rack | 99.9% |
+| **ZRS** | 3 | 3 Availability Zones | Awaria strefy | 99.9% |
+| **GRS** | 6 | 2 regiony (paired) | Awaria regionu | 99.9% |
+| **RA-GRS** | 6 | 2 regiony + READ | Awaria regionu + read HA | 99.99% |
+| **GZRS** | 6 | 3 AZ + paired region | Zone + region failure | 99.9% |
+| **RA-GZRS** | 6 | 3 AZ + paired + READ | Max protection | 99.99% |
+
+**Wybor redundancji:**
+- **Dev/Test:** LRS (najtanszy)
+- **Produkcja regionalna:** ZRS
+- **Disaster Recovery:** GRS lub GZRS
+- **Read HA globally:** RA-GRS lub RA-GZRS
+
+---
+
+### Typy Storage Account
+
+| Typ | Uslugi | Performance | Uzycie |
+|-----|--------|-------------|--------|
+| **Standard general-purpose v2** | Blob, File, Queue, Table | Standard (HDD) | Wiekszoss zastosowań |
+| **Premium block blobs** | Blob (block) | Premium (SSD) | Low latency, high transactions |
+| **Premium file shares** | File | Premium (SSD) | Enterprise file shares |
+| **Premium page blobs** | Blob (page) | Premium (SSD) | VM disks, databases |
+
+---
+
+### Bezpieczenstwo
+
+| Funkcja | Opis |
+|---------|------|
+| **SSE (Storage Service Encryption)** | Szyfrowanie at-rest (automatyczne, AES-256) |
+| **Encryption in transit** | HTTPS/TLS wymagane |
+| **Shared Access Signature (SAS)** | Token z ograniczonym dostepem |
+| **Access Keys** | Pelny dostep (2 klucze do rotacji) |
+| **Microsoft Entra ID** | RBAC dla Blob i Queue |
+| **Private Endpoint** | Dostep przez VNet (bez public IP) |
+| **Firewall rules** | Ograniczenie po IP/VNet |
+| **Immutable storage (WORM)** | Write Once Read Many - compliance |
+| **Soft delete** | Odzyskiwanie usunietych danych |
+| **Versioning** | Historia wersji blobow |
+
+---
+
+### Lifecycle Management
+
+Automatyczne przenoszenie danych miedzy tierami na podstawie regul.
+
+```json
+{
+  "rules": [
+    {
+      "name": "moveToArchive",
+      "type": "Lifecycle",
+      "definition": {
+        "filters": {
+          "blobTypes": ["blockBlob"],
+          "prefixMatch": ["logs/"]
+        },
+        "actions": {
+          "baseBlob": {
+            "tierToCool": { "daysAfterModificationGreaterThan": 30 },
+            "tierToArchive": { "daysAfterModificationGreaterThan": 90 },
+            "delete": { "daysAfterModificationGreaterThan": 365 }
+          }
+        }
+      }
+    }
+  ]
+}
+```
+
+---
+
+### Azure CLI - podstawowe operacje
+
+```bash
+# Utworz Storage Account
+az storage account create \
+  --name mystorageaccount \
+  --resource-group myRG \
+  --location westeurope \
+  --sku Standard_LRS \
+  --kind StorageV2 \
+  --access-tier Hot
+
+# Utworz container
+az storage container create \
+  --name mycontainer \
+  --account-name mystorageaccount
+
+# Upload pliku
+az storage blob upload \
+  --account-name mystorageaccount \
+  --container-name mycontainer \
+  --name myfile.txt \
+  --file ./localfile.txt
+
+# Lista blobow
+az storage blob list \
+  --account-name mystorageaccount \
+  --container-name mycontainer \
+  --output table
+
+# Zmien access tier
+az storage blob set-tier \
+  --account-name mystorageaccount \
+  --container-name mycontainer \
+  --name myfile.txt \
+  --tier Archive
+
+# Generuj SAS token
+az storage blob generate-sas \
+  --account-name mystorageaccount \
+  --container-name mycontainer \
+  --name myfile.txt \
+  --permissions r \
+  --expiry 2026-12-31T23:59:59Z
+```
+
+---
+
+### Static Website Hosting
+
+Blob Storage moze hostowac statyczne strony (HTML, CSS, JS) bez serwera!
+
+```bash
+# Wlacz static website
+az storage blob service-properties update \
+  --account-name mystorageaccount \
+  --static-website \
+  --index-document index.html \
+  --404-document 404.html
+
+# Upload plikow do $web container
+az storage blob upload-batch \
+  --account-name mystorageaccount \
+  --destination '$web' \
+  --source ./website-files
+```
+
+**URL:** `https://mystorageaccount.z6.web.core.windows.net/`
+
+---
+
+### Azure Files vs Blob Storage
+
+| Cecha | Blob Storage | Azure Files |
+|-------|--------------|-------------|
+| **Protokol** | REST/HTTP | SMB 3.0 / NFS |
+| **Dostep** | URL/API | Mount jako dysk |
+| **Uzycie** | Aplikacje web, backup | File servers, lift-and-shift |
+| **Mapowanie dysku** | NIE | TAK (Z:\\, /mnt) |
+| **Wspoldzielenie** | URL + SAS | UNC path |
+| **Max file size** | 190.7 TB (block blob) | 4 TB (pojedynczy plik) |
+
+---
+
+### Data Lake Storage Gen2
+
+Hierarchical Namespace (HNS) na Blob Storage - dla Big Data analytics.
+
+| Cecha | Blob Storage | Data Lake Gen2 |
+|-------|--------------|----------------|
+| **Namespace** | Flat | Hierarchical (foldery) |
+| **Operacje folderow** | Rename = copy+delete | Atomic rename |
+| **ACL** | Container level | File/folder level |
+| **Big Data** | Ograniczone | Optimized (Hadoop, Spark) |
+| **Koszt** | Standardowy | Taki sam |
+
+```bash
+# Utworz Storage z HNS (Data Lake Gen2)
+az storage account create \
+  --name mydatalake \
+  --resource-group myRG \
+  --location westeurope \
+  --sku Standard_LRS \
+  --kind StorageV2 \
+  --enable-hierarchical-namespace true
+```
+
+---
+
+### Cennik (przyklady West Europe)
+
+| Tier | Storage (per GB/mies) | Read (per 10k) | Write (per 10k) |
+|------|----------------------|----------------|----------------|
+| **Hot LRS** | ~$0.0184 | ~$0.004 | ~$0.05 |
+| **Cool LRS** | ~$0.01 | ~$0.01 | ~$0.10 |
+| **Cold LRS** | ~$0.0036 | ~$0.10 | ~$0.18 |
+| **Archive LRS** | ~$0.00099 | ~$5.00 | ~$0.10 |
+
+> **Optymalizacja kosztow:** Uzyj Lifecycle Management do automatycznego przenoszenia danych do tanszych tierow!
+
+---
+
+### AzCopy - szybkie kopiowanie
+
+Narzedzie CLI do szybkiego transferu danych do/z Azure Storage.
+
+```bash
+# Upload folderu
+azcopy copy "./lokalny-folder" "https://mystorageaccount.blob.core.windows.net/container?SAS_TOKEN" --recursive
+
+# Download
+azcopy copy "https://mystorageaccount.blob.core.windows.net/container/blob?SAS_TOKEN" "./lokalny-plik"
+
+# Sync (jak rsync)
+azcopy sync "./lokalny-folder" "https://mystorageaccount.blob.core.windows.net/container?SAS_TOKEN"
+```
+
+---
+
+### Best Practices
+
+| Praktyka | Opis |
+|----------|------|
+| **Wybierz odpowiedni tier** | Hot dla aktywnych, Archive dla archiwum |
+| **Lifecycle Management** | Automatyzuj przenoszenie miedzy tierami |
+| **Uzyj ZRS/GRS dla produkcji** | LRS tylko dla dev/test |
+| **Private Endpoint** | Dla wrazliwych danych - bez public access |
+| **Soft delete** | Wlacz dla ochrony przed przypadkowym usunieciem |
+| **Versioning** | Dla waznych dokumentow |
+| **Immutable storage** | Dla compliance (WORM) |
+| **Monitoring** | Azure Monitor + Storage Analytics |
+| **Rotuj Access Keys** | Regularna rotacja (Key Vault) |
+
+---
+
+### FAQ - Egzamin
+
+| Pytanie | Odpowiedz |
+|---------|----------|
+| Co zawiera Storage Account? | Blob, File, Queue, Table |
+| Ile kopii tworzy LRS? | 3 kopie w 1 datacenter |
+| Ile kopii tworzy GRS? | 6 kopii (3+3 w 2 regionach) |
+| Co to jest RA-GRS? | GRS + Read Access do secondary |
+| Ktory tier jest OFFLINE? | Archive (wymaga rehydratacji) |
+| Ile trwa rehydratacja Archive? | Standard: do 15h, High: do 1h |
+| Block vs Page vs Append Blob? | Block=pliki, Page=VHD, Append=logi |
+| Max rozmiar Block Blob? | 190.7 TB |
+| Co to jest HNS? | Hierarchical Namespace (Data Lake Gen2) |
+| Czy Blob moze hostowac strone? | TAK - Static Website Hosting |
+| Jak ograniczyc dostep czasowo? | SAS (Shared Access Signature) |
+| Co to jest SSE? | Storage Service Encryption (at-rest) |
+
+> **Egzamin:** Storage Account zawiera 4 uslugi: Blob, File, Queue, Table. Blob ma 3 typy: Block (pliki), Page (VHD), Append (logi). Access Tiers: Hot (czesty), Cool (30 dni), Cold (90 dni), Archive (180 dni, OFFLINE!). Redundancja: LRS (3 kopie, 1 DC), ZRS (3 AZ), GRS (6 kopii, 2 regiony), RA-GRS (GRS + read). Archive wymaga rehydratacji (godziny). Data Lake Gen2 = Blob + HNS.
 
 ---
