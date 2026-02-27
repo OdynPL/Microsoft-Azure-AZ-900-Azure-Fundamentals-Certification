@@ -124,5 +124,5 @@
 
   <!-- Bottom stats -->
   <rect x="30" y="455" width="840" height="35" rx="8" fill="#e0e7ff"/>
-  <text x="450" y="478" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" fill="#3730a3" font-weight="bold">Wydajnosc: miliony zdarzen/sek | Protokoly: AMQP, Kafka, HTTPS | Integracja: IoT Hub, Event Grid</text>
+  <text x="450" y="478" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" fill="#3730a3" font-weight="bold">Miliony zdarzen/sek | AMQP, Kafka, HTTPS | Integracja: IoT Hub, Event Grid</text>
 </svg>

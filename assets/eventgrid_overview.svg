@@ -125,5 +125,5 @@
 
   <!-- Bottom stats -->
   <rect x="30" y="455" width="860" height="35" rx="8" fill="#dbeafe"/>
-  <text x="460" y="478" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" fill="#1e40af" font-weight="bold">SLA: 99.99% | Latencja: sub-sekundowa | Cena: per million zdarzen (~$0.60)</text>
+  <text x="460" y="478" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" fill="#1e40af" font-weight="bold">SLA: 99.99% | Sub-sekundowa latencja | ~$0.60/mln zdarzen</text>
 </svg>

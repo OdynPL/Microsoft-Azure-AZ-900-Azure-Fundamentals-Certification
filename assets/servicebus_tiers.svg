@@ -69,5 +69,5 @@
   <rect x="380" y="180" width="140" height="24" rx="3" fill="white" fill-opacity="0.2"/>
   <text x="450" y="196" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">Geo-DR, BYOK</text>
   
-  <text x="450" y="228" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">Enterprise / Mission-critical</text>
+  <text x="450" y="228" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">Enterprise / Mission-critical</text>
 </svg>

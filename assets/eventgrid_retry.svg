@@ -77,7 +77,7 @@
   <text x="40" y="304" font-family="Segoe UI, Arial" font-size="10" fill="#78350f">5xx - Server errors</text>
 
   <!-- No retry codes -->
-  <rect x="250" y="220" width="200" height="85" rx="8" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+  <rect x="250" y="220" width="200" height="90" rx="8" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
   <text x="350" y="245" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="bold" fill="#991b1b">Bez Retry (drop)</text>
   <text x="260" y="268" font-family="Segoe UI, Arial" font-size="10" fill="#7f1d1d">400 - Bad Request</text>
   <text x="260" y="286" font-family="Segoe UI, Arial" font-size="10" fill="#7f1d1d">401 - Unauthorized</text>

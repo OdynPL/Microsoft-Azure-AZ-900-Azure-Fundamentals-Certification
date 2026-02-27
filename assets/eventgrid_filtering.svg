@@ -90,5 +90,6 @@
 
   <!-- Bottom tip -->
   <rect x="50" y="400" width="810" height="40" rx="8" fill="#dbeafe"/>
-  <text x="455" y="425" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" fill="#1e40af" font-weight="bold">Filtrowanie zmniejsza koszty i szum - subskrybenci otrzymuja tylko potrzebne zdarzenia | Max 25 advanced filters per subscription</text>
+  <text x="455" y="418" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="#1e40af" font-weight="bold">Filtrowanie zmniejsza koszty - subskrybenci otrzymuja tylko potrzebne zdarzenia</text>
+  <text x="455" y="434" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#1e40af">Max 25 advanced filters per subscription</text>
 </svg>
