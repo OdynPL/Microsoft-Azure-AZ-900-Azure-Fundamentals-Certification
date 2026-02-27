@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 400">
+  <defs>
+    <linearGradient id="paygGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10B981"/>
+      <stop offset="100%" style="stop-color:#059669"/>
+    </linearGradient>
+    <linearGradient id="eaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6"/>
+      <stop offset="100%" style="stop-color:#1E40AF"/>
+    </linearGradient>
+    <linearGradient id="cspGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B5CF6"/>
+      <stop offset="100%" style="stop-color:#6D28D9"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Title -->
+  <text x="425" y="30" text-anchor="middle" font-family="Segoe UI, Arial" font-size="20" font-weight="600" fill="#1E3A5F">Azure Subscription Models — Porównanie</text>
+  
+  <!-- PAYG Card -->
+  <rect x="30" y="55" width="250" height="330" rx="12" fill="url(#paygGrad)" opacity="0.1" stroke="#10B981" stroke-width="2"/>
+  <rect x="30" y="55" width="250" height="55" rx="12" fill="url(#paygGrad)"/>
+  <rect x="30" y="98" width="250" height="12" fill="url(#paygGrad)"/>
+  
+  <!-- PAYG Icon (credit card) -->
+  <rect x="50" y="70" width="28" height="20" rx="3" fill="white" opacity="0.9"/>
+  <rect x="54" y="78" width="20" height="3" fill="#059669"/>
+  <rect x="54" y="83" width="10" height="2" fill="#059669" opacity="0.5"/>
+  
+  <text x="88" y="85" font-family="Segoe UI, Arial" font-size="15" font-weight="600" fill="white">Pay-As-You-Go</text>
+  
+  <!-- PAYG Target -->
+  <rect x="50" y="125" width="210" height="35" rx="6" fill="#D1FAE5"/>
+  <text x="155" y="140" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="#047857">Dla: Startupy, małe projekty,</text>
+  <text x="155" y="153" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="#047857">indywidualni deweloperzy</text>
+  
+  <!-- PAYG Features -->
+  <g transform="translate(50, 175)">
+    <circle cx="8" cy="8" r="6" fill="#10B981"/>
+    <text x="6" y="12" font-family="Segoe UI, Arial" font-size="9" fill="white" text-anchor="middle">✓</text>
+    <text x="22" y="12" font-family="Segoe UI, Arial" font-size="12" fill="#374151">Brak zobowiązań</text>
+  </g>
+  <g transform="translate(50, 200)">
+    <circle cx="8" cy="8" r="6" fill="#10B981"/>
+    <text x="6" y="12" font-family="Segoe UI, Arial" font-size="9" fill="white" text-anchor="middle">✓</text>
+    <text x="22" y="12" font-family="Segoe UI, Arial" font-size="12" fill="#374151">Płać za zużycie</text>
+  </g>
+  <g transform="translate(50, 225)">
+    <circle cx="8" cy="8" r="6" fill="#10B981"/>
+    <text x="6" y="12" font-family="Segoe UI, Arial" font-size="9" fill="white" text-anchor="middle">✓</text>
+    <text x="22" y="12" font-family="Segoe UI, Arial" font-size="12" fill="#374151">Szybki start</text>
+  </g>
+  <g transform="translate(50, 250)">
+    <circle cx="8" cy="8" r="6" fill="#10B981"/>
+    <text x="6" y="12" font-family="Segoe UI, Arial" font-size="9" fill="white" text-anchor="middle">✓</text>
+    <text x="22" y="12" font-family="Segoe UI, Arial" font-size="12" fill="#374151">Karta kredytowa</text>
+  </g>
+  
+  <!-- PAYG Discount -->
+  <rect x="50" y="285" width="210" height="45" rx="6" fill="#FEF3C7" stroke="#D97706" stroke-width="1"/>
+  <text x="155" y="303" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" font-weight="600" fill="#92400E">Zniżki:</text>
+  <text x="155" y="320" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="#92400E">Brak domyślnych zniżek</text>
+  
+  <text x="155" y="360" text-anchor="middle" font-family="Segoe UI, Arial" font-size="22" font-weight="600" fill="#10B981">0%</text>
+  <text x="155" y="378" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#6B7280">base discount</text>
+  
+  <!-- EA Card -->
+  <rect x="300" y="55" width="250" height="330" rx="12" fill="url(#eaGrad)" opacity="0.1" stroke="#3B82F6" stroke-width="2"/>
+  <rect x="300" y="55" width="250" height="55" rx="12" fill="url(#eaGrad)"/>
+  <rect x="300" y="98" width="250" height="12" fill="url(#eaGrad)"/>
+  
+  <!-- EA Icon (building) -->
+  <rect x="320" y="68" width="24" height="24" rx="2" fill="white" opacity="0.9"/>
+  <rect x="324" y="72" width="6" height="16" fill="#1E40AF"/>
+  <rect x="332" y="76" width="6" height="12" fill="#1E40AF"/>
+  <rect x="326" y="75" width="2" height="2" fill="white"/>
+  <rect x="326" y="80" width="2" height="2" fill="white"/>
+  
+  <text x="355" y="85" font-family="Segoe UI, Arial" font-size="15" font-weight="600" fill="white">Enterprise Agreement</text>
+  
+  <!-- EA Target -->
+  <rect x="320" y="125" width="210" height="35" rx="6" fill="#DBEAFE"/>
+  <text x="425" y="140" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="#1E40AF">Dla: Duże firmy, korporacje,</text>
+  <text x="425" y="153" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="#1E40AF">organizacje z przewidywalnym budżetem</text>
+  
+  <!-- EA Features -->
+  <g transform="translate(320, 175)">
+    <circle cx="8" cy="8" r="6" fill="#3B82F6"/>
+    <text x="6" y="12" font-family="Segoe UI, Arial" font-size="9" fill="white" text-anchor="middle">✓</text>
+    <text x="22" y="12" font-family="Segoe UI, Arial" font-size="12" fill="#374151">Umowa 3-letnia</text>
+  </g>
+  <g transform="translate(320, 200)">
+    <circle cx="8" cy="8" r="6" fill="#3B82F6"/>
+    <text x="6" y="12" font-family="Segoe UI, Arial" font-size="9" fill="white" text-anchor="middle">✓</text>
+    <text x="22" y="12" font-family="Segoe UI, Arial" font-size="12" fill="#374151">Centralne zarządzanie</text>
+  </g>
+  <g transform="translate(320, 225)">
+    <circle cx="8" cy="8" r="6" fill="#3B82F6"/>
+    <text x="6" y="12" font-family="Segoe UI, Arial" font-size="9" fill="white" text-anchor="middle">✓</text>
+    <text x="22" y="12" font-family="Segoe UI, Arial" font-size="12" fill="#374151">Volume licensing</text>
+  </g>
+  <g transform="translate(320, 250)">
+    <circle cx="8" cy="8" r="6" fill="#3B82F6"/>
+    <text x="6" y="12" font-family="Segoe UI, Arial" font-size="9" fill="white" text-anchor="middle">✓</text>
+    <text x="22" y="12" font-family="Segoe UI, Arial" font-size="12" fill="#374151">Faktura miesięczna</text>
+  </g>
+  
+  <!-- EA Discount -->
+  <rect x="320" y="285" width="210" height="45" rx="6" fill="#D1FAE5" stroke="#059669" stroke-width="1"/>
+  <text x="425" y="303" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" font-weight="600" fill="#047857">Zniżki:</text>
+  <text x="425" y="320" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="#047857">Największe, oparte na wolumenie</text>
+  
+  <text x="425" y="360" text-anchor="middle" font-family="Segoe UI, Arial" font-size="22" font-weight="600" fill="#3B82F6">5-30%+</text>
+  <text x="425" y="378" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#6B7280">volume discount</text>
+  
+  <!-- CSP Card -->
+  <rect x="570" y="55" width="250" height="330" rx="12" fill="url(#cspGrad)" opacity="0.1" stroke="#8B5CF6" stroke-width="2"/>
+  <rect x="570" y="55" width="250" height="55" rx="12" fill="url(#cspGrad)"/>
+  <rect x="570" y="98" width="250" height="12" fill="url(#cspGrad)"/>
+  
+  <!-- CSP Icon (handshake) -->
+  <rect x="590" y="68" width="24" height="24" rx="2" fill="white" opacity="0.9"/>
+  <path d="M596 82 L602 78 L608 82" stroke="#6D28D9" stroke-width="2" fill="none"/>
+  <circle cx="602" cy="76" r="3" fill="#6D28D9"/>
+  
+  <text x="625" y="85" font-family="Segoe UI, Arial" font-size="15" font-weight="600" fill="white">CSP (Partner)</text>
+  
+  <!-- CSP Target -->
+  <rect x="590" y="125" width="210" height="35" rx="6" fill="#EDE9FE"/>
+  <text x="695" y="140" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="#5B21B6">Dla: Firmy potrzebujące wsparcia,</text>
+  <text x="695" y="153" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="#5B21B6">małe i średnie przedsiębiorstwa</text>
+  
+  <!-- CSP Features -->
+  <g transform="translate(590, 175)">
+    <circle cx="8" cy="8" r="6" fill="#8B5CF6"/>
+    <text x="6" y="12" font-family="Segoe UI, Arial" font-size="9" fill="white" text-anchor="middle">✓</text>
+    <text x="22" y="12" font-family="Segoe UI, Arial" font-size="12" fill="#374151">Kupujesz przez partnera</text>
+  </g>
+  <g transform="translate(590, 200)">
+    <circle cx="8" cy="8" r="6" fill="#8B5CF6"/>
+    <text x="6" y="12" font-family="Segoe UI, Arial" font-size="9" fill="white" text-anchor="middle">✓</text>
+    <text x="22" y="12" font-family="Segoe UI, Arial" font-size="12" fill="#374151">Dodatkowe wsparcie</text>
+  </g>
+  <g transform="translate(590, 225)">
+    <circle cx="8" cy="8" r="6" fill="#8B5CF6"/>
+    <text x="6" y="12" font-family="Segoe UI, Arial" font-size="9" fill="white" text-anchor="middle">✓</text>
+    <text x="22" y="12" font-family="Segoe UI, Arial" font-size="12" fill="#374151">Uproszczone rozliczenia</text>
+  </g>
+  <g transform="translate(590, 250)">
+    <circle cx="8" cy="8" r="6" fill="#8B5CF6"/>
+    <text x="6" y="12" font-family="Segoe UI, Arial" font-size="9" fill="white" text-anchor="middle">✓</text>
+    <text x="22" y="12" font-family="Segoe UI, Arial" font-size="12" fill="#374151">Usługi value-added</text>
+  </g>
+  
+  <!-- CSP Discount -->
+  <rect x="590" y="285" width="210" height="45" rx="6" fill="#FEE2E2" stroke="#DC2626" stroke-width="1"/>
+  <text x="695" y="303" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" font-weight="600" fill="#991B1B">Zniżki:</text>
+  <text x="695" y="320" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="#991B1B">Zależne od partnera!</text>
+  
+  <text x="695" y="360" text-anchor="middle" font-family="Segoe UI, Arial" font-size="22" font-weight="600" fill="#8B5CF6">Varies</text>
+  <text x="695" y="378" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#6B7280">partner-dependent</text>
+</svg>

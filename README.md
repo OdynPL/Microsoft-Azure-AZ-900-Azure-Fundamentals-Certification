@@ -1119,6 +1119,8 @@ Rekomendacja praktyczna: **najpierw RBAC**, potem **SAS** dla delegacji, a **Acc
 
 ## **Narzędzia i migracje**
 
+<img src="assets/storagetools.svg">
+
 **Storage Explorer**
 Narzędzie GUI do zarządzania Blob/Files/Queue/Table.
 
@@ -1133,12 +1135,16 @@ Najszybsze narzędzie do przesyłania danych do/z Azure Storage.
 - wysoka wydajność  
 - idealne do migracji dużych wolumenów
 
+<img src="assets/azuremigrate.svg">
+
 **Azure Migrate**
 Aplikacje, VM‑ki i dane mogą być analizowane i migrowane do Azure.
 
 - automatyczne rekomendacje  
 - integracja z Azure Storage (np. blob staging)
 
+
+<img src="assets/databox.svg">
 
 **Data Box**  
 Fizyczne urzadzenia Azure do przenoszenia bardzo duzych ilosci danych **offline**, bez wykorzystania Internetu.  
@@ -2378,6 +2384,8 @@ Zarządzane instancje popularnych baz open‑source.
 
 <a id="sec-18-subscription-models"></a>
 ## 18. Subskrypcje (Subscription Models)
+
+<img src="assets/subscriptions.svg">
 
 **Azure Subscription Models**
 Azure oferuje różne modele subskrypcji w zależności od tego, jak organizacja chce kupować i rozliczać usługi chmurowe.
