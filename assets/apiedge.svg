@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 520">
+  <defs>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#2563EB"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#059669"/>
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="425" y="35" text-anchor="middle" font-family="Segoe UI, Arial" font-size="22" font-weight="600" fill="#1E3A5F">API &amp; Edge Services</text>
+  
+  <!-- Users/Clients (left) -->
+  <rect x="20" y="180" width="100" height="160" rx="8" fill="#F3F4F6" stroke="#9CA3AF" stroke-width="1"/>
+  <text x="70" y="210" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="600" fill="#374151">🌐 Klienci</text>
+  <text x="70" y="240" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#6B7280">Web Apps</text>
+  <text x="70" y="260" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#6B7280">Mobile</text>
+  <text x="70" y="280" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#6B7280">IoT</text>
+  <text x="70" y="300" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#6B7280">Partners</text>
+  
+  <!-- Arrow from clients -->
+  <line x1="120" y1="260" x2="155" y2="260" stroke="#2563EB" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  
+  <!-- Edge Services Section -->
+  <rect x="165" y="70" width="460" height="380" rx="12" fill="#EFF6FF" stroke="#2563EB" stroke-width="2"/>
+  <text x="395" y="100" text-anchor="middle" font-family="Segoe UI, Arial" font-size="16" font-weight="600" fill="#1E40AF">☁️ Azure Edge (Global Network)</text>
+  
+  <!-- Traffic Manager -->
+  <rect x="185" y="120" width="200" height="100" rx="8" fill="#E0E7FF" stroke="#4F46E5" stroke-width="2"/>
+  <text x="285" y="148" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="600" fill="#3730A3">Traffic Manager</text>
+  <text x="285" y="168" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="#4338CA">DNS-based routing</text>
+  <text x="285" y="188" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#6B7280">Geographic / Priority / Weighted</text>
+  <text x="285" y="205" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#6B7280">Failover między regionami</text>
+  
+  <!-- Front Door -->
+  <rect x="405" y="120" width="200" height="100" rx="8" fill="#DCFCE7" stroke="#059669" stroke-width="2"/>
+  <text x="505" y="148" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="600" fill="#065F46">Azure Front Door</text>
+  <text x="505" y="168" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="#047857">L7 Global Gateway</text>
+  <text x="505" y="188" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#6B7280">WAF + Caching + SSL</text>
+  <text x="505" y="205" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#6B7280">Path/Latency routing</text>
+  
+  <!-- CDN -->
+  <rect x="185" y="240" width="200" height="100" rx="8" fill="#FEF3C7" stroke="#D97706" stroke-width="2"/>
+  <text x="285" y="268" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="600" fill="#92400E">Azure CDN</text>
+  <text x="285" y="288" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="#B45309">Content Delivery</text>
+  <text x="285" y="308" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#6B7280">Static: CSS, JS, images</text>
+  <text x="285" y="325" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#6B7280">Cache na Edge POPs</text>
+  
+  <!-- API Management -->
+  <rect x="405" y="240" width="200" height="100" rx="8" fill="#FEE2E2" stroke="#DC2626" stroke-width="2"/>
+  <text x="505" y="268" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="600" fill="#991B1B">API Management</text>
+  <text x="505" y="288" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="#B91C1C">Central API Gateway</text>
+  <text x="505" y="308" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#6B7280">Auth, Rate limit, Transform</text>
+  <text x="505" y="325" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#6B7280">Developer Portal</text>
+  
+  <!-- Comparison table at bottom of edge section -->
+  <rect x="185" y="360" width="420" height="80" rx="6" fill="#fff" stroke="#D1D5DB" stroke-width="1"/>
+  <text x="395" y="385" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#374151">Kiedy co wybrać?</text>
+  <text x="285" y="408" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#4F46E5">Traffic Manager → DNS routing</text>
+  <text x="505" y="408" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#059669">Front Door → L7 + WAF + cache</text>
+  <text x="285" y="428" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#D97706">CDN → static content</text>
+  <text x="505" y="428" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#DC2626">APIM → API gateway + policies</text>
+  
+  <!-- Backends (right) -->
+  <rect x="660" y="140" width="160" height="240" rx="8" fill="#F9FAFB" stroke="#D1D5DB" stroke-width="1"/>
+  <text x="740" y="170" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="600" fill="#374151">🖥️ Backends</text>
+  
+  <rect x="675" y="190" width="130" height="35" rx="4" fill="#DBEAFE" stroke="#3B82F6" stroke-width="1"/>
+  <text x="740" y="212" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="#1E40AF">App Service</text>
+  
+  <rect x="675" y="235" width="130" height="35" rx="4" fill="#DBEAFE" stroke="#3B82F6" stroke-width="1"/>
+  <text x="740" y="257" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="#1E40AF">AKS / Containers</text>
+  
+  <rect x="675" y="280" width="130" height="35" rx="4" fill="#DBEAFE" stroke="#3B82F6" stroke-width="1"/>
+  <text x="740" y="302" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="#1E40AF">Functions</text>
+  
+  <rect x="675" y="325" width="130" height="35" rx="4" fill="#DBEAFE" stroke="#3B82F6" stroke-width="1"/>
+  <text x="740" y="347" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="#1E40AF">Storage (Blob)</text>
+  
+  <!-- Arrows to backends -->
+  <line x1="625" y1="260" x2="655" y2="260" stroke="#059669" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  
+  <!-- Bottom note -->
+  <text x="425" y="490" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" fill="#6B7280">Traffic Manager = DNS | Front Door = HTTP proxy | CDN = static cache | APIM = API policies</text>
+</svg>
