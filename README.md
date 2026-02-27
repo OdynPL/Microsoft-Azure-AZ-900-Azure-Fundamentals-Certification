@@ -1043,8 +1043,100 @@ Reguły filtrują:
 
 ### **ASG (Application Security Groups)**
 
-Logiczne grupowanie VM według funkcji (App, API, DB).  
-NSG może wskazywać ASG zamiast adresów IP — ułatwia to zarządzanie dynamicznymi środowiskami.
+<img src="assets/asg_application_security_groups.svg">
+
+ASG (Application Security Groups) to logiczne grupowanie maszyn wirtualnych według ich funkcji w aplikacji. Zamiast pisać reguły NSG z konkretnymi adresami IP, używasz nazw grup aplikacyjnych.
+
+**Problem bez ASG:**
+```
+Reguła 1: Allow 10.0.1.5 → 10.0.2.10:443
+Reguła 2: Allow 10.0.1.5 → 10.0.2.11:443
+Reguła 3: Allow 10.0.1.6 → 10.0.2.10:443
+Reguła 4: Allow 10.0.1.6 → 10.0.2.11:443
+... dziesiątki reguł do zarządzania!
+```
+
+**Rozwiązanie z ASG:**
+```
+Reguła 1: Allow WebServers-ASG → ApiServers-ASG:443
+Jedna reguła zamiast wielu!
+```
+
+**Kluczowe zalety:**
+
+| Zaleta | Opis |
+|--------|------|
+| **Uproszczone reguły** | Zamiast IP używasz logicznych nazw grup |
+| **Dynamiczne członkostwo** | Nowa VM automatycznie dziedziczy reguły po przypisaniu do ASG |
+| **Czytelność** | Reguły opisują intencję (WebServers→ApiServers) |
+| **Mniej błędów** | Nie musisz aktualizować reguł przy zmianie IP |
+| **Skalowalność** | Dodanie VM = przypisanie do ASG, bez zmian w NSG |
+
+**Typowa architektura 3-warstwowa:**
+
+| ASG | Członkowie | Dozwolony ruch przychodzący |
+|-----|------------|----------------------------|
+| **WebServers-ASG** | Web VM 1, Web VM 2, ... | Internet → port 80, 443 |
+| **ApiServers-ASG** | API VM 1, API VM 2, ... | WebServers-ASG → port 8080 |
+| **DbServers-ASG** | SQL VM 1, SQL VM 2, ... | ApiServers-ASG → port 1433 |
+
+**Tworzenie ASG przez CLI:**
+
+```bash
+# Utworzenie ASG
+az network asg create --name WebServers-ASG \
+    --resource-group myRG --location westeurope
+
+az network asg create --name ApiServers-ASG \
+    --resource-group myRG --location westeurope
+
+az network asg create --name DbServers-ASG \
+    --resource-group myRG --location westeurope
+
+# Przypisanie VM do ASG (przez NIC)
+az network nic update --name myWebVM-NIC \
+    --resource-group myRG \
+    --application-security-groups WebServers-ASG
+
+# Reguła NSG używająca ASG
+az network nsg rule create --nsg-name myNSG \
+    --resource-group myRG --name AllowWebToApi \
+    --priority 100 --direction Inbound \
+    --source-asgs WebServers-ASG \
+    --destination-asgs ApiServers-ASG \
+    --destination-port-ranges 8080 \
+    --protocol Tcp --access Allow
+
+az network nsg rule create --nsg-name myNSG \
+    --resource-group myRG --name AllowApiToDb \
+    --priority 110 --direction Inbound \
+    --source-asgs ApiServers-ASG \
+    --destination-asgs DbServers-ASG \
+    --destination-port-ranges 1433 \
+    --protocol Tcp --access Allow
+```
+
+**Ograniczenia ASG:**
+
+| Ograniczenie | Wartość |
+|--------------|---------|
+| ASG per subscription | 3000 |
+| NIC może należeć do | Wielu ASG |
+| ASG musi być w tym samym | Regionie co VM |
+| Członkowie ASG muszą być w | Tym samym VNet |
+| Mieszanie ASG i IP w jednej regule | NIE dozwolone |
+
+**Porównanie: ASG vs bez ASG**
+
+| Aspekt | Bez ASG (IP-based) | Z ASG |
+|--------|-------------------|-------|
+| Reguły w NSG | Wiele (per IP) | Pojedyncze (per grupa) |
+| Nowa VM | Aktualizacja reguł | Tylko przypisanie do ASG |
+| Zmiana IP VM | Aktualizacja reguł | Brak zmian |
+| Czytelność | Niska (adresy IP) | Wysoka (nazwy logiczne) |
+| Błędy | Częste | Rzadkie |
+
+> **Egzamin:** ASG to logiczne grupowanie VM dla uproszczenia reguł NSG. NIE jest to firewall - to sposób organizacji reguł w NSG.
 
 ---
 

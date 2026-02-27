@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 450">
+  <defs>
+    <linearGradient id="webAsgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6"/>
+      <stop offset="100%" style="stop-color:#1D4ED8"/>
+    </linearGradient>
+    <linearGradient id="apiAsgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10B981"/>
+      <stop offset="100%" style="stop-color:#059669"/>
+    </linearGradient>
+    <linearGradient id="dbAsgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F59E0B"/>
+      <stop offset="100%" style="stop-color:#D97706"/>
+    </linearGradient>
+    <linearGradient id="nsgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B5CF6"/>
+      <stop offset="100%" style="stop-color:#6D28D9"/>
+    </linearGradient>
+    <marker id="arrowASG" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#10B981"/>
+    </marker>
+    <marker id="arrowBlock" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#EF4444"/>
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="450" y="30" text-anchor="middle" font-family="Segoe UI, Arial" font-size="20" font-weight="600" fill="#1E3A5F">ASG (Application Security Groups) - logiczne grupowanie VM</text>
+  
+  <!-- Without ASG (left side) -->
+  <rect x="30" y="55" width="380" height="180" rx="10" fill="#FEF2F2" stroke="#EF4444" stroke-width="2"/>
+  <text x="220" y="80" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="600" fill="#DC2626">BEZ ASG - reguly NSG po adresach IP</text>
+  
+  <rect x="50" y="100" width="150" height="120" rx="8" fill="#F3F4F6" stroke="#D1D5DB"/>
+  <text x="125" y="125" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" font-weight="600" fill="#374151">NSG Rules</text>
+  <text x="60" y="150" font-family="Segoe UI, Arial" font-size="8" fill="#6B7280">Allow 10.0.1.5 → 10.0.2.10:443</text>
+  <text x="60" y="165" font-family="Segoe UI, Arial" font-size="8" fill="#6B7280">Allow 10.0.1.6 → 10.0.2.10:443</text>
+  <text x="60" y="180" font-family="Segoe UI, Arial" font-size="8" fill="#6B7280">Allow 10.0.1.5 → 10.0.2.11:443</text>
+  <text x="60" y="195" font-family="Segoe UI, Arial" font-size="8" fill="#6B7280">Allow 10.0.1.6 → 10.0.2.11:443</text>
+  <text x="60" y="210" font-family="Segoe UI, Arial" font-size="8" fill="#DC2626">... wiele regul do zarzadzania!</text>
+  
+  <rect x="230" y="100" width="80" height="50" rx="6" fill="#DBEAFE" stroke="#3B82F6"/>
+  <text x="270" y="120" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#1E40AF">Web VM 1</text>
+  <text x="270" y="135" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#6B7280">10.0.1.5</text>
+  
+  <rect x="320" y="100" width="80" height="50" rx="6" fill="#DBEAFE" stroke="#3B82F6"/>
+  <text x="360" y="120" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#1E40AF">Web VM 2</text>
+  <text x="360" y="135" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#6B7280">10.0.1.6</text>
+  
+  <rect x="230" y="160" width="80" height="50" rx="6" fill="#ECFDF5" stroke="#10B981"/>
+  <text x="270" y="180" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#047857">API VM 1</text>
+  <text x="270" y="195" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#6B7280">10.0.2.10</text>
+  
+  <rect x="320" y="160" width="80" height="50" rx="6" fill="#ECFDF5" stroke="#10B981"/>
+  <text x="360" y="180" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#047857">API VM 2</text>
+  <text x="360" y="195" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#6B7280">10.0.2.11</text>
+  
+  <!-- With ASG (right side) -->
+  <rect x="440" y="55" width="430" height="180" rx="10" fill="#ECFDF5" stroke="#10B981" stroke-width="2"/>
+  <text x="655" y="80" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="600" fill="#047857">Z ASG - reguly NSG po grupach logicznych</text>
+  
+  <rect x="460" y="100" width="170" height="120" rx="8" fill="#F3F4F6" stroke="#D1D5DB"/>
+  <text x="545" y="125" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" font-weight="600" fill="#374151">NSG Rules</text>
+  <text x="470" y="155" font-family="Segoe UI, Arial" font-size="9" fill="#047857">Allow WebServers-ASG</text>
+  <text x="470" y="175" font-family="Segoe UI, Arial" font-size="9" fill="#047857">  → ApiServers-ASG:443</text>
+  <text x="470" y="200" font-family="Segoe UI, Arial" font-size="9" fill="#059669">Tylko 1 regula!</text>
+  
+  <!-- ASG Groups -->
+  <ellipse cx="720" cy="115" rx="70" ry="35" fill="url(#webAsgGrad)" opacity="0.2" stroke="#3B82F6" stroke-width="2"/>
+  <text x="720" y="110" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#1E40AF">WebServers-ASG</text>
+  <text x="720" y="125" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#3B82F6">VM1, VM2, VM3...</text>
+  
+  <ellipse cx="720" cy="190" rx="70" ry="35" fill="url(#apiAsgGrad)" opacity="0.2" stroke="#10B981" stroke-width="2"/>
+  <text x="720" y="185" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#047857">ApiServers-ASG</text>
+  <text x="720" y="200" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#10B981">VM1, VM2, VM3...</text>
+  
+  <!-- Arrow between ASGs -->
+  <line x1="720" y1="152" x2="720" y2="155" stroke="#10B981" stroke-width="2"/>
+  <path d="M720,135 L720,160" stroke="#10B981" stroke-width="2" marker-end="url(#arrowASG)"/>
+  
+  <!-- Extended example below -->
+  <rect x="30" y="250" width="840" height="190" rx="10" fill="#F8FAFC" stroke="#E5E7EB" stroke-width="1"/>
+  <text x="450" y="275" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="600" fill="#1E3A5F">Typowa architektura 3-warstwowa z ASG</text>
+  
+  <!-- Web tier ASG -->
+  <ellipse cx="150" cy="360" rx="100" ry="60" fill="url(#webAsgGrad)" opacity="0.15" stroke="#3B82F6" stroke-width="2"/>
+  <text x="150" y="330" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#1E40AF">WebServers-ASG</text>
+  <rect x="80" y="350" width="55" height="35" rx="4" fill="#DBEAFE" stroke="#3B82F6"/>
+  <text x="107" y="372" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#1E40AF">Web VM</text>
+  <rect x="145" y="350" width="55" height="35" rx="4" fill="#DBEAFE" stroke="#3B82F6"/>
+  <text x="172" y="372" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#1E40AF">Web VM</text>
+  <rect x="210" y="350" width="55" height="35" rx="4" fill="#DBEAFE" stroke="#3B82F6"/>
+  <text x="237" y="372" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#1E40AF">Web VM</text>
+  <text x="150" y="410" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#6B7280">Port 80, 443 from Internet</text>
+  
+  <!-- API tier ASG -->
+  <ellipse cx="450" cy="360" rx="100" ry="60" fill="url(#apiAsgGrad)" opacity="0.15" stroke="#10B981" stroke-width="2"/>
+  <text x="450" y="330" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#047857">ApiServers-ASG</text>
+  <rect x="380" y="350" width="55" height="35" rx="4" fill="#ECFDF5" stroke="#10B981"/>
+  <text x="407" y="372" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#047857">API VM</text>
+  <rect x="445" y="350" width="55" height="35" rx="4" fill="#ECFDF5" stroke="#10B981"/>
+  <text x="472" y="372" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#047857">API VM</text>
+  <rect x="510" y="350" width="55" height="35" rx="4" fill="#ECFDF5" stroke="#10B981"/>
+  <text x="537" y="372" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#047857">API VM</text>
+  <text x="450" y="410" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#6B7280">Port 8080 from WebServers-ASG</text>
+  
+  <!-- DB tier ASG -->
+  <ellipse cx="750" cy="360" rx="100" ry="60" fill="url(#dbAsgGrad)" opacity="0.15" stroke="#F59E0B" stroke-width="2"/>
+  <text x="750" y="330" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#B45309">DbServers-ASG</text>
+  <rect x="680" y="350" width="55" height="35" rx="4" fill="#FEF3C7" stroke="#F59E0B"/>
+  <text x="707" y="372" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#B45309">SQL VM</text>
+  <rect x="745" y="350" width="55" height="35" rx="4" fill="#FEF3C7" stroke="#F59E0B"/>
+  <text x="772" y="372" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#B45309">SQL VM</text>
+  <rect x="810" y="350" width="55" height="35" rx="4" fill="#FEF3C7" stroke="#F59E0B"/>
+  <text x="837" y="372" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#B45309">Replica</text>
+  <text x="750" y="410" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#6B7280">Port 1433 from ApiServers-ASG</text>
+  
+  <!-- Arrows between tiers -->
+  <line x1="255" y1="360" x2="345" y2="360" stroke="#10B981" stroke-width="2" marker-end="url(#arrowASG)"/>
+  <line x1="555" y1="360" x2="645" y2="360" stroke="#F59E0B" stroke-width="2" marker-end="url(#arrowASG)"/>
+  
+  <!-- Internet -->
+  <text x="150" y="300" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#6B7280">← Internet</text>
+</svg>
