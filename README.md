@@ -4105,7 +4105,7 @@ Dla najwyższych wymagań compliance:
 <a id="sec-24-debugging"></a>
 ## 24. Debugowanie aplikacji Azure
 
-<img src="assets/azure_debugging_tools.svg">
+<img src="assets/debug_monitoring_flow.svg">
 
 ### Przeglad narzedzi do debugowania
 
@@ -4269,6 +4269,8 @@ Zaawansowana konsola diagnostyczna dla App Service.
 
 ### Remote Debugging
 
+<img src="assets/debug_tools_interactive.svg">
+
 Debugowanie aplikacji bezposrednio z Visual Studio.
 
 **Wlaczenie Remote Debugging:**
@@ -4297,6 +4299,8 @@ az webapp config show --name myApp \
 ---
 
 ### Snapshot Debugger
+
+<img src="assets/debug_tools_diagnostic.svg">
 
 Przechwytuje stan aplikacji w momencie wyjatku - bez zatrzymywania produkcji.
 
@@ -4415,6 +4419,8 @@ app.MapHealthChecks("/health");
 ---
 
 ### Alerts i powiadomienia
+
+<img src="assets/debug_alerts.svg">
 
 ```bash
 # Alert na wysokie CPU

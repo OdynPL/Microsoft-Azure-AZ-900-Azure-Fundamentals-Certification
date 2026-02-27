@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 260">
+  <defs>
+    <linearGradient id="snapshotGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7d3c98;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#9b59b6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="diagGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e8449;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#27ae60;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="logGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#922b21;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#c0392b;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <rect width="580" height="260" fill="#f8f9fa"/>
+  <text x="290" y="25" text-anchor="middle" font-family="Segoe UI, Arial" font-size="16" font-weight="600" fill="#2c3e50">Diagnostyka i logi - narzedzia produkcyjne</text>
+  
+  <!-- Snapshot Debugger -->
+  <rect x="15" y="50" width="175" height="190" rx="8" fill="url(#snapshotGrad)"/>
+  <text x="102" y="75" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" font-weight="600" fill="white">SNAPSHOT DEBUG</text>
+  
+  <rect x="25" y="90" width="155" height="26" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="102" y="107" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">Snapshot on exception</text>
+  
+  <rect x="25" y="122" width="155" height="26" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="102" y="139" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">Call stack + locals</text>
+  
+  <rect x="25" y="154" width="155" height="26" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="102" y="171" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">Zero impact on perf</text>
+  
+  <rect x="25" y="186" width="155" height="26" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="102" y="203" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">.NET / Node.js</text>
+  
+  <text x="102" y="232" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">Safe for PROD</text>
+  
+  <!-- App Service Diagnostics -->
+  <rect x="205" y="50" width="175" height="190" rx="8" fill="url(#diagGrad)"/>
+  <text x="292" y="75" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" font-weight="600" fill="white">APP DIAGNOSTICS</text>
+  
+  <rect x="215" y="90" width="155" height="26" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="292" y="107" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">Diagnose and solve</text>
+  
+  <rect x="215" y="122" width="155" height="26" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="292" y="139" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">CPU/Memory profiler</text>
+  
+  <rect x="215" y="154" width="155" height="26" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="292" y="171" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">Auto-heal rules</text>
+  
+  <rect x="215" y="186" width="155" height="26" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="292" y="203" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">Health Check</text>
+  
+  <text x="292" y="232" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">Portal - built-in</text>
+  
+  <!-- Log Stream -->
+  <rect x="395" y="50" width="170" height="190" rx="8" fill="url(#logGrad)"/>
+  <text x="480" y="75" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" font-weight="600" fill="white">LOG STREAM</text>
+  
+  <rect x="405" y="90" width="150" height="26" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="480" y="107" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">Real-time logs</text>
+  
+  <rect x="405" y="122" width="150" height="26" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="480" y="139" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">az webapp log tail</text>
+  
+  <rect x="405" y="154" width="150" height="26" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="480" y="171" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">Portal streaming</text>
+  
+  <rect x="405" y="186" width="150" height="26" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="480" y="203" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">stdout / stderr</text>
+  
+  <text x="480" y="232" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">Filesystem logs</text>
+</svg>
