@@ -723,6 +723,42 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
 
     <img src="assets/azurefunctions.svg">
 
+    Azure Functions = event‑driven + serverless + automatyczne skalowanie + bogaty ekosystem triggerów i bindingów.
+
+    ### Plany hostingowe (Hosting Plans)
+
+    <img src="assets/functions_hosting_plans.svg">
+
+    | Plan | Cold Start | Timeout | VNet | Skalowanie | Kiedy używać |
+    |------|------------|---------|------|------------|--------------|
+    | **Consumption** | Tak (1-3s) | 10 min | Nie | Auto (200) | Event-driven, niskie koszty |
+    | **Premium (EP)** | Nie | Unlimited | Tak | Auto + pre-warmed | Produkcja, SLA, VNet |
+    | **Dedicated (ASP)** | Nie | Unlimited | Tak (Standard+) | Manual | Istniejący ASP, always-on |
+
+    **Ceny (szacunkowe):**
+    - **Consumption**: 1M wykonań/mies FREE, potem ~$0.20/1M + $0.000016/GB-s
+    - **Premium EP1**: ~$175/mies (1 vCPU, 3.5GB RAM)
+    - **Dedicated**: zależy od App Service Plan
+
+    ### Triggers i Bindings
+
+    <img src="assets/functions_triggers_bindings.svg">
+
+    **Triggers** – zdarzenia uruchamiające funkcję:
+    | Trigger | Opis | Przykład użycia |
+    |---------|------|-----------------|
+    | **HTTP** | Request REST/webhook | API endpoint, webhook receiver |
+    | **Timer** | CRON schedule | Scheduled jobs, cleanup tasks |
+    | **Queue Storage** | Message w kolejce | Background processing |
+    | **Service Bus** | Queue/Topic message | Enterprise messaging |
+    | **Blob Storage** | Nowy/zmieniony blob | Image processing, file import |
+    | **Event Grid** | Azure events | React to Azure resource changes |
+    | **Cosmos DB** | Change feed | Real-time data sync |
+
+    **Input/Output Bindings** – deklaratywne powiązania z usługami Azure, bez pisania boilerplate.
+
+    ### Kluczowe komponenty
+
     - **Triggers** – zdarzenia uruchamiające funkcję (np. HTTP, Timer, Queue, Service Bus, Blob, Event Grid).
 
     - **Input/Output Bindings** – deklaratywne powiązania z usługami Azure, bez pisania boilerplate (np. zapis do Blob Storage albo pobranie wiadomości z Queue).
@@ -735,9 +771,7 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
 
     - **Monitoring** – wbudowana integracja z Application Insights.
 
-    Azure Functions = event‑driven + serverless + automatyczne skalowanie + bogaty ekosystem triggerów i bindingów.
-
-    **Rodzaje**:
+    ### Rodzaje Functions
     - **Standard** functions
         
         <img src="assets/azurefunctions_standard.svg">
@@ -761,6 +795,137 @@ Odpowiada za spójne, bezpieczne i powtarzalne zarządzanie zasobami — niezale
       - **FAN-OUT** - to wzorzec pozwalający uruchomić wiele funkcji równolegle (np. przetwarzanie wielu plików na raz)
               
       Durable Functions mają gotowe mechanizmy do budowania złożonych, wieloetapowych, równoległych i długotrwałych workflow, bez konieczności implementowania własnej logiki kolejek, retry, czekania czy przechowywania stanu.
+
+    ### Implementacja - przykłady kodu
+
+    **HTTP Trigger (C#):**
+    ```csharp
+    [FunctionName("HelloWorld")]
+    public static async Task<IActionResult> Run(
+        [HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequest req,
+        ILogger log)
+    {
+        log.LogInformation("C# HTTP trigger function processed a request.");
+        
+        string name = req.Query["name"];
+        
+        return new OkObjectResult($"Hello, {name}!");
+    }
+    ```
+
+    **Timer Trigger (co 5 minut):**
+    ```csharp
+    [FunctionName("CleanupJob")]
+    public static void Run(
+        [TimerTrigger("0 */5 * * * *")] TimerInfo timer,
+        ILogger log)
+    {
+        log.LogInformation($"Cleanup executed at: {DateTime.Now}");
+        // Twoja logika cleanup
+    }
+    ```
+    
+    **CRON expressions:**
+    - `0 */5 * * * *` - co 5 minut
+    - `0 0 * * * *` - co godzinę
+    - `0 0 0 * * *` - codziennie o północy
+    - `0 0 9 * * 1-5` - pon-pt o 9:00
+
+    **Queue Trigger z Output Binding:**
+    ```csharp
+    [FunctionName("ProcessOrder")]
+    public static void Run(
+        [QueueTrigger("orders")] string orderJson,
+        [Blob("processed/{rand-guid}.json")] out string outputBlob,
+        [Queue("notifications")] out string notification,
+        ILogger log)
+    {
+        var order = JsonSerializer.Deserialize<Order>(orderJson);
+        
+        // Zapisz do Blob Storage
+        outputBlob = JsonSerializer.Serialize(order);
+        
+        // Wyślij notyfikację do kolejki
+        notification = $"Order {order.Id} processed";
+        
+        log.LogInformation($"Processed order: {order.Id}");
+    }
+    ```
+
+    **Cosmos DB Trigger (Change Feed):**
+    ```csharp
+    [FunctionName("CosmosDBTrigger")]
+    public static void Run(
+        [CosmosDBTrigger(
+            databaseName: "mydb",
+            containerName: "products",
+            Connection = "CosmosDBConnection",
+            LeaseContainerName = "leases")] IReadOnlyList<Product> changes,
+        ILogger log)
+    {
+        foreach (var product in changes)
+        {
+            log.LogInformation($"Product changed: {product.Name}");
+            // Synchronizuj z innym systemem, indeksuj w Search, etc.
+        }
+    }
+    ```
+
+    **JavaScript/Node.js (HTTP Trigger):**
+    ```javascript
+    module.exports = async function (context, req) {
+        const name = req.query.name || req.body?.name || 'World';
+        
+        context.res = {
+            status: 200,
+            body: `Hello, ${name}!`
+        };
+    };
+    ```
+
+    **Python (HTTP Trigger):**
+    ```python
+    import azure.functions as func
+
+    def main(req: func.HttpRequest) -> func.HttpResponse:
+        name = req.params.get('name', 'World')
+        return func.HttpResponse(f"Hello, {name}!")
+    ```
+
+    ### Tworzenie przez Azure CLI
+
+    ```bash
+    # Utworzenie Resource Group
+    az group create --name myFuncRG --location westeurope
+
+    # Utworzenie Storage Account (wymagane dla Functions)
+    az storage account create --name myfuncstorage123 \
+        --resource-group myFuncRG --sku Standard_LRS
+
+    # Utworzenie Function App (Consumption plan)
+    az functionapp create --name myfunc123 \
+        --resource-group myFuncRG \
+        --storage-account myfuncstorage123 \
+        --consumption-plan-location westeurope \
+        --runtime dotnet --runtime-version 8 \
+        --functions-version 4
+
+    # Wdrożenie kodu (ZIP deploy)
+    az functionapp deployment source config-zip \
+        --resource-group myFuncRG --name myfunc123 \
+        --src ./publish.zip
+    ```
+
+    ### Best Practices
+
+    | Praktyka | Opis |
+    |----------|------|
+    | **Krótkie wykonanie** | Funkcje powinny być szybkie (sekundy, nie minuty) |
+    | **Stateless** | Nie przechowuj stanu między wywołaniami |
+    | **Idempotentność** | Funkcja powinna dawać ten sam wynik przy wielokrotnym wywołaniu |
+    | **Connection pooling** | Używaj static HttpClient, reuse connections |
+    | **Environment variables** | Sekrety w Application Settings, nie w kodzie |
+    | **Structured logging** | Używaj ILogger z kontekstem |
 
 - **Azure Container Instances (ACI)**  
 

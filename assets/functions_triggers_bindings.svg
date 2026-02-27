@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 450">
+  <defs>
+    <linearGradient id="triggerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#EF4444"/>
+      <stop offset="100%" style="stop-color:#DC2626"/>
+    </linearGradient>
+    <linearGradient id="funcGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F59E0B"/>
+      <stop offset="100%" style="stop-color:#D97706"/>
+    </linearGradient>
+    <linearGradient id="inputGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6"/>
+      <stop offset="100%" style="stop-color:#1D4ED8"/>
+    </linearGradient>
+    <linearGradient id="outputGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10B981"/>
+      <stop offset="100%" style="stop-color:#059669"/>
+    </linearGradient>
+    <marker id="arrowTrig" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#EF4444"/>
+    </marker>
+    <marker id="arrowIn" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#3B82F6"/>
+    </marker>
+    <marker id="arrowOut" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#10B981"/>
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="450" y="30" text-anchor="middle" font-family="Segoe UI, Arial" font-size="20" font-weight="600" fill="#1E3A5F">Azure Functions - Triggers i Bindings</text>
+  
+  <!-- Triggers Section -->
+  <rect x="30" y="55" width="200" height="380" rx="10" fill="#FEF2F2" stroke="#EF4444" stroke-width="2"/>
+  <rect x="30" y="55" width="200" height="40" rx="10" fill="url(#triggerGrad)"/>
+  <rect x="30" y="83" width="200" height="12" fill="url(#triggerGrad)"/>
+  <text x="130" y="82" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="600" fill="white">TRIGGERS</text>
+  <text x="130" y="115" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#DC2626">Co uruchamia funkcje?</text>
+  
+  <!-- Trigger types -->
+  <rect x="45" y="130" width="170" height="28" rx="5" fill="white" stroke="#FCA5A5"/>
+  <text x="130" y="148" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#374151">HTTP Request</text>
+  
+  <rect x="45" y="165" width="170" height="28" rx="5" fill="white" stroke="#FCA5A5"/>
+  <text x="130" y="183" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#374151">Timer (CRON)</text>
+  
+  <rect x="45" y="200" width="170" height="28" rx="5" fill="white" stroke="#FCA5A5"/>
+  <text x="130" y="218" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#374151">Queue Storage</text>
+  
+  <rect x="45" y="235" width="170" height="28" rx="5" fill="white" stroke="#FCA5A5"/>
+  <text x="130" y="253" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#374151">Service Bus</text>
+  
+  <rect x="45" y="270" width="170" height="28" rx="5" fill="white" stroke="#FCA5A5"/>
+  <text x="130" y="288" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#374151">Blob Storage</text>
+  
+  <rect x="45" y="305" width="170" height="28" rx="5" fill="white" stroke="#FCA5A5"/>
+  <text x="130" y="323" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#374151">Event Grid</text>
+  
+  <rect x="45" y="340" width="170" height="28" rx="5" fill="white" stroke="#FCA5A5"/>
+  <text x="130" y="358" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#374151">Event Hub</text>
+  
+  <rect x="45" y="375" width="170" height="28" rx="5" fill="white" stroke="#FCA5A5"/>
+  <text x="130" y="393" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#374151">Cosmos DB Change Feed</text>
+  
+  <!-- Function in center -->
+  <rect x="350" y="160" width="200" height="130" rx="15" fill="url(#funcGrad)"/>
+  <text x="450" y="210" text-anchor="middle" font-family="Segoe UI, Arial" font-size="18" font-weight="600" fill="white">FUNKCJA</text>
+  <text x="450" y="235" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="#FEF3C7">Twoj kod</text>
+  <text x="450" y="255" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#FDE68A">C#, JS, Python, Java...</text>
+  
+  <!-- Trigger arrow -->
+  <line x1="235" y1="225" x2="340" y2="225" stroke="#EF4444" stroke-width="3" marker-end="url(#arrowTrig)"/>
+  <text x="287" y="215" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#DC2626">uruchamia</text>
+  
+  <!-- Input Bindings -->
+  <rect x="350" y="320" width="200" height="110" rx="10" fill="#EFF6FF" stroke="#3B82F6" stroke-width="2"/>
+  <text x="450" y="345" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#1E40AF">INPUT BINDINGS</text>
+  <text x="450" y="365" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#3B82F6">Dane wejsciowe (read)</text>
+  
+  <text x="365" y="390" font-family="Segoe UI, Arial" font-size="9" fill="#374151">- Blob Storage (odczyt)</text>
+  <text x="365" y="405" font-family="Segoe UI, Arial" font-size="9" fill="#374151">- Cosmos DB (query)</text>
+  <text x="365" y="420" font-family="Segoe UI, Arial" font-size="9" fill="#374151">- Table Storage (lookup)</text>
+  
+  <!-- Input arrow -->
+  <line x1="450" y1="315" x2="450" y2="295" stroke="#3B82F6" stroke-width="2" marker-end="url(#arrowIn)"/>
+  
+  <!-- Output Bindings Section -->
+  <rect x="670" y="55" width="200" height="380" rx="10" fill="#ECFDF5" stroke="#10B981" stroke-width="2"/>
+  <rect x="670" y="55" width="200" height="40" rx="10" fill="url(#outputGrad)"/>
+  <rect x="670" y="83" width="200" height="12" fill="url(#outputGrad)"/>
+  <text x="770" y="82" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="600" fill="white">OUTPUT BINDINGS</text>
+  <text x="770" y="115" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#047857">Gdzie zapisac wynik?</text>
+  
+  <!-- Output types -->
+  <rect x="685" y="130" width="170" height="28" rx="5" fill="white" stroke="#6EE7B7"/>
+  <text x="770" y="148" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#374151">HTTP Response</text>
+  
+  <rect x="685" y="165" width="170" height="28" rx="5" fill="white" stroke="#6EE7B7"/>
+  <text x="770" y="183" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#374151">Queue Storage</text>
+  
+  <rect x="685" y="200" width="170" height="28" rx="5" fill="white" stroke="#6EE7B7"/>
+  <text x="770" y="218" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#374151">Service Bus</text>
+  
+  <rect x="685" y="235" width="170" height="28" rx="5" fill="white" stroke="#6EE7B7"/>
+  <text x="770" y="253" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#374151">Blob Storage</text>
+  
+  <rect x="685" y="270" width="170" height="28" rx="5" fill="white" stroke="#6EE7B7"/>
+  <text x="770" y="288" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#374151">Cosmos DB</text>
+  
+  <rect x="685" y="305" width="170" height="28" rx="5" fill="white" stroke="#6EE7B7"/>
+  <text x="770" y="323" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#374151">Event Hub</text>
+  
+  <rect x="685" y="340" width="170" height="28" rx="5" fill="white" stroke="#6EE7B7"/>
+  <text x="770" y="358" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#374151">SendGrid (email)</text>
+  
+  <rect x="685" y="375" width="170" height="28" rx="5" fill="white" stroke="#6EE7B7"/>
+  <text x="770" y="393" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#374151">SignalR (real-time)</text>
+  
+  <!-- Output arrow -->
+  <line x1="555" y1="225" x2="660" y2="225" stroke="#10B981" stroke-width="3" marker-end="url(#arrowOut)"/>
+  <text x="607" y="215" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#047857">zapisuje</text>
+</svg>
