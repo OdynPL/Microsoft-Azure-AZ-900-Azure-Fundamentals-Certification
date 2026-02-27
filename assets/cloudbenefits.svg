@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 480">
+  <defs>
+    <linearGradient id="haGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10B981"/>
+      <stop offset="100%" style="stop-color:#059669"/>
+    </linearGradient>
+    <linearGradient id="relGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6"/>
+      <stop offset="100%" style="stop-color:#1E40AF"/>
+    </linearGradient>
+    <linearGradient id="secGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B5CF6"/>
+      <stop offset="100%" style="stop-color:#6D28D9"/>
+    </linearGradient>
+    <linearGradient id="mngGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F59E0B"/>
+      <stop offset="100%" style="stop-color:#D97706"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Title -->
+  <text x="425" y="30" text-anchor="middle" font-family="Segoe UI, Arial" font-size="20" font-weight="600" fill="#1E3A5F">Korzyści chmury — Cloud Benefits (AZ-900)</text>
+  
+  <!-- Row 1 -->
+  <!-- High Availability & Scalability -->
+  <rect x="30" y="55" width="385" height="190" rx="12" fill="url(#haGrad)" opacity="0.1" stroke="#10B981" stroke-width="2"/>
+  <rect x="30" y="55" width="385" height="45" rx="12" fill="url(#haGrad)"/>
+  <rect x="30" y="88" width="385" height="12" fill="url(#haGrad)"/>
+  
+  <text x="222" y="85" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="600" fill="white">1. Wysoka dostępność i skalowalność</text>
+  
+  <g transform="translate(50, 115)">
+    <rect x="0" y="0" width="165" height="115" rx="8" fill="#D1FAE5" stroke="#10B981" stroke-width="1"/>
+    <text x="82" y="20" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#047857">High Availability</text>
+    <text x="10" y="40" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• SLA 99.9% - 99.999%</text>
+    <text x="10" y="55" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• Availability Zones</text>
+    <text x="10" y="70" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• Auto-failover</text>
+    <text x="10" y="85" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• Load Balancing</text>
+    <text x="10" y="100" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• Health probes</text>
+  </g>
+  
+  <g transform="translate(230, 115)">
+    <rect x="0" y="0" width="165" height="115" rx="8" fill="#D1FAE5" stroke="#10B981" stroke-width="1"/>
+    <text x="82" y="20" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#047857">Scalability</text>
+    <text x="10" y="40" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• Vertical (scale up/down)</text>
+    <text x="10" y="55" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• Horizontal (scale out/in)</text>
+    <text x="10" y="70" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• Auto-scaling</text>
+    <text x="10" y="85" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• Global reach</text>
+    <text x="10" y="100" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• Elastic resources</text>
+  </g>
+  
+  <!-- Reliability & Predictability -->
+  <rect x="435" y="55" width="385" height="190" rx="12" fill="url(#relGrad)" opacity="0.1" stroke="#3B82F6" stroke-width="2"/>
+  <rect x="435" y="55" width="385" height="45" rx="12" fill="url(#relGrad)"/>
+  <rect x="435" y="88" width="385" height="12" fill="url(#relGrad)"/>
+  
+  <text x="627" y="85" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="600" fill="white">2. Niezawodność i przewidywalność</text>
+  
+  <g transform="translate(455, 115)">
+    <rect x="0" y="0" width="165" height="115" rx="8" fill="#DBEAFE" stroke="#3B82F6" stroke-width="1"/>
+    <text x="82" y="20" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#1E40AF">Reliability</text>
+    <text x="10" y="40" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• Region pairs (DR)</text>
+    <text x="10" y="55" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• Geo-redundancy</text>
+    <text x="10" y="70" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• Self-healing</text>
+    <text x="10" y="85" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• Backup &amp; restore</text>
+    <text x="10" y="100" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• Decentralized design</text>
+  </g>
+  
+  <g transform="translate(635, 115)">
+    <rect x="0" y="0" width="165" height="115" rx="8" fill="#DBEAFE" stroke="#3B82F6" stroke-width="1"/>
+    <text x="82" y="20" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#1E40AF">Predictability</text>
+    <text x="10" y="40" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• Przewidywalne koszty</text>
+    <text x="10" y="55" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• Stała wydajność</text>
+    <text x="10" y="70" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• Cost Management</text>
+    <text x="10" y="85" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• Pricing Calculator</text>
+    <text x="10" y="100" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• Azure Well-Architected</text>
+  </g>
+  
+  <!-- Row 2 -->
+  <!-- Security & Governance -->
+  <rect x="30" y="265" width="385" height="190" rx="12" fill="url(#secGrad)" opacity="0.1" stroke="#8B5CF6" stroke-width="2"/>
+  <rect x="30" y="265" width="385" height="45" rx="12" fill="url(#secGrad)"/>
+  <rect x="30" y="298" width="385" height="12" fill="url(#secGrad)"/>
+  
+  <text x="222" y="295" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="600" fill="white">3. Bezpieczeństwo i governance</text>
+  
+  <g transform="translate(50, 325)">
+    <rect x="0" y="0" width="165" height="115" rx="8" fill="#EDE9FE" stroke="#8B5CF6" stroke-width="1"/>
+    <text x="82" y="20" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#5B21B6">Security</text>
+    <text x="10" y="40" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• DDoS protection</text>
+    <text x="10" y="55" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• Encryption at rest/transit</text>
+    <text x="10" y="70" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• Defender for Cloud</text>
+    <text x="10" y="85" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• Identity protection</text>
+    <text x="10" y="100" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• Network security</text>
+  </g>
+  
+  <g transform="translate(230, 325)">
+    <rect x="0" y="0" width="165" height="115" rx="8" fill="#EDE9FE" stroke="#8B5CF6" stroke-width="1"/>
+    <text x="82" y="20" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#5B21B6">Governance</text>
+    <text x="10" y="40" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• Azure Policy</text>
+    <text x="10" y="55" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• RBAC</text>
+    <text x="10" y="70" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• Management Groups</text>
+    <text x="10" y="85" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• Resource Locks</text>
+    <text x="10" y="100" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• Compliance standards</text>
+  </g>
+  
+  <!-- Manageability -->
+  <rect x="435" y="265" width="385" height="190" rx="12" fill="url(#mngGrad)" opacity="0.1" stroke="#F59E0B" stroke-width="2"/>
+  <rect x="435" y="265" width="385" height="45" rx="12" fill="url(#mngGrad)"/>
+  <rect x="435" y="298" width="385" height="12" fill="url(#mngGrad)"/>
+  
+  <text x="627" y="295" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="600" fill="white">4. Zarządzalność (Manageability)</text>
+  
+  <g transform="translate(455, 325)">
+    <rect x="0" y="0" width="165" height="115" rx="8" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1"/>
+    <text x="82" y="20" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#92400E">Management OF cloud</text>
+    <text x="10" y="40" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• Auto-scaling</text>
+    <text x="10" y="55" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• Template deployments</text>
+    <text x="10" y="70" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• Monitoring &amp; alerts</text>
+    <text x="10" y="85" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• Self-healing</text>
+    <text x="10" y="100" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• Performance tuning</text>
+  </g>
+  
+  <g transform="translate(635, 325)">
+    <rect x="0" y="0" width="165" height="115" rx="8" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1"/>
+    <text x="82" y="20" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#92400E">Management IN cloud</text>
+    <text x="10" y="40" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• Azure Portal</text>
+    <text x="10" y="55" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• CLI / PowerShell</text>
+    <text x="10" y="70" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• Cloud Shell</text>
+    <text x="10" y="85" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• APIs / SDKs</text>
+    <text x="10" y="100" font-family="Segoe UI, Arial" font-size="10" fill="#374151">• ARM Templates / Bicep</text>
+  </g>
+</svg>

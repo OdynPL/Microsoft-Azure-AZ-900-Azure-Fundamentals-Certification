@@ -1,0 +1,195 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420">
+  <defs>
+    <linearGradient id="basicGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#9CA3AF"/>
+      <stop offset="100%" style="stop-color:#6B7280"/>
+    </linearGradient>
+    <linearGradient id="devGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10B981"/>
+      <stop offset="100%" style="stop-color:#059669"/>
+    </linearGradient>
+    <linearGradient id="stdGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6"/>
+      <stop offset="100%" style="stop-color:#1E40AF"/>
+    </linearGradient>
+    <linearGradient id="proGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B5CF6"/>
+      <stop offset="100%" style="stop-color:#6D28D9"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Title -->
+  <text x="450" y="30" text-anchor="middle" font-family="Segoe UI, Arial" font-size="20" font-weight="600" fill="#1E3A5F">Azure Support Plans — Porównanie</text>
+  
+  <!-- Basic -->
+  <rect x="20" y="55" width="205" height="350" rx="12" fill="url(#basicGrad)" opacity="0.1" stroke="#9CA3AF" stroke-width="2"/>
+  <rect x="20" y="55" width="205" height="50" rx="12" fill="url(#basicGrad)"/>
+  <rect x="20" y="93" width="205" height="12" fill="url(#basicGrad)"/>
+  
+  <text x="122" y="85" text-anchor="middle" font-family="Segoe UI, Arial" font-size="15" font-weight="600" fill="white">Basic</text>
+  
+  <!-- Basic Price -->
+  <rect x="35" y="115" width="175" height="40" rx="6" fill="#F3F4F6"/>
+  <text x="122" y="135" text-anchor="middle" font-family="Segoe UI, Arial" font-size="18" font-weight="600" fill="#6B7280">$0</text>
+  <text x="122" y="150" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#9CA3AF">included with Azure</text>
+  
+  <!-- Basic Features -->
+  <text x="35" y="180" font-family="Segoe UI, Arial" font-size="11" font-weight="600" fill="#374151">Zawiera:</text>
+  <g transform="translate(35, 195)">
+    <circle cx="6" cy="6" r="5" fill="#9CA3AF"/>
+    <text x="5" y="10" font-family="Segoe UI, Arial" font-size="8" fill="white" text-anchor="middle">✓</text>
+    <text x="16" y="10" font-family="Segoe UI, Arial" font-size="10" fill="#374151">Billing &amp; subscription</text>
+  </g>
+  <g transform="translate(35, 215)">
+    <circle cx="6" cy="6" r="5" fill="#9CA3AF"/>
+    <text x="5" y="10" font-family="Segoe UI, Arial" font-size="8" fill="white" text-anchor="middle">✓</text>
+    <text x="16" y="10" font-family="Segoe UI, Arial" font-size="10" fill="#374151">Dokumentacja online</text>
+  </g>
+  <g transform="translate(35, 235)">
+    <circle cx="6" cy="6" r="5" fill="#9CA3AF"/>
+    <text x="5" y="10" font-family="Segoe UI, Arial" font-size="8" fill="white" text-anchor="middle">✓</text>
+    <text x="16" y="10" font-family="Segoe UI, Arial" font-size="10" fill="#374151">Azure Advisor</text>
+  </g>
+  <g transform="translate(35, 255)">
+    <circle cx="6" cy="6" r="5" fill="#EF4444"/>
+    <text x="5" y="10" font-family="Segoe UI, Arial" font-size="8" fill="white" text-anchor="middle">✗</text>
+    <text x="16" y="10" font-family="Segoe UI, Arial" font-size="10" fill="#374151">Wsparcie techniczne</text>
+  </g>
+  
+  <!-- Basic SLA -->
+  <rect x="35" y="285" width="175" height="50" rx="6" fill="#FEE2E2"/>
+  <text x="122" y="305" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#991B1B">Czas odpowiedzi:</text>
+  <text x="122" y="325" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" fill="#991B1B">Brak SLA</text>
+  
+  <text x="122" y="365" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#6B7280" font-style="italic">Dla: Wszyscy użytkownicy</text>
+  <text x="122" y="380" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#6B7280" font-style="italic">Azure (domyślnie)</text>
+  
+  <!-- Developer -->
+  <rect x="240" y="55" width="205" height="350" rx="12" fill="url(#devGrad)" opacity="0.1" stroke="#10B981" stroke-width="2"/>
+  <rect x="240" y="55" width="205" height="50" rx="12" fill="url(#devGrad)"/>
+  <rect x="240" y="93" width="205" height="12" fill="url(#devGrad)"/>
+  
+  <text x="342" y="85" text-anchor="middle" font-family="Segoe UI, Arial" font-size="15" font-weight="600" fill="white">Developer</text>
+  
+  <!-- Developer Price -->
+  <rect x="255" y="115" width="175" height="40" rx="6" fill="#D1FAE5"/>
+  <text x="342" y="135" text-anchor="middle" font-family="Segoe UI, Arial" font-size="18" font-weight="600" fill="#047857">$29/mies</text>
+  <text x="342" y="150" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#059669">najniższy płatny plan</text>
+  
+  <!-- Developer Features -->
+  <text x="255" y="180" font-family="Segoe UI, Arial" font-size="11" font-weight="600" fill="#374151">Zawiera Basic +</text>
+  <g transform="translate(255, 195)">
+    <circle cx="6" cy="6" r="5" fill="#10B981"/>
+    <text x="5" y="10" font-family="Segoe UI, Arial" font-size="8" fill="white" text-anchor="middle">✓</text>
+    <text x="16" y="10" font-family="Segoe UI, Arial" font-size="10" fill="#374151">Wsparcie techniczne</text>
+  </g>
+  <g transform="translate(255, 215)">
+    <circle cx="6" cy="6" r="5" fill="#10B981"/>
+    <text x="5" y="10" font-family="Segoe UI, Arial" font-size="8" fill="white" text-anchor="middle">✓</text>
+    <text x="16" y="10" font-family="Segoe UI, Arial" font-size="10" fill="#374151">Email w godzinach pracy</text>
+  </g>
+  <g transform="translate(255, 235)">
+    <circle cx="6" cy="6" r="5" fill="#10B981"/>
+    <text x="5" y="10" font-family="Segoe UI, Arial" font-size="8" fill="white" text-anchor="middle">✓</text>
+    <text x="16" y="10" font-family="Segoe UI, Arial" font-size="10" fill="#374151">Nielimitowane zgłoszenia</text>
+  </g>
+  <g transform="translate(255, 255)">
+    <circle cx="6" cy="6" r="5" fill="#EF4444"/>
+    <text x="5" y="10" font-family="Segoe UI, Arial" font-size="8" fill="white" text-anchor="middle">✗</text>
+    <text x="16" y="10" font-family="Segoe UI, Arial" font-size="10" fill="#374151">Severity A (critical)</text>
+  </g>
+  
+  <!-- Developer SLA -->
+  <rect x="255" y="285" width="175" height="50" rx="6" fill="#D1FAE5"/>
+  <text x="342" y="305" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#047857">Czas odpowiedzi:</text>
+  <text x="342" y="325" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" fill="#047857">&lt; 8h (Sev C)</text>
+  
+  <text x="342" y="365" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#6B7280" font-style="italic">Dla: Dev/test,</text>
+  <text x="342" y="380" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#6B7280" font-style="italic">non-production</text>
+  
+  <!-- Standard -->
+  <rect x="460" y="55" width="205" height="350" rx="12" fill="url(#stdGrad)" opacity="0.1" stroke="#3B82F6" stroke-width="2"/>
+  <rect x="460" y="55" width="205" height="50" rx="12" fill="url(#stdGrad)"/>
+  <rect x="460" y="93" width="205" height="12" fill="url(#stdGrad)"/>
+  
+  <text x="562" y="85" text-anchor="middle" font-family="Segoe UI, Arial" font-size="15" font-weight="600" fill="white">Standard</text>
+  
+  <!-- Standard Price -->
+  <rect x="475" y="115" width="175" height="40" rx="6" fill="#DBEAFE"/>
+  <text x="562" y="135" text-anchor="middle" font-family="Segoe UI, Arial" font-size="18" font-weight="600" fill="#1E40AF">$100/mies</text>
+  <text x="562" y="150" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#3B82F6">produkcyjny plan</text>
+  
+  <!-- Standard Features -->
+  <text x="475" y="180" font-family="Segoe UI, Arial" font-size="11" font-weight="600" fill="#374151">Zawiera Developer +</text>
+  <g transform="translate(475, 195)">
+    <circle cx="6" cy="6" r="5" fill="#3B82F6"/>
+    <text x="5" y="10" font-family="Segoe UI, Arial" font-size="8" fill="white" text-anchor="middle">✓</text>
+    <text x="16" y="10" font-family="Segoe UI, Arial" font-size="10" fill="#374151">Wsparcie 24/7</text>
+  </g>
+  <g transform="translate(475, 215)">
+    <circle cx="6" cy="6" r="5" fill="#3B82F6"/>
+    <text x="5" y="10" font-family="Segoe UI, Arial" font-size="8" fill="white" text-anchor="middle">✓</text>
+    <text x="16" y="10" font-family="Segoe UI, Arial" font-size="10" fill="#374151">Severity A (critical)</text>
+  </g>
+  <g transform="translate(475, 235)">
+    <circle cx="6" cy="6" r="5" fill="#3B82F6"/>
+    <text x="5" y="10" font-family="Segoe UI, Arial" font-size="8" fill="white" text-anchor="middle">✓</text>
+    <text x="16" y="10" font-family="Segoe UI, Arial" font-size="10" fill="#374151">Telefon + email</text>
+  </g>
+  <g transform="translate(475, 255)">
+    <circle cx="6" cy="6" r="5" fill="#3B82F6"/>
+    <text x="5" y="10" font-family="Segoe UI, Arial" font-size="8" fill="white" text-anchor="middle">✓</text>
+    <text x="16" y="10" font-family="Segoe UI, Arial" font-size="10" fill="#374151">Architecture guidance</text>
+  </g>
+  
+  <!-- Standard SLA -->
+  <rect x="475" y="285" width="175" height="50" rx="6" fill="#DBEAFE"/>
+  <text x="562" y="305" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#1E40AF">Czas odpowiedzi:</text>
+  <text x="562" y="325" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" fill="#1E40AF">&lt; 1h (Sev A)</text>
+  
+  <text x="562" y="365" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#6B7280" font-style="italic">Dla: Produkcja,</text>
+  <text x="562" y="380" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#6B7280" font-style="italic">business-critical</text>
+  
+  <!-- Professional Direct -->
+  <rect x="680" y="55" width="205" height="350" rx="12" fill="url(#proGrad)" opacity="0.1" stroke="#8B5CF6" stroke-width="2"/>
+  <rect x="680" y="55" width="205" height="50" rx="12" fill="url(#proGrad)"/>
+  <rect x="680" y="93" width="205" height="12" fill="url(#proGrad)"/>
+  
+  <text x="782" y="85" text-anchor="middle" font-family="Segoe UI, Arial" font-size="15" font-weight="600" fill="white">Professional Direct</text>
+  
+  <!-- Professional Price -->
+  <rect x="695" y="115" width="175" height="40" rx="6" fill="#EDE9FE"/>
+  <text x="782" y="135" text-anchor="middle" font-family="Segoe UI, Arial" font-size="18" font-weight="600" fill="#5B21B6">$1000/mies</text>
+  <text x="782" y="150" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#6D28D9">enterprise plan</text>
+  
+  <!-- Professional Features -->
+  <text x="695" y="180" font-family="Segoe UI, Arial" font-size="11" font-weight="600" fill="#374151">Zawiera Standard +</text>
+  <g transform="translate(695, 195)">
+    <circle cx="6" cy="6" r="5" fill="#8B5CF6"/>
+    <text x="5" y="10" font-family="Segoe UI, Arial" font-size="8" fill="white" text-anchor="middle">✓</text>
+    <text x="16" y="10" font-family="Segoe UI, Arial" font-size="10" fill="#374151">ProDirect Manager</text>
+  </g>
+  <g transform="translate(695, 215)">
+    <circle cx="6" cy="6" r="5" fill="#8B5CF6"/>
+    <text x="5" y="10" font-family="Segoe UI, Arial" font-size="8" fill="white" text-anchor="middle">✓</text>
+    <text x="16" y="10" font-family="Segoe UI, Arial" font-size="10" fill="#374151">Advisory services</text>
+  </g>
+  <g transform="translate(695, 235)">
+    <circle cx="6" cy="6" r="5" fill="#8B5CF6"/>
+    <text x="5" y="10" font-family="Segoe UI, Arial" font-size="8" fill="white" text-anchor="middle">✓</text>
+    <text x="16" y="10" font-family="Segoe UI, Arial" font-size="10" fill="#374151">Webinary szkoleniowe</text>
+  </g>
+  <g transform="translate(695, 255)">
+    <circle cx="6" cy="6" r="5" fill="#8B5CF6"/>
+    <text x="5" y="10" font-family="Segoe UI, Arial" font-size="8" fill="white" text-anchor="middle">✓</text>
+    <text x="16" y="10" font-family="Segoe UI, Arial" font-size="10" fill="#374151">Priorytet eskalacji</text>
+  </g>
+  
+  <!-- Professional SLA -->
+  <rect x="695" y="285" width="175" height="50" rx="6" fill="#EDE9FE"/>
+  <text x="782" y="305" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#5B21B6">Czas odpowiedzi:</text>
+  <text x="782" y="325" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" fill="#5B21B6">&lt; 1h (Sev A) + advisor</text>
+  
+  <text x="782" y="365" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#6B7280" font-style="italic">Dla: Enterprise,</text>
+  <text x="782" y="380" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#6B7280" font-style="italic">mission-critical</text>
+</svg>

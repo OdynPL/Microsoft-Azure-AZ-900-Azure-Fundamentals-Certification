@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 360">
+  <defs>
+    <linearGradient id="paygGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6"/>
+      <stop offset="100%" style="stop-color:#1E40AF"/>
+    </linearGradient>
+    <linearGradient id="reservedGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10B981"/>
+      <stop offset="100%" style="stop-color:#059669"/>
+    </linearGradient>
+    <linearGradient id="spotGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F59E0B"/>
+      <stop offset="100%" style="stop-color:#D97706"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Title -->
+  <text x="425" y="30" text-anchor="middle" font-family="Segoe UI, Arial" font-size="20" font-weight="600" fill="#1E3A5F">Modele cenowe Azure — Cloud Pricing Models</text>
+  
+  <!-- Pay-As-You-Go -->
+  <rect x="30" y="55" width="250" height="290" rx="12" fill="url(#paygGrad2)" opacity="0.1" stroke="#3B82F6" stroke-width="2"/>
+  <rect x="30" y="55" width="250" height="50" rx="12" fill="url(#paygGrad2)"/>
+  <rect x="30" y="93" width="250" height="12" fill="url(#paygGrad2)"/>
+  
+  <text x="155" y="85" text-anchor="middle" font-family="Segoe UI, Arial" font-size="15" font-weight="600" fill="white">Pay-As-You-Go</text>
+  
+  <!-- PAYG Price indicator -->
+  <rect x="50" y="120" width="210" height="45" rx="6" fill="#DBEAFE"/>
+  <text x="155" y="140" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="#1E40AF">Cena bazowa:</text>
+  <text x="155" y="158" text-anchor="middle" font-family="Segoe UI, Arial" font-size="16" font-weight="600" fill="#1E40AF">100% (pełna cena)</text>
+  
+  <!-- PAYG Features -->
+  <g transform="translate(50, 180)">
+    <circle cx="8" cy="8" r="6" fill="#3B82F6"/>
+    <text x="6" y="12" font-family="Segoe UI, Arial" font-size="9" fill="white" text-anchor="middle">✓</text>
+    <text x="22" y="12" font-family="Segoe UI, Arial" font-size="11" fill="#374151">Płatność za zużycie</text>
+  </g>
+  <g transform="translate(50, 205)">
+    <circle cx="8" cy="8" r="6" fill="#3B82F6"/>
+    <text x="6" y="12" font-family="Segoe UI, Arial" font-size="9" fill="white" text-anchor="middle">✓</text>
+    <text x="22" y="12" font-family="Segoe UI, Arial" font-size="11" fill="#374151">Brak zobowiązań</text>
+  </g>
+  <g transform="translate(50, 230)">
+    <circle cx="8" cy="8" r="6" fill="#3B82F6"/>
+    <text x="6" y="12" font-family="Segoe UI, Arial" font-size="9" fill="white" text-anchor="middle">✓</text>
+    <text x="22" y="12" font-family="Segoe UI, Arial" font-size="11" fill="#374151">Elastyczność — stop/start</text>
+  </g>
+  <g transform="translate(50, 255)">
+    <circle cx="8" cy="8" r="6" fill="#3B82F6"/>
+    <text x="6" y="12" font-family="Segoe UI, Arial" font-size="9" fill="white" text-anchor="middle">✓</text>
+    <text x="22" y="12" font-family="Segoe UI, Arial" font-size="11" fill="#374151">Rozliczenie per second/hour</text>
+  </g>
+  
+  <!-- PAYG Use case -->
+  <rect x="50" y="285" width="210" height="45" rx="6" fill="#F3F4F6"/>
+  <text x="155" y="305" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#374151">Kiedy używać:</text>
+  <text x="155" y="320" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#6B7280">Dev/test, zmienne obciążenie, startupy</text>
+  
+  <!-- Reserved Instances -->
+  <rect x="300" y="55" width="250" height="290" rx="12" fill="url(#reservedGrad)" opacity="0.1" stroke="#10B981" stroke-width="2"/>
+  <rect x="300" y="55" width="250" height="50" rx="12" fill="url(#reservedGrad)"/>
+  <rect x="300" y="93" width="250" height="12" fill="url(#reservedGrad)"/>
+  
+  <text x="425" y="85" text-anchor="middle" font-family="Segoe UI, Arial" font-size="15" font-weight="600" fill="white">Reserved Instances</text>
+  
+  <!-- Reserved Price indicator -->
+  <rect x="320" y="120" width="210" height="45" rx="6" fill="#D1FAE5"/>
+  <text x="425" y="140" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="#047857">Oszczędność:</text>
+  <text x="425" y="158" text-anchor="middle" font-family="Segoe UI, Arial" font-size="16" font-weight="600" fill="#047857">do 72% taniej</text>
+  
+  <!-- Reserved Features -->
+  <g transform="translate(320, 180)">
+    <circle cx="8" cy="8" r="6" fill="#10B981"/>
+    <text x="6" y="12" font-family="Segoe UI, Arial" font-size="9" fill="white" text-anchor="middle">✓</text>
+    <text x="22" y="12" font-family="Segoe UI, Arial" font-size="11" fill="#374151">Zobowiązanie 1-3 lata</text>
+  </g>
+  <g transform="translate(320, 205)">
+    <circle cx="8" cy="8" r="6" fill="#10B981"/>
+    <text x="6" y="12" font-family="Segoe UI, Arial" font-size="9" fill="white" text-anchor="middle">✓</text>
+    <text x="22" y="12" font-family="Segoe UI, Arial" font-size="11" fill="#374151">Płatność z góry lub miesięcznie</text>
+  </g>
+  <g transform="translate(320, 230)">
+    <circle cx="8" cy="8" r="6" fill="#10B981"/>
+    <text x="6" y="12" font-family="Segoe UI, Arial" font-size="9" fill="white" text-anchor="middle">✓</text>
+    <text x="22" y="12" font-family="Segoe UI, Arial" font-size="11" fill="#374151">Wymiana instancji możliwa</text>
+  </g>
+  <g transform="translate(320, 255)">
+    <circle cx="8" cy="8" r="6" fill="#10B981"/>
+    <text x="6" y="12" font-family="Segoe UI, Arial" font-size="9" fill="white" text-anchor="middle">✓</text>
+    <text x="22" y="12" font-family="Segoe UI, Arial" font-size="11" fill="#374151">Dla VM, SQL, Cosmos DB...</text>
+  </g>
+  
+  <!-- Reserved Use case -->
+  <rect x="320" y="285" width="210" height="45" rx="6" fill="#F3F4F6"/>
+  <text x="425" y="305" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#374151">Kiedy używać:</text>
+  <text x="425" y="320" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#6B7280">Produkcja, stałe obciążenie, 24/7</text>
+  
+  <!-- Spot Instances -->
+  <rect x="570" y="55" width="250" height="290" rx="12" fill="url(#spotGrad)" opacity="0.1" stroke="#F59E0B" stroke-width="2"/>
+  <rect x="570" y="55" width="250" height="50" rx="12" fill="url(#spotGrad)"/>
+  <rect x="570" y="93" width="250" height="12" fill="url(#spotGrad)"/>
+  
+  <text x="695" y="85" text-anchor="middle" font-family="Segoe UI, Arial" font-size="15" font-weight="600" fill="white">Spot Instances</text>
+  
+  <!-- Spot Price indicator -->
+  <rect x="590" y="120" width="210" height="45" rx="6" fill="#FEF3C7"/>
+  <text x="695" y="140" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="#92400E">Oszczędność:</text>
+  <text x="695" y="158" text-anchor="middle" font-family="Segoe UI, Arial" font-size="16" font-weight="600" fill="#92400E">do 90% taniej!</text>
+  
+  <!-- Spot Features -->
+  <g transform="translate(590, 180)">
+    <circle cx="8" cy="8" r="6" fill="#F59E0B"/>
+    <text x="6" y="12" font-family="Segoe UI, Arial" font-size="9" fill="white" text-anchor="middle">!</text>
+    <text x="22" y="12" font-family="Segoe UI, Arial" font-size="11" fill="#374151">Może być przerwane!</text>
+  </g>
+  <g transform="translate(590, 205)">
+    <circle cx="8" cy="8" r="6" fill="#F59E0B"/>
+    <text x="6" y="12" font-family="Segoe UI, Arial" font-size="9" fill="white" text-anchor="middle">✓</text>
+    <text x="22" y="12" font-family="Segoe UI, Arial" font-size="11" fill="#374151">Nadwyżkowa pojemność Azure</text>
+  </g>
+  <g transform="translate(590, 230)">
+    <circle cx="8" cy="8" r="6" fill="#F59E0B"/>
+    <text x="6" y="12" font-family="Segoe UI, Arial" font-size="9" fill="white" text-anchor="middle">✓</text>
+    <text x="22" y="12" font-family="Segoe UI, Arial" font-size="11" fill="#374151">Cena zmienna (aukcja)</text>
+  </g>
+  <g transform="translate(590, 255)">
+    <circle cx="8" cy="8" r="6" fill="#F59E0B"/>
+    <text x="6" y="12" font-family="Segoe UI, Arial" font-size="9" fill="white" text-anchor="middle">✓</text>
+    <text x="22" y="12" font-family="Segoe UI, Arial" font-size="11" fill="#374151">30s warning before eviction</text>
+  </g>
+  
+  <!-- Spot Use case -->
+  <rect x="590" y="285" width="210" height="45" rx="6" fill="#F3F4F6"/>
+  <text x="695" y="305" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#374151">Kiedy używać:</text>
+  <text x="695" y="320" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#6B7280">Batch, ML training, CI/CD, tolerancja przerwań</text>
+</svg>

@@ -225,6 +225,66 @@ Gotowe procesy biznesowe jako usługa, np. HR, płace, księgowość, CRM.
 
 ---
 
+## Korzyści chmury (Cloud Benefits)
+
+Egzamin AZ-900 wymaga znajomości **4 kluczowych obszarów korzyści** wynikających z korzystania z chmury:
+
+<img src="assets/cloudbenefits.svg">
+
+### 1. Wysoka dostępność i skalowalność (High Availability & Scalability)
+
+**Wysoka dostępność (HA):**
+- Usługi chmurowe działają w wielu strefach i regionach, minimalizując ryzyko przestojów.
+- SLA gwarantujące dostępność od 99.9% do 99.999%.
+- Automatyczny failover i load balancing.
+
+**Skalowalność:**
+- **Vertical Scaling** — zwiększanie mocy pojedynczego zasobu (CPU, RAM).
+- **Horizontal Scaling** — dodawanie kolejnych instancji.
+- **Elastyczność** — skalowanie w górę i w dół w zależności od obciążenia.
+
+### 2. Niezawodność i przewidywalność (Reliability & Predictability)
+
+**Niezawodność (Reliability):**
+- Decentralizowana architektura — awaria jednego komponentu nie wpływa na cały system.
+- Region pairs i geo-redundancy zapewniają disaster recovery.
+- Self-healing — automatyczne zastępowanie uszkodzonych instancji.
+
+**Przewidywalność (Predictability):**
+- **Przewidywalność wydajności** — autoskalowanie i load balancing gwarantują stabilną wydajność.
+- **Przewidywalność kosztów** — Cost Management, budgety, alerty i Pricing Calculator pozwalają planować wydatki.
+- Azure Well-Architected Framework dostarcza sprawdzone wzorce.
+
+### 3. Bezpieczeństwo i governance (Security & Governance)
+
+**Bezpieczeństwo:**
+- Wbudowana ochrona DDoS, firewalle, szyfrowanie danych w spoczynku i w tranzycie.
+- Microsoft Defender for Cloud — ciągła analiza i rekomendacje bezpieczeństwa.
+- Zero Trust, MFA, Conditional Access.
+
+**Governance:**
+- Azure Policy wymusza standardy organizacyjne.
+- RBAC ogranicza dostęp zgodnie z zasadą least privilege.
+- Resource Locks chronią przed przypadkowym usunięciem.
+- Management Groups umożliwiają centralne zarządzanie wieloma subskrypcjami.
+
+### 4. Zarządzalność (Manageability)
+
+**Management OF the cloud** — jak chmura zarządza zasobami:
+- Autoskalowanie zasobów na podstawie obciążenia.
+- Wdrażanie z szablonów (ARM Templates, Bicep).
+- Automatyczne monitorowanie i alerty.
+- Self-healing i auto-recovery.
+
+**Management IN the cloud** — jak zarządzasz chmurą:
+- **Azure Portal** — graficzny interfejs webowy.
+- **Azure CLI / PowerShell** — automatyzacja i skrypty.
+- **Cloud Shell** — terminal w przeglądarce.
+- **APIs / SDKs** — programowy dostęp.
+- **Infrastructure as Code** — ARM Templates, Bicep, Terraform.
+
+---
+
 ## CAPEX vs OPEX i model konsumpcyjny
 
 - **CAPEX** – wydatki inwestycyjne (zakup serwerów, sprzętu, licencji z góry).
@@ -232,6 +292,25 @@ Gotowe procesy biznesowe jako usługa, np. HR, płace, księgowość, CRM.
 - **Azure działa głównie w modelu OPEX / pay‑as‑you‑go** – płacisz za wykorzystane zasoby, a nie za utrzymywanie własnego hardware.
 
 **Na egzamin AZ‑900:** cloud zwykle redukuje CAPEX, zwiększa elastyczność kosztów i skraca czas wdrożeń.
+
+---
+
+## Modele cenowe Azure (Cloud Pricing Models)
+
+<img src="assets/pricingmodels.svg">
+
+Azure oferuje trzy główne modele cenowe dla zasobów compute:
+
+| Model | Oszczędność | Zobowiązanie | Kiedy używać |
+|-------|-------------|--------------|--------------|
+| **Pay-As-You-Go** | 0% (cena bazowa) | Brak | Dev/test, zmienne obciążenie |
+| **Reserved Instances** | do 72% | 1-3 lata | Produkcja, stałe obciążenie 24/7 |
+| **Spot Instances** | do 90% | Brak, ale może być przerwane | Batch, ML training, tolerancja przerwań |
+
+**Dodatkowe sposoby na oszczędności:**
+- **Azure Hybrid Benefit** — wykorzystanie istniejących licencji Windows/SQL Server (do 40% oszczędności).
+- **Dev/Test Pricing** — tańsze ceny dla środowisk developerskich (wymaga subskrypcji VS).
+- **Azure Savings Plans** — zobowiązanie do określonej kwoty/h przez 1-3 lata (elastyczniej niż RI).
 
 ---
 
@@ -1570,6 +1649,8 @@ Podział odpowiedzialności między Azure a klientem.
 ---
 
 ### Support Plans (wsparcie techniczne)
+
+<img src="assets/supportplans.svg">
 
 Na AZ‑900 warto znać różnicę między planami wsparcia:
 
