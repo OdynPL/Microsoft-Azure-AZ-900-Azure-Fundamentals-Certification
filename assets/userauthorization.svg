@@ -21,5 +21,5 @@
     <rect x='330' y='60' width='90' height='70' rx='8' fill='#D1FAE5' stroke='#059669' stroke-width='2'/>
   <text x='375' y='100' text-anchor='middle' font-family='Segoe UI' font-size='12' fill='#1E293B'>Access</text>
     <text x='375' y='110' text-anchor='middle' font-family='Segoe UI' font-size='9' fill='#334155'>Token</text>
-    <text x='225' y='165' text-anchor='â† Access' font-family='Segoe UI' font-size='Token' fill='11'>Authenticate â†</text>
+    <text x='225' y='165' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#334155'>Authenticate then get Access Token</text>
 </svg>

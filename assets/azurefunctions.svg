@@ -11,14 +11,14 @@
   <rect width='500' height='180' fill='#FFFFFF'/>
     <text x='250' y='25' text-anchor='middle' font-family='Segoe UI' font-size='14' fill='#0F172A'>Azure Functions (Serverless)</text>
     <rect x='30' y='60' width='100' height='70' rx='8' fill='#FEF3C7' stroke='#D97706' stroke-width='2'/>
-  <text x='80' y='100' text-anchor='middle' font-family='Segoe UI' font-size='12' fill='#1E293B'>Trigger</text>
-    <text x='80' y='105' text-anchor='middle' font-family='Segoe UI' font-size='9' fill='#334155'>HTTP/Timer/Queue</text>
+  <text x='80' y='90' text-anchor='middle' font-family='Segoe UI' font-size='12' fill='#1E293B'>Trigger</text>
+    <text x='80' y='110' text-anchor='middle' font-family='Segoe UI' font-size='9' fill='#334155'>HTTP/Timer/Queue</text>
     <line x1='130' y1='95' x2='180' y2='95' stroke='#475569' stroke-width='2' marker-end='url(#arrow)'/>
     <rect x='190' y='50' width='120' height='90' rx='8' fill='#DBEAFE' stroke='#2563EB' stroke-width='2'/>
-  <text x='250' y='100' text-anchor='middle' font-family='Segoe UI' font-size='14' fill='#1E293B'>Function</text>
-    <text x='250' y='105' text-anchor='middle' font-family='Segoe UI' font-size='10' fill='#334155'>Your Code</text>
+  <text x='250' y='90' text-anchor='middle' font-family='Segoe UI' font-size='14' fill='#1E293B'>Function</text>
+    <text x='250' y='110' text-anchor='middle' font-family='Segoe UI' font-size='10' fill='#334155'>Your Code</text>
     <line x1='310' y1='95' x2='360' y2='95' stroke='#475569' stroke-width='2' marker-end='url(#arrow)'/>
     <rect x='370' y='60' width='100' height='70' rx='8' fill='#D1FAE5' stroke='#059669' stroke-width='2'/>
-  <text x='420' y='100' text-anchor='middle' font-family='Segoe UI' font-size='12' fill='#1E293B'>Output</text>
-    <text x='420' y='105' text-anchor='middle' font-family='Segoe UI' font-size='10' fill='#334155'>Binding</text>
+  <text x='420' y='90' text-anchor='middle' font-family='Segoe UI' font-size='12' fill='#1E293B'>Output</text>
+    <text x='420' y='110' text-anchor='middle' font-family='Segoe UI' font-size='10' fill='#334155'>Binding</text>
 </svg>

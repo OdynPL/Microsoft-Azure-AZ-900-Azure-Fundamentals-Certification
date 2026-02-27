@@ -15,13 +15,11 @@
     <text x='70' y='115' text-anchor='middle' font-family='Segoe UI' font-size='8' fill='#334155'>Sensors</text>
     <line x1='110' y1='100' x2='150' y2='100' stroke='#475569' stroke-width='2' marker-end='url(#arrow)'/>
     <rect x='160' y='55' width='100' height='90' rx='8' fill='#DBEAFE' stroke='#2563EB' stroke-width='2'/>
-  <text x='210' y='105' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#1E293B'></text>
     <text x='210' y='85' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#334155'>IoT Hub</text>
     <text x='210' y='105' text-anchor='middle' font-family='Segoe UI' font-size='9' fill='#334155'>Telemetry</text>
-    <text x='210' y='125' text-anchor='middle' font-family='Segoe UI' font-size='9' fill='#334155'>Commands</text>
+    <text x='210' y='120' text-anchor='middle' font-family='Segoe UI' font-size='9' fill='#334155'>Commands</text>
     <line x1='260' y1='100' x2='310' y2='100' stroke='#475569' stroke-width='2' marker-end='url(#arrow)'/>
     <rect x='320' y='60' width='140' height='80' rx='8' fill='#D1FAE5' stroke='#059669' stroke-width='2'/>
-  <text x='390' y='105' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#1E293B'></text>
-    <text x='390' y='90' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#334155'>Processing</text>
+    <text x='390' y='95' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#334155'>Processing</text>
     <text x='390' y='115' text-anchor='middle' font-family='Segoe UI' font-size='9' fill='#334155'>Stream Analytics</text>
 </svg>
