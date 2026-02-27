@@ -2616,31 +2616,55 @@ Azure Cache for Redis to w pelni zarzadzana usluga cache w pamieci, oparta na po
 ### 20.5 Wzorce cache - szczegoly
 
 **Cache-Aside (Lazy Loading):**
-```
+
+<img src="assets/cache_aside_pattern.svg" alt="Cache-Aside Pattern" width="100%">
+
+Najpopularniejszy wzorzec. Aplikacja jest odpowiedzialna za logike cache:
 1. App sprawdza cache
-2. Cache HIT -> zwroc dane
-3. Cache MISS -> czytaj z DB -> zapisz do cache -> zwroc
-```
-Zalety: Tylko potrzebne dane w cache
-Wady: Pierwsze zapytanie zawsze wolne (cold start)
+2. **Cache HIT** → zwroc dane natychmiast (1-5ms)
+3. **Cache MISS** → czytaj z DB → zapisz do cache → zwroc
 
-**Write-Through:**
-```
+| Zalety | Wady |
+|--------|------|
+| Tylko potrzebne dane w cache | Pierwsze zapytanie zawsze wolne (cold start) |
+| Odporne na awarie cache | Dane moga byc nieaktualne (stale data) |
+| Proste w implementacji | Wymaga logiki w aplikacji |
+
+---
+
+**Write-Through (zapis synchroniczny):**
+
+<img src="assets/write_through_pattern.svg" alt="Write-Through Pattern" width="100%">
+
+Cache dziala jako posrednik przy zapisie:
 1. App zapisuje do cache
-2. Cache synchronicznie zapisuje do DB
+2. Cache **synchronicznie** zapisuje do DB (App czeka!)
 3. Potwierdzenie dla App
-```
-Zalety: Dane zawsze aktualne
-Wady: Wyzsza latencja zapisu
 
-**Write-Behind (Write-Back):**
-```
+| Zalety | Wady |
+|--------|------|
+| Dane zawsze aktualne w cache i DB | Wyzsza latencja zapisu |
+| Brak niespojnosci | Kazdy zapis to 2 operacje |
+| Proste odczyty | Wymaga wsparcia cache |
+
+---
+
+**Write-Behind / Write-Back (zapis asynchroniczny):**
+
+<img src="assets/write_behind_pattern.svg" alt="Write-Behind Pattern" width="100%">
+
+Najszybszy zapis - cache potwierdza natychmiast:
 1. App zapisuje do cache
-2. Cache potwierdza natychmiast
-3. Cache asynchronicznie zapisuje do DB
-```
-Zalety: Najszybszy zapis
-Wady: Ryzyko utraty danych przy awarii
+2. Cache **natychmiast** potwierdza (App nie czeka!)
+3. Cache **asynchronicznie** zapisuje do DB (pozniej, w tle)
+
+| Zalety | Wady |
+|--------|------|
+| Najszybszy zapis | Ryzyko utraty danych przy awarii |
+| Niskie latencje | Dane moga byc niezsynchronizowane |
+| Batching zapisow do DB | Zlozona implementacja |
+
+---
 
 ### 20.6 Tworzenie przez CLI
 

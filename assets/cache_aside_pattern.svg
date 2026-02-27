@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 280">
+  <defs>
+    <linearGradient id="appGradCA" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6"/>
+      <stop offset="100%" style="stop-color:#1D4ED8"/>
+    </linearGradient>
+    <linearGradient id="cacheGradCA" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#DC382D"/>
+      <stop offset="100%" style="stop-color:#A61B1B"/>
+    </linearGradient>
+    <linearGradient id="dbGradCA" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10B981"/>
+      <stop offset="100%" style="stop-color:#059669"/>
+    </linearGradient>
+    <marker id="arrowCA" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#6B7280"/>
+    </marker>
+    <marker id="arrowHit" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#10B981"/>
+    </marker>
+    <marker id="arrowMiss" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#EF4444"/>
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="350" y="25" text-anchor="middle" font-family="Segoe UI, Arial" font-size="18" font-weight="600" fill="#1E3A5F">Cache-Aside (Lazy Loading)</text>
+  
+  <!-- Components -->
+  <rect x="50" y="100" width="120" height="70" rx="10" fill="url(#appGradCA)"/>
+  <text x="110" y="135" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="600" fill="white">Aplikacja</text>
+  <text x="110" y="155" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#BFDBFE">odpowiada za logike</text>
+  
+  <rect x="290" y="100" width="120" height="70" rx="10" fill="url(#cacheGradCA)"/>
+  <text x="350" y="135" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="600" fill="white">Redis</text>
+  <text x="350" y="155" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#FECACA">Cache</text>
+  
+  <rect x="530" y="100" width="120" height="70" rx="10" fill="url(#dbGradCA)"/>
+  <text x="590" y="135" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="600" fill="white">Baza</text>
+  <text x="590" y="155" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#A7F3D0">danych</text>
+  
+  <!-- Step 1: Check cache -->
+  <path d="M175 115 Q230 80 280 115" stroke="#6B7280" stroke-width="2" fill="none" marker-end="url(#arrowCA)"/>
+  <circle cx="230" cy="70" r="14" fill="#EFF6FF" stroke="#3B82F6" stroke-width="2"/>
+  <text x="230" y="75" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#1E40AF">1</text>
+  <text x="230" y="55" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#374151">Sprawdz cache</text>
+  
+  <!-- Step 2a: Cache HIT -->
+  <rect x="200" y="185" width="180" height="40" rx="8" fill="#ECFDF5" stroke="#10B981" stroke-width="2"/>
+  <text x="290" y="210" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" font-weight="600" fill="#047857">HIT: Zwroc dane z cache</text>
+  <path d="M280 170 L280 180" stroke="#10B981" stroke-width="2" marker-end="url(#arrowHit)"/>
+  
+  <!-- Step 2b: Cache MISS flow -->
+  <rect x="200" y="240" width="300" height="35" rx="8" fill="#FEF2F2" stroke="#EF4444" stroke-width="2"/>
+  <text x="350" y="262" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#DC2626">MISS: Czytaj z DB → Zapisz do cache → Zwroc</text>
+  
+  <!-- Miss arrows -->
+  <path d="M415 155 Q470 200 520 155" stroke="#EF4444" stroke-width="2" fill="none" stroke-dasharray="5,3" marker-end="url(#arrowMiss)"/>
+  <circle cx="470" cy="180" r="14" fill="#FEF2F2" stroke="#EF4444" stroke-width="2"/>
+  <text x="470" y="185" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#DC2626">2</text>
+  <text x="470" y="205" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#DC2626">Czytaj z DB</text>
+  
+  <!-- Step 3: Update cache -->
+  <path d="M520 175 Q470 220 415 175" stroke="#F59E0B" stroke-width="2" fill="none" stroke-dasharray="5,3" marker-end="url(#arrowCA)"/>
+  <circle cx="500" cy="220" r="14" fill="#FFFBEB" stroke="#F59E0B" stroke-width="2"/>
+  <text x="500" y="225" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#B45309">3</text>
+  <text x="545" y="225" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#B45309">Zapisz</text>
+</svg>

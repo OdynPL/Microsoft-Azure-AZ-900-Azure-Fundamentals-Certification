@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 260">
+  <defs>
+    <linearGradient id="appGradWB" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6"/>
+      <stop offset="100%" style="stop-color:#1D4ED8"/>
+    </linearGradient>
+    <linearGradient id="cacheGradWB" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#DC382D"/>
+      <stop offset="100%" style="stop-color:#A61B1B"/>
+    </linearGradient>
+    <linearGradient id="dbGradWB" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10B981"/>
+      <stop offset="100%" style="stop-color:#059669"/>
+    </linearGradient>
+    <marker id="arrowWB" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#3B82F6"/>
+    </marker>
+    <marker id="arrowAsync" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#8B5CF6"/>
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="350" y="25" text-anchor="middle" font-family="Segoe UI, Arial" font-size="18" font-weight="600" fill="#1E3A5F">Write-Behind / Write-Back (asynchroniczny)</text>
+  
+  <!-- Components -->
+  <rect x="50" y="80" width="120" height="70" rx="10" fill="url(#appGradWB)"/>
+  <text x="110" y="115" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="600" fill="white">Aplikacja</text>
+  <text x="110" y="135" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#BFDBFE">zapisuje do cache</text>
+  
+  <rect x="290" y="80" width="120" height="70" rx="10" fill="url(#cacheGradWB)"/>
+  <text x="350" y="115" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="600" fill="white">Redis</text>
+  <text x="350" y="135" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#FECACA">Cache</text>
+  
+  <rect x="530" y="80" width="120" height="70" rx="10" fill="url(#dbGradWB)"/>
+  <text x="590" y="115" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="600" fill="white">Baza</text>
+  <text x="590" y="135" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#A7F3D0">danych</text>
+  
+  <!-- Step 1: Write to cache -->
+  <line x1="175" y1="100" x2="280" y2="100" stroke="#3B82F6" stroke-width="3" marker-end="url(#arrowWB)"/>
+  <circle cx="227" cy="75" r="14" fill="#EFF6FF" stroke="#3B82F6" stroke-width="2"/>
+  <text x="227" y="80" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#1E40AF">1</text>
+  <text x="227" y="60" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#374151">Zapisz do cache</text>
+  
+  <!-- Step 2: Immediate confirmation -->
+  <line x1="280" y1="130" x2="175" y2="130" stroke="#10B981" stroke-width="3" marker-end="url(#arrowWB)"/>
+  <circle cx="227" cy="155" r="14" fill="#ECFDF5" stroke="#10B981" stroke-width="2"/>
+  <text x="227" y="160" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#047857">2</text>
+  <text x="227" y="180" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#047857">NATYCHMIASTOWE OK</text>
+  
+  <!-- Step 3: Async write to DB (later) -->
+  <line x1="415" y1="115" x2="520" y2="115" stroke="#8B5CF6" stroke-width="2" stroke-dasharray="8,4" marker-end="url(#arrowAsync)"/>
+  <circle cx="467" cy="90" r="14" fill="#F3E8FF" stroke="#8B5CF6" stroke-width="2"/>
+  <text x="467" y="95" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#7C3AED">3</text>
+  <text x="467" y="75" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#7C3AED">ASYNC (pozniej)</text>
+  
+  <!-- Async indicator -->
+  <rect x="380" y="155" width="150" height="40" rx="6" fill="#F3E8FF" stroke="#8B5CF6" stroke-width="1"/>
+  <text x="455" y="172" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#7C3AED">ASYNCHRONICZNIE</text>
+  <text x="455" y="187" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#5B21B6">Cache zapisze pozniej</text>
+  
+  <!-- Pros/Cons -->
+  <rect x="50" y="210" width="280" height="40" rx="6" fill="#ECFDF5" stroke="#10B981" stroke-width="1"/>
+  <text x="190" y="228" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#047857">+ Najszybszy zapis (nie czeka na DB)</text>
+  <text x="190" y="242" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#059669">+ Niskie latencje</text>
+  
+  <rect x="370" y="210" width="280" height="40" rx="6" fill="#FEF2F2" stroke="#EF4444" stroke-width="1"/>
+  <text x="510" y="228" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#DC2626">- Ryzyko utraty danych przy awarii</text>
+  <text x="510" y="242" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#B91C1C">- Dane moga byc niezsynchronizowane</text>
+</svg>
