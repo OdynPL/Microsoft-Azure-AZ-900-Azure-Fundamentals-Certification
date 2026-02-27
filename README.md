@@ -2190,14 +2190,182 @@ Pełny SQL Server działający na maszynie wirtualnej (IaaS).
 - najlepsze dla scenariuszy, które wymagają pełnego dostępu do instancji lub niestandardowych rozszerzeń
 
 ### **Cosmos DB (NoSQL, global distribution)**
-Globalnie rozproszona, wysokowydajna baza NoSQL działająca w wielu modelach danych:
 
-- dokumenty (Core API / Mongo API)
-- key‑value (Table API)
-- graf (Gremlin API)
-- column‑family (Cassandra API)
-- natywna replikacja między regionami
-- ultra‑niska latencja (milisekundy), automatyczne skalowanie RUs
+#### Spis treści - Cosmos DB
+- [Co to jest Cosmos DB?](#cosmosdb-intro)
+- [Architektura globalna](#cosmosdb-architecture)
+- [Multi-Model APIs](#cosmosdb-apis)
+- [Request Units (RU/s)](#cosmosdb-ru)
+- [Consistency Levels](#cosmosdb-consistency)
+- [Partitioning](#cosmosdb-partitioning)
+- [Porównanie z innymi bazami](#cosmosdb-comparison)
+- [Kiedy wybrać Cosmos DB?](#cosmosdb-when)
+
+---
+
+<a id="cosmosdb-intro"></a>
+#### Co to jest Cosmos DB?
+
+<img src="assets/cosmosdb_architecture.svg">
+
+**Azure Cosmos DB** to w pełni zarządzana, globalnie rozproszona baza danych NoSQL, zaprojektowana dla aplikacji wymagających:
+- **Ultra-niskich opóźnień** (single-digit milliseconds)
+- **Globalnej dystrybucji** danych w wielu regionach
+- **Elastycznego skalowania** bez przestojów
+- **Wysokiej dostępności** (99.999% SLA)
+
+Cosmos DB to **baza planet-scale** — idealna dla aplikacji działających globalnie, IoT, gaming, e-commerce i real-time analytics.
+
+---
+
+<a id="cosmosdb-architecture"></a>
+#### Architektura globalna
+
+Cosmos DB automatycznie replikuje dane do wybranych regionów Azure:
+
+| Funkcja | Opis |
+|---------|------|
+| **Multi-region writes** | Zapis w dowolnym regionie, automatyczna synchronizacja |
+| **Automatic failover** | Przełączenie w przypadku awarii regionu |
+| **Conflict resolution** | Last-Write-Wins lub custom policies |
+| **Turnkey global distribution** | Dodanie regionu jednym kliknięciem |
+
+**Przykład:** Użytkownik w Europie łączy się z West Europe, użytkownik w Azji z Southeast Asia — obaj mają dostęp do tych samych danych z minimalnym opóźnieniem.
+
+---
+
+<a id="cosmosdb-apis"></a>
+#### Multi-Model APIs
+
+<img src="assets/cosmosdb_apis.svg">
+
+Cosmos DB obsługuje **5 różnych interfejsów API** — wybierasz ten, który pasuje do Twojej aplikacji:
+
+| API | Model danych | Kiedy używać |
+|-----|--------------|--------------|
+| **Core (SQL)** | Dokumenty JSON | Nowe aplikacje, najlepsza wydajność |
+| **MongoDB** | Dokumenty BSON | Migracja z MongoDB, istniejący kod |
+| **Cassandra** | Wide-column | Migracja z Apache Cassandra |
+| **Gremlin** | Graf (węzły/krawędzie) | Social networks, recommendation engines |
+| **Table** | Key-Value | Prosta struktura, migracja z Table Storage |
+
+**Ważne:** Wybór API następuje **przy tworzeniu konta** Cosmos DB i nie można go później zmienić!
+
+---
+
+<a id="cosmosdb-ru"></a>
+#### Request Units (RU/s) — Model rozliczeń
+
+Cosmos DB używa **Request Units (RU)** jako abstrakcyjnej jednostki kosztu operacji:
+
+```
+1 RU = koszt odczytu 1 dokumentu 1KB przez ID
+```
+
+**Przykładowe koszty RU:**
+| Operacja | Koszt RU |
+|----------|----------|
+| Odczyt 1KB dokumentu po ID | ~1 RU |
+| Zapis 1KB dokumentu | ~5 RU |
+| Query z filtrem | ~3-10+ RU |
+| Query z agregacją | ~10-100+ RU |
+
+**Tryby provisioning:**
+- **Provisioned throughput** — deklarujesz RU/s z góry (tańsze przy przewidywalnym ruchu)
+- **Autoscale** — automatyczne skalowanie 10-100% zadeklarowanego max
+- **Serverless** — płacisz tylko za zużyte RU (dobre dla dev/test)
+
+---
+
+<a id="cosmosdb-consistency"></a>
+#### Consistency Levels (Poziomy spójności)
+
+Cosmos DB oferuje **5 poziomów spójności** — balans między wydajnością a gwarancjami:
+
+| Poziom | Gwarancja | Latency | Kiedy używać |
+|--------|-----------|---------|--------------|
+| **Strong** | Zawsze najnowsze dane | Najwyższa | Finanse, krytyczne dane |
+| **Bounded Staleness** | Max opóźnienie K operacji lub T czasu | Wysoka | Gaming leaderboards |
+| **Session** | Spójność w ramach sesji | Średnia | ✅ **Domyślny, najczęściej używany** |
+| **Consistent Prefix** | Kolejność operacji zachowana | Niska | Analityka, logi |
+| **Eventual** | Brak gwarancji kolejności | Najniższa | Liczniki, statystyki |
+
+**Session consistency** zapewnia, że użytkownik widzi swoje własne zmiany natychmiast, a zmiany innych użytkowników z minimalnym opóźnieniem.
+
+---
+
+<a id="cosmosdb-partitioning"></a>
+#### Partitioning — Klucz do wydajności
+
+Cosmos DB automatycznie **partycjonuje dane** na podstawie **Partition Key**:
+
+```json
+{
+  "id": "order-123",
+  "customerId": "CUST-456",  // ← Partition Key
+  "items": [...],
+  "total": 99.99
+}
+```
+
+**Zasady wyboru Partition Key:**
+| ✅ Dobre praktyki | ❌ Złe praktyki |
+|-------------------|-----------------|
+| Wysoka kardynalność (dużo unikalnych wartości) | Status: "active/inactive" (tylko 2 wartości) |
+| Query najczęściej filtrują po tym kluczu | Timestamp (hot partition) |
+| Równomierna dystrybucja danych | ID użytkownika VIP (80% danych w 1 partycji) |
+
+**Limit:** Jedna partycja logiczna = max **20 GB** danych.
+
+---
+
+<a id="cosmosdb-comparison"></a>
+#### Porównanie z innymi bazami NoSQL w Azure
+
+<img src="assets/cosmosdb_comparison.svg">
+
+| Cecha | Cosmos DB | Table Storage | Redis Cache | MongoDB Atlas |
+|-------|-----------|---------------|-------------|---------------|
+| **Typ** | Multi-model NoSQL | Key-Value | In-memory cache | Document DB |
+| **Global dist.** | ✅ Native | ❌ Single region | ⚠️ Premium only | ✅ Self-managed |
+| **Latency SLA** | ✅ <10ms P99 | ❌ Brak | ⚡ <1ms | ❌ Brak |
+| **Multi-region write** | ✅ Tak | ❌ Nie | ❌ Nie | ✅ Tak |
+| **SLA availability** | 99.999% | 99.9% | 99.9% | 99.95% |
+| **Koszt** | 💰💰💰 | 💰 | 💰💰 | 💰💰 |
+
+---
+
+<a id="cosmosdb-when"></a>
+#### Kiedy wybrać Cosmos DB?
+
+**✅ Wybierz Cosmos DB gdy:**
+- Potrzebujesz **globalnej dystrybucji** z niskimi opóźnieniami
+- Aplikacja wymaga **99.999% SLA**
+- Masz **zmienny, nieprzewidywalny ruch** (autoscale)
+- Potrzebujesz **wielu modeli danych** (dokumenty, grafy, key-value)
+- Budujesz aplikacje **IoT, gaming, e-commerce, real-time**
+
+**❌ Nie wybieraj Cosmos DB gdy:**
+- Potrzebujesz prostego, taniego storage → **Table Storage**
+- Potrzebujesz cache w pamięci → **Redis Cache**
+- Masz relacyjne dane z transakcjami ACID → **Azure SQL**
+- Budżet jest bardzo ograniczony (Cosmos DB jest drogi!)
+
+---
+
+#### Podsumowanie Cosmos DB
+
+| Aspekt | Wartość |
+|--------|---------|
+| **Typ** | Globally distributed NoSQL |
+| **APIs** | Core SQL, MongoDB, Cassandra, Gremlin, Table |
+| **SLA** | 99.999% (multi-region) |
+| **Latency** | <10ms reads, <15ms writes (P99) |
+| **Scaling** | Automatic partitioning, unlimited |
+| **Pricing** | RU/s + Storage (pay-per-use) |
+| **Best for** | Global apps, IoT, gaming, e-commerce |
+
+---
 
 ### **Azure Database for PostgreSQL / MySQL (Flexible Server)**
 Zarządzane instancje popularnych baz open‑source.
