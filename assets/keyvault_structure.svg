@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 320">
+  <defs>
+    <linearGradient id="kvGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a5276;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2980b9;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="secretGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7d3c98;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#9b59b6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="keyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#b7950b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f1c40f;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="certGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e8449;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#27ae60;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="hsmGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#922b21;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#c0392b;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="500" height="320" fill="#f8f9fa"/>
+  
+  <!-- Title -->
+  <text x="250" y="28" text-anchor="middle" font-family="Segoe UI, Arial" font-size="18" font-weight="600" fill="#2c3e50">Azure Key Vault - Struktura</text>
+  
+  <!-- Key Vault main box -->
+  <rect x="30" y="50" width="440" height="255" rx="10" fill="url(#kvGrad)"/>
+  <text x="250" y="80" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="600" fill="white">my-keyvault.vault.azure.net</text>
+  
+  <!-- Secrets -->
+  <rect x="50" y="100" width="185" height="90" rx="6" fill="url(#secretGrad)"/>
+  <text x="142" y="125" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="600" fill="white">SECRETS</text>
+  <text x="142" y="145" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="white">Connection Strings</text>
+  <text x="142" y="160" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="white">API Keys, Passwords</text>
+  <text x="142" y="175" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="white">Tokeny, Credentials</text>
+  
+  <!-- Keys -->
+  <rect x="265" y="100" width="185" height="90" rx="6" fill="url(#keyGrad)"/>
+  <text x="357" y="125" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="600" fill="#5d4037">KEYS</text>
+  <text x="357" y="145" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#5d4037">RSA 2048/3072/4096</text>
+  <text x="357" y="160" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#5d4037">EC P-256/384/521</text>
+  <text x="357" y="175" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#5d4037">Encrypt/Sign/Wrap</text>
+  
+  <!-- Certificates -->
+  <rect x="50" y="205" width="185" height="90" rx="6" fill="url(#certGrad)"/>
+  <text x="142" y="230" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="600" fill="white">CERTIFICATES</text>
+  <text x="142" y="250" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="white">TLS/SSL Certificates</text>
+  <text x="142" y="265" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="white">Auto-renewal</text>
+  <text x="142" y="280" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="white">DigiCert, GlobalSign</text>
+  
+  <!-- HSM -->
+  <rect x="265" y="205" width="185" height="90" rx="6" fill="url(#hsmGrad)"/>
+  <text x="357" y="230" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="600" fill="white">HSM (Premium)</text>
+  <text x="357" y="250" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="white">FIPS 140-2 Level 2</text>
+  <text x="357" y="265" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="white">Hardware-protected keys</text>
+  <text x="357" y="280" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="white">BYOK Support</text>
+</svg>

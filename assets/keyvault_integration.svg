@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 200">
+  <defs>
+    <linearGradient id="kvGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a5276;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2980b9;stop-opacity:1" />
+    </linearGradient>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2980b9"/>
+    </marker>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="700" height="200" fill="#f8f9fa"/>
+  
+  <!-- Title -->
+  <text x="350" y="25" text-anchor="middle" font-family="Segoe UI, Arial" font-size="16" font-weight="600" fill="#2c3e50">Key Vault - Scenariusze integracji</text>
+  
+  <!-- Key Vault center -->
+  <rect x="290" y="70" width="120" height="50" rx="6" fill="url(#kvGrad)"/>
+  <text x="350" y="100" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="white">Key Vault</text>
+  
+  <!-- App Service -->
+  <rect x="20" y="45" width="110" height="55" rx="5" fill="white" stroke="#3498db" stroke-width="2"/>
+  <text x="75" y="68" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#2980b9">App Service</text>
+  <text x="75" y="82" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#2c3e50">@Microsoft.KeyVault</text>
+  <text x="75" y="94" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#2c3e50">(SecretUri=...)</text>
+  <line x1="130" y1="72" x2="285" y2="90" stroke="#2980b9" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+  
+  <!-- AKS -->
+  <rect x="20" y="115" width="110" height="55" rx="5" fill="white" stroke="#3498db" stroke-width="2"/>
+  <text x="75" y="138" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#2980b9">AKS</text>
+  <text x="75" y="152" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#2c3e50">CSI Secret Store</text>
+  <text x="75" y="164" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#2c3e50">Workload Identity</text>
+  <line x1="130" y1="142" x2="285" y2="105" stroke="#2980b9" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+  
+  <!-- Storage/SQL -->
+  <rect x="570" y="45" width="110" height="55" rx="5" fill="white" stroke="#3498db" stroke-width="2"/>
+  <text x="625" y="68" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#2980b9">Storage / SQL</text>
+  <text x="625" y="82" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#2c3e50">Customer-Managed</text>
+  <text x="625" y="94" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#2c3e50">Keys (CMK)</text>
+  <line x1="415" y1="90" x2="565" y2="72" stroke="#2980b9" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+  
+  <!-- DevOps -->
+  <rect x="570" y="115" width="110" height="55" rx="5" fill="white" stroke="#3498db" stroke-width="2"/>
+  <text x="625" y="138" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#2980b9">CI/CD Pipelines</text>
+  <text x="625" y="152" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#2c3e50">Azure DevOps</text>
+  <text x="625" y="164" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#2c3e50">GitHub Actions</text>
+  <line x1="415" y1="105" x2="565" y2="142" stroke="#2980b9" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+  
+  <!-- App Gateway - top center -->
+  <rect x="290" y="140" width="120" height="45" rx="5" fill="white" stroke="#3498db" stroke-width="2"/>
+  <text x="350" y="160" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#2980b9">App Gateway</text>
+  <text x="350" y="175" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#2c3e50">TLS Certificates</text>
+  <line x1="350" y1="120" x2="350" y2="135" stroke="#2980b9" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+</svg>

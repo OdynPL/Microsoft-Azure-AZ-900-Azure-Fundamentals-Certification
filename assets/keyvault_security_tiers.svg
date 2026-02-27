@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 220">
+  <defs>
+    <linearGradient id="kvGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a5276;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2980b9;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="hsmGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#922b21;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#c0392b;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="650" height="220" fill="#f8f9fa"/>
+  
+  <!-- Title -->
+  <text x="325" y="25" text-anchor="middle" font-family="Segoe UI, Arial" font-size="16" font-weight="600" fill="#2c3e50">Key Vault - Bezpieczenstwo i warstwy cenowe</text>
+  
+  <!-- Security features section -->
+  <rect x="20" y="45" width="300" height="160" rx="8" fill="#ecf0f1" stroke="#bdc3c7"/>
+  <text x="170" y="68" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="600" fill="#2c3e50">Funkcje bezpieczenstwa</text>
+  
+  <!-- Soft Delete -->
+  <rect x="35" y="80" width="130" height="55" rx="5" fill="#d4edda" stroke="#28a745"/>
+  <text x="100" y="100" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#155724">Soft Delete</text>
+  <text x="100" y="115" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#155724">90 dni retencji</text>
+  <text x="100" y="128" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#155724">Domyslnie ON</text>
+  
+  <!-- Purge Protection -->
+  <rect x="175" y="80" width="130" height="55" rx="5" fill="#d4edda" stroke="#28a745"/>
+  <text x="240" y="100" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#155724">Purge Protection</text>
+  <text x="240" y="115" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#155724">Blokuje purge</text>
+  <text x="240" y="128" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#155724">Wymagane dla CMK</text>
+  
+  <!-- Private Endpoint -->
+  <rect x="35" y="145" width="130" height="50" rx="5" fill="#d4edda" stroke="#28a745"/>
+  <text x="100" y="165" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#155724">Private Endpoint</text>
+  <text x="100" y="180" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#155724">Dostep przez VNet</text>
+  
+  <!-- Firewall -->
+  <rect x="175" y="145" width="130" height="50" rx="5" fill="#d4edda" stroke="#28a745"/>
+  <text x="240" y="165" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#155724">Firewall Rules</text>
+  <text x="240" y="180" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#155724">IP whitelist</text>
+  
+  <!-- Pricing tiers section -->
+  <rect x="340" y="45" width="290" height="160" rx="8" fill="#ecf0f1" stroke="#bdc3c7"/>
+  <text x="485" y="68" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="600" fill="#2c3e50">Warstwy cenowe</text>
+  
+  <!-- Standard tier -->
+  <rect x="355" y="80" width="125" height="115" rx="6" fill="url(#kvGrad)"/>
+  <text x="417" y="102" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="white">STANDARD</text>
+  <text x="417" y="120" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">Software keys</text>
+  <text x="417" y="135" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">Secrets + Certs</text>
+  <text x="417" y="150" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">FIPS 140-2 L1</text>
+  <text x="417" y="170" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#d4edda">~0.03$/10K ops</text>
+  <text x="417" y="185" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#d4edda">Wiekszosc uzyc</text>
+  
+  <!-- Premium tier -->
+  <rect x="490" y="80" width="125" height="115" rx="6" fill="url(#hsmGrad)"/>
+  <text x="552" y="102" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="white">PREMIUM</text>
+  <text x="552" y="120" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">HSM-backed keys</text>
+  <text x="552" y="135" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">Secrets + Certs</text>
+  <text x="552" y="150" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">FIPS 140-2 L2</text>
+  <text x="552" y="170" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#d4edda">~1$/key/month</text>
+  <text x="552" y="185" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="#d4edda">Banking/Compliance</text>
+</svg>

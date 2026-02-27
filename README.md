@@ -27,8 +27,9 @@
 - [19. Azure CLI](#sec-19-azure-cli)
 - [20. Azure Cache for Redis](#sec-20-redis-cache)
 - [21. Wdrażanie aplikacji na Azure (Deployment)](#sec-21-deployment)
-- [22. Last-minute cram (pułapki + porównania)](#sec-22-last-minute-cram)
-- [Załącznik A – Diagramy ASCII](#sec-appendix-ascii)
+- [22. Last-minute cram (pulapki + porownania)](#sec-22-last-minute-cram)
+- [23. Azure Key Vault](#sec-23-azure-key-vault)
+- [Zalacznik A – Diagramy ASCII](#sec-appendix-ascii)
 
 ---
 
@@ -3761,11 +3762,11 @@ Region (low-latency network)
 <a id="sec-23-azure-key-vault"></a>
 ## 23. Azure Key Vault
 
-<img src="assets/keyvault_comprehensive.svg">
+<img src="assets/keyvault_structure.svg">
 
 ### Czym jest Azure Key Vault?
 
-Azure Key Vault to w pełni zarządzana usługa do bezpiecznego przechowywania i zarządzania wrażliwymi danymi:
+**Azure Key Vault** to w pełni zarządzana usługa do bezpiecznego przechowywania i zarządzania wrażliwymi danymi:
 - **Secrets** – hasła, connection stringi, API keys, tokeny
 - **Keys** – klucze kryptograficzne do szyfrowania i podpisywania
 - **Certificates** – certyfikaty TLS/SSL z automatycznym odnowieniem
@@ -3806,6 +3807,8 @@ Wrap / Unwrap        - owijanie kluczy (key encryption keys)
 ---
 
 ### Kontrola dostępu
+
+<img src="assets/keyvault_access_flow.svg">
 
 Key Vault obsługuje dwa modele dostępu:
 
@@ -3918,6 +3921,8 @@ az keyvault secret show --vault-name myKeyVault \
 ---
 
 ### Integracja z aplikacjami
+
+<img src="assets/keyvault_integration.svg">
 
 **1. App Service / Azure Functions (Key Vault Reference)**
 
@@ -4051,7 +4056,9 @@ az storage account update --name mystorageaccount \
 
 ### Bezpieczeństwo Key Vault
 
-**Soft Delete (domyślnie włączone):**
+<img src="assets/keyvault_security_tiers.svg">
+
+**Soft Delete (domyslnie wlaczone):**
 - Usunięty vault/secret/key trafia do "soft deleted" state
 - Można odzyskać przez 7-90 dni (default 90)
 - Chroni przed przypadkowym usunięciem
