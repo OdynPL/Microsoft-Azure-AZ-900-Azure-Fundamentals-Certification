@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420">
+  <defs>
+    <linearGradient id="dockerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2496ED"/>
+      <stop offset="100%" style="stop-color:#1D6FB8"/>
+    </linearGradient>
+    <linearGradient id="acrGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0078D4"/>
+      <stop offset="100%" style="stop-color:#005A9E"/>
+    </linearGradient>
+    <linearGradient id="aciGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10B981"/>
+      <stop offset="100%" style="stop-color:#059669"/>
+    </linearGradient>
+    <linearGradient id="aksGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#326CE5"/>
+      <stop offset="100%" style="stop-color:#2251A8"/>
+    </linearGradient>
+    <linearGradient id="acaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B5CF6"/>
+      <stop offset="100%" style="stop-color:#6D28D9"/>
+    </linearGradient>
+    <marker id="arrowContainer" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#6B7280"/>
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="450" y="30" text-anchor="middle" font-family="Segoe UI, Arial" font-size="20" font-weight="600" fill="#1E3A5F">Wdrazanie kontenerow na Azure</text>
+  
+  <!-- Flow: Dockerfile -> ACR -> Services -->
+  
+  <!-- Step 1: Dockerfile / Build -->
+  <rect x="30" y="65" width="150" height="120" rx="12" fill="url(#dockerGrad)" opacity="0.15" stroke="#2496ED" stroke-width="2"/>
+  <rect x="30" y="65" width="150" height="40" rx="12" fill="url(#dockerGrad)"/>
+  <rect x="30" y="93" width="150" height="12" fill="url(#dockerGrad)"/>
+  
+  <text x="105" y="92" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="600" fill="white">1. Build Image</text>
+  
+  <text x="105" y="130" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#374151">Dockerfile</text>
+  <text x="105" y="148" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#374151">docker build -t app .</text>
+  <text x="105" y="166" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#6B7280">lub az acr build</text>
+  
+  <!-- Arrow 1->2 -->
+  <line x1="185" y1="125" x2="235" y2="125" stroke="#6B7280" stroke-width="2" marker-end="url(#arrowContainer)"/>
+  <text x="210" y="115" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#6B7280">push</text>
+  
+  <!-- Step 2: ACR -->
+  <rect x="240" y="65" width="170" height="120" rx="12" fill="url(#acrGrad)" opacity="0.15" stroke="#0078D4" stroke-width="2"/>
+  <rect x="240" y="65" width="170" height="40" rx="12" fill="url(#acrGrad)"/>
+  <rect x="240" y="93" width="170" height="12" fill="url(#acrGrad)"/>
+  
+  <text x="325" y="92" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="600" fill="white">2. ACR (Registry)</text>
+  
+  <text x="325" y="125" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#374151">Azure Container Registry</text>
+  <text x="325" y="143" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#374151">myacr.azurecr.io/app:v1</text>
+  <text x="325" y="166" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#6B7280">Prywatny rejestr obrazow</text>
+  
+  <!-- Arrows from ACR to services -->
+  <line x1="415" y1="95" x2="480" y2="75" stroke="#6B7280" stroke-width="2" marker-end="url(#arrowContainer)"/>
+  <line x1="415" y1="125" x2="480" y2="145" stroke="#6B7280" stroke-width="2" marker-end="url(#arrowContainer)"/>
+  <line x1="415" y1="155" x2="480" y2="220" stroke="#6B7280" stroke-width="2" marker-end="url(#arrowContainer)"/>
+  
+  <!-- Step 3a: App Service -->
+  <rect x="485" y="35" width="180" height="80" rx="10" fill="#DBEAFE" stroke="#3B82F6" stroke-width="2"/>
+  <text x="575" y="60" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#1E40AF">App Service (Container)</text>
+  <text x="575" y="80" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#374151">PaaS, auto-SSL, slots</text>
+  <text x="575" y="100" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#6B7280">Najlatwiejszy start</text>
+  
+  <!-- Step 3b: ACI -->
+  <rect x="485" y="125" width="180" height="80" rx="10" fill="url(#aciGrad)" opacity="0.15" stroke="#10B981" stroke-width="2"/>
+  <text x="575" y="150" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#047857">Azure Container Instances</text>
+  <text x="575" y="170" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#374151">Szybkie uruchomienie</text>
+  <text x="575" y="190" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#6B7280">Per-second billing</text>
+  
+  <!-- Step 3c: AKS -->
+  <rect x="485" y="215" width="180" height="80" rx="10" fill="url(#aksGrad)" opacity="0.15" stroke="#326CE5" stroke-width="2"/>
+  <text x="575" y="240" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#2251A8">AKS (Kubernetes)</text>
+  <text x="575" y="260" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#374151">Orkiestracja, auto-scale</text>
+  <text x="575" y="280" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#6B7280">Dla duzych systemow</text>
+  
+  <!-- Step 3d: ACA -->
+  <rect x="700" y="125" width="180" height="80" rx="10" fill="url(#acaGrad)" opacity="0.15" stroke="#8B5CF6" stroke-width="2"/>
+  <text x="790" y="150" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#5B21B6">Container Apps (ACA)</text>
+  <text x="790" y="170" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#374151">Serverless containers</text>
+  <text x="790" y="190" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#6B7280">Dapr, scale-to-zero</text>
+  
+  <line x1="670" y1="165" x2="695" y2="165" stroke="#6B7280" stroke-width="2" marker-end="url(#arrowContainer)"/>
+  
+  <!-- Comparison table -->
+  <rect x="30" y="310" width="850" height="100" rx="10" fill="#F8FAFC" stroke="#E5E7EB" stroke-width="1"/>
+  <text x="455" y="335" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="600" fill="#1E3A5F">Porownanie uslug kontenerowych</text>
+  
+  <!-- Table headers -->
+  <text x="140" y="360" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#374151">Usluga</text>
+  <text x="280" y="360" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#374151">Orkiestracja</text>
+  <text x="420" y="360" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#374151">Skalowanie</text>
+  <text x="560" y="360" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#374151">Zlozonosc</text>
+  <text x="700" y="360" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#374151">Kiedy uzywac</text>
+  
+  <!-- Table row 1 -->
+  <text x="140" y="380" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#374151">App Service</text>
+  <text x="280" y="380" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#374151">Brak (1 kontener)</text>
+  <text x="420" y="380" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#374151">Auto-scale</text>
+  <text x="560" y="380" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#10B981">Niska</text>
+  <text x="700" y="380" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#374151">Proste web apps</text>
+  
+  <!-- Table row 2 -->
+  <text x="140" y="395" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#374151">ACI</text>
+  <text x="280" y="395" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#374151">Brak</text>
+  <text x="420" y="395" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#374151">Manual</text>
+  <text x="560" y="395" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#10B981">Niska</text>
+  <text x="700" y="395" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#374151">Batch jobs, burst</text>
+  
+  <!-- Table row 3 -->
+  <line x1="50" y1="368" x2="860" y2="368" stroke="#E5E7EB" stroke-width="1"/>
+  <text x="140" y="410" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#374151">AKS</text>
+  <text x="280" y="410" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#374151">Kubernetes</text>
+  <text x="420" y="410" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#374151">HPA, VPA, Cluster</text>
+  <text x="560" y="410" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#EF4444">Wysoka</text>
+  <text x="700" y="410" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#374151">Mikroserwisy, duze systemy</text>
+</svg>

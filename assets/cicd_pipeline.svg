@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380">
+  <defs>
+    <linearGradient id="codeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#374151"/>
+      <stop offset="100%" style="stop-color:#1F2937"/>
+    </linearGradient>
+    <linearGradient id="buildGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F59E0B"/>
+      <stop offset="100%" style="stop-color:#D97706"/>
+    </linearGradient>
+    <linearGradient id="testGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B5CF6"/>
+      <stop offset="100%" style="stop-color:#6D28D9"/>
+    </linearGradient>
+    <linearGradient id="deployGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10B981"/>
+      <stop offset="100%" style="stop-color:#059669"/>
+    </linearGradient>
+    <linearGradient id="prodGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3B82F6"/>
+      <stop offset="100%" style="stop-color:#1E40AF"/>
+    </linearGradient>
+    <marker id="arrowCI" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#6B7280"/>
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="450" y="30" text-anchor="middle" font-family="Segoe UI, Arial" font-size="20" font-weight="600" fill="#1E3A5F">CI/CD Pipeline — Continuous Integration / Continuous Deployment</text>
+  
+  <!-- CI Section -->
+  <rect x="30" y="55" width="420" height="135" rx="10" fill="#FEF3C7" opacity="0.5" stroke="#F59E0B" stroke-width="2" stroke-dasharray="5,5"/>
+  <text x="240" y="75" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#92400E">CI — Continuous Integration</text>
+  
+  <!-- CD Section -->
+  <rect x="470" y="55" width="420" height="135" rx="10" fill="#D1FAE5" opacity="0.5" stroke="#10B981" stroke-width="2" stroke-dasharray="5,5"/>
+  <text x="680" y="75" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#047857">CD — Continuous Deployment</text>
+  
+  <!-- Step 1: Code -->
+  <rect x="50" y="95" width="100" height="80" rx="10" fill="url(#codeGrad)"/>
+  <text x="100" y="125" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="white">1. Code</text>
+  <text x="100" y="145" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#D1D5DB">git push</text>
+  <text x="100" y="160" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#D1D5DB">GitHub / Azure Repos</text>
+  
+  <!-- Arrow 1-2 -->
+  <line x1="155" y1="135" x2="185" y2="135" stroke="#6B7280" stroke-width="2" marker-end="url(#arrowCI)"/>
+  
+  <!-- Step 2: Build -->
+  <rect x="190" y="95" width="100" height="80" rx="10" fill="url(#buildGrad)"/>
+  <text x="240" y="125" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="white">2. Build</text>
+  <text x="240" y="145" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#FEF3C7">Kompilacja</text>
+  <text x="240" y="160" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#FEF3C7">Restore packages</text>
+  
+  <!-- Arrow 2-3 -->
+  <line x1="295" y1="135" x2="325" y2="135" stroke="#6B7280" stroke-width="2" marker-end="url(#arrowCI)"/>
+  
+  <!-- Step 3: Test -->
+  <rect x="330" y="95" width="100" height="80" rx="10" fill="url(#testGrad)"/>
+  <text x="380" y="125" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="white">3. Test</text>
+  <text x="380" y="145" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#EDE9FE">Unit tests</text>
+  <text x="380" y="160" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#EDE9FE">Integration tests</text>
+  
+  <!-- Arrow 3-4 -->
+  <line x1="435" y1="135" x2="485" y2="135" stroke="#6B7280" stroke-width="2" marker-end="url(#arrowCI)"/>
+  
+  <!-- Step 4: Deploy to Staging -->
+  <rect x="490" y="95" width="120" height="80" rx="10" fill="url(#deployGrad)"/>
+  <text x="550" y="120" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="white">4. Deploy</text>
+  <text x="550" y="140" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#D1FAE5">Staging slot</text>
+  <text x="550" y="155" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#D1FAE5">Smoke tests</text>
+  
+  <!-- Arrow 4-5 -->
+  <line x1="615" y1="135" x2="660" y2="135" stroke="#6B7280" stroke-width="2" marker-end="url(#arrowCI)"/>
+  
+  <!-- Approval gate -->
+  <polygon points="680,115 700,135 680,155 660,135" fill="#EF4444" stroke="#B91C1C" stroke-width="2"/>
+  <text x="680" y="139" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">OK?</text>
+  
+  <!-- Arrow 5-6 -->
+  <line x1="705" y1="135" x2="755" y2="135" stroke="#6B7280" stroke-width="2" marker-end="url(#arrowCI)"/>
+  
+  <!-- Step 5: Production -->
+  <rect x="760" y="95" width="110" height="80" rx="10" fill="url(#prodGrad)"/>
+  <text x="815" y="120" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="white">5. Production</text>
+  <text x="815" y="140" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#DBEAFE">Slot swap</text>
+  <text x="815" y="155" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#DBEAFE">Zero-downtime</text>
+  
+  <!-- Tools section -->
+  <text x="450" y="225" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="600" fill="#1E3A5F">Narzedzia CI/CD dla Azure</text>
+  
+  <!-- Azure DevOps -->
+  <rect x="80" y="245" width="220" height="120" rx="10" fill="#E5E7EB" stroke="#9CA3AF" stroke-width="1"/>
+  <rect x="80" y="245" width="220" height="35" rx="10" fill="#0078D4"/>
+  <rect x="80" y="268" width="220" height="12" fill="#0078D4"/>
+  <text x="190" y="270" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="600" fill="white">Azure DevOps</text>
+  
+  <text x="95" y="305" font-family="Segoe UI, Arial" font-size="10" fill="#374151">- Azure Pipelines (YAML/Classic)</text>
+  <text x="95" y="322" font-family="Segoe UI, Arial" font-size="10" fill="#374151">- Azure Repos (Git)</text>
+  <text x="95" y="339" font-family="Segoe UI, Arial" font-size="10" fill="#374151">- Azure Artifacts (packages)</text>
+  <text x="95" y="356" font-family="Segoe UI, Arial" font-size="10" fill="#374151">- Boards, Test Plans</text>
+  
+  <!-- GitHub Actions -->
+  <rect x="340" y="245" width="220" height="120" rx="10" fill="#E5E7EB" stroke="#9CA3AF" stroke-width="1"/>
+  <rect x="340" y="245" width="220" height="35" rx="10" fill="#24292E"/>
+  <rect x="340" y="268" width="220" height="12" fill="#24292E"/>
+  <text x="450" y="270" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="600" fill="white">GitHub Actions</text>
+  
+  <text x="355" y="305" font-family="Segoe UI, Arial" font-size="10" fill="#374151">- Workflows (YAML)</text>
+  <text x="355" y="322" font-family="Segoe UI, Arial" font-size="10" fill="#374151">- Azure login action</text>
+  <text x="355" y="339" font-family="Segoe UI, Arial" font-size="10" fill="#374151">- Marketplace actions</text>
+  <text x="355" y="356" font-family="Segoe UI, Arial" font-size="10" fill="#374151">- Secrets management</text>
+  
+  <!-- Other tools -->
+  <rect x="600" y="245" width="220" height="120" rx="10" fill="#E5E7EB" stroke="#9CA3AF" stroke-width="1"/>
+  <rect x="600" y="245" width="220" height="35" rx="10" fill="#6B7280"/>
+  <rect x="600" y="268" width="220" height="12" fill="#6B7280"/>
+  <text x="710" y="270" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="600" fill="white">Inne narzedzia</text>
+  
+  <text x="615" y="305" font-family="Segoe UI, Arial" font-size="10" fill="#374151">- Jenkins + Azure plugins</text>
+  <text x="615" y="322" font-family="Segoe UI, Arial" font-size="10" fill="#374151">- GitLab CI/CD</text>
+  <text x="615" y="339" font-family="Segoe UI, Arial" font-size="10" fill="#374151">- CircleCI, TravisCI</text>
+  <text x="615" y="356" font-family="Segoe UI, Arial" font-size="10" fill="#374151">- Octopus Deploy</text>
+</svg>
