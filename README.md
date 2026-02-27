@@ -29,6 +29,7 @@
 - [21. Wdrażanie aplikacji na Azure (Deployment)](#sec-21-deployment)
 - [22. Last-minute cram (pulapki + porownania)](#sec-22-last-minute-cram)
 - [23. Azure Key Vault](#sec-23-azure-key-vault)
+- [24. Debugowanie aplikacji Azure](#sec-24-debugging)
 
 ---
 
@@ -4097,6 +4098,371 @@ Dla najwyższych wymagań compliance:
 | RBAC vs Access Policy? | **RBAC** jest zalecane |
 | Czy Key Vault szyfruje dane? | Nie – przechowuje klucze, które szyfrują dane |
 
-> **Egzamin:** Key Vault to centralne miejsce na sekrety, klucze i certyfikaty. Używaj Managed Identity dla dostępu aplikacji bez credentials w kodzie.
+> **Egzamin:** Key Vault to centralne miejsce na sekrety, klucze i certyfikaty. Uzywaj Managed Identity dla dostepu aplikacji bez credentials w kodzie.
+
+---
+
+<a id="sec-24-debugging"></a>
+## 24. Debugowanie aplikacji Azure
+
+<img src="assets/azure_debugging_tools.svg">
+
+### Przeglad narzedzi do debugowania
+
+Azure oferuje bogaty zestaw narzedzi do monitorowania, diagnostyki i debugowania aplikacji dzialajacych w chmurze.
+
+---
+
+### Application Insights
+
+Glowne narzedzie do monitorowania wydajnosci i diagnostyki aplikacji (APM - Application Performance Management).
+
+**Co zbiera:**
+- **Requests** - przychodzace zadania HTTP, czas odpowiedzi, status code
+- **Dependencies** - wywolania do SQL, HTTP, Azure services
+- **Exceptions** - nieobsluzone wyjatki z pelnym stack trace
+- **Traces** - logi aplikacji (ILogger, Console.WriteLine)
+- **Performance counters** - CPU, pamiec, GC
+- **Custom events/metrics** - wlasne zdarzenia biznesowe
+
+**Kluczowe funkcje:**
+
+| Funkcja | Opis |
+|---------|------|
+| **Live Metrics** | Real-time monitoring (1s refresh) |
+| **Application Map** | Wizualizacja zaleznosci i flow |
+| **Transaction Search** | Szukanie konkretnych requestow |
+| **Failures** | Analiza bledow i wyjatkow |
+| **Performance** | Analiza czasow odpowiedzi |
+| **Availability** | Testy ping z roznych lokalizacji |
+| **Smart Detection** | Automatyczne wykrywanie anomalii |
+
+**Konfiguracja w App Service:**
+
+```bash
+# Wlaczenie Application Insights dla App Service
+az webapp config appsettings set --name myApp \
+    --resource-group myRG \
+    --settings APPLICATIONINSIGHTS_CONNECTION_STRING="InstrumentationKey=xxx;IngestionEndpoint=https://..."
+
+# Lub przez extension
+az monitor app-insights component create --app myAppInsights \
+    --resource-group myRG --location westeurope
+
+az webapp config appsettings set --name myApp \
+    --resource-group myRG \
+    --settings APPINSIGHTS_INSTRUMENTATIONKEY=$(az monitor app-insights component show \
+        --app myAppInsights --resource-group myRG --query instrumentationKey -o tsv)
+```
+
+**Integracja w kodzie (.NET):**
+
+```csharp
+// Program.cs (.NET 6+)
+builder.Services.AddApplicationInsightsTelemetry();
+
+// Logowanie custom events
+public class OrderController : ControllerBase
+{
+    private readonly TelemetryClient _telemetry;
+    
+    public OrderController(TelemetryClient telemetry)
+    {
+        _telemetry = telemetry;
+    }
+    
+    [HttpPost]
+    public IActionResult CreateOrder(Order order)
+    {
+        // Custom event
+        _telemetry.TrackEvent("OrderCreated", new Dictionary<string, string>
+        {
+            { "OrderId", order.Id.ToString() },
+            { "CustomerId", order.CustomerId }
+        });
+        
+        // Custom metric
+        _telemetry.TrackMetric("OrderValue", order.TotalAmount);
+        
+        return Ok();
+    }
+}
+```
+
+---
+
+### Log Analytics i KQL
+
+Centralne repozytorium logow z mozliwoscia zaawansowanych zapytan.
+
+**Przyklady zapytan KQL:**
+
+```kusto
+// Wszystkie wyjatki z ostatniej godziny
+exceptions
+| where timestamp > ago(1h)
+| project timestamp, problemId, outerMessage, innermostMessage
+| order by timestamp desc
+
+// Top 10 najwolniejszych requestow
+requests
+| where timestamp > ago(24h)
+| where success == true
+| summarize avg(duration), count() by name
+| top 10 by avg_duration desc
+
+// Bledy HTTP 5xx
+requests
+| where timestamp > ago(1h)
+| where resultCode startswith "5"
+| summarize count() by bin(timestamp, 5m), resultCode
+| render timechart
+
+// Dependency failures (SQL, HTTP)
+dependencies
+| where timestamp > ago(1h)
+| where success == false
+| summarize count() by type, target, resultCode
+| order by count_ desc
+
+// Korelacja request -> dependencies -> exceptions
+requests
+| where timestamp > ago(1h)
+| where success == false
+| join kind=leftouter (dependencies | where success == false) on operation_Id
+| join kind=leftouter (exceptions) on operation_Id
+| project timestamp, request_name=name, dep_type=type, exception=outerMessage
+```
+
+---
+
+### Kudu / SCM Console
+
+Zaawansowana konsola diagnostyczna dla App Service.
+
+**Dostep:** `https://yourapp.scm.azurewebsites.net`
+
+**Funkcje:**
+
+| Funkcja | Opis |
+|---------|------|
+| **Debug Console** | CMD/PowerShell w przegladarce |
+| **Process Explorer** | Lista procesow, handles, threads |
+| **Log Stream** | Podglad logow w czasie rzeczywistym |
+| **File Manager** | Przegladanie plikow aplikacji |
+| **Deployment Logs** | Historia deploymentow |
+| **Environment** | Zmienne srodowiskowe, wersje runtime |
+| **Site Extensions** | Instalacja rozszerzen (np. profiler) |
+
+**Przydatne sciezki w Kudu:**
+
+```
+/api/dump                    - Memory dump
+/api/processes               - Lista procesow
+/api/processes/0/threads     - Threads glownego procesu
+/api/vfs/                    - Virtual File System (browse files)
+/api/logstream               - Log streaming endpoint
+/DebugConsole                - Interaktywna konsola
+```
+
+---
+
+### Remote Debugging
+
+Debugowanie aplikacji bezposrednio z Visual Studio.
+
+**Wlaczenie Remote Debugging:**
+
+```bash
+# Wlacz remote debugging dla App Service
+az webapp config set --name myApp \
+    --resource-group myRG \
+    --remote-debugging-enabled true
+
+# Sprawdz status
+az webapp config show --name myApp \
+    --resource-group myRG \
+    --query remoteDebuggingEnabled
+```
+
+**W Visual Studio:**
+1. View -> Cloud Explorer
+2. Znajdz App Service
+3. Right-click -> Attach Debugger
+4. Ustaw breakpoint w kodzie
+5. Wywolaj request do aplikacji
+
+> **Uwaga:** Remote debugging spowalnia aplikacje! Uzywaj tylko w Dev/Test, NIE na produkcji.
+
+---
+
+### Snapshot Debugger
+
+Przechwytuje stan aplikacji w momencie wyjatku - bez zatrzymywania produkcji.
+
+**Jak dziala:**
+1. Aplikacja rzuca wyjatek
+2. Snapshot Debugger przechwytuje:
+   - Call stack
+   - Wartosci zmiennych lokalnych
+   - Stan obiektow
+3. Snapshot dostepny w Application Insights -> Failures
+
+**Wlaczenie:**
+
+```csharp
+// NuGet: Microsoft.ApplicationInsights.SnapshotCollector
+
+// Program.cs
+builder.Services.AddApplicationInsightsTelemetry();
+builder.Services.AddSnapshotCollector();
+```
+
+**appsettings.json:**
+```json
+{
+  "ApplicationInsights": {
+    "ConnectionString": "InstrumentationKey=xxx;..."
+  },
+  "SnapshotCollector": {
+    "IsEnabled": true,
+    "ThresholdForSnapshotting": 1,
+    "MaximumSnapshotsRequired": 3
+  }
+}
+```
+
+---
+
+### App Service Diagnostics
+
+Wbudowany system diagnostyki "Diagnose and solve problems".
+
+**Kategorie:**
+
+| Kategoria | Co analizuje |
+|-----------|-------------|
+| **Availability** | Downtime, restarts, health checks |
+| **Performance** | High CPU, memory, slow responses |
+| **Configuration** | App settings, connection strings |
+| **SSL/Certificates** | Certificate issues |
+| **Deployment** | Deployment failures |
+
+**Auto-Heal Rules:**
+
+Automatyczne akcje naprawcze:
+
+```bash
+# Restart przy wysokim CPU
+az webapp config set --name myApp \
+    --resource-group myRG \
+    --auto-heal-enabled true
+
+# Konfiguracja regul (w Portal lub ARM template)
+# Triggers: slowRequests, memoryLimit, requestCount, statusCodes
+# Actions: recycle, logEvent, customAction
+```
+
+---
+
+### Log Streaming
+
+Podglad logow w czasie rzeczywistym.
+
+**Azure CLI:**
+
+```bash
+# Stream logow App Service
+az webapp log tail --name myApp --resource-group myRG
+
+# Stream logow Functions
+az functionapp log stream --name myFunc --resource-group myRG
+
+# Wlacz logowanie do filesystem
+az webapp log config --name myApp \
+    --resource-group myRG \
+    --application-logging filesystem \
+    --level verbose
+```
+
+**W Portal:** App Service -> Monitoring -> Log stream
+
+---
+
+### Health Checks
+
+Monitorowanie zdrowia aplikacji przez Azure.
+
+```bash
+# Konfiguracja health check endpoint
+az webapp config set --name myApp \
+    --resource-group myRG \
+    --generic-configurations '{"healthCheckPath": "/health"}'
+```
+
+**Endpoint w aplikacji (.NET):**
+
+```csharp
+// Program.cs
+builder.Services.AddHealthChecks()
+    .AddSqlServer(connectionString)
+    .AddRedis(redisConnection)
+    .AddUrlGroup(new Uri("https://api.external.com"), "external-api");
+
+app.MapHealthChecks("/health");
+```
+
+---
+
+### Alerts i powiadomienia
+
+```bash
+# Alert na wysokie CPU
+az monitor metrics alert create --name HighCPUAlert \
+    --resource-group myRG \
+    --scopes /subscriptions/.../resourceGroups/myRG/providers/Microsoft.Web/sites/myApp \
+    --condition "avg CpuPercentage > 80" \
+    --window-size 5m \
+    --evaluation-frequency 1m \
+    --action /subscriptions/.../resourceGroups/myRG/providers/microsoft.insights/actionGroups/myActionGroup
+
+# Alert na bledy HTTP 5xx (KQL)
+az monitor scheduled-query create --name Http5xxAlert \
+    --resource-group myRG \
+    --scopes /subscriptions/.../resourceGroups/myRG/providers/microsoft.insights/components/myAppInsights \
+    --condition "count > 10" \
+    --condition-query "requests | where resultCode startswith '5'" \
+    --window-size 5m
+```
+
+---
+
+### Porownanie narzedzi
+
+| Narzedzie | Use case | Wplyw na perf | Produkcja? |
+|-----------|----------|---------------|------------|
+| **Application Insights** | APM, metryki, logi | Minimalny | TAK |
+| **Log Analytics** | Zaawansowane zapytania | Brak | TAK |
+| **Remote Debugging** | Interaktywne debugowanie | WYSOKI | NIE |
+| **Snapshot Debugger** | Debug exceptions | Minimalny | TAK |
+| **Kudu Console** | Diagnostyka, pliki | Brak | Ostroznie |
+| **Log Streaming** | Real-time logi | Niski | TAK |
+| **App Diagnostics** | Troubleshooting | Brak | TAK |
+
+---
+
+### Best Practices
+
+| Praktyka | Opis |
+|----------|------|
+| **Wlacz App Insights** | Dla kazdej aplikacji produkcyjnej |
+| **Structured logging** | Uzywaj ILogger z parametrami |
+| **Correlation IDs** | Przekazuj przez caly pipeline |
+| **Health checks** | Endpoint /health dla LB i Azure |
+| **Alerts** | Na kluczowe metryki i bledy |
+| **Retention policy** | Dostosuj do wymagan compliance |
+| **Sampling** | Dla wysokiego ruchu (redukuje koszty) |
+
+> **Egzamin:** Application Insights to glowne narzedzie APM w Azure. Log Analytics umozliwia zapytania KQL. Remote debugging NIE powinno byc uzywane na produkcji.
 
 ---
