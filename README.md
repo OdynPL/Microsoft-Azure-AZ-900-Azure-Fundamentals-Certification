@@ -1030,14 +1030,149 @@ Egzaminowo: **Azure DNS odpowiada za rozwiązywanie nazw**, a nie za filtrowanie
 
 ### **NSG (Network Security Groups)**
 
-Podstawowy firewall warstwy L3/L4 dla subnetów i NIC VM.
+<img src="assets/nsg_network_security_groups.svg">
 
-Reguły filtrują:
-- źródło / cel (IP, zakres, tag),
-- porty,
-- protokół.
+NSG (Network Security Group) to podstawowy firewall warstwy 3/4 (L3/L4) filtrujący ruch sieciowy na poziomie IP i portów. Może być przypisany do subnetu lub bezpośrednio do karty sieciowej (NIC) maszyny wirtualnej.
 
-> NSG działa jak ACL – pozwala / blokuje ruch, ale go **nie inspektuje**.
+**Elementy reguły NSG:**
+
+| Element | Opis | Przykład |
+|---------|------|----------|
+| **Priority** | 100-4096; niższy = wyższy priorytet | 100, 200, 300 |
+| **Name** | Unikalna nazwa reguły | AllowSSH, DenyAll |
+| **Source** | IP, zakres CIDR, Service Tag, ASG | 10.0.0.0/24, Internet |
+| **Source Port** | * lub konkretny port | *, 443 |
+| **Destination** | IP, zakres CIDR, Service Tag, ASG | VirtualNetwork |
+| **Destination Port** | Port lub zakres portów | 22, 80, 443, 8080-8090 |
+| **Protocol** | TCP, UDP, ICMP, Any | TCP |
+| **Action** | Allow / Deny | Allow |
+
+**Domyślne reguły (nie można usunąć):**
+
+| Priority | Nazwa | Kierunek | Źródło | Cel | Akcja |
+|----------|-------|----------|--------|-----|-------|
+| 65000 | AllowVnetInBound | Inbound | VirtualNetwork | VirtualNetwork | Allow |
+| 65001 | AllowAzureLoadBalancerInBound | Inbound | AzureLoadBalancer | * | Allow |
+| 65500 | DenyAllInBound | Inbound | * | * | **Deny** |
+| 65000 | AllowVnetOutBound | Outbound | VirtualNetwork | VirtualNetwork | Allow |
+| 65001 | AllowInternetOutBound | Outbound | * | Internet | Allow |
+| 65500 | DenyAllOutBound | Outbound | * | * | **Deny** |
+
+**Ewaluacja reguł:**
+
+```
+Ruch przychodzący → Priority 100 → (match?) → ALLOW/DENY
+                          ↓ (no match)
+                    Priority 200 → (match?) → ALLOW/DENY
+                          ↓ (no match)
+                    Priority 300 → ...
+                          ↓ (no match)
+                    Priority 65500 → DENY (domyślna)
+```
+
+**Gdzie przypisać NSG?**
+
+| Poziom | Zalety | Wady | Kiedy używać |
+|--------|--------|------|--------------|
+| **Subnet** | Jedna konfiguracja dla wszystkich VM | Mniej granularna kontrola | Wspólne reguły dla grupy VM |
+| **NIC** | Granularna kontrola per VM | Więcej zarządzania | Specyficzne wymagania VM |
+| **Oba** | Maksymalna kontrola | Złożoność, trudniejszy debug | Wielowarstwowa ochrona |
+
+> **Uwaga:** Gdy NSG jest na obu poziomach, ruch musi przejść przez **OBA** - najpierw subnet NSG, potem NIC NSG.
+
+**Service Tags - predefiniowane grupy IP:**
+
+| Service Tag | Opis |
+|-------------|------|
+| **Internet** | Cała przestrzeń publiczna IP |
+| **VirtualNetwork** | Wszystkie adresy w VNet + peered VNets |
+| **AzureLoadBalancer** | Health probes Load Balancera |
+| **Storage** | Wszystkie adresy Azure Storage |
+| **Sql** | Adresy Azure SQL Database |
+| **AzureActiveDirectory** | Adresy Microsoft Entra ID |
+| **AzureMonitor** | Adresy Azure Monitor/Log Analytics |
+| **AzureKeyVault** | Adresy Azure Key Vault |
+
+**Tworzenie NSG przez CLI:**
+
+```bash
+# Utworzenie NSG
+az network nsg create --name myNSG \
+    --resource-group myRG --location westeurope
+
+# Dodanie reguły Allow SSH
+az network nsg rule create --nsg-name myNSG \
+    --resource-group myRG --name AllowSSH \
+    --priority 100 --direction Inbound \
+    --source-address-prefixes Internet \
+    --destination-port-ranges 22 \
+    --protocol Tcp --access Allow
+
+# Dodanie reguły Allow HTTP/HTTPS
+az network nsg rule create --nsg-name myNSG \
+    --resource-group myRG --name AllowWeb \
+    --priority 200 --direction Inbound \
+    --source-address-prefixes Internet \
+    --destination-port-ranges 80 443 \
+    --protocol Tcp --access Allow
+
+# Dodanie reguły dla Storage (Service Tag)
+az network nsg rule create --nsg-name myNSG \
+    --resource-group myRG --name AllowStorageOutbound \
+    --priority 100 --direction Outbound \
+    --destination-address-prefixes Storage \
+    --destination-port-ranges 443 \
+    --protocol Tcp --access Allow
+
+# Przypisanie NSG do subnetu
+az network vnet subnet update --vnet-name myVNet \
+    --name mySubnet --resource-group myRG \
+    --network-security-group myNSG
+
+# Przypisanie NSG do NIC
+az network nic update --name myVM-NIC \
+    --resource-group myRG \
+    --network-security-group myNSG
+```
+
+**Diagnostyka NSG:**
+
+```bash
+# Sprawdzenie effective rules (suma subnet + NIC)
+az network nic show-effective-nsg --name myVM-NIC \
+    --resource-group myRG
+
+# NSG Flow Logs (wymaga Network Watcher)
+az network watcher flow-log create --name myFlowLog \
+    --resource-group myRG --nsg myNSG \
+    --storage-account myStorageAccount --enabled true
+```
+
+**Porównanie NSG vs Azure Firewall:**
+
+| Aspekt | NSG | Azure Firewall |
+|--------|-----|----------------|
+| **Warstwa** | L3/L4 (IP, porty) | L3/L4 + L7 (aplikacja) |
+| **Zasięg** | Subnet/NIC | Cały VNet/Hub |
+| **FQDN filtering** | ❌ Nie | ✅ Tak |
+| **Threat Intelligence** | ❌ Nie | ✅ Tak |
+| **TLS inspection** | ❌ Nie | ✅ Tak (Premium) |
+| **Centralny** | ❌ Nie | ✅ Tak |
+| **Koszt** | Darmowy | ~$900+/miesiąc |
+| **Use case** | Podstawowa filtracja | Enterprise security |
+
+**Dobre praktyki NSG:**
+
+| Praktyka | Opis |
+|----------|------|
+| **Używaj Service Tags** | Zamiast hardkodować IP Microsoft |
+| **Nazywaj reguły opisowo** | AllowSSH, DenyInternet, nie Rule1 |
+| **Zostawiaj gaps w Priority** | 100, 200, 300 - nie 100, 101, 102 |
+| **Włącz Flow Logs** | Do audytu i troubleshootingu |
+| **NSG na subnet** | Jako baseline, NIC dla wyjątków |
+| **Dokumentuj reguły** | Dlaczego ta reguła istnieje? |
+
+> **Egzamin:** NSG działa jak ACL – pozwala/blokuje ruch, ale go **nie inspektuje**. Dla inspekcji L7 użyj Azure Firewall.
 
 ---
 
@@ -1144,7 +1279,7 @@ az network nsg rule create --nsg-name myNSG \
 
 <img src="assets/azure_firewall.svg">
 
-Azure Firewall to w pełni zarządzany, stanowy firewall warstwy L3–L7, wdrażany jako usługa PaaS w dedykowanym subnecie (`AzureFirewallSubnet`).
+**Azure Firewall** to w pełni zarządzany, stanowy firewall warstwy L3–L7, wdrażany jako usługa PaaS w dedykowanym subnecie (`AzureFirewallSubnet`).
 
 **Kluczowe funkcje:**
 | Funkcja | Opis |
