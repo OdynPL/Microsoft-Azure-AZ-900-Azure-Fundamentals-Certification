@@ -9,12 +9,12 @@
     </marker>
   </defs>
   <rect width='350' height='200' fill='#FFFFFF'/>
-    <text x='175' y='30' text-anchor='middle' font-family='Segoe UI' font-size='16' fill='#0F172A'>Virtual Machine (VM)</text>
+    <text x='175' y='30' text-anchor='middle' font-family='Segoe UI, Arial' font-size='16' font-weight='600' fill='#0F172A'>Virtual Machine (VM)</text>
   <rect x='75' y='50' width='200' height='120' rx='10' fill='#F1F5F9' stroke='#64748B' stroke-width='2'/>
-    <text x='175' y='80' text-anchor='middle' font-family='Segoe UI' font-size='12' fill='#334155'>Guest OS</text>
+    <text x='175' y='80' text-anchor='middle' font-family='Segoe UI, Arial' font-size='12' fill='#334155'>Guest OS</text>
     <rect x='95' y='90' width='160' height='30' rx='8' fill='#DBEAFE' stroke='#2563EB' stroke-width='2'/>
-  <text x='175' y='110' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#1E293B'>Your Application</text>
+  <text x='175' y='110' text-anchor='middle' font-family='Segoe UI, Arial' font-size='11' font-weight='600' fill='#1E293B'>Your Application</text>
     <rect x='95' y='125' width='160' height='30' rx='8' fill='#E0E7FF' stroke='#4F46E5' stroke-width='2'/>
-  <text x='175' y='145' text-anchor='middle' font-family='Segoe UI' font-size='10' fill='#1E293B'>OS (Windows/Linux)</text>
-    <text x='175' y='185' text-anchor='middle' font-family='Segoe UI' font-size='12' fill='#334155'>Full control over OS</text>
+  <text x='175' y='145' text-anchor='middle' font-family='Segoe UI, Arial' font-size='10' font-weight='600' fill='#1E293B'>OS (Windows/Linux)</text>
+    <text x='175' y='185' text-anchor='middle' font-family='Segoe UI, Arial' font-size='12' fill='#334155'>Full control over OS</text>
 </svg>

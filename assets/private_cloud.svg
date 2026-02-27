@@ -10,10 +10,10 @@
   </defs>
   <rect width='400' height='250' fill='#FFFFFF'/>
   <rect x='100' y='40' width='200' height='120' rx='10' fill='#F1F5F9' stroke='#475569' stroke-width='2'/>
-    <text x='200' y='80' text-anchor='middle' font-family='Segoe UI' font-size='18' fill='#0F172A'>Private Cloud</text>
-    <text x='200' y='110' text-anchor='middle' font-family='Segoe UI' font-size='12' fill='#334155'>On-premises DC</text>
-    <text x='200' y='130' text-anchor='middle' font-family='Segoe UI' font-size='12' fill='#334155'>or hosted</text>
-    <text x='200' y='190' text-anchor='middle' font-family='Segoe UI' font-size='14' fill='#334155'>You own infrastructure</text>
-    <text x='200' y='215' text-anchor='middle' font-family='Segoe UI' font-size='14' fill='#334155'>Full control</text>
-    <text x='200' y='240' text-anchor='middle' font-family='Segoe UI' font-size='14' fill='#334155'>Single tenant</text>
+    <text x='200' y='80' text-anchor='middle' font-family='Segoe UI, Arial' font-size='18' font-weight='600' fill='#0F172A'>Private Cloud</text>
+    <text x='200' y='110' text-anchor='middle' font-family='Segoe UI, Arial' font-size='12' fill='#334155'>On-premises DC</text>
+    <text x='200' y='130' text-anchor='middle' font-family='Segoe UI, Arial' font-size='12' fill='#334155'>or hosted</text>
+    <text x='200' y='190' text-anchor='middle' font-family='Segoe UI, Arial' font-size='14' fill='#334155'>You own infrastructure</text>
+    <text x='200' y='215' text-anchor='middle' font-family='Segoe UI, Arial' font-size='14' fill='#334155'>Full control</text>
+    <text x='200' y='240' text-anchor='middle' font-family='Segoe UI, Arial' font-size='14' fill='#334155'>Single tenant</text>
 </svg>

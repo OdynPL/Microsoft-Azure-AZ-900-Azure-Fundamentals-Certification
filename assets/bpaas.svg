@@ -9,13 +9,13 @@
     </marker>
   </defs>
   <rect width='400' height='180' fill='#FFFFFF'/>
-    <text x='200' y='30' text-anchor='middle' font-family='Segoe UI' font-size='14' fill='#0F172A'>BPaaS - Business Process</text>
+    <text x='200' y='30' text-anchor='middle' font-family='Segoe UI, Arial' font-size='14' font-weight='600' fill='#0F172A'>BPaaS - Business Process</text>
     <rect x='40' y='70' width='90' height='60' rx='8' fill='#FEF3C7' stroke='#D97706' stroke-width='2'/>
-  <text x='85' y='105' text-anchor='middle' font-family='Segoe UI' font-size='12' fill='#1E293B'>Input</text>
+  <text x='85' y='105' text-anchor='middle' font-family='Segoe UI, Arial' font-size='12' font-weight='600' fill='#1E293B'>Input</text>
     <line x1='130' y1='100' x2='160' y2='100' stroke='#475569' stroke-width='2' marker-end='url(#arrow)'/>
     <rect x='170' y='60' width='130' height='80' rx='8' fill='#DBEAFE' stroke='#2563EB' stroke-width='2'/>
-  <text x='235' y='105' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#1E293B'>Business Process</text>
+  <text x='235' y='105' text-anchor='middle' font-family='Segoe UI, Arial' font-size='11' font-weight='600' fill='#1E293B'>Business Process</text>
     <line x1='300' y1='100' x2='330' y2='100' stroke='#475569' stroke-width='2' marker-end='url(#arrow)'/>
     <rect x='340' y='70' width='50' height='60' rx='8' fill='#D1FAE5' stroke='#059669' stroke-width='2'/>
-  <text x='365' y='105' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#1E293B'>Output</text>
+  <text x='365' y='105' text-anchor='middle' font-family='Segoe UI, Arial' font-size='11' font-weight='600' fill='#1E293B'>Output</text>
 </svg>

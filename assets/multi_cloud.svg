@@ -10,11 +10,11 @@
   </defs>
   <rect width='500' height='220' fill='#FFFFFF'/>
   <ellipse cx='100' cy='90' rx='70' ry='45' fill='#DBEAFE' stroke='#2563EB' stroke-width='2'/>
-    <text x='100' y='95' text-anchor='middle' font-family='Segoe UI' font-size='14' fill='#334155'>Azure</text>
+    <text x='100' y='95' text-anchor='middle' font-family='Segoe UI, Arial' font-size='14' font-weight='600' fill='#334155'>Azure</text>
   <ellipse cx='250' cy='90' rx='70' ry='45' fill='#FEF3C7' stroke='#D97706' stroke-width='2'/>
-    <text x='250' y='95' text-anchor='middle' font-family='Segoe UI' font-size='14' fill='#334155'>AWS</text>
+    <text x='250' y='95' text-anchor='middle' font-family='Segoe UI, Arial' font-size='14' font-weight='600' fill='#334155'>AWS</text>
   <ellipse cx='400' cy='90' rx='70' ry='45' fill='#DCFCE7' stroke='#16A34A' stroke-width='2'/>
-    <text x='400' y='95' text-anchor='middle' font-family='Segoe UI' font-size='14' fill='#334155'>GCP</text>
-    <text x='250' y='180' text-anchor='middle' font-family='Segoe UI' font-size='14' fill='#334155'>Multiple cloud providers</text>
-    <text x='250' y='205' text-anchor='middle' font-family='Segoe UI' font-size='12' fill='#334155'>Avoid vendor lock-in</text>
+    <text x='400' y='95' text-anchor='middle' font-family='Segoe UI, Arial' font-size='14' font-weight='600' fill='#334155'>GCP</text>
+    <text x='250' y='180' text-anchor='middle' font-family='Segoe UI, Arial' font-size='14' fill='#334155'>Multiple cloud providers</text>
+    <text x='250' y='205' text-anchor='middle' font-family='Segoe UI, Arial' font-size='12' fill='#334155'>Avoid vendor lock-in</text>
 </svg>

@@ -10,10 +10,10 @@
   </defs>
   <rect width='400' height='220' fill='#FFFFFF'/>
   <ellipse cx='200' cy='90' rx='120' ry='60' fill='#E0E7FF' stroke='#4F46E5' stroke-width='2'/>
-    <text x='200' y='85' text-anchor='middle' font-family='Segoe UI' font-size='16' fill='#334155'>Community Cloud</text>
-    <text x='200' y='110' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#334155'>Shared by organizations</text>
-    <text x='120' y='160' text-anchor='middle' font-family='Segoe UI' font-size='12' fill='#334155'>Org A</text>
-    <text x='200' y='160' text-anchor='middle' font-family='Segoe UI' font-size='12' fill='#334155'>Org B</text>
-    <text x='280' y='160' text-anchor='middle' font-family='Segoe UI' font-size='12' fill='#334155'>Org C</text>
-    <text x='200' y='200' text-anchor='middle' font-family='Segoe UI' font-size='13' fill='#334155'>Common compliance needs</text>
+    <text x='200' y='85' text-anchor='middle' font-family='Segoe UI, Arial' font-size='16' font-weight='600' fill='#334155'>Community Cloud</text>
+    <text x='200' y='110' text-anchor='middle' font-family='Segoe UI, Arial' font-size='11' fill='#334155'>Shared by organizations</text>
+    <text x='120' y='160' text-anchor='middle' font-family='Segoe UI, Arial' font-size='12' fill='#334155'>Org A</text>
+    <text x='200' y='160' text-anchor='middle' font-family='Segoe UI, Arial' font-size='12' fill='#334155'>Org B</text>
+    <text x='280' y='160' text-anchor='middle' font-family='Segoe UI, Arial' font-size='12' fill='#334155'>Org C</text>
+    <text x='200' y='200' text-anchor='middle' font-family='Segoe UI, Arial' font-size='13' fill='#334155'>Common compliance needs</text>
 </svg>

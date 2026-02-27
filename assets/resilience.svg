@@ -9,12 +9,12 @@
     </marker>
   </defs>
   <rect width='450' height='200' fill='#FFFFFF'/>
-    <text x='225' y='25' text-anchor='middle' font-family='Segoe UI' font-size='14' fill='#0F172A'>Resilience Layers</text>
+    <text x='225' y='25' text-anchor='middle' font-family='Segoe UI, Arial' font-size='14' font-weight='600' fill='#0F172A'>Resilience Layers</text>
   <rect x='50' y='50' width='350' height='120' rx='12' fill='#DBEAFE' stroke='#2563EB' stroke-width='2'/>
-    <text x='225' y='75' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#334155'>Multi-Region</text>
+    <text x='225' y='75' text-anchor='middle' font-family='Segoe UI, Arial' font-size='11' fill='#334155'>Multi-Region</text>
   <rect x='80' y='85' width='290' height='70' rx='10' fill='#D1FAE5' stroke='#059669' stroke-width='2'/>
-    <text x='225' y='105' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#334155'>Availability Zones</text>
+    <text x='225' y='105' text-anchor='middle' font-family='Segoe UI, Arial' font-size='11' fill='#334155'>Availability Zones</text>
   <rect x='110' y='115' width='230' height='30' rx='6' fill='#FEF3C7' stroke='#D97706' stroke-width='2'/>
-    <text x='225' y='135' text-anchor='middle' font-family='Segoe UI' font-size='10' fill='#334155'>Availability Sets / Redundancy</text>
-    <text x='225' y='190' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#334155'>Multiple layers of protection</text>
+    <text x='225' y='135' text-anchor='middle' font-family='Segoe UI, Arial' font-size='10' fill='#334155'>Availability Sets / Redundancy</text>
+    <text x='225' y='190' text-anchor='middle' font-family='Segoe UI, Arial' font-size='11' fill='#334155'>Multiple layers of protection</text>
 </svg>

@@ -10,17 +10,17 @@
   </defs>
   <rect width='600' height='400' fill='#FFFFFF'/>
     <rect x='225' y='20' width='150' height='50' rx='8' fill='#DBEAFE' stroke='#2563EB' stroke-width='2'/>
-  <text x='300' y='50' text-anchor='middle' font-family='Segoe UI' font-size='16' fill='#1E293B'>Tenant</text>
+  <text x='300' y='50' text-anchor='middle' font-family='Segoe UI, Arial' font-size='16' font-weight='600' fill='#1E293B'>Tenant</text>
     <line x1='300' y1='70' x2='300' y2='95' stroke='#475569' stroke-width='2' marker-end='url(#arrow)'/>
     <rect x='225' y='100' width='150' height='50' rx='8' fill='#E0E7FF' stroke='#4F46E5' stroke-width='2'/>
-  <text x='300' y='130' text-anchor='middle' font-family='Segoe UI' font-size='16' fill='#1E293B'>Management Group</text>
+  <text x='300' y='130' text-anchor='middle' font-family='Segoe UI, Arial' font-size='16' font-weight='600' fill='#1E293B'>Management Group</text>
     <line x1='300' y1='150' x2='300' y2='175' stroke='#475569' stroke-width='2' marker-end='url(#arrow)'/>
     <rect x='225' y='180' width='150' height='50' rx='8' fill='#D1FAE5' stroke='#059669' stroke-width='2'/>
-  <text x='300' y='210' text-anchor='middle' font-family='Segoe UI' font-size='16' fill='#1E293B'>Subscription</text>
+  <text x='300' y='210' text-anchor='middle' font-family='Segoe UI, Arial' font-size='16' font-weight='600' fill='#1E293B'>Subscription</text>
     <line x1='300' y1='230' x2='300' y2='255' stroke='#475569' stroke-width='2' marker-end='url(#arrow)'/>
     <rect x='225' y='260' width='150' height='50' rx='8' fill='#FEF3C7' stroke='#D97706' stroke-width='2'/>
-  <text x='300' y='290' text-anchor='middle' font-family='Segoe UI' font-size='16' fill='#1E293B'>Resource Group</text>
+  <text x='300' y='290' text-anchor='middle' font-family='Segoe UI, Arial' font-size='16' font-weight='600' fill='#1E293B'>Resource Group</text>
     <line x1='300' y1='310' x2='300' y2='335' stroke='#475569' stroke-width='2' marker-end='url(#arrow)'/>
     <rect x='225' y='340' width='150' height='50' rx='8' fill='#F1F5F9' stroke='#64748B' stroke-width='2'/>
-  <text x='300' y='370' text-anchor='middle' font-family='Segoe UI' font-size='16' fill='#1E293B'>Resource</text>
+  <text x='300' y='370' text-anchor='middle' font-family='Segoe UI, Arial' font-size='16' font-weight='600' fill='#1E293B'>Resource</text>
 </svg>

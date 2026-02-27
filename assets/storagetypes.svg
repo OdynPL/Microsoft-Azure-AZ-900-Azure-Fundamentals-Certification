@@ -9,25 +9,25 @@
     </marker>
   </defs>
   <rect width='500' height='200' fill='#FFFFFF'/>
-    <text x='250' y='25' text-anchor='middle' font-family='Segoe UI' font-size='14' fill='#0F172A'>Storage Account Services</text>
+    <text x='250' y='25' text-anchor='middle' font-family='Segoe UI, Arial' font-size='14' font-weight='600' fill='#0F172A'>Storage Account Services</text>
     <rect x='30' y='60' width='100' height='90' rx='8' fill='#DBEAFE' stroke='#2563EB' stroke-width='2'/>
-  <text x='80' y='110' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#1E293B'></text>
-    <text x='80' y='90' text-anchor='middle' font-family='Segoe UI' font-size='12' fill='#334155'>Blob</text>
-    <text x='80' y='110' text-anchor='middle' font-family='Segoe UI' font-size='9' fill='#334155'>Objects</text>
-    <text x='80' y='130' text-anchor='middle' font-family='Segoe UI' font-size='8' fill='#334155'>Unstructured</text>
+  <text x='80' y='110' text-anchor='middle' font-family='Segoe UI, Arial' font-size='11' font-weight='600' fill='#1E293B'></text>
+    <text x='80' y='90' text-anchor='middle' font-family='Segoe UI, Arial' font-size='12' fill='#334155'>Blob</text>
+    <text x='80' y='110' text-anchor='middle' font-family='Segoe UI, Arial' font-size='9' fill='#334155'>Objects</text>
+    <text x='80' y='130' text-anchor='middle' font-family='Segoe UI, Arial' font-size='8' fill='#334155'>Unstructured</text>
     <rect x='150' y='60' width='100' height='90' rx='8' fill='#D1FAE5' stroke='#059669' stroke-width='2'/>
-  <text x='200' y='110' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#1E293B'></text>
-    <text x='200' y='90' text-anchor='middle' font-family='Segoe UI' font-size='12' fill='#334155'>Files</text>
-    <text x='200' y='110' text-anchor='middle' font-family='Segoe UI' font-size='9' fill='#334155'>SMB/NFS</text>
-    <text x='200' y='130' text-anchor='middle' font-family='Segoe UI' font-size='8' fill='#334155'>Shares</text>
+  <text x='200' y='110' text-anchor='middle' font-family='Segoe UI, Arial' font-size='11' font-weight='600' fill='#1E293B'></text>
+    <text x='200' y='90' text-anchor='middle' font-family='Segoe UI, Arial' font-size='12' fill='#334155'>Files</text>
+    <text x='200' y='110' text-anchor='middle' font-family='Segoe UI, Arial' font-size='9' fill='#334155'>SMB/NFS</text>
+    <text x='200' y='130' text-anchor='middle' font-family='Segoe UI, Arial' font-size='8' fill='#334155'>Shares</text>
     <rect x='270' y='60' width='100' height='90' rx='8' fill='#FEF3C7' stroke='#D97706' stroke-width='2'/>
-  <text x='320' y='110' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#1E293B'></text>
-    <text x='320' y='90' text-anchor='middle' font-family='Segoe UI' font-size='12' fill='#334155'>Queue</text>
-    <text x='320' y='110' text-anchor='middle' font-family='Segoe UI' font-size='9' fill='#334155'>Messages</text>
-    <text x='320' y='130' text-anchor='middle' font-family='Segoe UI' font-size='8' fill='#334155'>Async</text>
+  <text x='320' y='110' text-anchor='middle' font-family='Segoe UI, Arial' font-size='11' font-weight='600' fill='#1E293B'></text>
+    <text x='320' y='90' text-anchor='middle' font-family='Segoe UI, Arial' font-size='12' fill='#334155'>Queue</text>
+    <text x='320' y='110' text-anchor='middle' font-family='Segoe UI, Arial' font-size='9' fill='#334155'>Messages</text>
+    <text x='320' y='130' text-anchor='middle' font-family='Segoe UI, Arial' font-size='8' fill='#334155'>Async</text>
     <rect x='390' y='60' width='80' height='90' rx='8' fill='#E0E7FF' stroke='#4F46E5' stroke-width='2'/>
-  <text x='430' y='110' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#1E293B'></text>
-    <text x='430' y='90' text-anchor='middle' font-family='Segoe UI' font-size='12' fill='#334155'>Table</text>
-    <text x='430' y='110' text-anchor='middle' font-family='Segoe UI' font-size='9' fill='#334155'>NoSQL</text>
-    <text x='430' y='130' text-anchor='middle' font-family='Segoe UI' font-size='8' fill='#334155'>Key-Value</text>
+  <text x='430' y='110' text-anchor='middle' font-family='Segoe UI, Arial' font-size='11' font-weight='600' fill='#1E293B'></text>
+    <text x='430' y='90' text-anchor='middle' font-family='Segoe UI, Arial' font-size='12' fill='#334155'>Table</text>
+    <text x='430' y='110' text-anchor='middle' font-family='Segoe UI, Arial' font-size='9' fill='#334155'>NoSQL</text>
+    <text x='430' y='130' text-anchor='middle' font-family='Segoe UI, Arial' font-size='8' fill='#334155'>Key-Value</text>
 </svg>

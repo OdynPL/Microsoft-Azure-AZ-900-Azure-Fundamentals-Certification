@@ -9,20 +9,20 @@
     </marker>
   </defs>
   <rect width='500' height='250' fill='#FFFFFF'/>
-    <text x='250' y='25' text-anchor='middle' font-family='Segoe UI' font-size='14' fill='#0F172A'>Site-to-Site vs Point-to-Site</text>
-    <text x='125' y='55' text-anchor='middle' font-family='Segoe UI' font-size='12' fill='#0F172A'>Site-to-Site (S2S)</text>
+    <text x='250' y='25' text-anchor='middle' font-family='Segoe UI, Arial' font-size='14' font-weight='600' fill='#0F172A'>Site-to-Site vs Point-to-Site</text>
+    <text x='125' y='55' text-anchor='middle' font-family='Segoe UI, Arial' font-size='12' font-weight='600' fill='#0F172A'>Site-to-Site (S2S)</text>
   <rect x='30' y='70' width='80' height='50' rx='6' fill='#F1F5F9' stroke='#64748B' stroke-width='2'/>
-    <text x='70' y='100' text-anchor='middle' font-family='Segoe UI' font-size='10' fill='#334155'>Office</text>
+    <text x='70' y='100' text-anchor='middle' font-family='Segoe UI, Arial' font-size='10' fill='#334155'>Office</text>
   <line x1='110' y1='95' x2='150' y2='95' stroke='#059669' stroke-width='2'/>
   <rect x='150' y='70' width='80' height='50' rx='6' fill='#DBEAFE' stroke='#2563EB' stroke-width='2'/>
-    <text x='190' y='100' text-anchor='middle' font-family='Segoe UI' font-size='10' fill='#334155'>Azure</text>
-    <text x='375' y='55' text-anchor='middle' font-family='Segoe UI' font-size='12' fill='#0F172A'>Point-to-Site (P2S)</text>
+    <text x='190' y='100' text-anchor='middle' font-family='Segoe UI, Arial' font-size='10' fill='#334155'>Azure</text>
+    <text x='375' y='55' text-anchor='middle' font-family='Segoe UI, Arial' font-size='12' font-weight='600' fill='#0F172A'>Point-to-Site (P2S)</text>
     <circle cx='310' cy='95' r='20' fill='#F1F5F9' stroke='#64748B' stroke-width='2'/>
-  <text x='310' y='100' text-anchor='middle' font-family='Segoe UI' font-size='14' fill='#1E293B'></text>
-    <text x='310' y='100' text-anchor='middle' font-family='Segoe UI' font-size='8' fill='#334155'>User</text>
+  <text x='310' y='100' text-anchor='middle' font-family='Segoe UI, Arial' font-size='14' font-weight='600' fill='#1E293B'></text>
+    <text x='310' y='100' text-anchor='middle' font-family='Segoe UI, Arial' font-size='8' fill='#334155'>User</text>
   <line x1='330' y1='95' x2='380' y2='95' stroke='#059669' stroke-width='2'/>
   <rect x='380' y='70' width='80' height='50' rx='6' fill='#DBEAFE' stroke='#2563EB' stroke-width='2'/>
-    <text x='420' y='100' text-anchor='middle' font-family='Segoe UI' font-size='10' fill='#334155'>Azure</text>
-    <text x='125' y='155' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#334155'>Network to Network</text>
-    <text x='375' y='155' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#334155'>Device to Network</text>
+    <text x='420' y='100' text-anchor='middle' font-family='Segoe UI, Arial' font-size='10' fill='#334155'>Azure</text>
+    <text x='125' y='155' text-anchor='middle' font-family='Segoe UI, Arial' font-size='11' fill='#334155'>Network to Network</text>
+    <text x='375' y='155' text-anchor='middle' font-family='Segoe UI, Arial' font-size='11' fill='#334155'>Device to Network</text>
 </svg>

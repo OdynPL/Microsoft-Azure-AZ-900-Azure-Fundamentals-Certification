@@ -9,17 +9,17 @@
     </marker>
   </defs>
   <rect width='450' height='220' fill='#FFFFFF'/>
-    <text x='225' y='25' text-anchor='middle' font-family='Segoe UI' font-size='16' fill='#0F172A'>Azure Bastion</text>
+    <text x='225' y='25' text-anchor='middle' font-family='Segoe UI, Arial' font-size='16' font-weight='600' fill='#0F172A'>Azure Bastion</text>
     <circle cx='60' cy='110' r='35' fill='#F1F5F9' stroke='#64748B' stroke-width='2'/>
-  <text x='60' y='115' text-anchor='middle' font-family='Segoe UI' font-size='14' fill='#1E293B'>User</text>
+  <text x='60' y='115' text-anchor='middle' font-family='Segoe UI, Arial' font-size='14' font-weight='600' fill='#1E293B'>User</text>
     <line x1='95' y1='110' x2='140' y2='110' stroke='#475569' stroke-width='2' marker-end='url(#arrow)'/>
   <rect x='150' y='55' width='250' height='130' rx='10' fill='#DBEAFE' stroke='#2563EB' stroke-width='2'/>
-    <text x='275' y='80' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#334155'>VNet</text>
+    <text x='275' y='80' text-anchor='middle' font-family='Segoe UI, Arial' font-size='11' fill='#334155'>VNet</text>
     <rect x='170' y='95' width='90' height='70' rx='8' fill='#FEF3C7' stroke='#D97706' stroke-width='2'/>
-  <text x='215' y='135' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#1E293B'>Bastion</text>
+  <text x='215' y='135' text-anchor='middle' font-family='Segoe UI, Arial' font-size='11' font-weight='600' fill='#1E293B'>Bastion</text>
     <line x1='260' y1='130' x2='290' y2='130' stroke='#475569' stroke-width='2' marker-end='url(#arrow)'/>
     <rect x='300' y='95' width='80' height='70' rx='8' fill='#FFFFFF' stroke='#64748B' stroke-width='2'/>
-  <text x='340' y='135' text-anchor='middle' font-family='Segoe UI' font-size='12' fill='#1E293B'>VM</text>
-    <text x='340' y='145' text-anchor='middle' font-family='Segoe UI' font-size='9' fill='#334155'>No public IP</text>
-    <text x='225' y='205' text-anchor='middle' font-family='Segoe UI' font-size='12' fill='#334155'>Secure RDP/SSH via browser</text>
+  <text x='340' y='135' text-anchor='middle' font-family='Segoe UI, Arial' font-size='12' font-weight='600' fill='#1E293B'>VM</text>
+    <text x='340' y='145' text-anchor='middle' font-family='Segoe UI, Arial' font-size='9' fill='#334155'>No public IP</text>
+    <text x='225' y='205' text-anchor='middle' font-family='Segoe UI, Arial' font-size='12' fill='#334155'>Secure RDP/SSH via browser</text>
 </svg>

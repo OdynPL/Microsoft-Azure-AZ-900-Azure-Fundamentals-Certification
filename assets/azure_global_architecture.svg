@@ -9,20 +9,20 @@
     </marker>
   </defs>
   <rect width='500' height='220' fill='#FFFFFF'/>
-    <text x='250' y='25' text-anchor='middle' font-family='Segoe UI' font-size='14' fill='#0F172A'>Azure Global Infrastructure</text>
+    <text x='250' y='25' text-anchor='middle' font-family='Segoe UI, Arial' font-size='14' font-weight='600' fill='#0F172A'>Azure Global Infrastructure</text>
   <ellipse cx='250' cy='110' rx='200' ry='70' fill='none' stroke='#2563EB' stroke-width='2' stroke-dasharray='5,3'/>
-    <text x='250' y='65' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#334155'>Geography</text>
+    <text x='250' y='65' text-anchor='middle' font-family='Segoe UI, Arial' font-size='11' fill='#334155'>Geography</text>
     <circle cx='130' cy='110' r='40' fill='#DBEAFE' stroke='#2563EB' stroke-width='2'/>
-  <text x='130' y='115' text-anchor='middle' font-family='Segoe UI' font-size='14' fill='#1E293B'></text>
-    <text x='130' y='100' text-anchor='middle' font-family='Segoe UI' font-size='10' fill='#334155'>Region</text>
-    <text x='130' y='120' text-anchor='middle' font-family='Segoe UI' font-size='8' fill='#334155'>West</text>
+  <text x='130' y='115' text-anchor='middle' font-family='Segoe UI, Arial' font-size='14' font-weight='600' fill='#1E293B'></text>
+    <text x='130' y='100' text-anchor='middle' font-family='Segoe UI, Arial' font-size='10' fill='#334155'>Region</text>
+    <text x='130' y='120' text-anchor='middle' font-family='Segoe UI, Arial' font-size='8' fill='#334155'>West</text>
     <circle cx='250' cy='110' r='40' fill='#D1FAE5' stroke='#059669' stroke-width='2'/>
-  <text x='250' y='115' text-anchor='middle' font-family='Segoe UI' font-size='14' fill='#1E293B'></text>
-    <text x='250' y='100' text-anchor='middle' font-family='Segoe UI' font-size='10' fill='#334155'>Region</text>
-    <text x='250' y='120' text-anchor='middle' font-family='Segoe UI' font-size='8' fill='#334155'>Central</text>
+  <text x='250' y='115' text-anchor='middle' font-family='Segoe UI, Arial' font-size='14' font-weight='600' fill='#1E293B'></text>
+    <text x='250' y='100' text-anchor='middle' font-family='Segoe UI, Arial' font-size='10' fill='#334155'>Region</text>
+    <text x='250' y='120' text-anchor='middle' font-family='Segoe UI, Arial' font-size='8' fill='#334155'>Central</text>
     <circle cx='370' cy='110' r='40' fill='#FEF3C7' stroke='#D97706' stroke-width='2'/>
-  <text x='370' y='115' text-anchor='middle' font-family='Segoe UI' font-size='14' fill='#1E293B'></text>
-    <text x='370' y='100' text-anchor='middle' font-family='Segoe UI' font-size='10' fill='#334155'>Region</text>
-    <text x='370' y='120' text-anchor='middle' font-family='Segoe UI' font-size='8' fill='#334155'>East</text>
-    <text x='250' y='200' text-anchor='middle' font-family='Segoe UI' font-size='11' fill='#334155'>Regions contain Availability Zones</text>
+  <text x='370' y='115' text-anchor='middle' font-family='Segoe UI, Arial' font-size='14' font-weight='600' fill='#1E293B'></text>
+    <text x='370' y='100' text-anchor='middle' font-family='Segoe UI, Arial' font-size='10' fill='#334155'>Region</text>
+    <text x='370' y='120' text-anchor='middle' font-family='Segoe UI, Arial' font-size='8' fill='#334155'>East</text>
+    <text x='250' y='200' text-anchor='middle' font-family='Segoe UI, Arial' font-size='11' fill='#334155'>Regions contain Availability Zones</text>
 </svg>
