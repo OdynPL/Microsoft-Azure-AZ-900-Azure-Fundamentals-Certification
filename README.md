@@ -1329,6 +1329,8 @@ Rodzaje:
 
 ### Defense-in-depth (model warstwowy)
 
+<img src="assets/defenseindepth.svg">
+
 Bezpieczeństwo realizowane przez wiele warstw ochrony:
 - **Physical** (DC),
 - **Identity & Access** (MFA, CA, RBAC, PIM),
@@ -1349,6 +1351,8 @@ Cel: przełamanie jednej warstwy nie powinno oznaczać kompromitacji całego śr
     - **Storage** – skanowanie pod kątem malware, identyfikacja niepoprawnych konfiguracji.
   - **Defender for Containers** – analiza obrazów, runtime protection, integracja z AKS.
   - **Defender for APIs** – wykrywanie ryzyk i nadużyć API.
+
+<img src="assets/keyvault.svg">
 
 - **Key Vault**  
   Bezpieczne przechowywanie i zarządzanie:
@@ -1585,6 +1589,8 @@ Egzaminowo: **preview ≠ produkcja krytyczna**; do workloadów produkcyjnych pr
 <a id="sec-09-monitoring-logging"></a>
 ## 9. Monitoring & Logging
 
+<img src="assets/azuremonitor.svg">
+
 - **Azure Monitor**
   Centralna platforma monitoringu w Azure, która zbiera, przechowuje, analizuje i wizualizuje dane operacyjne z zasobów.
   
@@ -1676,6 +1682,8 @@ Azure Advisor jest narzędziem **proaktywnym**, często wskazywanym na egzaminie
 
 <a id="sec-10-costs-billing"></a>
 ## 10. Costs & Billing (Koszty i rozliczenia)
+
+<img src="assets/costsbilling.svg">
 
 **Za co płacisz w Azure:**
 - **Compute (czas działania)**  
@@ -2144,6 +2152,8 @@ Serverless workflowy i automatyzacje z setkami konektorów (SAP, SQL, Salesforce
 
 <a id="sec-17-databases"></a>
 ## 17. Bazy danych (Databases)
+
+<img src="assets/databases.svg">
 
 Azure oferuje kilka modeli baz danych dostępnych jako IaaS, PaaS lub globalne, skalowalne systemy NoSQL. Poniżej najważniejsze usługi wymagane na poziomie AZ‑900.
 

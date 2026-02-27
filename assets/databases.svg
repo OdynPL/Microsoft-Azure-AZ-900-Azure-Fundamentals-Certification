@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 520">
+  <!-- Title -->
+  <text x="425" y="35" text-anchor="middle" font-family="Segoe UI, Arial" font-size="22" font-weight="600" fill="#1E3A5F">Azure Databases - Porównanie Usług</text>
+  
+  <!-- SQL Services section -->
+  <text x="300" y="70" text-anchor="middle" font-family="Segoe UI, Arial" font-size="16" font-weight="600" fill="#1E40AF">SQL Server w Azure</text>
+  
+  <!-- Management level indicator -->
+  <rect x="30" y="90" width="540" height="25" rx="4" fill="#E5E7EB"/>
+  <text x="50" y="107" font-family="Segoe UI, Arial" font-size="11" fill="#6B7280">Poziom zarządzania:</text>
+  <rect x="160" y="93" width="100" height="18" rx="3" fill="#059669"/>
+  <text x="210" y="106" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#fff">PaaS (pełne)</text>
+  <rect x="280" y="93" width="100" height="18" rx="3" fill="#D97706"/>
+  <text x="330" y="106" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#fff">PaaS (częściowe)</text>
+  <rect x="400" y="93" width="100" height="18" rx="3" fill="#DC2626"/>
+  <text x="450" y="106" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#fff">IaaS (własne)</text>
+  
+  <!-- SQL Database (Single / Elastic Pool) -->
+  <rect x="30" y="130" width="170" height="180" rx="8" fill="#DCFCE7" stroke="#059669" stroke-width="2"/>
+  <text x="115" y="158" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="600" fill="#065F46">SQL Database</text>
+  <text x="115" y="175" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#047857">(Single / Elastic Pool)</text>
+  
+  <text x="45" y="200" font-family="Segoe UI, Arial" font-size="10" fill="#1F2937">✓ Pełne auto-zarządzanie</text>
+  <text x="45" y="218" font-family="Segoe UI, Arial" font-size="10" fill="#1F2937">✓ Backupy automatyczne</text>
+  <text x="45" y="236" font-family="Segoe UI, Arial" font-size="10" fill="#1F2937">✓ Autoscaling</text>
+  <text x="45" y="254" font-family="Segoe UI, Arial" font-size="10" fill="#1F2937">✓ Wysokie SLA</text>
+  <text x="45" y="272" font-family="Segoe UI, Arial" font-size="10" fill="#DC2626">✗ Brak SQL Agent</text>
+  <text x="45" y="290" font-family="Segoe UI, Arial" font-size="10" fill="#DC2626">✗ Brak Linked Servers</text>
+  
+  <!-- SQL Managed Instance -->
+  <rect x="215" y="130" width="170" height="180" rx="8" fill="#FEF3C7" stroke="#D97706" stroke-width="2"/>
+  <text x="300" y="158" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="600" fill="#92400E">SQL Managed</text>
+  <text x="300" y="175" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#B45309">Instance (MI)</text>
+  
+  <text x="230" y="200" font-family="Segoe UI, Arial" font-size="10" fill="#1F2937">✓ ~100% SQL Server</text>
+  <text x="230" y="218" font-family="Segoe UI, Arial" font-size="10" fill="#1F2937">✓ SQL Agent działa</text>
+  <text x="230" y="236" font-family="Segoe UI, Arial" font-size="10" fill="#1F2937">✓ Linked Servers</text>
+  <text x="230" y="254" font-family="Segoe UI, Arial" font-size="10" fill="#1F2937">✓ Service Broker</text>
+  <text x="230" y="272" font-family="Segoe UI, Arial" font-size="10" fill="#1F2937">✓ Wymaga VNet</text>
+  <text x="230" y="290" font-family="Segoe UI, Arial" font-size="10" fill="#047857">Migracja on-prem</text>
+  
+  <!-- SQL on VM -->
+  <rect x="400" y="130" width="170" height="180" rx="8" fill="#FEE2E2" stroke="#DC2626" stroke-width="2"/>
+  <text x="485" y="158" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="600" fill="#991B1B">SQL Server</text>
+  <text x="485" y="175" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#B91C1C">on Virtual Machine</text>
+  
+  <text x="415" y="200" font-family="Segoe UI, Arial" font-size="10" fill="#1F2937">✓ Pełna kontrola OS</text>
+  <text x="415" y="218" font-family="Segoe UI, Arial" font-size="10" fill="#1F2937">✓ Dowolna wersja SQL</text>
+  <text x="415" y="236" font-family="Segoe UI, Arial" font-size="10" fill="#1F2937">✓ Custom extensions</text>
+  <text x="415" y="254" font-family="Segoe UI, Arial" font-size="10" fill="#DC2626">✗ Własne patche</text>
+  <text x="415" y="272" font-family="Segoe UI, Arial" font-size="10" fill="#DC2626">✗ Własne backupy</text>
+  <text x="415" y="290" font-family="Segoe UI, Arial" font-size="10" fill="#DC2626">✗ Własne HA/DR</text>
+  
+  <!-- NoSQL section - Cosmos DB -->
+  <rect x="600" y="130" width="220" height="180" rx="8" fill="#E0E7FF" stroke="#4F46E5" stroke-width="2"/>
+  <text x="710" y="158" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="600" fill="#3730A3">Cosmos DB</text>
+  <text x="710" y="175" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#4338CA">Global NoSQL</text>
+  
+  <text x="615" y="200" font-family="Segoe UI, Arial" font-size="10" fill="#1F2937">✓ Multi-region replication</text>
+  <text x="615" y="218" font-family="Segoe UI, Arial" font-size="10" fill="#1F2937">✓ Ultra-low latency (ms)</text>
+  <text x="615" y="236" font-family="Segoe UI, Arial" font-size="10" fill="#1F2937">✓ Auto-scaling (RU/s)</text>
+  <text x="615" y="254" font-family="Segoe UI, Arial" font-size="10" fill="#1F2937">✓ 99.999% SLA</text>
+  
+  <!-- Cosmos DB APIs -->
+  <text x="615" y="278" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#3730A3">APIs:</text>
+  <text x="615" y="296" font-family="Segoe UI, Arial" font-size="9" fill="#4B5563">Core (SQL) • MongoDB • Cassandra</text>
+  <text x="615" y="308" font-family="Segoe UI, Arial" font-size="9" fill="#4B5563">Gremlin (Graph) • Table</text>
+  
+  <!-- Open Source databases section -->
+  <rect x="30" y="330" width="540" height="100" rx="8" fill="#F9FAFB" stroke="#D1D5DB" stroke-width="1"/>
+  <text x="300" y="358" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="600" fill="#374151">Open Source Databases (Flexible Server)</text>
+  
+  <!-- PostgreSQL -->
+  <rect x="50" y="375" width="150" height="40" rx="4" fill="#DBEAFE" stroke="#2563EB" stroke-width="1"/>
+  <text x="125" y="400" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#1E40AF">PostgreSQL</text>
+  
+  <!-- MySQL -->
+  <rect x="220" y="375" width="150" height="40" rx="4" fill="#DBEAFE" stroke="#2563EB" stroke-width="1"/>
+  <text x="295" y="400" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#1E40AF">MySQL</text>
+  
+  <!-- MariaDB -->
+  <rect x="390" y="375" width="150" height="40" rx="4" fill="#DBEAFE" stroke="#2563EB" stroke-width="1"/>
+  <text x="465" y="400" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#1E40AF">MariaDB</text>
+  
+  <!-- Decision guide -->
+  <rect x="600" y="330" width="220" height="100" rx="8" fill="#FEF3C7" stroke="#D97706" stroke-width="1"/>
+  <text x="710" y="358" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="600" fill="#92400E">Kiedy co wybrać?</text>
+  <text x="615" y="382" font-family="Segoe UI, Arial" font-size="10" fill="#78350F">Nowa app → SQL Database</text>
+  <text x="615" y="400" font-family="Segoe UI, Arial" font-size="10" fill="#78350F">Migracja on-prem → MI</text>
+  <text x="615" y="418" font-family="Segoe UI, Arial" font-size="10" fill="#78350F">Pełna kontrola → SQL VM</text>
+  
+  <!-- Bottom summary -->
+  <text x="425" y="470" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" fill="#6B7280">SQL Database = najbardziej zarządzane | MI = zgodność z SQL Server | VM = pełna kontrola</text>
+  <text x="425" y="495" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" fill="#4F46E5" font-weight="600">Cosmos DB = globalna skala NoSQL z ultra-low latency</text>
+</svg>

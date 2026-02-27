@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480">
+  <defs>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#2563EB"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#059669"/>
+    </marker>
+  </defs>
+  
+  <!-- Title -->
+  <text x="400" y="35" text-anchor="middle" font-family="Segoe UI, Arial" font-size="22" font-weight="600" fill="#1E3A5F">Azure Monitor - Centralna Platforma Monitoringu</text>
+  
+  <!-- Sources column -->
+  <text x="80" y="75" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="600" fill="#6B7280">ŹRÓDŁA DANYCH</text>
+  
+  <!-- Source boxes -->
+  <rect x="20" y="95" width="120" height="50" rx="6" fill="#DBEAFE" stroke="#2563EB" stroke-width="2"/>
+  <text x="80" y="118" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#1E40AF">Applications</text>
+  <text x="80" y="134" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#3B82F6">App Insights</text>
+  
+  <rect x="20" y="155" width="120" height="50" rx="6" fill="#DBEAFE" stroke="#2563EB" stroke-width="2"/>
+  <text x="80" y="178" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#1E40AF">Infrastructure</text>
+  <text x="80" y="194" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#3B82F6">VM, AKS, Storage</text>
+  
+  <rect x="20" y="215" width="120" height="50" rx="6" fill="#DBEAFE" stroke="#2563EB" stroke-width="2"/>
+  <text x="80" y="238" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#1E40AF">Network</text>
+  <text x="80" y="254" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#3B82F6">VNet, NSG, LB</text>
+  
+  <rect x="20" y="275" width="120" height="50" rx="6" fill="#DBEAFE" stroke="#2563EB" stroke-width="2"/>
+  <text x="80" y="298" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#1E40AF">Activity Log</text>
+  <text x="80" y="314" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#3B82F6">ARM Operations</text>
+  
+  <!-- Arrows to central platform -->
+  <line x1="140" y1="120" x2="230" y2="195" stroke="#2563EB" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <line x1="140" y1="180" x2="230" y2="210" stroke="#2563EB" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <line x1="140" y1="240" x2="230" y2="225" stroke="#2563EB" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  <line x1="140" y1="300" x2="230" y2="240" stroke="#2563EB" stroke-width="2" marker-end="url(#arrowBlue)"/>
+  
+  <!-- Central Azure Monitor box -->
+  <rect x="240" y="100" width="320" height="270" rx="12" fill="#EFF6FF" stroke="#2563EB" stroke-width="3"/>
+  <text x="400" y="130" text-anchor="middle" font-family="Segoe UI, Arial" font-size="16" font-weight="600" fill="#1E40AF">AZURE MONITOR</text>
+  
+  <!-- Metrics box -->
+  <rect x="260" y="150" width="130" height="80" rx="6" fill="#FEF3C7" stroke="#D97706" stroke-width="2"/>
+  <text x="325" y="175" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="600" fill="#92400E">📊 Metrics</text>
+  <text x="325" y="195" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#78350F">CPU, Memory, IOPS</text>
+  <text x="325" y="210" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#78350F">1-min intervals</text>
+  <text x="325" y="225" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#78350F">Real-time trends</text>
+  
+  <!-- Logs box -->
+  <rect x="410" y="150" width="130" height="80" rx="6" fill="#DCFCE7" stroke="#059669" stroke-width="2"/>
+  <text x="475" y="175" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="600" fill="#065F46">📝 Logs (KQL)</text>
+  <text x="475" y="195" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#047857">Log Analytics</text>
+  <text x="475" y="210" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#047857">Kusto Query</text>
+  <text x="475" y="225" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#047857">Deep analysis</text>
+  
+  <!-- Alerts box -->
+  <rect x="260" y="250" width="130" height="70" rx="6" fill="#FEE2E2" stroke="#DC2626" stroke-width="2"/>
+  <text x="325" y="275" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="600" fill="#991B1B">🔔 Alerts</text>
+  <text x="325" y="295" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#B91C1C">Metric / Log based</text>
+  <text x="325" y="310" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#B91C1C">Action Groups</text>
+  
+  <!-- Workbooks box -->
+  <rect x="410" y="250" width="130" height="70" rx="6" fill="#E0E7FF" stroke="#4F46E5" stroke-width="2"/>
+  <text x="475" y="275" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="600" fill="#3730A3">📈 Workbooks</text>
+  <text x="475" y="295" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#4338CA">Interactive</text>
+  <text x="475" y="310" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#4338CA">Dashboards</text>
+  
+  <!-- Diag Settings label -->
+  <text x="400" y="355" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="#6B7280">Diagnostic Settings → kierują dane</text>
+  
+  <!-- Outputs column -->
+  <text x="710" y="75" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="600" fill="#6B7280">AKCJE</text>
+  
+  <!-- Output boxes -->
+  <rect x="650" y="95" width="130" height="50" rx="6" fill="#DCFCE7" stroke="#059669" stroke-width="2"/>
+  <text x="715" y="118" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#065F46">Email / SMS</text>
+  <text x="715" y="134" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#047857">Powiadomienia</text>
+  
+  <rect x="650" y="155" width="130" height="50" rx="6" fill="#DCFCE7" stroke="#059669" stroke-width="2"/>
+  <text x="715" y="178" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#065F46">Webhook</text>
+  <text x="715" y="194" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#047857">Logic Apps, ITSM</text>
+  
+  <rect x="650" y="215" width="130" height="50" rx="6" fill="#DCFCE7" stroke="#059669" stroke-width="2"/>
+  <text x="715" y="238" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#065F46">Runbook</text>
+  <text x="715" y="254" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#047857">Automation</text>
+  
+  <rect x="650" y="275" width="130" height="50" rx="6" fill="#DCFCE7" stroke="#059669" stroke-width="2"/>
+  <text x="715" y="298" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#065F46">Autoscale</text>
+  <text x="715" y="314" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#047857">Scale VM/App</text>
+  
+  <!-- Arrows from central to outputs -->
+  <line x1="560" y1="195" x2="640" y2="120" stroke="#059669" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <line x1="560" y1="210" x2="640" y2="180" stroke="#059669" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <line x1="560" y1="225" x2="640" y2="240" stroke="#059669" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  <line x1="560" y1="240" x2="640" y2="300" stroke="#059669" stroke-width="2" marker-end="url(#arrowGreen)"/>
+  
+  <!-- Related services -->
+  <rect x="50" y="390" width="700" height="75" rx="8" fill="#F9FAFB" stroke="#D1D5DB" stroke-width="1"/>
+  <text x="400" y="415" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="600" fill="#374151">Powiązane usługi</text>
+  
+  <text x="150" y="445" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="#4B5563">Service Health</text>
+  <text x="150" y="458" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#6B7280">status regionu/usług</text>
+  
+  <text x="320" y="445" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="#4B5563">Resource Health</text>
+  <text x="320" y="458" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#6B7280">stan zasobu</text>
+  
+  <text x="490" y="445" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="#4B5563">Azure Advisor</text>
+  <text x="490" y="458" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#6B7280">rekomendacje</text>
+  
+  <text x="660" y="445" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" fill="#4B5563">Application Insights</text>
+  <text x="660" y="458" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#6B7280">APM aplikacji</text>
+</svg>
