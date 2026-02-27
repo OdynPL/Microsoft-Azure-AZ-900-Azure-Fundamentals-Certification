@@ -1849,7 +1849,7 @@ Stosowane wtedy, gdy lacze sieciowe jest zbyt wolne, niestabilne lub kosztowne.
 - **Data Box Disk** – do ok. 40 TB; zestaw szyfrowanych dyskow SSD USB.  
   Szybkie wdrozenie, lekkie migracje, wiele lokalizacji.
 
-- **Data Box** – do ok. 100 TB; pelne urzadzenie NAS w formie walizki.  
+- **Data Box** – do ok. 100 TB; pełne urządzenie NAS w formie walizki.  
   Wysoka przepustowosc lokalna, SMB/NFS/REST, duze migracje danych.
 
 - **Data Box Heavy** – do ok. 1 PB; przemyslowe urzadzenie na kolach.  
@@ -1861,16 +1861,16 @@ Stosowane wtedy, gdy lacze sieciowe jest zbyt wolne, niestabilne lub kosztowne.
 ## 6. Identity & Access (Microsoft Entra)
 
 **Microsoft Entra ID**  
-Centralny system tozsamosci w Azure i Microsoft 365. Odpowiada za uwierzytelnianie uzytkownikow, aplikacji i urzadzen. 
+Centralny system tożsamości w Azure i Microsoft 365. Odpowiada za uwierzytelnianie użytkowników, aplikacji i urządzeń. 
 
 <img src="assets/msentraid.svg">
  
 Kluczowe funkcje:
 - **SSO (Single Sign-On)** – jedno logowanie do wielu aplikacji (SaaS, on-prem, Azure).  
-- **MFA (Multi-Factor Authentication)** – dodatkowe potwierdzenie tozsamosci (aplikacja, SMS, klucz FIDO2).  
-- **External Identities** – bezpieczny dostep dla partnerow/klientow bez tworzenia kont wewnetrznych.  
-- **Passwordless** – logowanie bez hasla (Windows Hello, FIDO2, Phone Sign-in).  
-- **Directory roles** – role administracyjne dla zarzadzania tozsamoscia.
+- **MFA (Multi-Factor Authentication)** – dodatkowe potwierdzenie tożsamości (aplikacja, SMS, klucz FIDO2).  
+- **External Identities** – bezpieczny dostęp dla partnerów/klientów bez tworzenia kont wewnętrznych.  
+- **Passwordless** – logowanie bez hasła (Windows Hello, FIDO2, Phone Sign-in).  
+- **Directory roles** – role administracyjne dla zarządzania tożsamością.
 
 **Microsoft Entra Domain Services (Entra DS)**
 - zarządzane usługi domenowe kompatybilne z AD (LDAP, Kerberos, NTLM),
@@ -1879,37 +1879,37 @@ Kluczowe funkcje:
 
 Egzaminowo: **Entra ID ≠ Entra Domain Services** (inne cele i funkcje).
 
-**Jak Entra ID uwierzytelnia uzytkownika**?
+**Jak Entra ID uwierzytelnia użytkownika**?
 
 <img src="assets/userauthorization.svg">
 
 Proces logowania przebiega w kilku krokach:
-1. **Identyfikacja** – uzytkownik podaje login (UPN), Entra ID ustala tenant i polityki.  
-2. **Uwierzytelnienie** – haslo, passwordless (FIDO2/Hello), certyfikat lub SSO z urzadzenia.  
-3. **Kontrole dostepu** (Conditional Access) – Entra ID ocenia ryzyko logowania, lokalizacje, stan urzadzenia, zgodnosc z politykami oraz wymaga MFA jesli to konieczne.  
-4. **Wydanie tokenow** – po pozytywnym potwierdzeniu wydawane sa ID Token, Access Token i Refresh Token (OAuth2/OIDC), ktore aplikacje wykorzystuja do autoryzacji.
+1. **Identyfikacja** – użytkownik podaje login (UPN), Entra ID ustala tenant i polityki.  
+2. **Uwierzytelnienie** – hasło, passwordless (FIDO2/Hello), certyfikat lub SSO z urządzenia.  
+3. **Kontrole dostępu** (Conditional Access) – Entra ID ocenia ryzyko logowania, lokalizację, stan urządzenia, zgodność z politykami oraz wymaga MFA jeśli to konieczne.  
+4. **Wydanie tokenów** – po pozytywnym potwierdzeniu wydawane są ID Token, Access Token i Refresh Token (OAuth2/OIDC), które aplikacje wykorzystują do autoryzacji.
 
 **Access Token** i **ID Token** zwykle wygasają po około **1 godzinie**, a **Refresh Token** działa dłużej (typowo do **90 dni nieaktywności**) — dokładny czas zależy od polityk bezpieczeństwa i konfiguracji tenantu.
 
-**Jak uwierzytelniane sa aplikacje?**
+**Jak uwierzytelniane są aplikacje?**
 
 <img src="assets/appauthorization.svg">
 
-Aplikacje korzystaja z wlasnej tozsamosci aplikacyjnej:
+Aplikacje korzystają z własnej tożsamości aplikacyjnej:
 - sekret klienta,  
 - certyfikat,  
-- lub **Managed Identity** (najbardziej bezpieczny model, bez sekretow).  
+- lub **Managed Identity** (najbardziej bezpieczny model, bez sekretów).  
 
-**Managed Identity** to mechanizm nadawania aplikacjom tozsamosci zarzadzanej w pelni przez Azure — bez sekretow, bez hasel, bez certyfikatow.  
+**Managed Identity** to mechanizm nadawania aplikacjom tożsamości zarządzanej w pełni przez Azure — bez sekretów, bez haseł, bez certyfikatów.  
 
 <img src="assets/managedidentity.svg">
 
-**Jak dziala Managed Identity**:
+**Jak działa Managed Identity**:
 - aplikacja nie przechowuje żadnych sekretów ani kluczy  
-- uwierzytelnia sie poprzez lokalny endpoint MSI dostepny tylko wewnatrz uslugi  
-- Azure potwierdza, ze aplikacja ma tozsamosc MI oraz sprawdza jej role RBAC  
-- Entra ID wystawia **Access Token** dla konkretnej uslugi  
-- aplikacja dodaje token: `Authorization: Bearer <token>` i laczy sie z zasobem
+- uwierzytelnia się poprzez lokalny endpoint MSI dostępny tylko wewnątrz usługi  
+- Azure potwierdza, że aplikacja ma tożsamość MI oraz sprawdza jej role RBAC  
+- Entra ID wystawia **Access Token** dla konkretnej usługi  
+- aplikacja dodaje token: `Authorization: Bearer <token>` i łączy się z zasobem
 
 **Rodzaje Managed Identity**:
 - **System-assigned** – tożsamość jest związana z jednym zasobem; tworzy sie sama i znika wraz z zasobem.  
@@ -1917,81 +1917,81 @@ Aplikacje korzystaja z wlasnej tozsamosci aplikacyjnej:
 
 Aplikacja uwierzytelnia sie w Entra ID, a nastepnie otrzymuje **Access Token** do zasobów takich jak Storage, Key Vault, SQL, Event Hub itd.
 
-**Jak uwierzytelniane sa urzadzenia?**
+**Jak uwierzytelniane są urządzenia?**
 
 <img src="assets/deviceauthorization.svg">
 
-Urzadzenia moga byc:
+Urządzenia mogą być:
 - Azure AD Registered (BYOD),  
-- Azure AD Joined (urzadzenia firmowe),  
+- Azure AD Joined (urządzenia firmowe),  
 - Hybrid Joined (AD on‑prem + Entra ID).  
 
 Entra ID sprawdza:
-- czy urzadzenie jest zapisane w katalogu,  
+- czy urządzenie jest zapisane w katalogu,  
 - czy jest zgodne (Intune compliance),  
-- czy spelnia polityki bezpieczenstwa organizacji.  
+- czy spełnia polityki bezpieczeństwa organizacji.  
 
-Dzieki temu mozliwe jest SSO, wymuszanie MFA, lub blokada dostepu dla niezaufanych urzadzen.
+Dzięki temu możliwe jest SSO, wymuszanie MFA, lub blokada dostępu dla niezaufanych urządzeń.
 
 ---
 
 **RBAC (Role-Based Access Control)**  
-Mechanizm autoryzacji w Azure oparty na rolach przypisywanych do okreslonych zakresow zasobow (scope).  
-Umozliwia precyzyjne kontrolowanie, kto co moze zrobic w danym zasobie — zgodnie z zasada least privilege.
+Mechanizm autoryzacji w Azure oparty na rolach przypisywanych do określonych zakresów zasobów (scope).  
+Umożliwia precyzyjne kontrolowanie, kto co może zrobić w danym zasobie — zgodnie z zasadą least privilege.
 
 <img src="assets/rbac.svg">
 
-Najwazniejsze elementy:
+Najważniejsze elementy:
 
 - **Role wbudowane**  
-  Podstawowe role obejmuja:  
-  - **Owner** – pelna administracja zasobami + zarzadzanie dostepem  
-  - **Contributor** – pelna administracja zasobami, ale bez nadawania uprawnien  
+  Podstawowe role obejmują:  
+  - **Owner** – pełna administracja zasobami + zarządzanie dostępem  
+  - **Contributor** – pełna administracja zasobami, ale bez nadawania uprawnień  
   - **Reader** – tylko odczyt  
 
-  Dodatkowo istnieja setki **ról specjalistycznych**, np. Storage Blob Reader, Key Vault Secrets Officer, Virtual Machine Contributor.
+  Dodatkowo istnieją setki **ról specjalistycznych**, np. Storage Blob Reader, Key Vault Secrets Officer, Virtual Machine Contributor.
 
 - **Custom roles**  
-  Gdy role wbudowane sa zbyt szerokie, mozna tworzyc role **niestandardowe** oparte na pojedynczych akcjach (actions / notActions), 
-  np. tylko „odczyt sekretow Key Vault” lub „restart VM bez mozliwosci kasowania”.
+  Gdy role wbudowane są zbyt szerokie, można tworzyć role **niestandardowe** oparte na pojedynczych akcjach (actions / notActions), 
+  np. tylko „odczyt sekretów Key Vault” lub „restart VM bez możliwości kasowania”.
 
 - **Scope (zakres) i dziedziczenie**  
   Scope definiuje, do czego rola ma zastosowanie:  
   - **Subscription** → dziedziczy na wszystkie Resource Groups i zasoby  
   - **Resource Group** → dziedziczy na zasoby w tej grupie  
   - **Resource** → dotyczy tylko jednego zasobu  
-  Uprawnienia przypisane wyzej **zawsze dziedzicza w dol**, dlatego zaleca sie przypisywanie ról na mozliwie najnizszym poziomie.
+  Uprawnienia przypisane wyżej **zawsze dziedziczą w dół**, dlatego zaleca się przypisywanie ról na możliwie najniższym poziomie.
 
 - **Model decyzyjny**  
-  Jeżeli uzytkownik ma wiele ról w danym scope, sumuja sie one (model additive).  
-  Blokady resource lock **nie sa** elementem RBAC — dzialaja oddzielnie.
+  Jeżeli użytkownik ma wiele ról w danym scope, sumują się one (model additive).  
+  Blokady resource lock **nie są** elementem RBAC — działają oddzielnie.
 
 - **Zastosowania mechanizmu RBAC**  
-  RBAC jest kluczowe dla bezpieczenstwa:  
+  RBAC jest kluczowe dla bezpieczeństwa:  
   - ogranicza nadmiarowe uprawnienia  
-  - zapewnia podzial obowiazkow (SoD)  
-  - precyzyjnie definiuje, kto moze zarzadzac Storage, VM, SQL, App Service, Key Vault itd.  
-  - integruje sie z **Managed Identity**, dzięki czemu aplikacje rowniez korzystaja z RBAC zamiast sekretow
+  - zapewnia podział obowiązków (SoD)  
+  - precyzyjnie definiuje, kto może zarządzać Storage, VM, SQL, App Service, Key Vault itd.  
+  - integruje się z **Managed Identity**, dzięki czemu aplikacje również korzystają z RBAC zamiast sekretów
 
 ---
 
 **Conditional Access**
-Mechanizm kontroli dostepu, ktory ocenia kontekst logowania i decyduje, czy uzytkownik powinien uzyskac dostep, zostac zablokowany, czy wykonac dodatkowa akcje (np. MFA).  
+Mechanizm kontroli dostępu, który ocenia kontekst logowania i decyduje, czy użytkownik powinien uzyskać dostęp, zostać zablokowany, czy wykonać dodatkową akcję (np. MFA).  
 
 Jest to kluczowy element modelu **Zero Trust — zasada: „never trust, always verify”**.
 
 <img src="assets/conditionalaccess.svg">
 
 **Kluczowe atrybuty oceniane podczas logowania:**
-- **Ryzyko logowania / ryzyko uzytkownika** – wykrywanie anomalii, podejrzanych lokalizacji, nietypowych zachowan.  
+- **Ryzyko logowania / ryzyko użytkownika** – wykrywanie anomalii, podejrzanych lokalizacji, nietypowych zachowań.  
 - **Lokalizacja** – kraje, zakresy IP, sieci zaufane, VPN, corporate network.  
-- **Stan urzadzenia** – zgodnosc z Intune (compliant / non-compliant), typ OS, poziom zabezpieczen.  
-- **Typ aplikacji i klienta** – przegladarka, aplikacja mobilna, desktopowa, klient legacy, API.  
-- **Typ zasobu** – niektore aplikacje lub API moga wymagac mocniejszych zasad.  
+- **Stan urządzenia** – zgodność z Intune (compliant / non-compliant), typ OS, poziom zabezpieczeń.  
+- **Typ aplikacji i klienta** – przeglądarka, aplikacja mobilna, desktopowa, klient legacy, API.  
+- **Typ zasobu** – niektóre aplikacje lub API mogą wymagać mocniejszych zasad.  
 
 **Dzialania (akcje) podejmowane przez zasady:**
-- **Wymuszenie MFA** – dodatkowy czynnik potwierdzenia tozsamosci.  
-- **Blokada dostepu** – gdy ryzyko jest zbyt duze lub warunki nie sa spelnione.  
+- **Wymuszenie MFA** – dodatkowy czynnik potwierdzenia tożsamości.  
+- **Blokada dostępu** – gdy ryzyko jest zbyt duże lub warunki nie są spełnione.  
 - **Wymuszenie zgodnego urzadzenia** – tylko urządzenia spełniające wymagania Intune.  
 - **Wymuszenie sesji bezhaslowej** – logowanie passwordless.  
 - **Sesje z ograniczeniami** – np. zakaz pobierania plikow (MCAS/Defender for Cloud Apps).  
@@ -2010,19 +2010,19 @@ Najwazniejsze funkcje:
 ---
 
 **Managed Identities**  
-Tozsamosc systemowa dla aplikacji dzialajacych w Azure — bez kluczy, bez hasel, bez sekretow.  
+Tożsamość systemowa dla aplikacji działających w Azure — bez kluczy, bez haseł, bez sekretów.  
 
 Zastosowania:
-- Dostep aplikacji do Azure Storage, Key Vault, SQL, Event Hub itp.  
-- Obsluga wbudowana w uslugi Azure (VM, App Service, Functions, Logic Apps).  
+- Dostęp aplikacji do Azure Storage, Key Vault, SQL, Event Hub itp.  
+- Obsługa wbudowana w usługi Azure (VM, App Service, Functions, Logic Apps).  
 - Kluczowe korzysci:
-  - automatyczne zarzadzanie tozsamoscia przez Azure  
+  - automatyczne zarządzanie tożsamością przez Azure  
   - brak potrzeby przechowywania i rotowania sekretow  
   - zgodnosc z Zero Trust  
 
 Rodzaje:
-- **System-assigned** – tozsamosc przypisana do jednego zasobu  
-- **User-assigned** – tozsamosc tworzona jako oddzielny zasob, wspoldzielona miedzy aplikacjami
+- **System-assigned** – tożsamość przypisana do jednego zasobu  
+- **User-assigned** – tożsamość tworzona jako oddzielny zasób, współdzielona między aplikacjami
 
 ---
 
@@ -3161,7 +3161,7 @@ Pozwala wykonywać polecenia administracyjne oraz automatyzować zadania w skryp
 <a id="sec-20-redis-cache"></a>
 ## 20. Azure Cache for Redis
 
-**Azure Cache for Redis** to w pelni zarzadzana usluga cache w pamieci, oparta na popularnym silniku Redis. Umozliwia drastyczne przyspieszenie aplikacji poprzez przechowywanie czesto uzywanych danych w szybkiej pamieci zamiast odpytywania bazy danych.
+**Azure Cache for Redis** to w pełni zarządzana usługa cache w pamięci, oparta na popularnym silniku Redis. Umożliwia drastyczne przyspieszenie aplikacji poprzez przechowywanie często używanych danych w szybkiej pamięci zamiast odpytywania bazy danych.
 
 <img src="assets/redis_cache_overview.svg" alt="Azure Cache for Redis - jak dziala cache" width="100%">
 
@@ -3173,7 +3173,7 @@ Pozwala wykonywać polecenia administracyjne oraz automatyzować zadania w skryp
 | Wysokie obciazenie bazy | Redis przejmuje 80-90% odczytow |
 | Sesje uzytkownikow rozrzucone | Centralne przechowywanie sesji |
 | Kosztowne obliczenia | Cache wynikow, nie powtarzaj obliczen |
-| Limity polaczen do DB | Mniej zapytan = mniej polaczen |
+| Limity połączeń do DB | Mniej zapytań = mniej połączeń |
 
 ### 20.2 Typowe przypadki uzycia
 
@@ -3206,7 +3206,7 @@ Pozwala wykonywać polecenia administracyjne oraz automatyzować zadania w skryp
 | **Basic** | Brak | Brak | Nie | Nie | Dev/Test |
 | **Standard** | 99.9% | Primary + Replica | Nie | Nie | Wiekszosc produkcji |
 | **Premium** | 99.9% | P + R + Geo | RDB/AOF | Do 10 shardow | Duze obciazenia |
-| **Enterprise** | 99.999% | Active-Active | Pelna | Tak | Mission-critical |
+| **Enterprise** | 99.999% | Active-Active | Pełna | Tak | Mission-critical |
 
 ### 20.4 Kluczowe funkcje
 
@@ -3326,7 +3326,7 @@ if (cached.HasValue)
 
 **Klucze:**
 - Uzywaj prefixow: `user:123`, `product:456`, `session:abc`
-- Unikaj bardzo dlugich kluczy (max 1KB, optymalnie < 100 bajtow)
+- Unikaj bardzo długich kluczy (max 1KB, optymalnie < 100 bajtów)
 
 **TTL (Time To Live):**
 - Zawsze ustawiaj TTL dla danych cache
@@ -3334,7 +3334,7 @@ if (cached.HasValue)
 
 **Eviction Policy:**
 - `volatile-lru` - usun najstarsze klucze z TTL (domyslne)
-- `allkeys-lru` - usun najstarsze ze wszystkich kluczy
+- `allkeys-lru` - usuń najstarsze ze wszystkich kluczy
 - `noeviction` - blad gdy brak pamieci
 
 **Monitoring:**
@@ -3990,7 +3990,7 @@ az storage account update --name mystorageaccount \
 
 <img src="assets/keyvault_security_tiers.svg">
 
-**Soft Delete (domyslnie wlaczone):**
+**Soft Delete (domyślnie włączone):**
 - Usunięty vault/secret/key trafia do "soft deleted" state
 - Można odzyskać przez 7-90 dni (default 90)
 - Chroni przed przypadkowym usunięciem
@@ -4099,7 +4099,7 @@ Dla najwyższych wymagań compliance:
 | RBAC vs Access Policy? | **RBAC** jest zalecane |
 | Czy Key Vault szyfruje dane? | Nie – przechowuje klucze, które szyfrują dane |
 
-> **Egzamin:** Key Vault to centralne miejsce na sekrety, klucze i certyfikaty. Uzywaj Managed Identity dla dostepu aplikacji bez credentials w kodzie.
+> **Egzamin:** Key Vault to centralne miejsce na sekrety, klucze i certyfikaty. Używaj Managed Identity dla dostępu aplikacji bez credentials w kodzie.
 
 ---
 
@@ -4108,40 +4108,40 @@ Dla najwyższych wymagań compliance:
 
 <img src="assets/debug_monitoring_flow.svg">
 
-### Przeglad narzedzi do debugowania
+### Przegląd narzędzi do debugowania
 
-Azure oferuje bogaty zestaw narzedzi do monitorowania, diagnostyki i debugowania aplikacji dzialajacych w chmurze.
+Azure oferuje bogaty zestaw narzędzi do monitorowania, diagnostyki i debugowania aplikacji działających w chmurze.
 
 ---
 
 ### Application Insights
 
-Glowne narzedzie do monitorowania wydajnosci i diagnostyki aplikacji (APM - Application Performance Management).
+Główne narzędzie do monitorowania wydajności i diagnostyki aplikacji (APM - Application Performance Management).
 
 **Co zbiera:**
-- **Requests** - przychodzace zadania HTTP, czas odpowiedzi, status code
-- **Dependencies** - wywolania do SQL, HTTP, Azure services
-- **Exceptions** - nieobsluzone wyjatki z pelnym stack trace
+- **Requests** - przychodzące żądania HTTP, czas odpowiedzi, status code
+- **Dependencies** - wywołania do SQL, HTTP, Azure services
+- **Exceptions** - nieobsłużone wyjątki z pełnym stack trace
 - **Traces** - logi aplikacji (ILogger, Console.WriteLine)
-- **Performance counters** - CPU, pamiec, GC
-- **Custom events/metrics** - wlasne zdarzenia biznesowe
+- **Performance counters** - CPU, pamięć, GC
+- **Custom events/metrics** - własne zdarzenia biznesowe
 
 **Kluczowe funkcje:**
 
 | Funkcja | Opis |
 |---------|------|
 | **Live Metrics** | Real-time monitoring (1s refresh) |
-| **Application Map** | Wizualizacja zaleznosci i flow |
-| **Transaction Search** | Szukanie konkretnych requestow |
-| **Failures** | Analiza bledow i wyjatkow |
-| **Performance** | Analiza czasow odpowiedzi |
-| **Availability** | Testy ping z roznych lokalizacji |
+| **Application Map** | Wizualizacja zależności i flow |
+| **Transaction Search** | Szukanie konkretnych requestów |
+| **Failures** | Analiza błędów i wyjątków |
+| **Performance** | Analiza czasów odpowiedzi |
+| **Availability** | Testy ping z różnych lokalizacji |
 | **Smart Detection** | Automatyczne wykrywanie anomalii |
 
 **Konfiguracja w App Service:**
 
 ```bash
-# Wlaczenie Application Insights dla App Service
+# Włączenie Application Insights dla App Service
 az webapp config appsettings set --name myApp \
     --resource-group myRG \
     --settings APPLICATIONINSIGHTS_CONNECTION_STRING="InstrumentationKey=xxx;IngestionEndpoint=https://..."
@@ -4194,9 +4194,9 @@ public class OrderController : ControllerBase
 
 ### Log Analytics i KQL
 
-Centralne repozytorium logow z mozliwoscia zaawansowanych zapytan.
+Centralne repozytorium logów z możliwością zaawansowanych zapytań.
 
-**Przyklady zapytan KQL:**
+**Przykłady zapytań KQL:**
 
 ```kusto
 // Wszystkie wyjatki z ostatniej godziny
@@ -4241,7 +4241,7 @@ requests
 
 Zaawansowana konsola diagnostyczna dla App Service.
 
-**Dostep:** `https://yourapp.scm.azurewebsites.net`
+**Dostęp:** `https://yourapp.scm.azurewebsites.net`
 
 **Funkcje:**
 
@@ -4255,12 +4255,12 @@ Zaawansowana konsola diagnostyczna dla App Service.
 | **Environment** | Zmienne srodowiskowe, wersje runtime |
 | **Site Extensions** | Instalacja rozszerzen (np. profiler) |
 
-**Przydatne sciezki w Kudu:**
+**Przydatne ścieżki w Kudu:**
 
 ```
 /api/dump                    - Memory dump
-/api/processes               - Lista procesow
-/api/processes/0/threads     - Threads glownego procesu
+/api/processes               - Lista procesów
+/api/processes/0/threads     - Threads głównego procesu
 /api/vfs/                    - Virtual File System (browse files)
 /api/logstream               - Log streaming endpoint
 /DebugConsole                - Interaktywna konsola
@@ -4272,17 +4272,17 @@ Zaawansowana konsola diagnostyczna dla App Service.
 
 <img src="assets/debug_tools_interactive.svg">
 
-Debugowanie aplikacji bezposrednio z Visual Studio.
+Debugowanie aplikacji bezpośrednio z Visual Studio.
 
-**Wlaczenie Remote Debugging:**
+**Włączenie Remote Debugging:**
 
 ```bash
-# Wlacz remote debugging dla App Service
+# Włącz remote debugging dla App Service
 az webapp config set --name myApp \
     --resource-group myRG \
     --remote-debugging-enabled true
 
-# Sprawdz status
+# Sprawdź status
 az webapp config show --name myApp \
     --resource-group myRG \
     --query remoteDebuggingEnabled
@@ -4290,12 +4290,12 @@ az webapp config show --name myApp \
 
 **W Visual Studio:**
 1. View -> Cloud Explorer
-2. Znajdz App Service
+2. Znajdź App Service
 3. Right-click -> Attach Debugger
 4. Ustaw breakpoint w kodzie
-5. Wywolaj request do aplikacji
+5. Wywołaj request do aplikacji
 
-> **Uwaga:** Remote debugging spowalnia aplikacje! Uzywaj tylko w Dev/Test, NIE na produkcji.
+> **Uwaga:** Remote debugging spowalnia aplikacje! Używaj tylko w Dev/Test, NIE na produkcji.
 
 ---
 
@@ -4303,17 +4303,17 @@ az webapp config show --name myApp \
 
 <img src="assets/debug_tools_diagnostic.svg">
 
-Przechwytuje stan aplikacji w momencie wyjatku - bez zatrzymywania produkcji.
+Przechwytuje stan aplikacji w momencie wyjątku - bez zatrzymywania produkcji.
 
-**Jak dziala:**
-1. Aplikacja rzuca wyjatek
+**Jak działa:**
+1. Aplikacja rzuca wyjątek
 2. Snapshot Debugger przechwytuje:
    - Call stack
-   - Wartosci zmiennych lokalnych
-   - Stan obiektow
-3. Snapshot dostepny w Application Insights -> Failures
+   - Wartości zmiennych lokalnych
+   - Stan obiektów
+3. Snapshot dostępny w Application Insights -> Failures
 
-**Wlaczenie:**
+**Włączenie:**
 
 ```csharp
 // NuGet: Microsoft.ApplicationInsights.SnapshotCollector
@@ -4363,7 +4363,7 @@ az webapp config set --name myApp \
     --resource-group myRG \
     --auto-heal-enabled true
 
-# Konfiguracja regul (w Portal lub ARM template)
+# Konfiguracja reguł (w Portal lub ARM template)
 # Triggers: slowRequests, memoryLimit, requestCount, statusCodes
 # Actions: recycle, logEvent, customAction
 ```
@@ -4372,18 +4372,18 @@ az webapp config set --name myApp \
 
 ### Log Streaming
 
-Podglad logow w czasie rzeczywistym.
+Podgląd logów w czasie rzeczywistym.
 
 **Azure CLI:**
 
 ```bash
-# Stream logow App Service
+# Stream logów App Service
 az webapp log tail --name myApp --resource-group myRG
 
-# Stream logow Functions
+# Stream logów Functions
 az functionapp log stream --name myFunc --resource-group myRG
 
-# Wlacz logowanie do filesystem
+# Włącz logowanie do filesystem
 az webapp log config --name myApp \
     --resource-group myRG \
     --application-logging filesystem \
@@ -4444,15 +4444,15 @@ az monitor scheduled-query create --name Http5xxAlert \
 
 ---
 
-### Porownanie narzedzi
+### Porównanie narzędzi
 
-| Narzedzie | Use case | Wplyw na perf | Produkcja? |
+| Narzędzie | Use case | Wpływ na perf | Produkcja? |
 |-----------|----------|---------------|------------|
 | **Application Insights** | APM, metryki, logi | Minimalny | TAK |
 | **Log Analytics** | Zaawansowane zapytania | Brak | TAK |
 | **Remote Debugging** | Interaktywne debugowanie | WYSOKI | NIE |
 | **Snapshot Debugger** | Debug exceptions | Minimalny | TAK |
-| **Kudu Console** | Diagnostyka, pliki | Brak | Ostroznie |
+| **Kudu Console** | Diagnostyka, pliki | Brak | Ostrożnie |
 | **Log Streaming** | Real-time logi | Niski | TAK |
 | **App Diagnostics** | Troubleshooting | Brak | TAK |
 
@@ -4462,15 +4462,15 @@ az monitor scheduled-query create --name Http5xxAlert \
 
 | Praktyka | Opis |
 |----------|------|
-| **Wlacz App Insights** | Dla kazdej aplikacji produkcyjnej |
-| **Structured logging** | Uzywaj ILogger z parametrami |
-| **Correlation IDs** | Przekazuj przez caly pipeline |
+| **Włącz App Insights** | Dla każdej aplikacji produkcyjnej |
+| **Structured logging** | Używaj ILogger z parametrami |
+| **Correlation IDs** | Przekazuj przez cały pipeline |
 | **Health checks** | Endpoint /health dla LB i Azure |
-| **Alerts** | Na kluczowe metryki i bledy |
-| **Retention policy** | Dostosuj do wymagan compliance |
+| **Alerts** | Na kluczowe metryki i błędy |
+| **Retention policy** | Dostosuj do wymagań compliance |
 | **Sampling** | Dla wysokiego ruchu (redukuje koszty) |
 
-> **Egzamin:** Application Insights to glowne narzedzie APM w Azure. Log Analytics umozliwia zapytania KQL. Remote debugging NIE powinno byc uzywane na produkcji.
+> **Egzamin:** Application Insights to główne narzędzie APM w Azure. Log Analytics umożliwia zapytania KQL. Remote debugging NIE powinno być używane na produkcji.
 
 ---
 
@@ -4481,7 +4481,7 @@ az monitor scheduled-query create --name Http5xxAlert \
 
 ### Czym jest Azure Service Bus?
 
-Azure Service Bus to w pelni zarzadzana usluga **enterprise message broker** z kolejkami (queues) i tematami pub/sub (topics). Sluzy do **rozlaczania aplikacji** i umozliwia niezawodna, asynchroniczna komunikacje miedzy komponentami.
+Azure Service Bus to w pełni zarządzana usługa **enterprise message broker** z kolejkami (queues) i tematami pub/sub (topics). Służy do **rozłączania aplikacji** i umożliwia niezawodną, asynchroniczną komunikację między komponentami.
 
 **Kluczowe cechy:**
 - Message queuing (FIFO)
@@ -4496,20 +4496,20 @@ Azure Service Bus to w pelni zarzadzana usluga **enterprise message broker** z k
 
 ---
 
-### Queue vs Topic - kiedy uzyc?
+### Queue vs Topic - kiedy użyć?
 
-| Scenariusz | Uzyj | Dlaczego |
+| Scenariusz | Użyj | Dlaczego |
 |------------|------|----------|
 | 1 sender -> 1 receiver | **Queue** | Point-to-point |
-| Load balancing miedzy workerami | **Queue** | Competing consumers |
+| Load balancing między workerami | **Queue** | Competing consumers |
 | 1 sender -> N receivers | **Topic** | Broadcast |
-| Rozne subskrypcje z filtrami | **Topic** | Message filtering |
+| Różne subskrypcje z filtrami | **Topic** | Message filtering |
 | Event-driven architecture | **Topic** | Pub/Sub pattern |
 | Background job processing | **Queue** | Work queue |
 
 ---
 
-### Tiers - porownanie
+### Tiers - porównanie
 
 <img src="assets/servicebus_tiers.svg">
 
@@ -4527,20 +4527,20 @@ Azure Service Bus to w pelni zarzadzana usluga **enterprise message broker** z k
 | **Dedicated resources** | NIE | NIE | Tak |
 | **Use case** | Dev/Test | Production | Enterprise |
 
-> **Egzamin:** Basic tier NIE obsluguje Topics! Standard wystarcza dla wiekszosci scenariuszy produkcyjnych.
+> **Egzamin:** Basic tier NIE obsługuje Topics! Standard wystarcza dla większości scenariuszy produkcyjnych.
 
 ---
 
 ### Tworzenie Service Bus - Azure CLI
 
 ```bash
-# Utworz namespace (kontener dla queues/topics)
+# Utwórz namespace (kontener dla queues/topics)
 az servicebus namespace create --name myServiceBusNS \
     --resource-group myRG \
     --location westeurope \
     --sku Standard
 
-# Utworz queue
+# Utwórz queue
 az servicebus queue create --name myQueue \
     --namespace-name myServiceBusNS \
     --resource-group myRG \
@@ -4549,13 +4549,13 @@ az servicebus queue create --name myQueue \
     --lock-duration PT1M \
     --dead-lettering-on-message-expiration true
 
-# Utworz topic
+# Utwórz topic
 az servicebus topic create --name myTopic \
     --namespace-name myServiceBusNS \
     --resource-group myRG \
     --max-size 1024
 
-# Utworz subscription dla topic
+# Utwórz subscription dla topic
 az servicebus topic subscription create --name mySubscription \
     --topic-name myTopic \
     --namespace-name myServiceBusNS \
@@ -4572,7 +4572,7 @@ az servicebus namespace authorization-rule keys list \
 
 ---
 
-### C# - Wysylanie wiadomosci do Queue
+### C# - Wysyłanie wiadomości do Queue
 
 ```csharp
 using Azure.Messaging.ServiceBus;
@@ -4581,19 +4581,19 @@ using Azure.Messaging.ServiceBus;
 string connectionString = "Endpoint=sb://myServiceBusNS.servicebus.windows.net/;SharedAccessKeyName=...";
 string queueName = "myQueue";
 
-// Utworz klienta (thread-safe, reuse!)
+// Utwórz klienta (thread-safe, reuse!)
 await using var client = new ServiceBusClient(connectionString);
 
-// Utworz sender dla queue
+// Utwórz sender dla queue
 await using var sender = client.CreateSender(queueName);
 
-// Wyslij pojedyncza wiadomosc
+// Wyślij pojedynczą wiadomość
 var message = new ServiceBusMessage("Hello Service Bus!");
 Message.ApplicationProperties["Priority"] = "High";
 message.ContentType = "application/json";
 await sender.SendMessageAsync(message);
 
-// Wyslij batch (wydajniej dla wielu wiadomosci)
+// Wyślij batch (wydajniej dla wielu wiadomości)
 using ServiceBusMessageBatch batch = await sender.CreateMessageBatchAsync();
 batch.TryAddMessage(new ServiceBusMessage("Message 1"));
 batch.TryAddMessage(new ServiceBusMessage("Message 2"));
@@ -4605,7 +4605,7 @@ Console.WriteLine("Messages sent!");
 
 ---
 
-### C# - Odbieranie wiadomosci z Queue
+### C# - Odbieranie wiadomości z Queue
 
 ```csharp
 using Azure.Messaging.ServiceBus;
@@ -4615,12 +4615,12 @@ string queueName = "myQueue";
 
 await using var client = new ServiceBusClient(connectionString);
 
-// Sposob 1: ServiceBusProcessor (zalecany dla produkcji)
+// Sposób 1: ServiceBusProcessor (zalecany dla produkcji)
 var processor = client.CreateProcessor(queueName, new ServiceBusProcessorOptions
 {
-    AutoCompleteMessages = false,  // Reczne Complete/Abandon
-    MaxConcurrentCalls = 2,        // Ile wiadomosci naraz
-    PrefetchCount = 10             // Pre-fetch dla wydajnosci
+    AutoCompleteMessages = false,  // Ręczne Complete/Abandon
+    MaxConcurrentCalls = 2,        // Ile wiadomości naraz
+    PrefetchCount = 10             // Pre-fetch dla wydajności
 });
 
 processor.ProcessMessageAsync += async args =>
@@ -4630,15 +4630,15 @@ processor.ProcessMessageAsync += async args =>
     
     try
     {
-        // Przetworz wiadomosc...
+        // Przetwórz wiadomość...
         await ProcessMessageAsync(body);
         
-        // Oznacz jako przetworzona (usuwa z queue)
+        // Oznacz jako przetworzoną (usuwa z queue)
         await args.CompleteMessageAsync(args.Message);
     }
     catch (Exception ex)
     {
-        // Zwroc do queue (lub DLQ po max retries)
+        // Zwróć do queue (lub DLQ po max retries)
         await args.AbandonMessageAsync(args.Message);
     }
 };
@@ -4668,7 +4668,7 @@ string topicName = "myTopic";
 await using var client = new ServiceBusClient(connectionString);
 await using var sender = client.CreateSender(topicName);
 
-// Wyslij wiadomosc z properties (do filtrowania)
+// Wyślij wiadomość z properties (do filtrowania)
 var orderMessage = new ServiceBusMessage(BinaryData.FromObjectAsJson(new 
 {
     OrderId = 12345,
@@ -4676,7 +4676,7 @@ var orderMessage = new ServiceBusMessage(BinaryData.FromObjectAsJson(new
     TotalAmount = 299.99
 }));
 
-// Application properties uzywane do filtrowania w subscriptions
+// Application properties używane do filtrowania w subscriptions
 orderMessage.ApplicationProperties["OrderType"] = "Premium";
 orderMessage.ApplicationProperties["Region"] = "Europe";
 orderMessage.Subject = "NewOrder";  // Label
@@ -4698,7 +4698,7 @@ string connectionString = "Endpoint=sb://...";
 string topicName = "myTopic";
 string subscriptionName = "PremiumOrders";
 
-// Opcjonalnie: utworz subscription z filtrem (lub w CLI/Portal)
+// Opcjonalnie: utwórz subscription z filtrem (lub w CLI/Portal)
 var adminClient = new ServiceBusAdministrationClient(connectionString);
 
 if (!await adminClient.SubscriptionExistsAsync(topicName, subscriptionName))
@@ -4709,7 +4709,7 @@ if (!await adminClient.SubscriptionExistsAsync(topicName, subscriptionName))
     );
 }
 
-// Odbieraj wiadomosci z subscription
+// Odbieraj wiadomości z subscription
 await using var client = new ServiceBusClient(connectionString);
 var processor = client.CreateProcessor(topicName, subscriptionName);
 
@@ -4735,14 +4735,14 @@ await processor.StartProcessingAsync();
 
 <img src="assets/servicebus_filters.svg">
 
-Filtrowanie wiadomosci na poziomie subscription:
+Filtrowanie wiadomości na poziomie subscription:
 
-| Typ filtra | Opis | Przyklad |
+| Typ filtra | Opis | Przykład |
 |------------|------|----------|
 | **SQL Filter** | SQL-like WHERE | `OrderType = 'Premium' AND Amount > 100` |
 | **Correlation Filter** | Property matching | Match on MessageId, Subject, To |
-| **True Filter** | Wszystkie wiadomosci | Default (brak filtra) |
-| **False Filter** | Zadne wiadomosci | Blokuje subscription |
+| **True Filter** | Wszystkie wiadomości | Default (brak filtra) |
+| **False Filter** | Żadne wiadomości | Blokuje subscription |
 
 ```csharp
 // SQL Filter
@@ -4762,10 +4762,10 @@ new CorrelationRuleFilter
 
 <img src="assets/servicebus_dlq.svg">
 
-Wiadomosci trafiaja do DLQ gdy:
-- Przekroczona liczba prob dostarczenia (MaxDeliveryCount)
-- Wiadomosc wygasla (TTL)
-- Recznie przeniesiona przez aplikacje
+Wiadomości trafiają do DLQ gdy:
+- Przekroczona liczba prób dostarczenia (MaxDeliveryCount)
+- Wiadomość wygasła (TTL)
+- Ręcznie przeniesiona przez aplikację
 - Filter evaluation exception
 
 ```csharp
@@ -4777,14 +4777,14 @@ var dlqProcessor = client.CreateProcessor(
 
 dlqProcessor.ProcessMessageAsync += async args =>
 {
-    // Sprawdz powod DLQ
+    // Sprawdź powód DLQ
     var reason = args.Message.DeadLetterReason;
     var description = args.Message.DeadLetterErrorDescription;
     
     Console.WriteLine($"DLQ Message: {args.Message.Body}");
     Console.WriteLine($"Reason: {reason}, Description: {description}");
     
-    // Napraw i ponownie wyslij lub zloguj
+    // Napraw i ponownie wyślij lub zloguj
     await args.CompleteMessageAsync(args.Message);
 };
 ```
@@ -4795,13 +4795,13 @@ dlqProcessor.ProcessMessageAsync += async args =>
 
 <img src="assets/servicebus_sessions.svg">
 
-Sessions gwarantuja FIFO processing dla wiadomosci z tym samym SessionId:
+Sessions gwarantują FIFO processing dla wiadomości z tym samym SessionId:
 
 ```csharp
-// Wysylanie z SessionId
+// Wysyłanie z SessionId
 var message = new ServiceBusMessage("Order item 1")
 {
-    SessionId = "Order-12345"  // Wszystkie items tego zamowienia
+    SessionId = "Order-12345"  // Wszystkie items tego zamówienia
 };
 await sender.SendMessageAsync(message);
 
@@ -4828,7 +4828,7 @@ sessionProcessor.ProcessMessageAsync += async args =>
 
 <img src="assets/servicebus_ttl.svg">
 
-TTL okresla jak dlugo wiadomosc moze pozostac w kolejce zanim wygasnie.
+TTL określa jak długo wiadomość może pozostać w kolejce zanim wygaśnie.
 
 **Default values:**
 
@@ -4838,21 +4838,21 @@ TTL okresla jak dlugo wiadomosc moze pozostac w kolejce zanim wygasnie.
 | **Message** | Dziedziczy z Queue | TimeSpan.MaxValue |
 | **Subscription** | Dziedziczy z Topic | TimeSpan.MaxValue |
 
-**Co sie dzieje po wygasnieciu TTL:**
-- Jezeli `DeadLetteringOnMessageExpiration = true` -> wiadomosc trafia do DLQ
-- Jezeli `DeadLetteringOnMessageExpiration = false` -> wiadomosc jest usuwana
+**Co się dzieje po wygaśnięciu TTL:**
+- Jeżeli `DeadLetteringOnMessageExpiration = true` -> wiadomość trafia do DLQ
+- Jeżeli `DeadLetteringOnMessageExpiration = false` -> wiadomość jest usuwana
 
 **Ustawienie TTL na Queue (CLI):**
 
 ```bash
-# Utworz queue z TTL 7 dni
+# Utwórz queue z TTL 7 dni
 az servicebus queue create --name myQueue \
     --namespace-name myServiceBusNS \
     --resource-group myRG \
     --default-message-time-to-live P7D \
     --dead-lettering-on-message-expiration true
 
-# Zmien TTL na istniejącej queue (30 dni)
+# Zmień TTL na istniejącej queue (30 dni)
 az servicebus queue update --name myQueue \
     --namespace-name myServiceBusNS \
     --resource-group myRG \
@@ -4864,24 +4864,24 @@ az servicebus queue update --name myQueue \
 - `P7D` = 7 dni
 - `PT1H` = 1 godzina
 - `PT30M` = 30 minut
-- `P1DT12H` = 1 dzien i 12 godzin
+- `P1DT12H` = 1 dzień i 12 godzin
 
-**Ustawienie TTL na pojedynczej wiadomosci (C#):**
+**Ustawienie TTL na pojedynczej wiadomości (C#):**
 
 ```csharp
-// TTL na poziomie wiadomosci (nadpisuje default z queue)
+// TTL na poziomie wiadomości (nadpisuje default z queue)
 var message = new ServiceBusMessage("Important data")
 {
-    TimeToLive = TimeSpan.FromHours(1)  // Wygasnie za 1 godzine
+    TimeToLive = TimeSpan.FromHours(1)  // Wygaśnie za 1 godzinę
 };
 await sender.SendMessageAsync(message);
 
-// Wiadomosc bez TTL (uzyje default z queue)
+// Wiadomość bez TTL (użyje default z queue)
 var message2 = new ServiceBusMessage("Normal data");
 await sender.SendMessageAsync(message2);
 ```
 
-**Sprawdzenie kiedy wiadomosc wygasnie:**
+**Sprawdzenie kiedy wiadomość wygaśnie:**
 
 ```csharp
 processor.ProcessMessageAsync += async args =>
@@ -4899,7 +4899,7 @@ processor.ProcessMessageAsync += async args =>
 };
 ```
 
-> **Tip:** Ustawiaj rozsadne TTL! Zbyt dlugi = zalegajace wiadomosci i koszty. Zbyt krotki = utrata danych.
+> **Tip:** Ustawiaj rozsądne TTL! Zbyt długi = zalegające wiadomości i koszty. Zbyt krótki = utrata danych.
 
 ---
 
@@ -4908,14 +4908,14 @@ processor.ProcessMessageAsync += async args =>
 <img src="assets/servicebus_scheduled.svg">
 
 ```csharp
-// Zaplanuj wiadomosc na pozniej
+// Zaplanuj wiadomość na później
 var scheduledMessage = new ServiceBusMessage("Scheduled reminder");
 long sequenceNumber = await sender.ScheduleMessageAsync(
     scheduledMessage, 
-    DateTimeOffset.UtcNow.AddHours(1)  // Za godzine
+    DateTimeOffset.UtcNow.AddHours(1)  // Za godzinę
 );
 
-// Anuluj zaplanowana wiadomosc
+// Anuluj zaplanowaną wiadomość
 await sender.CancelScheduledMessageAsync(sequenceNumber);
 
 // Lub ustaw ScheduledEnqueueTime
@@ -4948,9 +4948,9 @@ await sender.SendMessageAsync(new ServiceBusMessage("Secure message!"));
 ```
 
 **Wymagane RBAC role:**
-- `Azure Service Bus Data Sender` - wysylanie
+- `Azure Service Bus Data Sender` - wysyłanie
 - `Azure Service Bus Data Receiver` - odbieranie
-- `Azure Service Bus Data Owner` - pelny dostep
+- `Azure Service Bus Data Owner` - pełny dostęp
 
 ---
 
@@ -4975,21 +4975,21 @@ await sender.SendMessageAsync(new ServiceBusMessage("Secure message!"));
 
 | Praktyka | Opis |
 |----------|------|
-| **Reuse clients** | ServiceBusClient i Sender/Processor sa thread-safe |
-| **Use batching** | SendMessagesAsync(batch) dla wielu wiadomosci |
-| **Set appropriate TTL** | Unikaj zalegajacych wiadomosci |
+| **Reuse clients** | ServiceBusClient i Sender/Processor są thread-safe |
+| **Use batching** | SendMessagesAsync(batch) dla wielu wiadomości |
+| **Set appropriate TTL** | Unikaj zalegających wiadomości |
 | **Monitor DLQ** | Regularnie sprawdzaj dead-letter queue |
 | **Use Managed Identity** | Unikaj connection strings w kodzie |
-| **Idempotent handlers** | At-least-once moze dostarczyc duplikaty |
-| **Enable duplicate detection** | Dla krytycznych wiadomosci |
-| **Use Premium for prod** | Jezeli potrzebujesz VNet, Geo-DR |
+| **Idempotent handlers** | At-least-once może dostarczyć duplikaty |
+| **Enable duplicate detection** | Dla krytycznych wiadomości |
+| **Use Premium for prod** | Jeżeli potrzebujesz VNet, Geo-DR |
 
 ---
 
-### Przykladowy scenariusz: Order Processing
+### Przykładowy scenariusz: Order Processing
 
 ```csharp
-// 1. API otrzymuje zamowienie -> publikuje do Topic
+// 1. API otrzymuje zamówienie -> publikuje do Topic
 public class OrderController : ControllerBase
 {
     private readonly ServiceBusSender _sender;
@@ -5013,7 +5013,7 @@ public class OrderController : ControllerBase
     }
 }
 
-// 2. Subscription "InventoryUpdate" (filter: wszystkie zamowienia)
+// 2. Subscription "InventoryUpdate" (filter: wszystkie zamówienia)
 // 3. Subscription "PremiumNotify" (filter: OrderType = 'Premium')
 // 4. Subscription "EuropeAnalytics" (filter: Region = 'Europe')
 ```
@@ -5022,16 +5022,16 @@ public class OrderController : ControllerBase
 
 ### FAQ - Egzamin
 
-| Pytanie | Odpowiedz |
+| Pytanie | Odpowiedź |
 |---------|----------|
-| Czym rozni sie Queue od Topic? | Queue = point-to-point, Topic = pub/sub |
+| Czym różni się Queue od Topic? | Queue = point-to-point, Topic = pub/sub |
 | Czy Basic tier ma Topics? | NIE, tylko Standard/Premium |
-| Co to jest DLQ? | Dead-letter queue dla nieprzetworzymych wiadomosci |
-| Jak zagwarantowac FIFO? | Uzyj Sessions (SessionId) |
+| Co to jest DLQ? | Dead-letter queue dla nieprzetworzonych wiadomości |
+| Jak zagwarantować FIFO? | Użyj Sessions (SessionId) |
 | Max message size w Standard? | 256 KB |
-| Jak filtrowac w subscriptions? | SQL Filter lub Correlation Filter |
+| Jak filtrować w subscriptions? | SQL Filter lub Correlation Filter |
 | Service Bus vs Event Grid? | Service Bus = messaging, Event Grid = event routing |
 
-> **Egzamin:** Service Bus to enterprise message broker obslugujacy queues i topics (pub/sub). Basic tier NIE obsluguje topics. Sessions zapewniaja FIFO. DLQ przechowuje nieprzetworzone wiadomosci.
+> **Egzamin:** Service Bus to enterprise message broker obsługujący queues i topics (pub/sub). Basic tier NIE obsługuje topics. Sessions zapewniają FIFO. DLQ przechowuje nieprzetworzone wiadomości.
 
 ---
