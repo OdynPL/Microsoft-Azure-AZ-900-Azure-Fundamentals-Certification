@@ -1045,7 +1045,7 @@ Reguły filtrują:
 
 <img src="assets/asg_application_security_groups.svg">
 
-ASG (Application Security Groups) to logiczne grupowanie maszyn wirtualnych według ich funkcji w aplikacji. Zamiast pisać reguły NSG z konkretnymi adresami IP, używasz nazw grup aplikacyjnych.
+**ASG (Application Security Groups)** to logiczne grupowanie maszyn wirtualnych według ich funkcji w aplikacji. Zamiast pisać reguły NSG z konkretnymi adresami IP, używasz nazw grup aplikacyjnych.
 
 **Problem bez ASG:**
 ```
