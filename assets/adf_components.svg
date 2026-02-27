@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 260">
+  <!-- Background -->
+  <rect width="550" height="260" fill="#ffffff"/>
+  
+  <!-- Title -->
+  <text x="275" y="25" text-anchor="middle" fill="#333333" font-size="15" font-weight="bold" font-family="Segoe UI, Arial">Data Factory - Komponenty</text>
+  
+  <!-- Pipeline -->
+  <rect x="30" y="50" width="150" height="80" rx="6" fill="#E8F4FD" stroke="#0078D4" stroke-width="2"/>
+  <rect x="30" y="50" width="150" height="25" rx="6" fill="#0078D4"/>
+  <text x="105" y="68" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold" font-family="Segoe UI, Arial">Pipeline</text>
+  <text x="105" y="95" text-anchor="middle" fill="#333333" font-size="9" font-family="Segoe UI, Arial">Kontener na Activities</text>
+  <text x="105" y="110" text-anchor="middle" fill="#333333" font-size="9" font-family="Segoe UI, Arial">Workflow danych</text>
+  
+  <!-- Activity -->
+  <rect x="200" y="50" width="150" height="80" rx="6" fill="#F3EBFA" stroke="#5C2D91" stroke-width="2"/>
+  <rect x="200" y="50" width="150" height="25" rx="6" fill="#5C2D91"/>
+  <text x="275" y="68" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold" font-family="Segoe UI, Arial">Activity</text>
+  <text x="275" y="95" text-anchor="middle" fill="#333333" font-size="9" font-family="Segoe UI, Arial">Jednostka pracy</text>
+  <text x="275" y="110" text-anchor="middle" fill="#333333" font-size="9" font-family="Segoe UI, Arial">Copy, DataFlow, Lookup</text>
+  
+  <!-- Dataset -->
+  <rect x="370" y="50" width="150" height="80" rx="6" fill="#E8F8E8" stroke="#107C10" stroke-width="2"/>
+  <rect x="370" y="50" width="150" height="25" rx="6" fill="#107C10"/>
+  <text x="445" y="68" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold" font-family="Segoe UI, Arial">Dataset</text>
+  <text x="445" y="95" text-anchor="middle" fill="#333333" font-size="9" font-family="Segoe UI, Arial">Wskaznik na dane</text>
+  <text x="445" y="110" text-anchor="middle" fill="#333333" font-size="9" font-family="Segoe UI, Arial">Tabela, plik, folder</text>
+  
+  <!-- Linked Service -->
+  <rect x="30" y="150" width="150" height="80" rx="6" fill="#FFF8E8" stroke="#FFB900" stroke-width="2"/>
+  <rect x="30" y="150" width="150" height="25" rx="6" fill="#FFB900"/>
+  <text x="105" y="168" text-anchor="middle" fill="#333333" font-size="11" font-weight="bold" font-family="Segoe UI, Arial">Linked Service</text>
+  <text x="105" y="195" text-anchor="middle" fill="#333333" font-size="9" font-family="Segoe UI, Arial">Connection string</text>
+  <text x="105" y="210" text-anchor="middle" fill="#333333" font-size="9" font-family="Segoe UI, Arial">do zrodla danych</text>
+  
+  <!-- Trigger -->
+  <rect x="200" y="150" width="150" height="80" rx="6" fill="#FDEAEA" stroke="#D13438" stroke-width="2"/>
+  <rect x="200" y="150" width="150" height="25" rx="6" fill="#D13438"/>
+  <text x="275" y="168" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold" font-family="Segoe UI, Arial">Trigger</text>
+  <text x="275" y="195" text-anchor="middle" fill="#333333" font-size="9" font-family="Segoe UI, Arial">Kiedy uruchomic?</text>
+  <text x="275" y="210" text-anchor="middle" fill="#333333" font-size="9" font-family="Segoe UI, Arial">Schedule, Event, Manual</text>
+  
+  <!-- Integration Runtime -->
+  <rect x="370" y="150" width="150" height="80" rx="6" fill="#F3F3F3" stroke="#666666" stroke-width="2"/>
+  <rect x="370" y="150" width="150" height="25" rx="6" fill="#666666"/>
+  <text x="445" y="168" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold" font-family="Segoe UI, Arial">Integration Runtime</text>
+  <text x="445" y="195" text-anchor="middle" fill="#333333" font-size="9" font-family="Segoe UI, Arial">Silnik wykonawczy</text>
+  <text x="445" y="210" text-anchor="middle" fill="#333333" font-size="9" font-family="Segoe UI, Arial">Azure, Self-hosted, SSIS</text>
+</svg>

@@ -45,6 +45,7 @@
 - [27. Azure Event Grid](#sec-27-event-grid)
 - [28. Azure Logic Apps](#sec-28-logic-apps)
 - [29. Load Balancing w Azure](#sec-29-load-balancing)
+- [30. Azure Data Factory](#sec-30-data-factory)
 
 ---
 
@@ -6379,5 +6380,191 @@ az network traffic-manager endpoint create \
 | Ktory ma najnizsza latencje? | Load Balancer (L4, ultra-low latency) |
 
 > **Egzamin:** Azure Load Balancer = L4 (TCP/UDP), regional, ultra-niska latencja. Application Gateway = L7 (HTTP/S), WAF, SSL offload, URL routing. Traffic Manager = DNS-based, global, failover. Front Door = L7 global + CDN + WAF. Round Robin to domyslny algorytm. Session Affinity = Source IP (LB) lub Cookie (AppGW).
+
+---
+
+<a id="sec-30-data-factory"></a>
+## 30. Azure Data Factory
+
+Azure Data Factory (ADF) to w pelni zarzadzana usluga **ETL/ELT** (Extract-Transform-Load) w chmurze. Pozwala na tworzenie, planowanie i monitorowanie **pipeline'ow danych** - czyli automatycznych przepływow, ktore pobieraja dane z roznych zrodel, przeksztalcaja je i laduja do systemow docelowych.
+
+### Po co to jest?
+
+Wyobraz sobie, ze masz:
+- Dane sprzedazowe w **SQL Server** (on-premises)
+- Dane klientow w **Salesforce** (SaaS)
+- Logi aplikacji w **Azure Blob Storage**
+- Dane produktow w **Oracle Database**
+
+Chcesz to wszystko **polaczyc, oczyscic i zaladowac** do hurtowni danych (Azure Synapse), zeby analitycy mogli tworzyc raporty. Reczne kopiowanie? Niemozliwe. Skrypty? Trudne w utrzymaniu. **Data Factory** robi to automatycznie!
+
+### Jak to dziala?
+
+<img src="assets/adf_overview.svg" alt="Azure Data Factory - ETL/ELT Pipeline overview">
+
+**Przepływ danych w Data Factory:**
+
+1. **EXTRACT (Pobierz)** - Polacz sie ze zrodlami danych (SQL, Oracle, API, pliki)
+2. **TRANSFORM (Przeksztalc)** - Oczyscic, polaczyc, zagregowac dane
+3. **LOAD (Zaladuj)** - Zapisz do systemu docelowego (Synapse, Data Lake, Cosmos DB)
+
+---
+
+### Glowne komponenty
+
+<img src="assets/adf_components.svg" alt="Azure Data Factory - komponenty">
+
+| Komponent | Co to robi? | Przyklad |
+|-----------|-------------|----------|
+| **Pipeline** | Kontener na kroki (activities) | "Pipeline_Sprzedaz_Dzienna" |
+| **Activity** | Pojedyncza operacja | Copy Data, Data Flow, Lookup |
+| **Dataset** | Wskaznik na dane | Tabela SQL, plik CSV, folder |
+| **Linked Service** | Polaczenie do zrodla | Connection string do SQL Server |
+| **Trigger** | Kiedy uruchomic? | Co godzine, po uploadzoe pliku |
+| **Integration Runtime** | Gdzie wykonac? | Azure (cloud), Self-hosted (on-prem) |
+
+---
+
+### Typy Activities (operacji)
+
+| Typ | Opis | Przyklady |
+|-----|------|----------|
+| **Data Movement** | Kopiowanie danych | Copy Activity |
+| **Data Transformation** | Przeksztalcenia | Data Flow, Databricks, HDInsight |
+| **Control Flow** | Logika przepływu | If, ForEach, Until, Wait |
+| **External** | Wywolanie zewnetrzne | Azure Function, Web Activity, Stored Procedure |
+
+---
+
+### Integration Runtime - gdzie sie wykonuje?
+
+| Typ IR | Uzycie | Gdzie dziala |
+|--------|--------|---------------|
+| **Azure IR** | Cloud-to-cloud | W Azure (domyslny) |
+| **Self-hosted IR** | Cloud-to-on-premises | Na Twojej maszynie (VM/serwer) |
+| **Azure-SSIS IR** | Pakiety SSIS | Azure (dla migracji SSIS) |
+
+**Kiedy Self-hosted IR?**
+- Dane w sieci firmowej (on-premises)
+- Firewall blokuje dostep z internetu
+- Dane w prywatnej sieci VNet
+
+---
+
+### Przyklady uzycia
+
+**1. Codzienna synchronizacja sprzedazy:**
+```
+Trigger: Codziennie o 2:00
+Pipeline:
+  1. Copy z SQL Server (on-prem) do Blob Storage
+  2. Data Flow - agregacja po regionach
+  3. Copy do Azure Synapse
+  4. Send email z raportem
+```
+
+**2. Event-driven processing:**
+```
+Trigger: Nowy plik w Blob Storage
+Pipeline:
+  1. Lookup - sprawdz format pliku
+  2. If JSON: Parsuj i laduj do Cosmos DB
+  3. If CSV: Przeksztalc i laduj do SQL Database
+  4. Archive - przenies plik do archiwum
+```
+
+---
+
+### Tworzenie Data Factory - CLI
+
+```bash
+# Utworz Data Factory
+az datafactory create \
+  --resource-group myRG \
+  --factory-name myDataFactory \
+  --location westeurope
+
+# Utworz Linked Service (polaczenie do Blob Storage)
+az datafactory linked-service create \
+  --resource-group myRG \
+  --factory-name myDataFactory \
+  --linked-service-name AzureBlobStorage \
+  --properties '{"type":"AzureBlobStorage","typeProperties":{"connectionString":"DefaultEndpointsProtocol=https;AccountName=mystorageaccount;AccountKey=xxx"}}'
+
+# Uruchom pipeline
+az datafactory pipeline create-run \
+  --resource-group myRG \
+  --factory-name myDataFactory \
+  --pipeline-name MyPipeline
+```
+
+---
+
+### Mapping Data Flow vs Copy Activity
+
+| Cecha | Copy Activity | Mapping Data Flow |
+|-------|---------------|-------------------|
+| **Cel** | Proste kopiowanie | Zlozone transformacje |
+| **Transformacje** | Brak (1:1 copy) | Join, Aggregate, Pivot, Filter |
+| **Wydajnosc** | Bardzo szybkie | Wolniejsze (Spark pod spodem) |
+| **Koszt** | Nizszy | Wyzszy |
+| **Kiedy?** | Migracja danych | ETL z logika biznesowa |
+
+---
+
+### Cennik (uproszczony)
+
+| Skladnik | Cena (przyklad) |
+|----------|----------------|
+| **Orkiestracja** | ~$1 / 1000 uruchomien |
+| **Data Movement** | ~$0.25 / DIU-godzina |
+| **Data Flow** | ~$0.27 / vCore-godzina |
+| **Self-hosted IR** | Bezplatne (Twoj hardware) |
+
+> **DIU** = Data Integration Unit - jednostka mocy obliczeniowej dla Copy Activity
+
+---
+
+### ADF vs inne narzedzia
+
+| Cecha | Data Factory | Logic Apps | Azure Synapse Pipelines |
+|-------|--------------|------------|------------------------|
+| **Fokus** | ETL/ELT danych | Workflow/integracja | Analytics + ETL |
+| **Transformacje** | Data Flow (Spark) | Ograniczone | Data Flow (Spark) |
+| **Kod** | No-code / Low-code | No-code | No-code / SQL / Spark |
+| **90+ connectorow** | Tak | 450+ | Tak |
+| **Kiedy?** | Pipeline danych | Automatyzacja procesow | Kompleksowa analityka |
+
+---
+
+### Best Practices
+
+| Praktyka | Opis |
+|----------|------|
+| **Parametryzuj pipeline'y** | Unikaj hardcodowania wartosci |
+| **Uzywaj Linked Service z Key Vault** | Nie przechowuj hasel w ADF |
+| **Monitoruj uruchomienia** | Azure Monitor + alerty |
+| **Partycjonuj dane** | Dla lepszej wydajnosci Copy |
+| **Testuj na malych danych** | Debug mode przed produkcja |
+| **Git integration** | Wersjonowanie pipeline'ow |
+
+---
+
+### FAQ - Egzamin
+
+| Pytanie | Odpowiedz |
+|---------|----------|
+| Co to jest Azure Data Factory? | Serverless ETL/ELT service w chmurze |
+| Do czego sluzy ADF? | Integracja i transformacja danych z roznych zrodel |
+| Co to jest Pipeline? | Kontener na Activities (kroki) |
+| Co to jest Activity? | Pojedyncza operacja (Copy, DataFlow, Lookup) |
+| Co to jest Linked Service? | Connection string do zrodla danych |
+| Czym jest Integration Runtime? | Silnik wykonawczy (Azure, Self-hosted, SSIS) |
+| Kiedy Self-hosted IR? | Dane on-premises lub w prywatnej sieci |
+| ADF vs Synapse Pipelines? | Synapse = ADF + Analytics w jednym |
+| Ile connectorow ma ADF? | 90+ wbudowanych |
+| Czy ADF jest serverless? | TAK - pay-per-use |
+
+> **Egzamin:** Azure Data Factory to serverless ETL/ELT service do integracji danych. Pipeline = kontener na Activities. Activity = operacja (Copy, Data Flow). Linked Service = polaczenie do zrodla. Integration Runtime = silnik wykonawczy (Azure dla cloud, Self-hosted dla on-premises). 90+ wbudowanych connectorow. Data Flow uzywa Apache Spark do transformacji.
 
 ---
