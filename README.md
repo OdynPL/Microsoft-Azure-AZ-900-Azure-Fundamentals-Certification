@@ -30,6 +30,7 @@
 - [22. Last-minute cram (pulapki + porownania)](#sec-22-last-minute-cram)
 - [23. Azure Key Vault](#sec-23-azure-key-vault)
 - [24. Debugowanie aplikacji Azure](#sec-24-debugging)
+- [25. Azure Service Bus](#sec-25-service-bus)
 
 ---
 
@@ -4470,5 +4471,480 @@ az monitor scheduled-query create --name Http5xxAlert \
 | **Sampling** | Dla wysokiego ruchu (redukuje koszty) |
 
 > **Egzamin:** Application Insights to glowne narzedzie APM w Azure. Log Analytics umozliwia zapytania KQL. Remote debugging NIE powinno byc uzywane na produkcji.
+
+---
+
+<a id="sec-25-service-bus"></a>
+## 25. Azure Service Bus
+
+<img src="assets/servicebus_queue_vs_topic.svg">
+
+### Czym jest Azure Service Bus?
+
+Azure Service Bus to w pelni zarzadzana usluga **enterprise message broker** z kolejkami (queues) i tematami pub/sub (topics). Sluzy do **rozlaczania aplikacji** i umozliwia niezawodna, asynchroniczna komunikacje miedzy komponentami.
+
+**Kluczowe cechy:**
+- Message queuing (FIFO)
+- Publish/Subscribe (Topics + Subscriptions)
+- At-least-once / At-most-once delivery
+- Dead-letter queue (DLQ)
+- Sessions (ordered processing)
+- Scheduled messages
+- Message deferral
+- Duplicate detection
+- Auto-forwarding
+
+---
+
+### Queue vs Topic - kiedy uzyc?
+
+| Scenariusz | Uzyj | Dlaczego |
+|------------|------|----------|
+| 1 sender -> 1 receiver | **Queue** | Point-to-point |
+| Load balancing miedzy workerami | **Queue** | Competing consumers |
+| 1 sender -> N receivers | **Topic** | Broadcast |
+| Rozne subskrypcje z filtrami | **Topic** | Message filtering |
+| Event-driven architecture | **Topic** | Pub/Sub pattern |
+| Background job processing | **Queue** | Work queue |
+
+---
+
+### Tiers - porownanie
+
+<img src="assets/servicebus_tiers.svg">
+
+| Cecha | Basic | Standard | Premium |
+|-------|-------|----------|---------|
+| **Queues** | Tak | Tak | Tak |
+| **Topics** | NIE | Tak | Tak |
+| **Max message size** | 256 KB | 256 KB | 100 MB |
+| **Sessions** | NIE | Tak | Tak |
+| **Transactions** | NIE | Tak | Tak |
+| **Duplicate detection** | NIE | Tak | Tak |
+| **Geo-DR** | NIE | NIE | Tak |
+| **VNet** | NIE | NIE | Tak |
+| **BYOK encryption** | NIE | NIE | Tak |
+| **Dedicated resources** | NIE | NIE | Tak |
+| **Use case** | Dev/Test | Production | Enterprise |
+
+> **Egzamin:** Basic tier NIE obsluguje Topics! Standard wystarcza dla wiekszosci scenariuszy produkcyjnych.
+
+---
+
+### Tworzenie Service Bus - Azure CLI
+
+```bash
+# Utworz namespace (kontener dla queues/topics)
+az servicebus namespace create --name myServiceBusNS \
+    --resource-group myRG \
+    --location westeurope \
+    --sku Standard
+
+# Utworz queue
+az servicebus queue create --name myQueue \
+    --namespace-name myServiceBusNS \
+    --resource-group myRG \
+    --max-size 1024 \
+    --default-message-time-to-live P14D \
+    --lock-duration PT1M \
+    --dead-lettering-on-message-expiration true
+
+# Utworz topic
+az servicebus topic create --name myTopic \
+    --namespace-name myServiceBusNS \
+    --resource-group myRG \
+    --max-size 1024
+
+# Utworz subscription dla topic
+az servicebus topic subscription create --name mySubscription \
+    --topic-name myTopic \
+    --namespace-name myServiceBusNS \
+    --resource-group myRG \
+    --max-delivery-count 10
+
+# Pobierz connection string
+az servicebus namespace authorization-rule keys list \
+    --name RootManageSharedAccessKey \
+    --namespace-name myServiceBusNS \
+    --resource-group myRG \
+    --query primaryConnectionString -o tsv
+```
+
+---
+
+### C# - Wysylanie wiadomosci do Queue
+
+```csharp
+using Azure.Messaging.ServiceBus;
+
+// Connection string z Azure Portal lub CLI
+string connectionString = "Endpoint=sb://myServiceBusNS.servicebus.windows.net/;SharedAccessKeyName=...";
+string queueName = "myQueue";
+
+// Utworz klienta (thread-safe, reuse!)
+await using var client = new ServiceBusClient(connectionString);
+
+// Utworz sender dla queue
+await using var sender = client.CreateSender(queueName);
+
+// Wyslij pojedyncza wiadomosc
+var message = new ServiceBusMessage("Hello Service Bus!");
+Message.ApplicationProperties["Priority"] = "High";
+message.ContentType = "application/json";
+await sender.SendMessageAsync(message);
+
+// Wyslij batch (wydajniej dla wielu wiadomosci)
+using ServiceBusMessageBatch batch = await sender.CreateMessageBatchAsync();
+batch.TryAddMessage(new ServiceBusMessage("Message 1"));
+batch.TryAddMessage(new ServiceBusMessage("Message 2"));
+batch.TryAddMessage(new ServiceBusMessage("Message 3"));
+await sender.SendMessagesAsync(batch);
+
+Console.WriteLine("Messages sent!");
+```
+
+---
+
+### C# - Odbieranie wiadomosci z Queue
+
+```csharp
+using Azure.Messaging.ServiceBus;
+
+string connectionString = "Endpoint=sb://...";
+string queueName = "myQueue";
+
+await using var client = new ServiceBusClient(connectionString);
+
+// Sposob 1: ServiceBusProcessor (zalecany dla produkcji)
+var processor = client.CreateProcessor(queueName, new ServiceBusProcessorOptions
+{
+    AutoCompleteMessages = false,  // Reczne Complete/Abandon
+    MaxConcurrentCalls = 2,        // Ile wiadomosci naraz
+    PrefetchCount = 10             // Pre-fetch dla wydajnosci
+});
+
+processor.ProcessMessageAsync += async args =>
+{
+    string body = args.Message.Body.ToString();
+    Console.WriteLine($"Received: {body}");
+    
+    try
+    {
+        // Przetworz wiadomosc...
+        await ProcessMessageAsync(body);
+        
+        // Oznacz jako przetworzona (usuwa z queue)
+        await args.CompleteMessageAsync(args.Message);
+    }
+    catch (Exception ex)
+    {
+        // Zwroc do queue (lub DLQ po max retries)
+        await args.AbandonMessageAsync(args.Message);
+    }
+};
+
+processor.ProcessErrorAsync += args =>
+{
+    Console.WriteLine($"Error: {args.Exception.Message}");
+    return Task.CompletedTask;
+};
+
+await processor.StartProcessingAsync();
+Console.WriteLine("Press any key to stop...");
+Console.ReadKey();
+await processor.StopProcessingAsync();
+```
+
+---
+
+### C# - Publikowanie do Topic
+
+```csharp
+using Azure.Messaging.ServiceBus;
+
+string connectionString = "Endpoint=sb://...";
+string topicName = "myTopic";
+
+await using var client = new ServiceBusClient(connectionString);
+await using var sender = client.CreateSender(topicName);
+
+// Wyslij wiadomosc z properties (do filtrowania)
+var orderMessage = new ServiceBusMessage(BinaryData.FromObjectAsJson(new 
+{
+    OrderId = 12345,
+    CustomerId = "C001",
+    TotalAmount = 299.99
+}));
+
+// Application properties uzywane do filtrowania w subscriptions
+orderMessage.ApplicationProperties["OrderType"] = "Premium";
+orderMessage.ApplicationProperties["Region"] = "Europe";
+orderMessage.Subject = "NewOrder";  // Label
+orderMessage.ContentType = "application/json";
+
+await sender.SendMessageAsync(orderMessage);
+Console.WriteLine("Order published to topic!");
+```
+
+---
+
+### C# - Odbieranie z Subscription (z filtrem)
+
+```csharp
+using Azure.Messaging.ServiceBus;
+using Azure.Messaging.ServiceBus.Administration;
+
+string connectionString = "Endpoint=sb://...";
+string topicName = "myTopic";
+string subscriptionName = "PremiumOrders";
+
+// Opcjonalnie: utworz subscription z filtrem (lub w CLI/Portal)
+var adminClient = new ServiceBusAdministrationClient(connectionString);
+
+if (!await adminClient.SubscriptionExistsAsync(topicName, subscriptionName))
+{
+    await adminClient.CreateSubscriptionAsync(
+        new CreateSubscriptionOptions(topicName, subscriptionName),
+        new CreateRuleOptions("PremiumFilter", new SqlRuleFilter("OrderType = 'Premium'"))
+    );
+}
+
+// Odbieraj wiadomosci z subscription
+await using var client = new ServiceBusClient(connectionString);
+var processor = client.CreateProcessor(topicName, subscriptionName);
+
+processor.ProcessMessageAsync += async args =>
+{
+    var order = args.Message.Body.ToObjectFromJson<dynamic>();
+    Console.WriteLine($"Premium order received: {order.OrderId}");
+    await args.CompleteMessageAsync(args.Message);
+};
+
+processor.ProcessErrorAsync += args =>
+{
+    Console.WriteLine($"Error: {args.Exception}");
+    return Task.CompletedTask;
+};
+
+await processor.StartProcessingAsync();
+```
+
+---
+
+### Subscription Filters
+
+Filtrowanie wiadomosci na poziomie subscription:
+
+| Typ filtra | Opis | Przyklad |
+|------------|------|----------|
+| **SQL Filter** | SQL-like WHERE | `OrderType = 'Premium' AND Amount > 100` |
+| **Correlation Filter** | Property matching | Match on MessageId, Subject, To |
+| **True Filter** | Wszystkie wiadomosci | Default (brak filtra) |
+| **False Filter** | Zadne wiadomosci | Blokuje subscription |
+
+```csharp
+// SQL Filter
+new SqlRuleFilter("Region = 'Europe' AND Priority > 5")
+
+// Correlation Filter (wydajniejszy)
+new CorrelationRuleFilter
+{
+    Subject = "NewOrder",
+    ApplicationProperties = { { "OrderType", "Premium" } }
+}
+```
+
+---
+
+### Dead-Letter Queue (DLQ)
+
+Wiadomosci trafiaja do DLQ gdy:
+- Przekroczona liczba prob dostarczenia (MaxDeliveryCount)
+- Wiadomosc wygasla (TTL)
+- Recznie przeniesiona przez aplikacje
+- Filter evaluation exception
+
+```csharp
+// Odbieranie z DLQ
+var dlqProcessor = client.CreateProcessor(
+    queueName, 
+    new ServiceBusProcessorOptions { SubQueue = SubQueue.DeadLetter }
+);
+
+dlqProcessor.ProcessMessageAsync += async args =>
+{
+    // Sprawdz powod DLQ
+    var reason = args.Message.DeadLetterReason;
+    var description = args.Message.DeadLetterErrorDescription;
+    
+    Console.WriteLine($"DLQ Message: {args.Message.Body}");
+    Console.WriteLine($"Reason: {reason}, Description: {description}");
+    
+    // Napraw i ponownie wyslij lub zloguj
+    await args.CompleteMessageAsync(args.Message);
+};
+```
+
+---
+
+### Sessions (Ordered Processing)
+
+Sessions gwarantuja FIFO processing dla wiadomosci z tym samym SessionId:
+
+```csharp
+// Wysylanie z SessionId
+var message = new ServiceBusMessage("Order item 1")
+{
+    SessionId = "Order-12345"  // Wszystkie items tego zamowienia
+};
+await sender.SendMessageAsync(message);
+
+// Odbieranie session messages
+var sessionProcessor = client.CreateSessionProcessor(queueName, 
+    new ServiceBusSessionProcessorOptions
+    {
+        MaxConcurrentSessions = 5,
+        SessionIdleTimeout = TimeSpan.FromMinutes(1)
+    });
+
+sessionProcessor.ProcessMessageAsync += async args =>
+{
+    // args.SessionId - ID sesji
+    // args.GetSessionStateAsync() - stan sesji
+    Console.WriteLine($"Session: {args.SessionId}, Message: {args.Message.Body}");
+    await args.CompleteMessageAsync(args.Message);
+};
+```
+
+---
+
+### Scheduled Messages
+
+```csharp
+// Zaplanuj wiadomosc na pozniej
+var scheduledMessage = new ServiceBusMessage("Scheduled reminder");
+long sequenceNumber = await sender.ScheduleMessageAsync(
+    scheduledMessage, 
+    DateTimeOffset.UtcNow.AddHours(1)  // Za godzine
+);
+
+// Anuluj zaplanowana wiadomosc
+await sender.CancelScheduledMessageAsync(sequenceNumber);
+
+// Lub ustaw ScheduledEnqueueTime
+var message = new ServiceBusMessage("Later...")
+{
+    ScheduledEnqueueTime = DateTimeOffset.UtcNow.AddMinutes(30)
+};
+await sender.SendMessageAsync(message);
+```
+
+---
+
+### Managed Identity (bez connection string)
+
+```csharp
+using Azure.Identity;
+using Azure.Messaging.ServiceBus;
+
+string fullyQualifiedNamespace = "myServiceBusNS.servicebus.windows.net";
+string queueName = "myQueue";
+
+// Managed Identity (App Service, Functions, AKS)
+await using var client = new ServiceBusClient(
+    fullyQualifiedNamespace, 
+    new DefaultAzureCredential()
+);
+
+await using var sender = client.CreateSender(queueName);
+await sender.SendMessageAsync(new ServiceBusMessage("Secure message!"));
+```
+
+**Wymagane RBAC role:**
+- `Azure Service Bus Data Sender` - wysylanie
+- `Azure Service Bus Data Receiver` - odbieranie
+- `Azure Service Bus Data Owner` - pelny dostep
+
+---
+
+### Service Bus vs Storage Queue vs Event Grid vs Event Hubs
+
+| Cecha | Service Bus | Storage Queue | Event Grid | Event Hubs |
+|-------|-------------|---------------|------------|------------|
+| **Typ** | Message broker | Simple queue | Event routing | Event streaming |
+| **Pattern** | Queue + Pub/Sub | Queue only | Pub/Sub | Stream |
+| **Max size** | 256KB/100MB | 64 KB | 1 MB | 1 MB |
+| **Ordering** | FIFO (Sessions) | NIE | NIE | Partition |
+| **DLQ** | Tak | NIE | Tak | NIE |
+| **Throughput** | High | Medium | Very high | Very high |
+| **Use case** | Enterprise | Simple tasks | Events | Telemetry |
+| **Cena** | Higher | Low | Pay per event | Medium |
+
+> **Egzamin:** Service Bus to enterprise message broker. Storage Queue to prosta, tania kolejka. Event Grid to event routing (reactive). Event Hubs to streaming (big data).
+
+---
+
+### Best Practices
+
+| Praktyka | Opis |
+|----------|------|
+| **Reuse clients** | ServiceBusClient i Sender/Processor sa thread-safe |
+| **Use batching** | SendMessagesAsync(batch) dla wielu wiadomosci |
+| **Set appropriate TTL** | Unikaj zalegajacych wiadomosci |
+| **Monitor DLQ** | Regularnie sprawdzaj dead-letter queue |
+| **Use Managed Identity** | Unikaj connection strings w kodzie |
+| **Idempotent handlers** | At-least-once moze dostarczyc duplikaty |
+| **Enable duplicate detection** | Dla krytycznych wiadomosci |
+| **Use Premium for prod** | Jezeli potrzebujesz VNet, Geo-DR |
+
+---
+
+### Przykladowy scenariusz: Order Processing
+
+```csharp
+// 1. API otrzymuje zamowienie -> publikuje do Topic
+public class OrderController : ControllerBase
+{
+    private readonly ServiceBusSender _sender;
+    
+    [HttpPost]
+    public async Task<IActionResult> CreateOrder(Order order)
+    {
+        var message = new ServiceBusMessage(BinaryData.FromObjectAsJson(order))
+        {
+            MessageId = order.Id.ToString(),  // Dla duplicate detection
+            Subject = "NewOrder",
+            ApplicationProperties = 
+            {
+                { "OrderType", order.IsPremium ? "Premium" : "Standard" },
+                { "Region", order.Region }
+            }
+        };
+        
+        await _sender.SendMessageAsync(message);
+        return Accepted();
+    }
+}
+
+// 2. Subscription "InventoryUpdate" (filter: wszystkie zamowienia)
+// 3. Subscription "PremiumNotify" (filter: OrderType = 'Premium')
+// 4. Subscription "EuropeAnalytics" (filter: Region = 'Europe')
+```
+
+---
+
+### FAQ - Egzamin
+
+| Pytanie | Odpowiedz |
+|---------|----------|
+| Czym rozni sie Queue od Topic? | Queue = point-to-point, Topic = pub/sub |
+| Czy Basic tier ma Topics? | NIE, tylko Standard/Premium |
+| Co to jest DLQ? | Dead-letter queue dla nieprzetworzymych wiadomosci |
+| Jak zagwarantowac FIFO? | Uzyj Sessions (SessionId) |
+| Max message size w Standard? | 256 KB |
+| Jak filtrowac w subscriptions? | SQL Filter lub Correlation Filter |
+| Service Bus vs Event Grid? | Service Bus = messaging, Event Grid = event routing |
+
+> **Egzamin:** Service Bus to enterprise message broker obslugujacy queues i topics (pub/sub). Basic tier NIE obsluguje topics. Sessions zapewniaja FIFO. DLQ przechowuje nieprzetworzone wiadomosci.
 
 ---

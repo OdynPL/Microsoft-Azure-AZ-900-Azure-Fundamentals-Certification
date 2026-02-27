@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 260">
+  <defs>
+    <linearGradient id="basicGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e8449;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#27ae60;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="standardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a5276;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2980b9;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="premiumGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7d3c98;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#9b59b6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <rect width="550" height="260" fill="#f8f9fa"/>
+  <text x="275" y="25" text-anchor="middle" font-family="Segoe UI, Arial" font-size="16" font-weight="600" fill="#2c3e50">Azure Service Bus - Tiers i Features</text>
+  
+  <!-- Basic -->
+  <rect x="20" y="50" width="160" height="190" rx="8" fill="url(#basicGrad)"/>
+  <text x="100" y="75" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="white">BASIC</text>
+  
+  <rect x="30" y="90" width="140" height="24" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="100" y="106" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">Queues only</text>
+  
+  <rect x="30" y="120" width="140" height="24" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="100" y="136" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">256 KB message</text>
+  
+  <rect x="30" y="150" width="140" height="24" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="100" y="166" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">NO Topics</text>
+  
+  <rect x="30" y="180" width="140" height="24" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="100" y="196" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">NO Sessions</text>
+  
+  <text x="100" y="228" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">Dev/Test only</text>
+  
+  <!-- Standard -->
+  <rect x="195" y="50" width="160" height="190" rx="8" fill="url(#standardGrad)"/>
+  <text x="275" y="75" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="white">STANDARD</text>
+  
+  <rect x="205" y="90" width="140" height="24" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="275" y="106" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">Queues + Topics</text>
+  
+  <rect x="205" y="120" width="140" height="24" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="275" y="136" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">256 KB message</text>
+  
+  <rect x="205" y="150" width="140" height="24" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="275" y="166" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">Sessions + DLQ</text>
+  
+  <rect x="205" y="180" width="140" height="24" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="275" y="196" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">Duplicate detection</text>
+  
+  <text x="275" y="228" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">Production workloads</text>
+  
+  <!-- Premium -->
+  <rect x="370" y="50" width="160" height="190" rx="8" fill="url(#premiumGrad)"/>
+  <text x="450" y="75" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="white">PREMIUM</text>
+  
+  <rect x="380" y="90" width="140" height="24" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="450" y="106" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">100 MB message</text>
+  
+  <rect x="380" y="120" width="140" height="24" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="450" y="136" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">Dedicated resources</text>
+  
+  <rect x="380" y="150" width="140" height="24" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="450" y="166" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">VNet integration</text>
+  
+  <rect x="380" y="180" width="140" height="24" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="450" y="196" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">Geo-DR, BYOK</text>
+  
+  <text x="450" y="228" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">Enterprise / Mission-critical</text>
+</svg>
