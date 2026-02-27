@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 300">
+  <defs>
+    <linearGradient id="prodGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#27ae60;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2ecc71;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="stagingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f39c12;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f1c40f;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="swapGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#0078D4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#50E6FF;stop-opacity:1" />
+    </linearGradient>
+    <marker id="arrowRight" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#0078D4"/>
+    </marker>
+    <marker id="arrowLeft" markerWidth="10" markerHeight="7" refX="1" refY="3.5" orient="auto">
+      <polygon points="10 0, 0 3.5, 10 7" fill="#0078D4"/>
+    </marker>
+  </defs>
+  
+  <rect width="600" height="300" fill="#f8f9fa"/>
+  <text x="300" y="25" text-anchor="middle" font-family="Segoe UI, Arial" font-size="16" font-weight="600" fill="#2c3e50">Deployment Slots - Zero Downtime Deployment</text>
+  
+  <!-- Production Slot -->
+  <rect x="50" y="55" width="180" height="160" rx="10" fill="url(#prodGrad)"/>
+  <text x="140" y="85" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="600" fill="white">🟢 PRODUCTION</text>
+  
+  <rect x="65" y="100" width="150" height="28" rx="4" fill="white" fill-opacity="0.25"/>
+  <text x="140" y="118" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="white">v1.0.0 (current)</text>
+  
+  <rect x="65" y="135" width="150" height="28" rx="4" fill="white" fill-opacity="0.2"/>
+  <text x="140" y="153" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">myapp.azurewebsites.net</text>
+  
+  <rect x="65" y="170" width="150" height="28" rx="4" fill="white" fill-opacity="0.2"/>
+  <text x="140" y="188" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">100% traffic</text>
+  
+  <!-- Staging Slot -->
+  <rect x="370" y="55" width="180" height="160" rx="10" fill="url(#stagingGrad)"/>
+  <text x="460" y="85" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="600" fill="white">🟡 STAGING</text>
+  
+  <rect x="385" y="100" width="150" height="28" rx="4" fill="white" fill-opacity="0.25"/>
+  <text x="460" y="118" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="white">v2.0.0 (new)</text>
+  
+  <rect x="385" y="135" width="150" height="28" rx="4" fill="white" fill-opacity="0.2"/>
+  <text x="460" y="153" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">myapp-staging.azurewebsites.net</text>
+  
+  <rect x="385" y="170" width="150" height="28" rx="4" fill="white" fill-opacity="0.2"/>
+  <text x="460" y="188" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">Testing only</text>
+  
+  <!-- Swap arrows -->
+  <line x1="240" y1="120" x2="360" y2="120" stroke="#0078D4" stroke-width="3" marker-end="url(#arrowRight)"/>
+  <line x1="360" y1="150" x2="240" y2="150" stroke="#0078D4" stroke-width="3" marker-end="url(#arrowLeft)"/>
+  
+  <!-- SWAP label -->
+  <rect x="260" y="125" width="80" height="25" rx="12" fill="url(#swapGrad)"/>
+  <text x="300" y="142" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" font-weight="600" fill="white">SWAP</text>
+  
+  <!-- Process steps -->
+  <rect x="50" y="230" width="500" height="60" rx="8" fill="#e8f4fd" stroke="#0078D4" stroke-width="1"/>
+  <text x="300" y="250" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" font-weight="600" fill="#0078D4">Proces SWAP (sekundy, bez przestoju)</text>
+  
+  <text x="80" y="273" font-family="Segoe UI, Arial" font-size="9" fill="#2c3e50">1. Warm up staging</text>
+  <text x="195" y="273" font-family="Segoe UI, Arial" font-size="9" fill="#2c3e50">2. Swap IP routing</text>
+  <text x="320" y="273" font-family="Segoe UI, Arial" font-size="9" fill="#2c3e50">3. Old prod → backup</text>
+  <text x="455" y="273" font-family="Segoe UI, Arial" font-size="9" fill="#2c3e50">4. Rollback = re-swap</text>
+</svg>

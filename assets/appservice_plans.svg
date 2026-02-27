@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 340">
+  <defs>
+    <linearGradient id="freeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6c757d;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#adb5bd;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="basicGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e8449;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#27ae60;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="standardGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a5276;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2980b9;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="premiumGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7d3c98;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#9b59b6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="isolatedGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#c0392b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e74c3c;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <rect width="700" height="340" fill="#f8f9fa"/>
+  <text x="350" y="25" text-anchor="middle" font-family="Segoe UI, Arial" font-size="16" font-weight="600" fill="#2c3e50">App Service Plans - Porównanie</text>
+  
+  <!-- DEV/TEST label -->
+  <rect x="20" y="38" width="240" height="20" rx="3" fill="#f39c12"/>
+  <text x="140" y="52" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="white">DEV / TEST</text>
+  
+  <!-- PRODUCTION label -->
+  <rect x="270" y="38" width="300" height="20" rx="3" fill="#27ae60"/>
+  <text x="420" y="52" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="white">PRODUCTION</text>
+  
+  <!-- ISOLATED label -->
+  <rect x="580" y="38" width="100" height="20" rx="3" fill="#c0392b"/>
+  <text x="630" y="52" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="white">ISOLATED</text>
+  
+  <!-- Free -->
+  <rect x="20" y="65" width="110" height="260" rx="8" fill="url(#freeGrad)"/>
+  <text x="75" y="90" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" font-weight="600" fill="white">FREE (F1)</text>
+  <rect x="28" y="100" width="94" height="22" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="75" y="115" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">60 min CPU/dzień</text>
+  <rect x="28" y="128" width="94" height="22" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="75" y="143" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">1 GB storage</text>
+  <rect x="28" y="156" width="94" height="22" rx="3" fill="white" fill-opacity="0.15"/>
+  <text x="75" y="171" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">❌ Custom domain</text>
+  <rect x="28" y="184" width="94" height="22" rx="3" fill="white" fill-opacity="0.15"/>
+  <text x="75" y="199" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">❌ SSL</text>
+  <rect x="28" y="212" width="94" height="22" rx="3" fill="white" fill-opacity="0.15"/>
+  <text x="75" y="227" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">❌ Slots</text>
+  <rect x="28" y="240" width="94" height="22" rx="3" fill="white" fill-opacity="0.15"/>
+  <text x="75" y="255" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">❌ Auto-scale</text>
+  <text x="75" y="305" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="white">0 PLN</text>
+  
+  <!-- Shared -->
+  <rect x="140" y="65" width="110" height="260" rx="8" fill="url(#freeGrad)"/>
+  <text x="195" y="90" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" font-weight="600" fill="white">SHARED (D1)</text>
+  <rect x="148" y="100" width="94" height="22" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="195" y="115" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">240 min CPU/dzień</text>
+  <rect x="148" y="128" width="94" height="22" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="195" y="143" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">1 GB storage</text>
+  <rect x="148" y="156" width="94" height="22" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="195" y="171" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">✅ Custom domain</text>
+  <rect x="148" y="184" width="94" height="22" rx="3" fill="white" fill-opacity="0.15"/>
+  <text x="195" y="199" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">❌ SSL</text>
+  <rect x="148" y="212" width="94" height="22" rx="3" fill="white" fill-opacity="0.15"/>
+  <text x="195" y="227" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">❌ Slots</text>
+  <rect x="148" y="240" width="94" height="22" rx="3" fill="white" fill-opacity="0.15"/>
+  <text x="195" y="255" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">❌ Auto-scale</text>
+  <text x="195" y="305" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="white">~40 PLN</text>
+  
+  <!-- Basic -->
+  <rect x="270" y="65" width="110" height="260" rx="8" fill="url(#basicGrad2)"/>
+  <text x="325" y="90" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" font-weight="600" fill="white">BASIC (B1)</text>
+  <rect x="278" y="100" width="94" height="22" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="325" y="115" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">Dedykowana VM</text>
+  <rect x="278" y="128" width="94" height="22" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="325" y="143" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">10 GB storage</text>
+  <rect x="278" y="156" width="94" height="22" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="325" y="171" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">✅ Custom domain</text>
+  <rect x="278" y="184" width="94" height="22" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="325" y="199" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">✅ SSL</text>
+  <rect x="278" y="212" width="94" height="22" rx="3" fill="white" fill-opacity="0.15"/>
+  <text x="325" y="227" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">❌ Slots</text>
+  <rect x="278" y="240" width="94" height="22" rx="3" fill="white" fill-opacity="0.15"/>
+  <text x="325" y="255" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">3 instancje max</text>
+  <text x="325" y="305" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="white">~220 PLN</text>
+  
+  <!-- Standard -->
+  <rect x="390" y="65" width="110" height="260" rx="8" fill="url(#standardGrad2)"/>
+  <text x="445" y="90" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" font-weight="600" fill="white">STANDARD (S1)</text>
+  <rect x="398" y="100" width="94" height="22" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="445" y="115" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">Dedykowana VM</text>
+  <rect x="398" y="128" width="94" height="22" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="445" y="143" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">50 GB storage</text>
+  <rect x="398" y="156" width="94" height="22" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="445" y="171" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">✅ 5 Slots</text>
+  <rect x="398" y="184" width="94" height="22" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="445" y="199" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">✅ Auto-scale</text>
+  <rect x="398" y="212" width="94" height="22" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="445" y="227" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">10 instancji max</text>
+  <rect x="398" y="240" width="94" height="22" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="445" y="255" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">Traffic Manager</text>
+  <text x="445" y="305" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="white">~280 PLN</text>
+  
+  <!-- Premium -->
+  <rect x="510" y="65" width="110" height="260" rx="8" fill="url(#premiumGrad2)"/>
+  <text x="565" y="90" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" font-weight="600" fill="white">PREMIUM (P1v3)</text>
+  <rect x="518" y="100" width="94" height="22" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="565" y="115" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">Szybsza VM</text>
+  <rect x="518" y="128" width="94" height="22" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="565" y="143" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">250 GB storage</text>
+  <rect x="518" y="156" width="94" height="22" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="565" y="171" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">✅ 20 Slots</text>
+  <rect x="518" y="184" width="94" height="22" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="565" y="199" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">✅ VNet Integration</text>
+  <rect x="518" y="212" width="94" height="22" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="565" y="227" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">30 instancji max</text>
+  <rect x="518" y="240" width="94" height="22" rx="3" fill="white" fill-opacity="0.2"/>
+  <text x="565" y="255" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">Private Endpoint</text>
+  <text x="565" y="305" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="white">~400 PLN</text>
+  
+  <!-- Isolated (smaller) -->
+  <rect x="630" y="65" width="50" height="260" rx="8" fill="url(#isolatedGrad)"/>
+  <text x="655" y="90" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" font-weight="600" fill="white">I1v2</text>
+  <text x="655" y="140" text-anchor="middle" font-family="Segoe UI, Arial" font-size="7" fill="white" transform="rotate(-90 655 140)">ASE Environment</text>
+  <text x="655" y="210" text-anchor="middle" font-family="Segoe UI, Arial" font-size="7" fill="white">100</text>
+  <text x="655" y="222" text-anchor="middle" font-family="Segoe UI, Arial" font-size="7" fill="white">inst.</text>
+  <text x="655" y="305" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" font-weight="600" fill="white">~1200</text>
+</svg>

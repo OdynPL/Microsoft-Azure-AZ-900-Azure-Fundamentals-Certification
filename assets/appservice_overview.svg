@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 320">
+  <defs>
+    <linearGradient id="azureGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0078D4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#50E6FF;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="planGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#5C2D91;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#B4A0FF;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <rect width="600" height="320" fill="#f8f9fa"/>
+  <text x="300" y="25" text-anchor="middle" font-family="Segoe UI, Arial" font-size="18" font-weight="600" fill="#2c3e50">Azure App Service - Architektura</text>
+  
+  <!-- Main container -->
+  <rect x="50" y="45" width="500" height="260" rx="12" fill="#e8f4fd" stroke="#0078D4" stroke-width="2"/>
+  <text x="300" y="68" text-anchor="middle" font-family="Segoe UI, Arial" font-size="14" font-weight="600" fill="#0078D4">Azure App Service</text>
+  
+  <!-- Web Apps -->
+  <rect x="70" y="85" width="140" height="90" rx="8" fill="url(#azureGrad)"/>
+  <text x="140" y="115" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="white">Web Apps</text>
+  <text x="140" y="135" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">ASP.NET, Node.js</text>
+  <text x="140" y="150" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">Python, Java, PHP</text>
+  <text x="140" y="165" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">Ruby</text>
+  
+  <!-- API Apps -->
+  <rect x="230" y="85" width="140" height="90" rx="8" fill="url(#azureGrad)"/>
+  <text x="300" y="115" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="white">API Apps</text>
+  <text x="300" y="135" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">REST API</text>
+  <text x="300" y="150" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">GraphQL</text>
+  <text x="300" y="165" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">SignalR</text>
+  
+  <!-- Mobile Apps -->
+  <rect x="390" y="85" width="140" height="90" rx="8" fill="url(#azureGrad)"/>
+  <text x="460" y="115" text-anchor="middle" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="white">Mobile Apps</text>
+  <text x="460" y="135" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">Backend dla</text>
+  <text x="460" y="150" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">aplikacji mobilnych</text>
+  <text x="460" y="165" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">Push notifications</text>
+  
+  <!-- App Service Plan -->
+  <rect x="70" y="195" width="460" height="95" rx="8" fill="url(#planGrad)"/>
+  <text x="300" y="220" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="600" fill="white">App Service Plan</text>
+  <text x="300" y="242" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="white">Współdzielone zasoby: CPU, RAM, Storage</text>
+  
+  <!-- Plan features -->
+  <rect x="85" y="252" width="130" height="28" rx="4" fill="white" fill-opacity="0.2"/>
+  <text x="150" y="270" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">Region + Rozmiar VM</text>
+  
+  <rect x="235" y="252" width="130" height="28" rx="4" fill="white" fill-opacity="0.2"/>
+  <text x="300" y="270" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">Liczba instancji</text>
+  
+  <rect x="385" y="252" width="130" height="28" rx="4" fill="white" fill-opacity="0.2"/>
+  <text x="450" y="270" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">1 Plan = wiele Apps</text>
+</svg>

@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 320">
+  <defs>
+    <linearGradient id="vmSmallGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3498db;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#5dade2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="vmLargeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8e44ad;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#9b59b6;stop-opacity:1" />
+    </linearGradient>
+    <marker id="arrowUp" markerWidth="10" markerHeight="7" refX="5" refY="0" orient="auto">
+      <polygon points="0 7, 5 0, 10 7" fill="#27ae60"/>
+    </marker>
+    <marker id="arrowRightGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#27ae60"/>
+    </marker>
+  </defs>
+  
+  <rect width="650" height="320" fill="#f8f9fa"/>
+  <text x="325" y="25" text-anchor="middle" font-family="Segoe UI, Arial" font-size="16" font-weight="600" fill="#2c3e50">App Service - Skalowanie</text>
+  
+  <!-- Scale UP section -->
+  <rect x="20" y="45" width="290" height="260" rx="8" fill="#fef9e7" stroke="#f39c12" stroke-width="2"/>
+  <text x="165" y="68" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="600" fill="#d68910">⬆️ SCALE UP (Vertical)</text>
+  <text x="165" y="85" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#7d6608">Zmiana rozmiaru VM (więcej CPU/RAM)</text>
+  
+  <!-- Small VM -->
+  <rect x="45" y="105" width="80" height="80" rx="6" fill="url(#vmSmallGrad)"/>
+  <text x="85" y="140" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="white">B1</text>
+  <text x="85" y="155" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">1 core</text>
+  <text x="85" y="170" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" fill="white">1.75 GB</text>
+  
+  <!-- Arrow -->
+  <line x1="135" y1="145" x2="175" y2="145" stroke="#27ae60" stroke-width="3" marker-end="url(#arrowRightGreen)"/>
+  
+  <!-- Large VM -->
+  <rect x="185" y="95" width="100" height="100" rx="6" fill="url(#vmLargeGrad)"/>
+  <text x="235" y="135" text-anchor="middle" font-family="Segoe UI, Arial" font-size="11" font-weight="600" fill="white">P1v3</text>
+  <text x="235" y="155" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">2 cores</text>
+  <text x="235" y="172" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="white">8 GB</text>
+  
+  <!-- Scale UP pros/cons -->
+  <text x="40" y="220" font-family="Segoe UI, Arial" font-size="9" fill="#27ae60">✅ Bez zmiany kodu</text>
+  <text x="40" y="238" font-family="Segoe UI, Arial" font-size="9" fill="#27ae60">✅ Prosta konfiguracja</text>
+  <text x="40" y="256" font-family="Segoe UI, Arial" font-size="9" fill="#c0392b">❌ Krótki restart</text>
+  <text x="40" y="274" font-family="Segoe UI, Arial" font-size="9" fill="#c0392b">❌ Ma limit (max VM size)</text>
+  <text x="40" y="292" font-family="Segoe UI, Arial" font-size="9" fill="#7f8c8d">📋 Manual lub scheduled</text>
+  
+  <!-- Scale OUT section -->
+  <rect x="340" y="45" width="290" height="260" rx="8" fill="#e8f8f5" stroke="#1abc9c" stroke-width="2"/>
+  <text x="485" y="68" text-anchor="middle" font-family="Segoe UI, Arial" font-size="13" font-weight="600" fill="#148f77">➡️ SCALE OUT (Horizontal)</text>
+  <text x="485" y="85" text-anchor="middle" font-family="Segoe UI, Arial" font-size="10" fill="#0e6655">Dodanie więcej instancji</text>
+  
+  <!-- Before: 2 VMs -->
+  <rect x="365" y="105" width="50" height="50" rx="4" fill="url(#vmSmallGrad)"/>
+  <text x="390" y="135" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" font-weight="600" fill="white">VM</text>
+  
+  <rect x="420" y="105" width="50" height="50" rx="4" fill="url(#vmSmallGrad)"/>
+  <text x="445" y="135" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" font-weight="600" fill="white">VM</text>
+  
+  <!-- Arrow -->
+  <line x1="485" y1="130" x2="515" y2="130" stroke="#27ae60" stroke-width="3" marker-end="url(#arrowRightGreen)"/>
+  
+  <!-- After: 4 VMs -->
+  <rect x="525" y="100" width="40" height="40" rx="3" fill="url(#vmSmallGrad)"/>
+  <text x="545" y="125" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" font-weight="600" fill="white">VM</text>
+  
+  <rect x="570" y="100" width="40" height="40" rx="3" fill="url(#vmSmallGrad)"/>
+  <text x="590" y="125" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" font-weight="600" fill="white">VM</text>
+  
+  <rect x="525" y="145" width="40" height="40" rx="3" fill="url(#vmSmallGrad)"/>
+  <text x="545" y="170" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" font-weight="600" fill="white">VM</text>
+  
+  <rect x="570" y="145" width="40" height="40" rx="3" fill="url(#vmSmallGrad)"/>
+  <text x="590" y="170" text-anchor="middle" font-family="Segoe UI, Arial" font-size="8" font-weight="600" fill="white">VM</text>
+  
+  <!-- Count labels -->
+  <text x="420" y="168" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#7f8c8d">2 instancje</text>
+  <text x="567" y="198" text-anchor="middle" font-family="Segoe UI, Arial" font-size="9" fill="#7f8c8d">4 instancje</text>
+  
+  <!-- Scale OUT pros/cons -->
+  <text x="360" y="220" font-family="Segoe UI, Arial" font-size="9" fill="#27ae60">✅ Bez limitu (w ramach planu)</text>
+  <text x="360" y="238" font-family="Segoe UI, Arial" font-size="9" fill="#27ae60">✅ Auto-scale na metrykach</text>
+  <text x="360" y="256" font-family="Segoe UI, Arial" font-size="9" fill="#27ae60">✅ Bez restartu</text>
+  <text x="360" y="274" font-family="Segoe UI, Arial" font-size="9" fill="#27ae60">✅ Load balancing</text>
+  <text x="360" y="292" font-family="Segoe UI, Arial" font-size="9" fill="#7f8c8d">📋 Od planu Standard</text>
+</svg>

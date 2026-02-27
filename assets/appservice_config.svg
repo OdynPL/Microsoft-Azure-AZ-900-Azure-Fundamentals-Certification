@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550 280">
+  <defs>
+    <linearGradient id="portalGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0078D4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#50E6FF;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <rect width="550" height="280" fill="#f8f9fa"/>
+  <text x="275" y="25" text-anchor="middle" font-family="Segoe UI, Arial" font-size="16" font-weight="600" fill="#2c3e50">App Service - Configuration</text>
+  
+  <!-- Main container -->
+  <rect x="20" y="45" width="510" height="220" rx="8" fill="#ffffff" stroke="#dee2e6" stroke-width="2"/>
+  
+  <!-- Header -->
+  <rect x="20" y="45" width="510" height="35" rx="8" fill="url(#portalGrad)"/>
+  <rect x="20" y="68" width="510" height="12" fill="url(#portalGrad)"/>
+  <text x="35" y="68" font-family="Segoe UI, Arial" font-size="11" font-weight="600" fill="white">Azure Portal → App Service → Configuration</text>
+  
+  <!-- App Settings section -->
+  <text x="35" y="105" font-family="Segoe UI, Arial" font-size="12" font-weight="600" fill="#2c3e50">Application settings</text>
+  
+  <!-- Table header -->
+  <rect x="35" y="115" width="230" height="25" fill="#e9ecef"/>
+  <rect x="265" y="115" width="250" height="25" fill="#e9ecef"/>
+  <text x="45" y="132" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#495057">Name</text>
+  <text x="275" y="132" font-family="Segoe UI, Arial" font-size="10" font-weight="600" fill="#495057">Value</text>
+  
+  <!-- Setting 1 -->
+  <rect x="35" y="140" width="230" height="25" fill="#ffffff" stroke="#dee2e6" stroke-width="1"/>
+  <rect x="265" y="140" width="250" height="25" fill="#ffffff" stroke="#dee2e6" stroke-width="1"/>
+  <text x="45" y="157" font-family="Segoe UI, Arial" font-size="9" fill="#212529">DatabaseConnection</text>
+  <text x="275" y="157" font-family="Segoe UI, Arial" font-size="9" fill="#6c757d">@Microsoft.KeyVault(...)</text>
+  
+  <!-- Setting 2 -->
+  <rect x="35" y="165" width="230" height="25" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1"/>
+  <rect x="265" y="165" width="250" height="25" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1"/>
+  <text x="45" y="182" font-family="Segoe UI, Arial" font-size="9" fill="#212529">ASPNETCORE_ENVIRONMENT</text>
+  <text x="275" y="182" font-family="Segoe UI, Arial" font-size="9" fill="#212529">Production</text>
+  
+  <!-- Setting 3 -->
+  <rect x="35" y="190" width="230" height="25" fill="#ffffff" stroke="#dee2e6" stroke-width="1"/>
+  <rect x="265" y="190" width="250" height="25" fill="#ffffff" stroke="#dee2e6" stroke-width="1"/>
+  <text x="45" y="207" font-family="Segoe UI, Arial" font-size="9" fill="#212529">WEBSITE_TIME_ZONE</text>
+  <text x="275" y="207" font-family="Segoe UI, Arial" font-size="9" fill="#212529">Central European Standard Time</text>
+  
+  <!-- Features -->
+  <text x="35" y="238" font-family="Segoe UI, Arial" font-size="9" fill="#27ae60">✅ Nadpisują appsettings.json</text>
+  <text x="195" y="238" font-family="Segoe UI, Arial" font-size="9" fill="#27ae60">✅ Slot-specific</text>
+  <text x="320" y="238" font-family="Segoe UI, Arial" font-size="9" fill="#27ae60">✅ Key Vault reference</text>
+  
+  <text x="35" y="255" font-family="Segoe UI, Arial" font-size="9" fill="#f39c12">⚠️ Restart aplikacji przy zmianie ustawień</text>
+</svg>
