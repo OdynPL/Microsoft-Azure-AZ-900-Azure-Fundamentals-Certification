@@ -2912,38 +2912,58 @@ Pełny SQL Server działający na maszynie wirtualnej (IaaS).
 #### C# - Microsoft.Data.SqlClient
 
 ```csharp
+using Azure.Identity;
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 
-string connectionString = "Server=myserver.database.windows.net;Database=mydb;User Id=admin;Password=xxx;";
-
-// Query - odczyt danych
-await using var connection = new SqlConnection(connectionString);
-await connection.OpenAsync();
-
-await using var command = new SqlCommand("SELECT Id, Name FROM Products WHERE Price > @price", connection);
-command.Parameters.AddWithValue("@price", 100);
-
-await using var reader = await command.ExecuteReaderAsync();
-while (await reader.ReadAsync())
+public class ProductRepository
 {
-    Console.WriteLine($"{reader["Id"]}: {reader["Name"]}");
+    private readonly string _connectionString;
+    
+    public ProductRepository(IConfiguration configuration)
+    {
+        // Connection string z appsettings.json lub Azure Key Vault
+        _connectionString = configuration.GetConnectionString("SqlDatabase")
+            ?? throw new InvalidOperationException("Brak ConnectionString");
+    }
+    
+    public async Task<List<Product>> GetExpensiveProductsAsync(decimal minPrice)
+    {
+        await using var connection = new SqlConnection(_connectionString);
+        await connection.OpenAsync();
+        
+        await using var command = new SqlCommand(
+            "SELECT Id, Name, Price FROM Products WHERE Price > @price", connection);
+        command.Parameters.AddWithValue("@price", minPrice);
+        
+        var products = new List<Product>();
+        await using var reader = await command.ExecuteReaderAsync();
+        while (await reader.ReadAsync())
+        {
+            products.Add(new Product(
+                reader.GetInt32(0),
+                reader.GetString(1),
+                reader.GetDecimal(2)));
+        }
+        return products;
+    }
 }
 
-// INSERT/UPDATE/DELETE - ExecuteNonQueryAsync
-await using var insertCmd = new SqlCommand(
-    "INSERT INTO Products (Name, Price) VALUES (@name, @price)", connection);
-insertCmd.Parameters.AddWithValue("@name", "NewProduct");
-insertCmd.Parameters.AddWithValue("@price", 49.99);
-int affected = await insertCmd.ExecuteNonQueryAsync();
-
-// Scalar - pojedyncza wartość
-await using var countCmd = new SqlCommand("SELECT COUNT(*) FROM Products", connection);
-int count = (int)await countCmd.ExecuteScalarAsync();
+public record Product(int Id, string Name, decimal Price);
 ```
 
-**NuGet:** `Microsoft.Data.SqlClient`
+**appsettings.json:**
+```json
+{
+  "ConnectionStrings": {
+    "SqlDatabase": "Server=myserver.database.windows.net;Database=mydb;Authentication=Active Directory Default;"
+  }
+}
+```
 
-**Tip:** Użyj Entity Framework Core dla ORM lub Dapper dla micro-ORM.
+**Best Practice:** Użyj `Authentication=Active Directory Default` z Managed Identity zamiast User/Password!
+
+**NuGet:** `Microsoft.Data.SqlClient`, `Azure.Identity`
 
 ### **Cosmos DB (NoSQL, global distribution)**
 
@@ -3126,57 +3146,75 @@ Cosmos DB automatycznie **partycjonuje dane** na podstawie **Partition Key**:
 #### C# - Microsoft.Azure.Cosmos
 
 ```csharp
+using Azure.Identity;
 using Microsoft.Azure.Cosmos;
+using Microsoft.Extensions.Configuration;
 
-// Połączenie
-var cosmosClient = new CosmosClient(
-    "https://myaccount.documents.azure.com:443/",
-    "primaryKey",
-    new CosmosClientOptions { ApplicationRegion = Regions.WestEurope }
-);
-
-// Utwórz bazę i kontener
-Database database = await cosmosClient.CreateDatabaseIfNotExistsAsync("OrdersDB");
-Container container = await database.CreateContainerIfNotExistsAsync(
-    id: "Orders",
-    partitionKeyPath: "/customerId",
-    throughput: 400
-);
-
-// Model dokumentu
-public record Order(string id, string customerId, decimal total, List<string> items);
-
-// CREATE - dodaj dokument
-var order = new Order("order-1", "cust-123", 99.99m, new() { "Item1", "Item2" });
-await container.CreateItemAsync(order, new PartitionKey(order.customerId));
-
-// READ - pobierz dokument po ID + partition key
-var response = await container.ReadItemAsync<Order>("order-1", new PartitionKey("cust-123"));
-Order fetched = response.Resource;
-double ruUsed = response.RequestCharge;  // Zużyte RU
-
-// QUERY - wyszukaj dokumenty (SQL-like syntax)
-var query = container.GetItemQueryIterator<Order>(
-    "SELECT * FROM c WHERE c.total > 50 ORDER BY c.total DESC"
-);
-while (query.HasMoreResults)
+public class OrderRepository
 {
-    var results = await query.ReadNextAsync();
-    foreach (var item in results) Console.WriteLine(item.id);
+    private readonly Container _container;
+    
+    public OrderRepository(IConfiguration configuration)
+    {
+        // Użyj DefaultAzureCredential (Managed Identity / Azure CLI / VS)
+        var endpoint = configuration["CosmosDb:Endpoint"]!;
+        var client = new CosmosClient(endpoint, new DefaultAzureCredential(),
+            new CosmosClientOptions { ApplicationRegion = Regions.WestEurope });
+        
+        _container = client.GetContainer(
+            configuration["CosmosDb:Database"]!, 
+            configuration["CosmosDb:Container"]!);
+    }
+    
+    public async Task<Order> CreateAsync(Order order)
+    {
+        var response = await _container.CreateItemAsync(order, new PartitionKey(order.CustomerId));
+        Console.WriteLine($"RU used: {response.RequestCharge}");
+        return response.Resource;
+    }
+    
+    public async Task<Order?> GetAsync(string id, string customerId)
+    {
+        try
+        {
+            var response = await _container.ReadItemAsync<Order>(id, new PartitionKey(customerId));
+            return response.Resource;
+        }
+        catch (CosmosException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
+        {
+            return null;
+        }
+    }
+    
+    public async IAsyncEnumerable<Order> QueryAsync(decimal minTotal)
+    {
+        var query = _container.GetItemQueryIterator<Order>(
+            new QueryDefinition("SELECT * FROM c WHERE c.total > @min ORDER BY c.total DESC")
+                .WithParameter("@min", minTotal));
+        
+        while (query.HasMoreResults)
+        {
+            foreach (var item in await query.ReadNextAsync())
+                yield return item;
+        }
+    }
 }
 
-// UPDATE - zamień dokument
-order = order with { total = 149.99m };
-await container.ReplaceItemAsync(order, order.id, new PartitionKey(order.customerId));
-
-// DELETE
-await container.DeleteItemAsync<Order>("order-1", new PartitionKey("cust-123"));
-
-// UPSERT - wstaw lub zaktualizuj
-await container.UpsertItemAsync(order, new PartitionKey(order.customerId));
+public record Order(string Id, string CustomerId, decimal Total, List<string> Items);
 ```
 
-**NuGet:** `Microsoft.Azure.Cosmos`
+**appsettings.json:**
+```json
+{
+  "CosmosDb": {
+    "Endpoint": "https://myaccount.documents.azure.com:443/",
+    "Database": "OrdersDB",
+    "Container": "Orders"
+  }
+}
+```
+
+**NuGet:** `Microsoft.Azure.Cosmos`, `Azure.Identity`
 
 ---
 
@@ -3464,23 +3502,71 @@ az redis list-keys --name myrediscache --resource-group myRG
 myrediscache.redis.cache.windows.net:6380,password=<primaryKey>,ssl=True,abortConnect=False
 ```
 
-### 20.7 Przyklad uzycia w kodzie (.NET)
+### 20.7 Przykład użycia w kodzie (.NET)
 
 ```csharp
-// NuGet: StackExchange.Redis
-var redis = ConnectionMultiplexer.Connect("myrediscache.redis.cache.windows.net:6380,password=xxx,ssl=True");
-var db = redis.GetDatabase();
+using Microsoft.Extensions.Configuration;
+using StackExchange.Redis;
+using System.Text.Json;
 
-// Zapis
-db.StringSet("user:123", JsonSerializer.Serialize(user), TimeSpan.FromMinutes(30));
-
-// Odczyt
-var cached = db.StringGet("user:123");
-if (cached.HasValue)
+public class RedisCacheService
 {
-    return JsonSerializer.Deserialize<User>(cached);
+    private readonly IDatabase _db;
+    
+    public RedisCacheService(IConfiguration configuration)
+    {
+        // Connection string z appsettings.json (Secret Manager / Key Vault w produkcji)
+        var connectionString = configuration.GetConnectionString("Redis")
+            ?? throw new InvalidOperationException("Brak Redis ConnectionString");
+        
+        var redis = ConnectionMultiplexer.Connect(connectionString);
+        _db = redis.GetDatabase();
+    }
+    
+    public async Task SetAsync<T>(string key, T value, TimeSpan? expiry = null)
+    {
+        var json = JsonSerializer.Serialize(value);
+        await _db.StringSetAsync(key, json, expiry ?? TimeSpan.FromMinutes(30));
+    }
+    
+    public async Task<T?> GetAsync<T>(string key)
+    {
+        var cached = await _db.StringGetAsync(key);
+        return cached.HasValue 
+            ? JsonSerializer.Deserialize<T>(cached!) 
+            : default;
+    }
+    
+    public async Task<T> GetOrSetAsync<T>(string key, Func<Task<T>> factory, TimeSpan? expiry = null)
+    {
+        var cached = await GetAsync<T>(key);
+        if (cached is not null) return cached;
+        
+        var value = await factory();
+        await SetAsync(key, value, expiry);
+        return value;
+    }
+}
+
+// Użycie z DI
+services.AddSingleton<RedisCacheService>();
+
+// W kontrolerze
+var user = await _cache.GetOrSetAsync($"user:{id}", 
+    () => _userRepository.GetByIdAsync(id),
+    TimeSpan.FromMinutes(15));
+```
+
+**appsettings.json:**
+```json
+{
+  "ConnectionStrings": {
+    "Redis": "myrediscache.redis.cache.windows.net:6380,password=ACCESS_KEY,ssl=True,abortConnect=False"
+  }
 }
 ```
+
+**Best Practice:** W produkcji użyj Azure Key Vault lub Managed Identity (Premium tier)!
 
 ### 20.8 Best Practices
 
@@ -4732,163 +4818,134 @@ az servicebus namespace authorization-rule keys list \
 
 ---
 
-### C# - Wysyłanie wiadomości do Queue
+### C# - Service Bus z DefaultAzureCredential
 
 ```csharp
+using Azure.Identity;
 using Azure.Messaging.ServiceBus;
+using Microsoft.Extensions.Configuration;
 
-// Connection string z Azure Portal lub CLI
-string connectionString = "Endpoint=sb://myServiceBusNS.servicebus.windows.net/;SharedAccessKeyName=...";
-string queueName = "myQueue";
-
-// Utwórz klienta (thread-safe, reuse!)
-await using var client = new ServiceBusClient(connectionString);
-
-// Utwórz sender dla queue
-await using var sender = client.CreateSender(queueName);
-
-// Wyślij pojedynczą wiadomość
-var message = new ServiceBusMessage("Hello Service Bus!");
-Message.ApplicationProperties["Priority"] = "High";
-message.ContentType = "application/json";
-await sender.SendMessageAsync(message);
-
-// Wyślij batch (wydajniej dla wielu wiadomości)
-using ServiceBusMessageBatch batch = await sender.CreateMessageBatchAsync();
-batch.TryAddMessage(new ServiceBusMessage("Message 1"));
-batch.TryAddMessage(new ServiceBusMessage("Message 2"));
-batch.TryAddMessage(new ServiceBusMessage("Message 3"));
-await sender.SendMessagesAsync(batch);
-
-Console.WriteLine("Messages sent!");
-```
-
----
-
-### C# - Odbieranie wiadomości z Queue
-
-```csharp
-using Azure.Messaging.ServiceBus;
-
-string connectionString = "Endpoint=sb://...";
-string queueName = "myQueue";
-
-await using var client = new ServiceBusClient(connectionString);
-
-// Sposób 1: ServiceBusProcessor (zalecany dla produkcji)
-var processor = client.CreateProcessor(queueName, new ServiceBusProcessorOptions
+// === KONFIGURACJA (DI) ===
+public static class ServiceBusExtensions
 {
-    AutoCompleteMessages = false,  // Ręczne Complete/Abandon
-    MaxConcurrentCalls = 2,        // Ile wiadomości naraz
-    PrefetchCount = 10             // Pre-fetch dla wydajności
-});
-
-processor.ProcessMessageAsync += async args =>
-{
-    string body = args.Message.Body.ToString();
-    Console.WriteLine($"Received: {body}");
-    
-    try
+    public static IServiceCollection AddServiceBus(this IServiceCollection services, IConfiguration config)
     {
-        // Przetwórz wiadomość...
-        await ProcessMessageAsync(body);
+        // Użyj Managed Identity / Azure CLI / VS credentials
+        var fullyQualifiedNamespace = config["ServiceBus:Namespace"]!;
         
-        // Oznacz jako przetworzoną (usuwa z queue)
-        await args.CompleteMessageAsync(args.Message);
+        services.AddSingleton(_ => new ServiceBusClient(
+            fullyQualifiedNamespace, 
+            new DefaultAzureCredential()));
+        
+        return services;
     }
-    catch (Exception ex)
-    {
-        // Zwróć do queue (lub DLQ po max retries)
-        await args.AbandonMessageAsync(args.Message);
-    }
-};
-
-processor.ProcessErrorAsync += args =>
-{
-    Console.WriteLine($"Error: {args.Exception.Message}");
-    return Task.CompletedTask;
-};
-
-await processor.StartProcessingAsync();
-Console.WriteLine("Press any key to stop...");
-Console.ReadKey();
-await processor.StopProcessingAsync();
-```
-
----
-
-### C# - Publikowanie do Topic
-
-```csharp
-using Azure.Messaging.ServiceBus;
-
-string connectionString = "Endpoint=sb://...";
-string topicName = "myTopic";
-
-await using var client = new ServiceBusClient(connectionString);
-await using var sender = client.CreateSender(topicName);
-
-// Wyślij wiadomość z properties (do filtrowania)
-var orderMessage = new ServiceBusMessage(BinaryData.FromObjectAsJson(new 
-{
-    OrderId = 12345,
-    CustomerId = "C001",
-    TotalAmount = 299.99
-}));
-
-// Application properties używane do filtrowania w subscriptions
-orderMessage.ApplicationProperties["OrderType"] = "Premium";
-orderMessage.ApplicationProperties["Region"] = "Europe";
-orderMessage.Subject = "NewOrder";  // Label
-orderMessage.ContentType = "application/json";
-
-await sender.SendMessageAsync(orderMessage);
-Console.WriteLine("Order published to topic!");
-```
-
----
-
-### C# - Odbieranie z Subscription (z filtrem)
-
-```csharp
-using Azure.Messaging.ServiceBus;
-using Azure.Messaging.ServiceBus.Administration;
-
-string connectionString = "Endpoint=sb://...";
-string topicName = "myTopic";
-string subscriptionName = "PremiumOrders";
-
-// Opcjonalnie: utwórz subscription z filtrem (lub w CLI/Portal)
-var adminClient = new ServiceBusAdministrationClient(connectionString);
-
-if (!await adminClient.SubscriptionExistsAsync(topicName, subscriptionName))
-{
-    await adminClient.CreateSubscriptionAsync(
-        new CreateSubscriptionOptions(topicName, subscriptionName),
-        new CreateRuleOptions("PremiumFilter", new SqlRuleFilter("OrderType = 'Premium'"))
-    );
 }
 
-// Odbieraj wiadomości z subscription
-await using var client = new ServiceBusClient(connectionString);
-var processor = client.CreateProcessor(topicName, subscriptionName);
-
-processor.ProcessMessageAsync += async args =>
+// === SENDER (Wysyłanie wiadomości) ===
+public class OrderSender
 {
-    var order = args.Message.Body.ToObjectFromJson<dynamic>();
-    Console.WriteLine($"Premium order received: {order.OrderId}");
-    await args.CompleteMessageAsync(args.Message);
-};
+    private readonly ServiceBusSender _sender;
+    
+    public OrderSender(ServiceBusClient client, IConfiguration config)
+    {
+        _sender = client.CreateSender(config["ServiceBus:QueueName"]!);
+    }
+    
+    public async Task SendOrderAsync(Order order)
+    {
+        var message = new ServiceBusMessage(BinaryData.FromObjectAsJson(order))
+        {
+            MessageId = order.Id,
+            ContentType = "application/json",
+            Subject = "NewOrder"
+        };
+        message.ApplicationProperties["Priority"] = order.IsPriority ? "High" : "Normal";
+        
+        await _sender.SendMessageAsync(message);
+    }
+    
+    public async Task SendBatchAsync(IEnumerable<Order> orders)
+    {
+        using var batch = await _sender.CreateMessageBatchAsync();
+        foreach (var order in orders)
+        {
+            if (!batch.TryAddMessage(new ServiceBusMessage(BinaryData.FromObjectAsJson(order))))
+            {
+                await _sender.SendMessagesAsync(batch);
+                batch.Dispose();
+                // Utwórz nowy batch...
+            }
+        }
+        if (batch.Count > 0) await _sender.SendMessagesAsync(batch);
+    }
+}
 
-processor.ProcessErrorAsync += args =>
+// === PROCESSOR (BackgroundService) ===
+public class OrderProcessor : BackgroundService
 {
-    Console.WriteLine($"Error: {args.Exception}");
-    return Task.CompletedTask;
-};
-
-await processor.StartProcessingAsync();
+    private readonly ServiceBusProcessor _processor;
+    private readonly ILogger<OrderProcessor> _logger;
+    
+    public OrderProcessor(ServiceBusClient client, IConfiguration config, ILogger<OrderProcessor> logger)
+    {
+        _logger = logger;
+        _processor = client.CreateProcessor(config["ServiceBus:QueueName"]!, new ServiceBusProcessorOptions
+        {
+            AutoCompleteMessages = false,
+            MaxConcurrentCalls = 4,
+            PrefetchCount = 10
+        });
+        
+        _processor.ProcessMessageAsync += ProcessAsync;
+        _processor.ProcessErrorAsync += ErrorAsync;
+    }
+    
+    protected override async Task ExecuteAsync(CancellationToken ct)
+    {
+        await _processor.StartProcessingAsync(ct);
+        await Task.Delay(Timeout.Infinite, ct);
+    }
+    
+    private async Task ProcessAsync(ProcessMessageEventArgs args)
+    {
+        try
+        {
+            var order = args.Message.Body.ToObjectFromJson<Order>();
+            _logger.LogInformation("Processing order {OrderId}", order.Id);
+            
+            // Przetwarzanie...
+            
+            await args.CompleteMessageAsync(args.Message);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error processing message");
+            await args.AbandonMessageAsync(args.Message);
+        }
+    }
+    
+    private Task ErrorAsync(ProcessErrorEventArgs args)
+    {
+        _logger.LogError(args.Exception, "Service Bus error");
+        return Task.CompletedTask;
+    }
+}
 ```
 
+**appsettings.json:**
+```json
+{
+  "ServiceBus": {
+    "Namespace": "myservicebusns.servicebus.windows.net",
+    "QueueName": "orders"
+  }
+}
+```
+
+**Wymagane RBAC role:**
+- `Azure Service Bus Data Sender` - wysyłanie
+- `Azure Service Bus Data Receiver` - odbieranie
+        
 ---
 
 ### Subscription Filters
@@ -5259,113 +5316,120 @@ az eventhubs eventhub consumer-group create \
 ### Wysyłanie i odbieranie zdarzeń (C#)
 
 ```csharp
+using Azure.Identity;
 using Azure.Messaging.EventHubs;
 using Azure.Messaging.EventHubs.Producer;
-using Azure.Messaging.EventHubs.Consumer;
 using Azure.Messaging.EventHubs.Processor;
 using Azure.Storage.Blobs;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 
-// === WYSYŁANIE ZDARZEŃ ===
-public class EventHubProducer
+// === SENDER (z DefaultAzureCredential) ===
+public class TelemetrySender
 {
     private readonly EventHubProducerClient _producer;
     
-    public EventHubProducer(string connectionString, string eventHubName)
+    public TelemetrySender(IConfiguration config)
     {
-        _producer = new EventHubProducerClient(connectionString, eventHubName);
+        // Użyj Managed Identity zamiast connection string!
+        var fullyQualifiedNamespace = config["EventHub:Namespace"]!;
+        var eventHubName = config["EventHub:Name"]!;
+        
+        _producer = new EventHubProducerClient(
+            fullyQualifiedNamespace, 
+            eventHubName, 
+            new DefaultAzureCredential());
     }
     
-    // Wysyłanie batch zdarzeń
-    public async Task SendEventsAsync(IEnumerable<SensorData> sensorReadings)
+    public async Task SendBatchAsync(IEnumerable<SensorData> readings)
     {
-        using EventDataBatch batch = await _producer.CreateBatchAsync();
+        using var batch = await _producer.CreateBatchAsync();
         
-        foreach (var reading in sensorReadings)
+        foreach (var reading in readings)
         {
             var eventData = new EventData(BinaryData.FromObjectAsJson(reading));
-            
-            // Dodawanie właściwości
             eventData.Properties["DeviceId"] = reading.DeviceId;
-            eventData.Properties["Timestamp"] = reading.Timestamp.ToString("O");
             
             if (!batch.TryAdd(eventData))
             {
-                // Batch pełny - wyślij i utwórz nowy
                 await _producer.SendAsync(batch);
-                batch = await _producer.CreateBatchAsync();
-                batch.TryAdd(eventData);
+                batch.Dispose();
+                // Utwórz nowy batch...
             }
         }
         
-        // Wyślij pozostałe zdarzenia
-        if (batch.Count > 0)
-        {
-            await _producer.SendAsync(batch);
-        }
-    }
-    
-    // Wysyłanie z Partition Key (zdarzenia z tym samym kluczem trafiają do tej samej partycji)
-    public async Task SendWithPartitionKeyAsync(string deviceId, SensorData data)
-    {
-        var options = new SendEventOptions { PartitionKey = deviceId };
-        var eventData = new EventData(BinaryData.FromObjectAsJson(data));
-        
-        await _producer.SendAsync(new[] { eventData }, options);
+        if (batch.Count > 0) await _producer.SendAsync(batch);
     }
 }
 
-// === ODBIERANIE ZDARZEŃ (Event Processor) ===
-public class EventHubProcessor
+// === PROCESSOR (BackgroundService z DI) ===
+public class TelemetryProcessor : BackgroundService
 {
     private readonly EventProcessorClient _processor;
+    private readonly ILogger<TelemetryProcessor> _logger;
     
-    public EventHubProcessor(
-        string eventHubConnectionString,
-        string eventHubName,
-        string consumerGroup,
-        string storageConnectionString,
-        string containerName)
+    public TelemetryProcessor(IConfiguration config, ILogger<TelemetryProcessor> logger)
     {
-        var storageClient = new BlobContainerClient(storageConnectionString, containerName);
+        _logger = logger;
+        
+        // Storage dla checkpointów (też z Managed Identity)
+        var storageUri = new Uri($"https://{config["Storage:AccountName"]}.blob.core.windows.net/{config["Storage:CheckpointContainer"]}");
+        var storageClient = new BlobContainerClient(storageUri, new DefaultAzureCredential());
         
         _processor = new EventProcessorClient(
             storageClient,
-            consumerGroup,
-            eventHubConnectionString,
-            eventHubName);
+            config["EventHub:ConsumerGroup"]!,
+            config["EventHub:Namespace"]!,
+            config["EventHub:Name"]!,
+            new DefaultAzureCredential());
             
-        _processor.ProcessEventAsync += ProcessEventHandler;
-        _processor.ProcessErrorAsync += ProcessErrorHandler;
+        _processor.ProcessEventAsync += ProcessAsync;
+        _processor.ProcessErrorAsync += ErrorAsync;
     }
     
-    public async Task StartAsync() => await _processor.StartProcessingAsync();
-    public async Task StopAsync() => await _processor.StopProcessingAsync();
-    
-    private async Task ProcessEventHandler(ProcessEventArgs args)
+    protected override async Task ExecuteAsync(CancellationToken ct)
     {
-        if (args.Data != null)
-        {
-            var sensorData = args.Data.EventBody.ToObjectFromJson<SensorData>();
-            var partitionId = args.Partition.PartitionId;
-            
-            Console.WriteLine($"Partition {partitionId}: Device {sensorData.DeviceId}, Value: {sensorData.Value}");
-            
-            // Checkpoint - zapisz pozycję (offset) w storage
-            // Pozwala kontynuować od tego miejsca po restarcie
-            await args.UpdateCheckpointAsync();
-        }
+        await _processor.StartProcessingAsync(ct);
+        await Task.Delay(Timeout.Infinite, ct);
     }
     
-    private Task ProcessErrorHandler(ProcessErrorEventArgs args)
+    private async Task ProcessAsync(ProcessEventArgs args)
     {
-        Console.WriteLine($"Error in partition {args.PartitionId}: {args.Exception.Message}");
+        if (args.Data == null) return;
+        
+        var data = args.Data.EventBody.ToObjectFromJson<SensorData>();
+        _logger.LogInformation("Partition {P}: Device {D}, Value: {V}", 
+            args.Partition.PartitionId, data.DeviceId, data.Value);
+        
+        await args.UpdateCheckpointAsync();
+    }
+    
+    private Task ErrorAsync(ProcessErrorEventArgs args)
+    {
+        _logger.LogError(args.Exception, "Partition {P} error", args.PartitionId);
         return Task.CompletedTask;
     }
 }
 
-// Model danych
 public record SensorData(string DeviceId, double Value, DateTime Timestamp);
 ```
+
+**appsettings.json:**
+```json
+{
+  "EventHub": {
+    "Namespace": "myeventhubns.servicebus.windows.net",
+    "Name": "telemetry",
+    "ConsumerGroup": "$Default"
+  },
+  "Storage": {
+    "AccountName": "mystorageaccount",
+    "CheckpointContainer": "checkpoints"
+  }
+}
+```
+
+**Wymagane RBAC:** `Azure Event Hubs Data Sender/Receiver`, `Storage Blob Data Contributor`
 
 ### Event Hub Capture
 
@@ -5416,17 +5480,16 @@ az eventhubs eventhub update \
 Event Hub Standard i wyżej obsługuje protokół Apache Kafka bez zmian w kodzie aplikacji:
 
 ```csharp
-// Konfiguracja Kafka dla Event Hub
+// Konfiguracja Kafka dla Event Hub (używaj IConfiguration w produkcji!)
 var config = new ProducerConfig
 {
-    BootstrapServers = "myeventhubns.servicebus.windows.net:9093",
+    BootstrapServers = configuration["EventHub:KafkaEndpoint"],  // myns.servicebus.windows.net:9093
     SecurityProtocol = SecurityProtocol.SaslSsl,
     SaslMechanism = SaslMechanism.Plain,
     SaslUsername = "$ConnectionString",
-    SaslPassword = "<Your-Event-Hub-Connection-String>"
+    SaslPassword = configuration.GetConnectionString("EventHub")  // Z Key Vault
 };
 
-// Od teraz możesz używać standardowego Kafka client
 using var producer = new ProducerBuilder<string, string>(config).Build();
 await producer.ProduceAsync("myeventhub", new Message<string, string> 
 { 
@@ -5434,6 +5497,8 @@ await producer.ProduceAsync("myeventhub", new Message<string, string>
     Value = "{\"temp\": 25.5}" 
 });
 ```
+
+> **Uwaga:** Kafka protocol wymaga connection string (nie obsługuje DefaultAzureCredential). Przechowuj go w Azure Key Vault!
 
 ### Event Hub vs Service Bus vs Event Grid
 
@@ -6780,77 +6845,104 @@ Automatyczne przenoszenie między tierami:
 ### C# - Azure.Storage.Blobs
 
 ```csharp
+using Azure.Identity;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
-using Azure.Storage.Sas;
+using Microsoft.Extensions.Configuration;
 
-// Połączenie
-var blobServiceClient = new BlobServiceClient("<connection-string>");
-var containerClient = blobServiceClient.GetBlobContainerClient("mycontainer");
-await containerClient.CreateIfNotExistsAsync();
-
-// Upload
-var blobClient = containerClient.GetBlobClient("myfile.txt");
-await blobClient.UploadAsync("./localfile.txt", overwrite: true);
-
-// Download
-await blobClient.DownloadToAsync("./downloaded.txt");
-
-// Lista blobów
-await foreach (var blob in containerClient.GetBlobsAsync())
+public class BlobStorageService
 {
-    Console.WriteLine($"{blob.Name} - {blob.Properties.ContentLength} bytes");
+    private readonly BlobContainerClient _containerClient;
+    
+    public BlobStorageService(IConfiguration config)
+    {
+        // Użyj DefaultAzureCredential (Managed Identity / Azure CLI)
+        var blobUri = new Uri($"https://{config["Storage:AccountName"]}.blob.core.windows.net");
+        var blobServiceClient = new BlobServiceClient(blobUri, new DefaultAzureCredential());
+        _containerClient = blobServiceClient.GetBlobContainerClient(config["Storage:ContainerName"]!);
+    }
+    
+    public async Task<Uri> UploadAsync(string blobName, Stream content, string contentType)
+    {
+        var blobClient = _containerClient.GetBlobClient(blobName);
+        await blobClient.UploadAsync(content, new BlobHttpHeaders { ContentType = contentType });
+        return blobClient.Uri;
+    }
+    
+    public async Task<Stream> DownloadAsync(string blobName)
+    {
+        var blobClient = _containerClient.GetBlobClient(blobName);
+        var response = await blobClient.DownloadStreamingAsync();
+        return response.Value.Content;
+    }
+    
+    public async IAsyncEnumerable<string> ListBlobsAsync(string? prefix = null)
+    {
+        await foreach (var blob in _containerClient.GetBlobsAsync(prefix: prefix))
+            yield return blob.Name;
+    }
+    
+    public async Task DeleteAsync(string blobName)
+        => await _containerClient.GetBlobClient(blobName).DeleteIfExistsAsync();
 }
-
-// Usuń blob
-await blobClient.DeleteIfExistsAsync();
-
-// Generuj SAS token (1 godzina, read-only)
-var sasBuilder = new BlobSasBuilder(BlobSasPermissions.Read, DateTimeOffset.UtcNow.AddHours(1));
-var sasUri = blobClient.GenerateSasUri(sasBuilder);
-Console.WriteLine(sasUri);
 ```
 
-**NuGet:** `Azure.Storage.Blobs`
+**appsettings.json:**
+```json
+{
+  "Storage": {
+    "AccountName": "mystorageaccount",
+    "ContainerName": "uploads"
+  }
+}
+```
+
+**NuGet:** `Azure.Storage.Blobs`, `Azure.Identity`
 
 ---
 
 ### C# - Azure.Storage.Queues
 
 ```csharp
+using Azure.Identity;
 using Azure.Storage.Queues;
 using Azure.Storage.Queues.Models;
+using System.Text.Json;
 
-// Połączenie
-var queueClient = new QueueClient("<connection-string>", "myqueue");
-await queueClient.CreateIfNotExistsAsync();
-
-// Wyślij wiadomość
-await queueClient.SendMessageAsync("Hello Queue!");
-await queueClient.SendMessageAsync(Base64Encode(JsonSerializer.Serialize(order)));
-
-// Odbierz wiadomości (peek - bez usuwania)
-PeekedMessage[] peeked = await queueClient.PeekMessagesAsync(maxMessages: 5);
-
-// Odbierz i przetwórz (z visibility timeout)
-QueueMessage[] messages = await queueClient.ReceiveMessagesAsync(
-    maxMessages: 5,
-    visibilityTimeout: TimeSpan.FromMinutes(5)
-);
-
-foreach (var msg in messages)
+public class QueueService
 {
-    Console.WriteLine(msg.Body.ToString());
-    // Po przetworzeniu - usuń
-    await queueClient.DeleteMessageAsync(msg.MessageId, msg.PopReceipt);
+    private readonly QueueClient _queueClient;
+    
+    public QueueService(IConfiguration config)
+    {
+        var queueUri = new Uri($"https://{config["Storage:AccountName"]}.queue.core.windows.net/{config["Storage:QueueName"]}");
+        _queueClient = new QueueClient(queueUri, new DefaultAzureCredential());
+    }
+    
+    public async Task SendAsync<T>(T message)
+    {
+        var json = JsonSerializer.Serialize(message);
+        await _queueClient.SendMessageAsync(BinaryData.FromString(json));
+    }
+    
+    public async Task<List<T>> ReceiveAsync<T>(int maxMessages = 5, TimeSpan? visibilityTimeout = null)
+    {
+        var messages = await _queueClient.ReceiveMessagesAsync(
+            maxMessages, 
+            visibilityTimeout ?? TimeSpan.FromMinutes(5));
+        
+        var results = new List<T>();
+        foreach (var msg in messages.Value)
+        {
+            results.Add(JsonSerializer.Deserialize<T>(msg.Body.ToString())!);
+            await _queueClient.DeleteMessageAsync(msg.MessageId, msg.PopReceipt);
+        }
+        return results;
+    }
 }
-
-// Sprawdź liczbę wiadomości
-QueueProperties props = await queueClient.GetPropertiesAsync();
-Console.WriteLine($"Messages: {props.ApproximateMessagesCount}");
 ```
 
-**NuGet:** `Azure.Storage.Queues`
+**NuGet:** `Azure.Storage.Queues`, `Azure.Identity`
 
 ---
 
@@ -6858,53 +6950,48 @@ Console.WriteLine($"Messages: {props.ApproximateMessagesCount}");
 
 ```csharp
 using Azure.Data.Tables;
+using Azure.Identity;
 
-// Połączenie
-var tableClient = new TableClient("<connection-string>", "Products");
-await tableClient.CreateIfNotExistsAsync();
+public class ProductTableService
+{
+    private readonly TableClient _tableClient;
+    
+    public ProductTableService(IConfiguration config)
+    {
+        var tableUri = new Uri($"https://{config["Storage:AccountName"]}.table.core.windows.net");
+        var serviceClient = new TableServiceClient(tableUri, new DefaultAzureCredential());
+        _tableClient = serviceClient.GetTableClient("Products");
+    }
+    
+    public async Task UpsertAsync(ProductEntity product)
+        => await _tableClient.UpsertEntityAsync(product, TableUpdateMode.Replace);
+    
+    public async Task<ProductEntity?> GetAsync(string category, string productId)
+    {
+        try { return await _tableClient.GetEntityAsync<ProductEntity>(category, productId); }
+        catch (Azure.RequestFailedException ex) when (ex.Status == 404) { return null; }
+    }
+    
+    public async IAsyncEnumerable<ProductEntity> QueryAsync(string category, decimal minPrice)
+    {
+        var query = _tableClient.QueryAsync<ProductEntity>(
+            $"PartitionKey eq '{category}' and Price gt {minPrice}");
+        await foreach (var entity in query) yield return entity;
+    }
+}
 
-// Model encji
 public class ProductEntity : ITableEntity
 {
-    public string PartitionKey { get; set; }  // np. Category
-    public string RowKey { get; set; }         // np. ProductId
-    public string Name { get; set; }
+    public string PartitionKey { get; set; } = "";  // Category
+    public string RowKey { get; set; } = "";        // ProductId
+    public string Name { get; set; } = "";
     public double Price { get; set; }
     public DateTimeOffset? Timestamp { get; set; }
     public ETag ETag { get; set; }
 }
-
-// Dodaj encję
-var product = new ProductEntity
-{
-    PartitionKey = "Electronics",
-    RowKey = "PROD001",
-    Name = "Laptop",
-    Price = 999.99
-};
-await tableClient.AddEntityAsync(product);
-
-// Pobierz po PartitionKey + RowKey
-var entity = await tableClient.GetEntityAsync<ProductEntity>("Electronics", "PROD001");
-
-// Query - wyszukaj encje
-var results = tableClient.QueryAsync<ProductEntity>(
-    filter: $"PartitionKey eq 'Electronics' and Price gt 500"
-);
-await foreach (var item in results)
-{
-    Console.WriteLine($"{item.Name}: {item.Price}");
-}
-
-// Update
-product.Price = 899.99;
-await tableClient.UpdateEntityAsync(product, product.ETag, TableUpdateMode.Replace);
-
-// Delete
-await tableClient.DeleteEntityAsync("Electronics", "PROD001");
 ```
 
-**NuGet:** `Azure.Data.Tables`
+**NuGet:** `Azure.Data.Tables`, `Azure.Identity`
 
 ---
 
