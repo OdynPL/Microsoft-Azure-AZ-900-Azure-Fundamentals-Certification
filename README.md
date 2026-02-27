@@ -1183,28 +1183,108 @@ az network firewall update --name myFirewall \
 
 #### Hub-Spoke Architecture
 
-Typowa architektura z Azure Firewall:
+<img src="assets/hub_spoke_architecture.svg">
 
-1. **Hub VNet** - centralny VNet z Azure Firewall
-2. **Spoke VNets** - VNety aplikacyjne (peered z Hub)
-3. **UDR (User Defined Routes)** - wymuszenie ruchu przez Firewall
+**Hub-Spoke** to najpopularniejsza architektura sieciowa w Azure dla środowisk enterprise. Opiera się na centralnym VNecie (Hub), który łączy się z wieloma VNetami aplikacyjnymi (Spokes) za pomocą VNet Peering.
+
+**Koncepcja:**
+- **Hub VNet** = centralny węzeł z usługami współdzielonymi
+- **Spoke VNets** = izolowane VNety dla różnych aplikacji/środowisk
+- **VNet Peering** = połączenie Hub ↔ Spoke (bez tranzytywności!)
+
+**Co umieszczamy w Hub:**
+| Usługa | Rola |
+|--------|------|
+| **Azure Firewall** | Centralny firewall dla całego ruchu |
+| **VPN Gateway** | Połączenie z on-premises |
+| **ExpressRoute Gateway** | Dedykowane połączenie z on-prem |
+| **Azure Bastion** | Bezpieczny dostęp RDP/SSH |
+| **DNS Server** | Centralne rozwiązywanie nazw |
+| **NVA** | Network Virtual Appliances (3rd party) |
+
+**Co umieszczamy w Spokes:**
+- Aplikacje produkcyjne (Spoke: Production)
+- Środowiska deweloperskie (Spoke: Development)
+- Bazy danych (Spoke: Databases)
+- Zarządzanie i monitoring (Spoke: Management)
+
+**Dlaczego Hub-Spoke?**
+
+| Zaleta | Opis |
+|--------|------|
+| **Izolacja** | Każdy Spoke jest oddzielony od innych |
+| **Centralne bezpieczeństwo** | Jeden Firewall kontroluje cały ruch |
+| **Koszt** | Współdzielone usługi (VPN GW, Firewall) zamiast duplikacji |
+| **Skalowalność** | Łatwe dodawanie nowych Spokes |
+| **Compliance** | Różne regulacje dla różnych Spokes |
+
+**Ważne: VNet Peering NIE jest tranzytywny!**
+
+```
+Spoke1 ←→ Hub ←→ Spoke2
+
+Spoke1 NIE może rozmawiać z Spoke2 bezpośrednio przez peering!
+Ruch musi przejść przez Hub (np. przez Azure Firewall lub NVA).
+```
+
+**Rozwiązania dla komunikacji Spoke-to-Spoke:**
+1. **Azure Firewall/NVA** - ruch routowany przez Hub (UDR)
+2. **Virtual WAN** - natywna tranzytywność
+3. **Bezpośredni peering** - Spoke ↔ Spoke (dodatkowy koszt, brak kontroli)
+
+**Przykładowa konfiguracja sieci:**
+```
+Hub VNet:        10.0.0.0/16
+  ├── AzureFirewallSubnet:  10.0.1.0/26
+  ├── GatewaySubnet:        10.0.2.0/27
+  └── AzureBastionSubnet:   10.0.3.0/26
+
+Spoke1 (Prod):   10.1.0.0/16
+Spoke2 (Dev):    10.2.0.0/16
+Spoke3 (DB):     10.3.0.0/16
+On-premises:     192.168.0.0/16
+```
+
+**Konfiguracja UDR dla Spoke-to-Spoke przez Firewall:**
 
 ```bash
-# Route Table dla Spoke VNet
-az network route-table create --name Spoke-RT --resource-group myFWRG
+# Route Table dla każdego Spoke
+az network route-table create --name Spoke1-RT --resource-group myRG
 
-# Default route przez Firewall (0.0.0.0/0 -> Firewall private IP)
-az network route-table route create --name ToFirewall \
-    --route-table-name Spoke-RT --resource-group myFWRG \
-    --address-prefix 0.0.0.0/0 \
+# Route do innych Spokes przez Firewall
+az network route-table route create --name ToSpoke2 \
+    --route-table-name Spoke1-RT --resource-group myRG \
+    --address-prefix 10.2.0.0/16 \
     --next-hop-type VirtualAppliance \
     --next-hop-ip-address 10.0.1.4  # Firewall private IP
 
-# Przypisanie RT do Spoke subnet
-az network vnet subnet update --name SpokeSubnet \
-    --vnet-name SpokeVNet --resource-group myFWRG \
-    --route-table Spoke-RT
+# Route do on-premises przez Firewall
+az network route-table route create --name ToOnPrem \
+    --route-table-name Spoke1-RT --resource-group myRG \
+    --address-prefix 192.168.0.0/16 \
+    --next-hop-type VirtualAppliance \
+    --next-hop-ip-address 10.0.1.4
+
+# Default route (Internet) przez Firewall
+az network route-table route create --name ToInternet \
+    --route-table-name Spoke1-RT --resource-group myRG \
+    --address-prefix 0.0.0.0/0 \
+    --next-hop-type VirtualAppliance \
+    --next-hop-ip-address 10.0.1.4
 ```
+
+**Porównanie: Hub-Spoke vs Virtual WAN**
+
+| Cecha | Hub-Spoke (manual) | Azure Virtual WAN |
+|-------|-------------------|-------------------|
+| Tranzytywność | UDR + Firewall/NVA | Natywna |
+| Zarządzanie | Ręczne | Automatyczne |
+| Skalowalność | Do ~100 Spokes | Do 1000+ |
+| Koszt | Niższy (DIY) | Wyższy (managed) |
+| Złożoność | Średnia | Niska |
+| Multi-region | Wymaga konfiguracji | Wbudowane |
+
+> **Egzamin:** Hub-Spoke to wzorzec architektoniczny, nie usługa Azure. Virtual WAN to managed service, który implementuje Hub-Spoke automatycznie.
 
 #### Porównanie z NSG
 
