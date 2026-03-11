@@ -345,7 +345,7 @@
 * **PaaS** zmniejsza odpowiedzialność za **OS** i patchowanie, **IaaS** = samodzielny **OS**.
 * **Entra ID** to **IAM**, nie klasyczny **AD Domain Services**.
 * **Conditional Access** ocenia kontekst (**user/device/location/risk**).
-* **PIM** daje **JIT/JEA** dla ról uprzywilejowanych.
+* **PIM** (**Privileged Identity Management**) daje **JIT/JEA** dla ról uprzywilejowanych.
 * **Managed Identity** eliminuje potrzebę trzymania sekretów w kodzie.
 * **Blob tiers:** **Hot/Cool/Archive** różnią się kosztem zapisu i odczytu.
 * **LRS/ZRS/GRS/RA-GRS** to poziomy redundancji storage.
