@@ -275,6 +275,13 @@
 * **Read Replica** – Odczyt z kopii bazy dla skalowania.
 
 ## **11. Koszty i narzędzia**
+### **Modele rozliczania usług (billing)**
+- **Nie wszystkie usługi Azure są rozliczane za sekundę!**
+    - **VM (Virtual Machines):** Rozliczane za każdą rozpoczętą minutę (minute-based billing). Naliczanie od uruchomienia do deallocation (wyłączenie VM = koniec naliczania, samo zatrzymanie nie zawsze!).
+    - **Azure Functions:** Rozliczane za liczbę wywołań i czas działania (co 1 ms).
+    - **Storage, bazy danych, App Service:** Zwykle rozliczane za godzinę lub za zużycie (np. GB/miesiąc).
+    - **Rezerwacje, App Service Plan:** Rozliczane za godzinę lub miesiąc.
+- **Wskazówka:** Sprawdzaj model billingowy każdej usługi w dokumentacji – na egzaminie mogą pojawić się pytania o dokładność rozliczania!
 * **Pay-as-you-go** – Płacisz za zużycie.
 * **Reserved Instances** – Rezerwacja na dłużej, taniej.
 * **Spot VM** – Tanie, przerywane VM.
