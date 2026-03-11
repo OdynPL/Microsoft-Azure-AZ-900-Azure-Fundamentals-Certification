@@ -247,7 +247,8 @@
 * **Managed Identity** – Tożsamość dla aplikacji bez haseł.
 * **Key Vault** – Bezpieczne przechowywanie sekretów.
 * **Zero Trust** – Zasada „nikomu nie ufaj”.
-* **Defender for Cloud (dawniej Security Center)** – Centrum zarządzania bezpieczeństwem.
+* **Defender for Cloud (dawniej Security Center)** – Centrum zarządzania bezpieczeństwem w chmurze. Monitoruje konfigurację, wykrywa zagrożenia, ocenia zgodność, daje rekomendacje i automatyzuje ochronę zasobów (VM, bazy, storage, kontenery, PaaS). Pozwala włączyć zaawansowane funkcje ochrony (Defender plans) dla różnych typów zasobów.
+* **Defender for Identity** – Chmurowa usługa bezpieczeństwa do ochrony tożsamości w środowiskach hybrydowych (on-premises AD + Entra ID). Wykrywa podejrzane działania, ataki na konta, lateral movement, pass-the-hash/ticket, brute force, nieautoryzowane zmiany. Integruje się z Defender for Cloud i Sentinel.
 * **Azure Information Protection** – Klasyfikacja i ochrona dokumentów.
 * **Sentinel** – SIEM/SOAR, analiza zagrożeń, automatyzacja reakcji na incydenty.
 * **Conditional Access Policy** – Reguły dostępu zależne od kontekstu użytkownika.
