@@ -87,6 +87,14 @@
 * **Azure Arc** – Zarządzanie zasobami spoza Azure (multi-cloud, on-premises).
 
 ## **5. Kluczowe pojęcia Azure**
+* **Directory** – katalog użytkowników, grup i aplikacji w Entra ID (dawniej Azure AD); techniczny kontener tożsamości, często używany zamiennie z Tenant.
+* **Account** – konto użytkownika w Directory/Tenancie, może mieć wiele subskrypcji.
+* **User** – pojedynczy użytkownik w Directory.
+* **Group** – grupa użytkowników do zarządzania uprawnieniami.
+* **Role** – zestaw uprawnień przypisanych użytkownikowi lub grupie (RBAC).
+* **Tenant (dzierżawa)** – dedykowany, izolowany katalog Entra ID (dawniej Azure AD) dla jednej organizacji. W Tenantcie zarządza się użytkownikami, grupami, uprawnieniami i tożsamościami. Każda organizacja ma swój własny Tenant.
+* **Tenant ID** – unikalny identyfikator (GUID) przypisany do danego Tenanta. Wykorzystywany np. przy integracjach, logowaniu aplikacji, automatyzacji.
+* **Scope** – poziom przypisywania uprawnień i polityk (Management Group → Subscription → Resource Group → Resource).
 * **Region** – Lokalizacja centrum danych.
 * **Availability Zone (AZ)** – Niezależne strefy w regionie, zwiększają odporność.
     * Każda strefa ma własny zasilanie, chłodzenie, sieć. Umożliwia wdrożenie usług o wysokiej dostępności (np. VM w różnych AZ).
@@ -98,6 +106,7 @@
 * **Resource Group** – Logicza grupa zasobów.
     * Można przenosić zasoby między grupami.
     * Usuwając Resource Group usuwasz wszystkie zasoby w niej.
+* **GUID** – globalnie unikalny identyfikator (np. Tenant ID, Subscription ID).
 * **ARM/Bicep** – Automatyzacja wdrożeń (Infrastructure as Code).
     * ARM = JSON, Bicep = prostsza składnia.
     * Pozwala na powtarzalne, automatyczne wdrożenia.
@@ -109,6 +118,7 @@
     * Format: /subscriptions/{id}/resourceGroups/{rg}/providers/{type}/{name}
 * **Service Principal** – Tożsamość aplikacji do automatyzacji i integracji.
     * Używany w automatyzacji, CI/CD, skryptach.
+* **App Registration** – rejestracja aplikacji w Entra ID, umożliwia nadanie jej tożsamości i uprawnień.
 * **Azure Resource Manager (ARM)** – Centralny system zarządzania zasobami Azure.
     * Pozwala na zarządzanie uprawnieniami, tagami, politykami na poziomie subskrypcji i grupy.
 * **Azure Marketplace** – Sklep z gotowymi rozwiązaniami, aplikacjami i usługami.
