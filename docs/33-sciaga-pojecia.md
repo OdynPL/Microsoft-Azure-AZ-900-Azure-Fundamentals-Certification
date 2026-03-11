@@ -3,133 +3,133 @@
 [⬅ Powrót do spisu treści](../README.md)
 
 ## **1. Podstawy chmury i korzyści**
-**Cloud Computing** – Dostarczanie zasobów IT przez internet (serwery, bazy, aplikacje).
-**Public Cloud** – Usługi dostępne dla każdego (np. Azure, AWS, GCP).
-**Private Cloud** – Chmura tylko dla jednej organizacji.
-**Hybrid Cloud** – Połączenie chmury publicznej i prywatnej.
-**Elasticity** – Automatyczne dopasowanie zasobów do potrzeb.
-**Scalability** – Możliwość zwiększania/zmniejszania zasobów.
-    - **Vertical scaling** – zwiększanie mocy jednej maszyny (np. więcej CPU/RAM).
-    - **Horizontal scaling** – dodawanie kolejnych maszyn/instancji (np. więcej serwerów pracujących równolegle).
-**Agility** – Szybkie wdrażanie i zmiany.
-**High Availability (HA)** – Minimalizacja przestojów, ciągłość działania.
-**Disaster Recovery (DR)** – Odtwarzanie po awarii, kopie zapasowe.
-**Fault Tolerance** – Odporność na awarie.
-**Geo-distribution** – Rozmieszczenie usług w wielu regionach.
-**CapEx/OpEx** – Wydatki inwestycyjne vs operacyjne.
-**SLA (Service Level Agreement)** – Gwarantowany poziom dostępności usługi (np. 99,9%, 99,99%). Określa ile maksymalnie może trwać niedostępność usługi w miesiącu. Przekroczenie SLA = możliwość ubiegania się o kredyt/zwrot.
-**RTO/RPO** – Recovery Time/Point Objective: maksymalny czas odtworzenia usługi/akceptowalna utrata danych po awarii.
-**Soft Delete** – Ochrona przed przypadkowym usunięciem danych.
-**Immutable Storage** – Niezmienialne kopie, np. backupy nie do usunięcia.
-**Szyfrowanie at-rest/in-transit** – Dane domyślnie szyfrowane w Azure.
-**Multi-Region Deployment** – Wdrażanie usług w wielu regionach dla wysokiej dostępności.
-**Predictable Performance/Costs** – Przewidywalność wydajności i kosztów (np. rezerwacje, autoskalowanie).
-**Economies of Scale** – Niższe koszty dzięki dużej skali działania chmury.
+* **Cloud Computing** – Dostarczanie zasobów IT przez internet (serwery, bazy, aplikacje).
+* **Public Cloud** – Usługi dostępne dla każdego (np. Azure, AWS, GCP).
+* **Private Cloud** – Chmura tylko dla jednej organizacji.
+* **Hybrid Cloud** – Połączenie chmury publicznej i prywatnej.
+* **Elasticity** – Automatyczne dopasowanie zasobów do potrzeb.
+* **Scalability** – Możliwość zwiększania/zmniejszania zasobów.
+    * **Vertical scaling** – zwiększanie mocy jednej maszyny (np. więcej CPU/RAM).
+    * **Horizontal scaling** – dodawanie kolejnych maszyn/instancji (np. więcej serwerów pracujących równolegle).
+* **Agility** – Szybkie wdrażanie i zmiany.
+* **High Availability (HA)** – Minimalizacja przestojów, ciągłość działania.
+* **Disaster Recovery (DR)** – Odtwarzanie po awarii, kopie zapasowe.
+* **Fault Tolerance** – Odporność na awarie.
+* **Geo-distribution** – Rozmieszczenie usług w wielu regionach.
+* **CapEx/OpEx** – Wydatki inwestycyjne vs operacyjne.
+* **SLA (Service Level Agreement)** – Gwarantowany poziom dostępności usługi (np. 99,9%, 99,99%). Określa ile maksymalnie może trwać niedostępność usługi w miesiącu. Przekroczenie SLA = możliwość ubiegania się o kredyt/zwrot.
+* **RTO/RPO** – Recovery Time/Point Objective: maksymalny czas odtworzenia usługi/akceptowalna utrata danych po awarii.
+* **Soft Delete** – Ochrona przed przypadkowym usunięciem danych.
+* **Immutable Storage** – Niezmienialne kopie, np. backupy nie do usunięcia.
+* **Szyfrowanie at-rest/in-transit** – Dane domyślnie szyfrowane w Azure.
+* **Multi-Region Deployment** – Wdrażanie usług w wielu regionach dla wysokiej dostępności.
+* **Predictable Performance/Costs** – Przewidywalność wydajności i kosztów (np. rezerwacje, autoskalowanie).
+* **Economies of Scale** – Niższe koszty dzięki dużej skali działania chmury.
 
 ## **2. Modele usług chmurowych**
-**IaaS** – Wynajmujesz infrastrukturę (VM, sieci, storage). Pełna kontrola.
-**PaaS** – Platforma do uruchamiania aplikacji (App Service, SQL DB). Bez zarządzania OS.
-**SaaS** – Gotowe aplikacje (Office 365, Gmail).
-**Serverless** – Kod bez zarządzania serwerami (Azure Functions).
-**FaaS (Function as a Service)** – Kod uruchamiany na żądanie, np. Azure Functions.
+* **IaaS** – Wynajmujesz infrastrukturę (VM, sieci, storage). Pełna kontrola.
+* **PaaS** – Platforma do uruchamiania aplikacji (App Service, SQL DB). Bez zarządzania OS.
+* **SaaS** – Gotowe aplikacje (Office 365, Gmail).
+* **Serverless** – Kod bez zarządzania serwerami (Azure Functions).
+* **FaaS (Function as a Service)** – Kod uruchamiany na żądanie, np. Azure Functions.
 
 ## **3. Modele odpowiedzialności**
-**Shared Responsibility** – Microsoft: infrastruktura, Ty: dane, dostęp.
+* **Shared Responsibility** – Microsoft: infrastruktura, Ty: dane, dostęp.
 
 ## **4. Hierarchia i organizacja zasobów**
-**Management Group > Subscription > Resource Group > Resource** – Struktura administracyjna.
-**RBAC** – Zarządzanie dostępem do zasobów (role, zakres).
-**Tagi** – Etykiety do organizacji i raportowania kosztów (np. Environment, Owner, Project). Ułatwiają filtrowanie, raportowanie, automatyzację i rozliczanie kosztów. Tagi nie dziedziczą się automatycznie na zasoby podrzędne.
-**Resource Locks** – Blokady przed usunięciem/zmianą zasobów.
-    - **CanNotDelete (Delete Lock):** nie można usunąć zasobu, ale można go modyfikować.
-    - **ReadOnly Lock:** nie można usuwać ani modyfikować zasobu, tylko odczyt.
-**Subscription** – Jednostka rozliczeniowa, granica kosztów i uprawnień.
-**Management Group** – Grupowanie subskrypcji dla centralnego zarządzania politykami.
-**Azure Lighthouse** – Zarządzanie wieloma środowiskami klientów (MSP).
-**Azure Arc** – Zarządzanie zasobami spoza Azure (multi-cloud, on-premises).
+* **Management Group > Subscription > Resource Group > Resource** – Struktura administracyjna.
+* **RBAC** – Zarządzanie dostępem do zasobów (role, zakres).
+* **Tagi** – Etykiety do organizacji i raportowania kosztów (np. Environment, Owner, Project). Ułatwiają filtrowanie, raportowanie, automatyzację i rozliczanie kosztów. Tagi nie dziedziczą się automatycznie na zasoby podrzędne.
+* **Resource Locks** – Blokady przed usunięciem/zmianą zasobów.
+    * **CanNotDelete (Delete Lock):** nie można usunąć zasobu, ale można go modyfikować.
+    * **ReadOnly Lock:** nie można usuwać ani modyfikować zasobu, tylko odczyt.
+* **Subscription** – Jednostka rozliczeniowa, granica kosztów i uprawnień.
+* **Management Group** – Grupowanie subskrypcji dla centralnego zarządzania politykami.
+* **Azure Lighthouse** – Zarządzanie wieloma środowiskami klientów (MSP).
+* **Azure Arc** – Zarządzanie zasobami spoza Azure (multi-cloud, on-premises).
 
 ## **5. Kluczowe pojęcia Azure**
-**Region** – Lokalizacja centrum danych.
-**Availability Zone (AZ)** – Niezależne strefy w regionie, zwiększają odporność.
-**Region Pair** – Dwa powiązane regiony do DR.
-**Resource Group** – Logicza grupa zasobów.
-**ARM/Bicep** – Automatyzacja wdrożeń (Infrastructure as Code).
-**Azure Free Account** – Darmowe środki na start ($200, 12 miesięcy).
-**Azure Active Directory Domain Services (AAD DS)** – Zarządzane usługi domenowe w chmurze.
-**Resource ID** – Unikalny identyfikator zasobu w Azure.
-**Service Principal** – Tożsamość aplikacji do automatyzacji i integracji.
+* **Region** – Lokalizacja centrum danych.
+* **Availability Zone (AZ)** – Niezależne strefy w regionie, zwiększają odporność.
+* **Region Pair** – Dwa powiązane regiony do DR.
+* **Resource Group** – Logicza grupa zasobów.
+* **ARM/Bicep** – Automatyzacja wdrożeń (Infrastructure as Code).
+* **Azure Free Account** – Darmowe środki na start ($200, 12 miesięcy).
+* **Azure Active Directory Domain Services (AAD DS)** – Zarządzane usługi domenowe w chmurze.
+* **Resource ID** – Unikalny identyfikator zasobu w Azure.
+* **Service Principal** – Tożsamość aplikacji do automatyzacji i integracji.
 
 ## **6. Compute (obliczenia)**
-**Virtual Machine (VM)** – Maszyna wirtualna, pełna kontrola.
-**Scale Set** – Automatyczne skalowanie wielu VM.
-**App Service** – Hostowanie aplikacji web/API bez zarządzania serwerem.
-**AKS** – Orkiestracja kontenerów (Kubernetes).
-**Container Instances (ACI)** – Szybkie uruchamianie pojedynczych kontenerów.
-**Azure Functions** – Serverless, kod uruchamiany na żądanie.
-**Service Fabric** – Orkiestracja mikroserwisów.
-**Dedicated Host** – Fizyczny serwer dedykowany dla jednej organizacji.
-**VMSS (Virtual Machine Scale Set)** – Automatyczne skalowanie VM.
-**Burstable VM** – VM z elastycznym zużyciem CPU.
+* **Virtual Machine (VM)** – Maszyna wirtualna, pełna kontrola.
+* **Scale Set** – Automatyczne skalowanie wielu VM.
+* **App Service** – Hostowanie aplikacji web/API bez zarządzania serwerem.
+* **AKS** – Orkiestracja kontenerów (Kubernetes).
+* **Container Instances (ACI)** – Szybkie uruchamianie pojedynczych kontenerów.
+* **Azure Functions** – Serverless, kod uruchamiany na żądanie.
+* **Service Fabric** – Orkiestracja mikroserwisów.
+* **Dedicated Host** – Fizyczny serwer dedykowany dla jednej organizacji.
+* **VMSS (Virtual Machine Scale Set)** – Automatyczne skalowanie VM.
+* **Burstable VM** – VM z elastycznym zużyciem CPU.
 
 ## **7. Storage (magazynowanie)**
-**Blob Storage** – Przechowywanie plików/obiektów.
-**File Storage** – Udziały plików SMB/NFS.
-**Queue/Table Storage** – Kolejki i tabele NoSQL.
-**Disk Storage** – Dyski dla VM (Standard HDD/SSD, Premium SSD, Ultra SSD).
-**Data Lake Storage** – Analiza dużych zbiorów danych.
-**Premium Storage** – Dyski SSD dla wysokiej wydajności.
-**Azure File Sync** – Synchronizacja plików między on-premises a Azure Files.
-**Data Box Gateway** – Wirtualne urządzenie do transferu danych do chmury.
-**Redundancy (nadmiarowość):**
-    - **LRS** – 3 kopie w jednym regionie.
-    - **ZRS** – Kopie w różnych strefach w regionie.
-    - **GRS** – Kopie w innym regionie.
-    - **RA-GRS** – GRS + odczyt w regionie zapasowym.
-    - **GZRS/RA-GZRS** – ZRS + geo-replikacja.
-**Blob Tiers:**
-    - **Hot** – Częsty dostęp, wyższy koszt.
-    - **Cool** – Rzadki dostęp, niższy koszt.
-    - **Archive** – Archiwizacja, najniższy koszt, długi czas przywracania.
-**Geo-replikacja** – Automatyczne kopiowanie danych do innego regionu.
-**Blob Storage vs File Storage:**
-    - **Blob:** obiekty, backupy, archiwa, REST API.
-    - **File:** udziały plików, SMB/NFS, współdzielenie między VM.
+* **Blob Storage** – Przechowywanie plików/obiektów.
+* **File Storage** – Udziały plików SMB/NFS.
+* **Queue/Table Storage** – Kolejki i tabele NoSQL.
+* **Disk Storage** – Dyski dla VM (Standard HDD/SSD, Premium SSD, Ultra SSD).
+* **Data Lake Storage** – Analiza dużych zbiorów danych.
+* **Premium Storage** – Dyski SSD dla wysokiej wydajności.
+* **Azure File Sync** – Synchronizacja plików między on-premises a Azure Files.
+* **Data Box Gateway** – Wirtualne urządzenie do transferu danych do chmury.
+* **Redundancy (nadmiarowość):**
+    * **LRS** – 3 kopie w jednym regionie.
+    * **ZRS** – Kopie w różnych strefach w regionie.
+    * **GRS** – Kopie w innym regionie.
+    * **RA-GRS** – GRS + odczyt w regionie zapasowym.
+    * **GZRS/RA-GZRS** – ZRS + geo-replikacja.
+* **Blob Tiers:**
+    * **Hot** – Częsty dostęp, wyższy koszt.
+    * **Cool** – Rzadki dostęp, niższy koszt.
+    * **Archive** – Archiwizacja, najniższy koszt, długi czas przywracania.
+* **Geo-replikacja** – Automatyczne kopiowanie danych do innego regionu.
+* **Blob Storage vs File Storage:**
+    * **Blob:** obiekty, backupy, archiwa, REST API.
+    * **File:** udziały plików, SMB/NFS, współdzielenie między VM.
 
 ## **8. Networking (sieci)**
-**VNet** – Prywatna sieć w Azure.
-**Subnet** – Podział VNet.
-**NSG** – Reguły ruchu sieciowego.
-**Azure Firewall** – Zaawansowana ochrona, stateful.
-**DDoS Protection** – Ochrona przed atakami.
-**ExpressRoute** – Dedykowane łącze do Azure.
-**VPN Gateway** – Szyfrowane połączenie do Azure.
-**Private Link/Endpoint** – Prywatny dostęp do usług.
-**Bastion** – Bezpieczny dostęp do VM przez przeglądarkę.
-**Load Balancer** – Rozkładanie ruchu (L4).
-**Application Gateway** – Rozkładanie ruchu (L7), WAF.
-**Front Door** – Globalny rozkład ruchu, CDN, WAF.
-**Traffic Manager** – Rozkład ruchu na poziomie DNS.
-**Azure DNS** – Zarządzanie rekordami DNS.
-**Content Delivery Network (CDN)** – Szybkie dostarczanie treści.
-**Peering** – Łączenie VNetów w tym samym lub różnych regionach.
-**Application Security Group (ASG)** – Grupowanie VM dla reguł NSG.
-**Public IP vs Private IP** – Publiczny adres dostępny z internetu, prywatny tylko w sieci Azure.
+* **VNet** – Prywatna sieć w Azure.
+* **Subnet** – Podział VNet.
+* **NSG** – Reguły ruchu sieciowego.
+* **Azure Firewall** – Zaawansowana ochrona, stateful.
+* **DDoS Protection** – Ochrona przed atakami.
+* **ExpressRoute** – Dedykowane łącze do Azure.
+* **VPN Gateway** – Szyfrowane połączenie do Azure.
+* **Private Link/Endpoint** – Prywatny dostęp do usług.
+* **Bastion** – Bezpieczny dostęp do VM przez przeglądarkę.
+* **Load Balancer** – Rozkładanie ruchu (L4).
+* **Application Gateway** – Rozkładanie ruchu (L7), WAF.
+* **Front Door** – Globalny rozkład ruchu, CDN, WAF.
+* **Traffic Manager** – Rozkład ruchu na poziomie DNS.
+* **Azure DNS** – Zarządzanie rekordami DNS.
+* **Content Delivery Network (CDN)** – Szybkie dostarczanie treści.
+* **Peering** – Łączenie VNetów w tym samym lub różnych regionach.
+* **Application Security Group (ASG)** – Grupowanie VM dla reguł NSG.
+* **Public IP vs Private IP** – Publiczny adres dostępny z internetu, prywatny tylko w sieci Azure.
 
 ## **9. Identity & Security (tożsamość i bezpieczeństwo)**
-**Entra ID (Azure AD)** – Zarządzanie tożsamością.
-**MFA** – Uwierzytelnianie wieloskładnikowe.
-**Conditional Access** – Dostęp zależny od warunków.
-**PIM** – Zarządzanie uprawnieniami uprzywilejowanymi.
-**Managed Identity** – Tożsamość dla aplikacji bez haseł.
-**Key Vault** – Bezpieczne przechowywanie sekretów.
-**Zero Trust** – Zasada „nikomu nie ufaj”.
-**Defender for Cloud (dawniej Security Center)** – Centrum zarządzania bezpieczeństwem.
-**Azure Information Protection** – Klasyfikacja i ochrona dokumentów.
-**Sentinel** – SIEM/SOAR, analiza zagrożeń, automatyzacja reakcji na incydenty.
-**Conditional Access Policy** – Reguły dostępu zależne od kontekstu użytkownika.
-**Privileged Access Workstation (PAW)** – Bezpieczne stanowisko do administrowania.
-**Just-in-Time (JIT) Access** – Tymczasowy dostęp do VM.
-**Managed HSM** – Zarządzany sprzętowy moduł bezpieczeństwa.
+* **Entra ID (Azure AD)** – Zarządzanie tożsamością.
+* **MFA** – Uwierzytelnianie wieloskładnikowe.
+* **Conditional Access** – Dostęp zależny od warunków.
+* **PIM** – Zarządzanie uprawnieniami uprzywilejowanymi.
+* **Managed Identity** – Tożsamość dla aplikacji bez haseł.
+* **Key Vault** – Bezpieczne przechowywanie sekretów.
+* **Zero Trust** – Zasada „nikomu nie ufaj”.
+* **Defender for Cloud (dawniej Security Center)** – Centrum zarządzania bezpieczeństwem.
+* **Azure Information Protection** – Klasyfikacja i ochrona dokumentów.
+* **Sentinel** – SIEM/SOAR, analiza zagrożeń, automatyzacja reakcji na incydenty.
+* **Conditional Access Policy** – Reguły dostępu zależne od kontekstu użytkownika.
+* **Privileged Access Workstation (PAW)** – Bezpieczne stanowisko do administrowania.
+* **Just-in-Time (JIT) Access** – Tymczasowy dostęp do VM.
+* **Managed HSM** – Zarządzany sprzętowy moduł bezpieczeństwa.
 
 ## **10. Bazy danych**
 **Azure SQL Database** – Relacyjna baza danych (OLTP).
