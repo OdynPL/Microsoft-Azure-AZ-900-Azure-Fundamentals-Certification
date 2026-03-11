@@ -2,6 +2,27 @@
 
 [⬅ Powrót do spisu treści](../README.md)
 
+---
+
+## **Limity platformy Azure (wybrane przykłady)**
+
+- **VM w subskrypcji (domyślnie):** 10–20 na region (można zwiększyć przez support request)
+- **Resource Group:** max 980 zasobów
+- **Storage Accounts:** 250 na subskrypcję na region
+- **Public IP:** 10 na subskrypcję na region (można zwiększyć)
+- **VNet:** 1000 na region
+- **NSG:** 5000 na subskrypcję na region
+- **Managed Disks:** 50 000 na region na subskrypcję
+- **App Service Plan:** 100 na subskrypcję na region
+- **Azure SQL Database:** 5000 DB na serwerze logicznym
+- **Cosmos DB:** 50 kontenerów na bazę, 25 baz na konto
+- **Azure Functions:** 1,5 mln wywołań/miesiąc (w planie Consumption, w ramach free tier)
+- **Resource Groups na subskrypcję:** 980
+- **Subskrypcje na konto:** 200
+- **Tagi:** maksymalnie 50 tagów na jeden zasób lub grupę zasobów
+
+**Uwaga:** Większość limitów można podnieść przez zgłoszenie do supportu. Aktualne limity: https://docs.microsoft.com/azure/azure-resource-manager/management/azure-subscription-service-limits
+
 ## **1. Podstawy chmury i korzyści**
 * **Cloud Computing** – Dostarczanie zasobów IT przez internet (serwery, bazy, aplikacje).
 * **Public Cloud** – Usługi dostępne dla każdego (np. Azure, AWS, GCP).
@@ -50,6 +71,13 @@
     * **Resource** – pojedynczy zasób w Azure (np. VM, Storage Account, baza danych). Można przypisać **uprawnienia (RBAC)** bezpośrednio do konkretnego zasobu, np. dostęp tylko do jednej maszyny lub bazy.
 * **RBAC** – Zarządzanie dostępem do zasobów (role, zakres).
 * **Tagi** – Etykiety do organizacji i raportowania kosztów (np. Environment, Owner, Project). Ułatwiają filtrowanie, raportowanie, automatyzację i rozliczanie kosztów. Tagi nie dziedziczą się automatycznie na zasoby podrzędne.
+* **Tagi** – Etykiety do organizacji i raportowania kosztów (np. Environment, Owner, Project). Ułatwiają filtrowanie, raportowanie, automatyzację i rozliczanie kosztów.
+    * Maksymalnie **50 tagów** na jeden zasób lub grupę zasobów.
+    * **Klucz tagu:** do 128 znaków.
+    * **Wartość tagu:** do 256 znaków.
+    * Tagi nie dziedziczą się automatycznie na zasoby podrzędne.
+    * Tagi są rozróżniane wielkością liter (**case-sensitive**).
+    * Niektóre zasoby mogą mieć własne ograniczenia dotyczące tagów.
 * **Resource Locks** – Blokady przed usunięciem/zmianą zasobów.
     * **CanNotDelete (Delete Lock):** nie można usunąć zasobu, ale można go modyfikować.
     * **ReadOnly Lock:** nie można usuwać ani modyfikować zasobu, tylko odczyt.
@@ -243,6 +271,7 @@
 * **PowerShell/CLI** – Automatyzacja i zarządzanie.
 * **Cloud Shell** – Terminal w przeglądarce.
 * **ARM Templates/Bicep** – Infrastructure as Code.
+* **IaC (Infrastructure as Code)** – zarządzanie i wdrażanie infrastruktury za pomocą kodu (np. ARM, Bicep, Terraform). Pozwala na automatyzację, powtarzalność i wersjonowanie środowisk.
 * **DevTest Labs** – Szybkie środowiska testowe.
 * **Azure Monitor** – Monitorowanie zasobów.
 * **Log Analytics** – Analiza logów.
