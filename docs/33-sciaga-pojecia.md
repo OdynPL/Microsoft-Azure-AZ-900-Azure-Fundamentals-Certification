@@ -1,5 +1,39 @@
 # **AZ-900 – Ściąga pojęć do druku (wersja rozszerzona)**
 
+---
+
+## **Szybkie porównania i skróty (do powtórki)**
+
+* **IaaS vs PaaS vs SaaS:**
+    * **IaaS:** VM, Storage, sieć – pełna kontrola, zarządzasz OS.
+    * **PaaS:** App Service, SQL DB – nie zarządzasz OS, tylko aplikacją.
+    * **SaaS:** Office 365 – gotowa aplikacja, tylko używasz.
+* **NSG vs Firewall:**
+    * **NSG:** reguły na subnet/VM, L4, prostsze.
+    * **Firewall:** centralna ochrona, logi, L4/L7, zaawansowane scenariusze.
+* **CDN vs Front Door vs Traffic Manager:**
+    * **CDN:** cache, przyspiesza statyczne treści.
+    * **Front Door:** globalny routing, WAF, L7.
+    * **Traffic Manager:** DNS, routing geograficzny/failover.
+* **App Service vs VM:**
+    * **App Service:** PaaS, szybkie wdrożenia, automatyczne skalowanie.
+    * **VM:** IaaS, pełna kontrola, własny OS.
+* **Azure Policy vs RBAC:**
+    * **Policy:** wymusza zasady (np. region, tagi).
+    * **RBAC:** uprawnienia do zasobów.
+* **Azure Backup vs Site Recovery:**
+    * **Backup:** kopie zapasowe.
+    * **Site Recovery:** DR, odtwarzanie po awarii.
+* **Blob Storage vs File Storage:**
+    * **Blob:** obiekty, backupy, REST API.
+    * **File:** udziały plików, SMB/NFS.
+* **ExpressRoute vs VPN:**
+    * **ExpressRoute:** dedykowane łącze, nie szyfruje domyślnie.
+    * **VPN:** szyfrowane połączenie przez internet.
+* **Azure DevOps vs GitHub:**
+    * **DevOps:** CI/CD, tablice zadań.
+    * **GitHub:** repozytoria, CI/CD, społeczność.
+
 [⬅ Powrót do spisu treści](../README.md)
 
 ---
@@ -66,24 +100,17 @@
     * **PaaS:** Microsoft odpowiada za sprzęt, sieć, OS, Ty za aplikacje, dane.
     * **SaaS:** Microsoft odpowiada za wszystko poza danymi i dostępem użytkownika.
 
-## **4. Hierarchia i organizacja zasobów**
-* **Management Group > Subscription > Resource Group > Resource** – Struktura administracyjna.
-    * **Resource** – pojedynczy zasób w Azure (np. VM, Storage Account, baza danych). Można przypisać **uprawnienia (RBAC)** bezpośrednio do konkretnego zasobu, np. dostęp tylko do jednej maszyny lub bazy.
-* **RBAC** – Zarządzanie dostępem do zasobów (role, zakres).
-* **Tagi** – Etykiety do organizacji i raportowania kosztów (np. Environment, Owner, Project). Ułatwiają filtrowanie, raportowanie, automatyzację i rozliczanie kosztów. Tagi nie dziedziczą się automatycznie na zasoby podrzędne.
-* **Tagi** – Etykiety do organizacji i raportowania kosztów (np. Environment, Owner, Project). Ułatwiają filtrowanie, raportowanie, automatyzację i rozliczanie kosztów.
-    * Maksymalnie **50 tagów** na jeden zasób lub grupę zasobów.
-    * **Klucz tagu:** do 128 znaków.
-    * **Wartość tagu:** do 256 znaków.
-    * Tagi nie dziedziczą się automatycznie na zasoby podrzędne.
-    * Tagi są rozróżniane wielkością liter (**case-sensitive**).
-    * Niektóre zasoby mogą mieć własne ograniczenia dotyczące tagów.
-* **Resource Locks** – Blokady przed usunięciem/zmianą zasobów.
-    * **CanNotDelete (Delete Lock):** nie można usunąć zasobu, ale można go modyfikować.
-    * **ReadOnly Lock:** nie można usuwać ani modyfikować zasobu, tylko odczyt.
-* **Subscription** – Jednostka rozliczeniowa, granica kosztów i uprawnień.
-* **Management Group** – Grupowanie subskrypcji dla centralnego zarządzania politykami.
-* **Azure Lighthouse** – Zarządzanie wieloma środowiskami klientów (MSP).
+## **4. Hierarchia zasobów i organizacja**
+* **Management Group > Subscription > Resource Group > Resource** – administracyjna struktura Azure.
+    * **Resource** – pojedynczy zasób (np. VM, Storage, DB). Można przypisać **RBAC** bezpośrednio do zasobu.
+* **RBAC** – Role i uprawnienia na różnych poziomach (dziedziczenie w dół).
+* **Tagi** – Etykiety do organizacji i raportowania kosztów (max 50/tagów na zasób, klucz 128 znaków, wartość 256, case-sensitive, nie dziedziczą się).
+* **Resource Locks** – Blokady przed usunięciem/zmianą:
+    * **CanNotDelete:** nie można usunąć, można modyfikować.
+    * **ReadOnly:** tylko odczyt.
+* **Subscription** – Jednostka rozliczeniowa i granica uprawnień.
+* **Management Group** – Grupowanie subskrypcji do centralnego zarządzania.
+* **Azure Lighthouse** – Zarządzanie wieloma klientami (MSP).
 * **Azure Arc** – Zarządzanie zasobami spoza Azure (multi-cloud, on-premises).
 
 ## **5. Kluczowe pojęcia Azure**
