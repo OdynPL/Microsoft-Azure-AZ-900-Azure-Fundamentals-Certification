@@ -60,17 +60,33 @@
 ## **5. Kluczowe pojęcia Azure**
 * **Region** – Lokalizacja centrum danych.
 * **Availability Zone (AZ)** – Niezależne strefy w regionie, zwiększają odporność.
+    * Każda strefa ma własny zasilanie, chłodzenie, sieć. Umożliwia wdrożenie usług o wysokiej dostępności (np. VM w różnych AZ).
+    * Przykład: VM w 2 AZ = odporność na awarię centrum danych.
+    * Nie wszystkie regiony mają AZ.
 * **Region Pair** – Dwa powiązane regiony do DR.
+    * Aktualizacje i awarie planowane są rozdzielane między regiony w parze.
+    * Dane replikowane asynchronicznie.
 * **Resource Group** – Logicza grupa zasobów.
+    * Można przenosić zasoby między grupami.
+    * Usuwając Resource Group usuwasz wszystkie zasoby w niej.
 * **ARM/Bicep** – Automatyzacja wdrożeń (Infrastructure as Code).
+    * ARM = JSON, Bicep = prostsza składnia.
+    * Pozwala na powtarzalne, automatyczne wdrożenia.
 * **Azure Free Account** – Darmowe środki na start ($200, 12 miesięcy).
+    * Po wykorzystaniu środków konto przechodzi na Pay-as-you-go lub jest blokowane.
 * **Azure Active Directory Domain Services (AAD DS)** – Zarządzane usługi domenowe w chmurze.
+    * Umożliwia korzystanie z klasycznych funkcji AD bez serwerów on-premises.
 * **Resource ID** – Unikalny identyfikator zasobu w Azure.
+    * Format: /subscriptions/{id}/resourceGroups/{rg}/providers/{type}/{name}
 * **Service Principal** – Tożsamość aplikacji do automatyzacji i integracji.
+    * Używany w automatyzacji, CI/CD, skryptach.
 * **Azure Resource Manager (ARM)** – Centralny system zarządzania zasobami Azure.
+    * Pozwala na zarządzanie uprawnieniami, tagami, politykami na poziomie subskrypcji i grupy.
 * **Azure Marketplace** – Sklep z gotowymi rozwiązaniami, aplikacjami i usługami.
+    * Możliwość wdrożenia VM, SaaS, rozwiązań partnerów jednym kliknięciem.
 * **Azure Subscription Types:**
     * **Free**, **Pay-as-you-go**, **Enterprise Agreement**, **CSP**.
+    * CSP = Cloud Solution Provider (partnerzy Microsoft).
 
 ## **6. Compute (obliczenia)**
 * **Virtual Machine (VM)** – Maszyna wirtualna, pełna kontrola.
@@ -119,21 +135,31 @@
 * **Azure Firewall** – Zaawansowana ochrona, stateful.
 * **DDoS Protection** – Ochrona przed atakami.
 * **ExpressRoute** – Dedykowane łącze do Azure.
+    * Oferuje wyższą przepustowość i niższe opóźnienia niż VPN.
+    * Może być połączony z **MPLS** (**Multi-Protocol Label Switching** – technologia sieciowa do wydajnego, prywatnego routingu w sieciach WAN, często wykorzystywana przez firmy do łączenia oddziałów i centrów danych).
 * **VPN Gateway** – Szyfrowane połączenie do Azure.
+    * Obsługuje połączenia Site-to-Site, Point-to-Site, VNet-to-VNet.
 * **Site-to-Site VPN** – Łączy całą sieć lokalną z siecią w Azure. Stosowane do stałego, bezpiecznego połączenia między firmą a chmurą (np. oddziały, biura).
 * **Point-to-Site VPN** – Łączy pojedyncze urządzenie (np. laptop) z siecią w Azure. Stosowane do zdalnego dostępu użytkowników, np. home office, praca zdalna.
 * **Public VPN** – Połączenie przez publiczny internet, mniej bezpieczne, stosowane do szybkiego, tymczasowego dostępu lub gdy nie ma dedykowanego łącza.
 * **Private VPN** – Połączenie przez dedykowane, prywatne łącze (np. ExpressRoute), wyższy poziom bezpieczeństwa, stosowane do stałego, bezpiecznego połączenia między sieciami.
 * **Private Link/Endpoint** – Prywatny dostęp do usług.
 * **Bastion** – Bezpieczny dostęp do VM przez przeglądarkę.
+    * Nie wymaga publicznego IP na VM.
 * **Load Balancer** – Rozkładanie ruchu (L4).
+    * Obsługuje TCP/UDP, nie analizuje ruchu aplikacji.
 * **Application Gateway** – Rozkładanie ruchu (L7), WAF.
+    * Obsługuje SSL offload, cookie-based affinity, WAF.
 * **Front Door** – Globalny rozkład ruchu, CDN, WAF.
+    * Optymalizuje dostępność i wydajność aplikacji globalnych.
 * **Traffic Manager** – Rozkład ruchu na poziomie DNS.
+    * Obsługuje routing geograficzny, failover, weighted.
 * **Azure DNS** – Zarządzanie rekordami DNS.
 * **Content Delivery Network (CDN)** – Szybkie dostarczanie treści.
 * **Peering** – Łączenie VNetów w tym samym lub różnych regionach.
+    * Nie wymaga routingu przez internet.
 * **Application Security Group (ASG)** – Grupowanie VM dla reguł NSG.
+    * Ułatwia zarządzanie regułami dla wielu VM.
 * **Public IP vs Private IP** – Publiczny adres dostępny z internetu, prywatny tylko w sieci Azure.
 * **Service Endpoint** – Umożliwia dostęp do usług Azure z prywatnej sieci bez publicznego IP.
 * **Firewall Rules** – Reguły bezpieczeństwa dla baz danych i storage.
@@ -283,10 +309,11 @@
 
 ---
 ### **Dodatkowe typowe pułapki i pytania egzaminacyjne:**
-* **Support Plans:** Każdy plan (oprócz Free) pozwala otwierać zgłoszenia serwisowe, ale tylko wyższe (np. **Professional Direct**) umożliwiają architekturę review przez Microsoft.
-* **Redundancja Storage:** Jeśli wymagany jest odczyt z regionu zapasowego, wybierz **RA-GRS/RA-GZRS**, nie samo **GRS/GZRS**.
+* **Support Plans:** Tylko plany **Basic**, **Developer**, **Standard**, **Professional Direct** pozwalają otwierać zgłoszenia serwisowe. **Free** nie umożliwia otwierania ticketów.
+* **Support Plan Review:** Tylko **Professional Direct** i wyższe umożliwiają architektoniczny przegląd środowiska przez Microsoft.
+* **Redundancja Storage:** Jeśli wymagany jest odczyt z regionu zapasowego, wybierz **RA-GRS** lub **RA-GZRS** (nie samo **GRS/GZRS**).
 * **Modele usług:** **VM = IaaS**, **App Service = PaaS**, **Office 365 = SaaS**. **VM** nie jest **PaaS/SaaS**.
-* **Web App Plan:** Wymagania: własna domena, **SSL**, dedykowane instancje, min. plan **Basic/Standard** (**Free/Shared** nie obsługują tych funkcji).
+* **Web App Plan:** Własna domena, **SSL**, dedykowane instancje, min. plan **Basic/Standard** (**Free/Shared** nie obsługują tych funkcji).
 * **Podział administracyjny:** Oddziały firmy = osobne **Subscriptions** lub **Resource Groups**, NIE osobne **Azure AD Tenants** (to osobne katalogi, nie podział administracyjny).
 * **Expenditure Model:** **Pay-as-you-go** = model operacyjny (**OpEx**), nie **CapEx**.
 * **Geo-replikacja:** Dane muszą być przechowywane na wielu węzłach i w różnych lokalizacjach = **GRS/RA-GRS** lub **GZRS/RA-GZRS**.
@@ -324,18 +351,18 @@
 * **LRS/ZRS/GRS/RA-GRS** to poziomy redundancji storage.
 * **Cosmos DB** = globalny **NoSQL** z **multi-region** i niskimi opóźnieniami.
 * **Preview ≠ GA** (brak pełnego **SLA**).
-* **Azure AD B2C/B2B:** B2C = tożsamość klientów, B2B = partnerów.
-* **Azure AD vs AAD DS:** AD = klasyczna domena, AAD DS = zarządzane usługi domenowe.
-* **Azure Backup vs Site Recovery:** Backup = kopie zapasowe, Site Recovery = DR.
-* **Azure Policy vs RBAC:** Policy = zasady, RBAC = uprawnienia.
-* **Azure DevOps vs GitHub:** DevOps = CI/CD, tablice zadań, GitHub = repozytoria, CI/CD, społeczność.
-* **Azure Monitor vs Log Analytics:** Monitor = platforma, Log Analytics = analiza logów.
+* **Azure AD B2C/B2B:** **B2C** = tożsamość klientów, **B2B** = partnerów.
+* **Azure AD vs AAD DS:** **AD** = klasyczna domena, **AAD DS** = zarządzane usługi domenowe.
+* **Azure Backup vs Site Recovery:** **Backup** = kopie zapasowe, **Site Recovery** = DR.
+* **Azure Policy vs RBAC:** **Policy** = zasady, **RBAC** = uprawnienia.
+* **Azure DevOps vs GitHub:** **DevOps** = CI/CD, tablice zadań, **GitHub** = repozytoria, CI/CD, społeczność.
+* **Azure Monitor vs Log Analytics:** **Monitor** = platforma, **Log Analytics** = analiza logów.
 * **Azure Spring Apps:** Hostowanie aplikacji Java.
 * **Azure Machine Learning:** Budowa, trenowanie i wdrażanie modeli AI.
 * **Azure Bot Service:** Tworzenie chatbotów.
 * **Azure Media Services:** Przetwarzanie i streaming multimediów.
 * **Azure Maps:** Usługi geolokalizacyjne.
-* **Tip:** Zwracaj uwagę na typy subskrypcji, poziomy SLA, regiony, typy storage, różnice w modelach usług.
+* **Tip:** Zwracaj uwagę na typy subskrypcji, poziomy **SLA**, regiony, typy storage, różnice w modelach usług.
 
 [⬅ Powrót do spisu treści](../README.md)
 
