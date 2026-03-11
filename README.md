@@ -47,9 +47,8 @@
 - [29. Load Balancing w Azure](docs/29-load-balancing.md)
 - [30. Azure Data Factory](docs/30-data-factory.md)
 - [31. Azure Storage i Blob Storage](docs/31-azure-storage.md)
-
-	- [32. Azure App Service](docs/32-app-service.md)
-	- [33. Ściąga pojęć do druku (wersja rozszerzona)](docs/33-sciaga-pojecia.md)
+- [32. Azure App Service](docs/32-app-service.md)
+- [33. Ściąga pojęć do druku (wersja rozszerzona)](docs/33-sciaga-pojecia.md)
 
 ---
 
