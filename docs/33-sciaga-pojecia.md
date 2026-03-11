@@ -132,6 +132,9 @@
 * **Region vs Recommended Region:**
     * **Region:** dowolna lokalizacja Azure (np. West Europe, North Europe).
     * **Recommended Region:** region sugerowany przez Microsoft – ma najnowsze usługi, wyższe SLA, dostępność AZ, lepsze wsparcie, niższe opóźnienia. Nie wszystkie funkcje są dostępne w każdym regionie!
+    * **Alternate Region:** region uzupełniający, zapewnia DR, nie zawsze obsługuje AZ.
+* **Authentication (AuthN):** weryfikacja tożsamości użytkownika (czy jesteś tym, za kogo się podajesz).
+* **Authorization (AuthZ):** nadawanie uprawnień (co możesz zrobić po zalogowaniu).
 * **Region Pair** – Dwa powiązane regiony do DR.
     * Aktualizacje i awarie planowane są rozdzielane między regiony w parze.
     * Dane replikowane asynchronicznie.
@@ -178,6 +181,17 @@
 ## **7. Storage (magazynowanie)**
 * **Blob Storage** – Przechowywanie plików/obiektów.
 * **File Storage** – Udziały plików SMB/NFS.
+* **Disk Storage** – Dyski blokowe dla VM.
+* **Table Storage** – NoSQL, dane strukturalne.
+
+**Szybka tabela porównawcza typów storage:**
+
+| Typ           | Przeznaczenie                        | Protokół/API     |
+|---------------|--------------------------------------|------------------|
+| Blob          | Obiekty, backupy, archiwa            | REST API         |
+| File          | Udziały plików, współdzielenie       | SMB/NFS          |
+| Disk          | Dyski VM, block-level                | SCSI, SATA       |
+| Table         | NoSQL, dane strukturalne             | REST API         |
 * **Queue/Table Storage** – Kolejki i tabele NoSQL.
 * **Disk Storage** – Dyski dla VM (Standard HDD/SSD, Premium SSD, Ultra SSD).
 * **Data Lake Storage** – Analiza dużych zbiorów danych.
@@ -248,7 +262,7 @@
 * **Key Vault** – Bezpieczne przechowywanie sekretów.
 * **Zero Trust** – Zasada „nikomu nie ufaj”.
 * **Defender for Cloud (dawniej Security Center)** – Centrum zarządzania bezpieczeństwem w chmurze. Monitoruje konfigurację, wykrywa zagrożenia, ocenia zgodność, daje rekomendacje i automatyzuje ochronę zasobów (VM, bazy, storage, kontenery, PaaS). Pozwala włączyć zaawansowane funkcje ochrony (Defender plans) dla różnych typów zasobów.
-* **Defender for Identity** – Chmurowa usługa bezpieczeństwa do ochrony tożsamości w środowiskach hybrydowych (on-premises AD + Entra ID). Wykrywa podejrzane działania, ataki na konta, lateral movement, pass-the-hash/ticket, brute force, nieautoryzowane zmiany. Integruje się z Defender for Cloud i Sentinel.
+* **Defender for Identity** – Chmurowa usługa bezpieczeństwa do ochrony tożsamości w środowiskach hybrydowych (on-premises AD + Entra ID). Wykrywa podejrzane działania, ataki na konta, lateral movement, pass-the-hash/ticket, brute force, nieautoryzowane zmiany. Integruje się z Defender for Cloud i Sentinel. **Instaluje sensor na kontrolerze domeny i analizuje ruch oraz logi.**
 * **Azure Information Protection** – Klasyfikacja i ochrona dokumentów.
 * **Sentinel** – SIEM/SOAR, analiza zagrożeń, automatyzacja reakcji na incydenty.
 * **Conditional Access Policy** – Reguły dostępu zależne od kontekstu użytkownika.
@@ -277,7 +291,7 @@
 ## **11. Koszty i narzędzia**
 ### **Modele rozliczania usług (billing)**
 - **Nie wszystkie usługi Azure są rozliczane za sekundę!**
-    - **VM (Virtual Machines):** Rozliczane za każdą rozpoczętą minutę (minute-based billing). Naliczanie od uruchomienia do deallocation (wyłączenie VM = koniec naliczania, samo zatrzymanie nie zawsze!).
+    - **VM (Virtual Machines):** Rozliczane za każdą rozpoczętą sekundę (per-second billing, większość VM). Naliczanie od uruchomienia do deallocation (wyłączenie VM = koniec naliczania, samo zatrzymanie nie zawsze!).
     - **Azure Functions:** Rozliczane za liczbę wywołań i czas działania (co 1 ms).
     - **Storage, bazy danych, App Service:** Zwykle rozliczane za godzinę lub za zużycie (np. GB/miesiąc).
     - **Rezerwacje, App Service Plan:** Rozliczane za godzinę lub miesiąc.
@@ -285,6 +299,8 @@
 * **Pay-as-you-go** – Płacisz za zużycie.
 * **Reserved Instances** – Rezerwacja na dłużej, taniej.
 * **Spot VM** – Tanie, przerywane VM.
+* **OpEx (Operating Expenditure):** model operacyjny, płacisz za bieżące zużycie (np. Pay-as-you-go).
+* **CapEx (Capital Expenditure):** wydatki inwestycyjne, płatność z góry (np. rezerwacje, sprzęt on-premises).
 * **Pricing Calculator** – Szacowanie kosztów.
 * **TCO Calculator** – Porównanie kosztów chmura vs. on-premises.
 * **Budżety i alerty** – Kontrola wydatków.
@@ -319,11 +335,13 @@
 ## **13. Narzędzia zarządzania, migracji i automatyzacji**
 * **Portal** – Interfejs webowy.
 * **PowerShell/CLI** – Automatyzacja i zarządzanie.
+* **Azure Portal, CLI, PowerShell** – dostępne na Windows, Linux, macOS.
 * **Cloud Shell** – Terminal w przeglądarce.
 * **ARM Templates/Bicep** – Infrastructure as Code.
 * **IaC (Infrastructure as Code)** – zarządzanie i wdrażanie infrastruktury za pomocą kodu (np. ARM, Bicep, Terraform). Pozwala na automatyzację, powtarzalność i wersjonowanie środowisk.
 * **DevTest Labs** – Szybkie środowiska testowe.
 * **Azure Monitor** – Monitorowanie zasobów.
+    * **Azure Monitor** – centralne narzędzie do zbierania, korelacji i analizy logów, metryk i śladów z VM, aplikacji i innych zasobów Azure.
 * **Log Analytics** – Analiza logów.
 * **Service Health** – Powiadomienia o awariach.
 * **Advisor** – Rekomendacje optymalizacyjne.
@@ -369,6 +387,16 @@
 * **W pytaniach egzaminacyjnych często liczy się szczegół** (np. czy usługa jest **PaaS** czy **IaaS**, czy ruch jest szyfrowany, czy usługa ma **SLA 99,9%** czy **99,99%**).
 * **Praktyczne narzędzia:** **Azure Advisor** (rekomendacje), **Service Health** (awarie), **Cost Management** (koszty), **Azure Migrate/Data Box** (migracje), **Sentinel** (SIEM/SOAR), **Purview** (governance danych).
 * **App Service vs VM:** **App Service** = **PaaS**, szybkie wdrożenia, automatyczne skalowanie; **VM** = **IaaS**, pełna kontrola, własny OS.
+* **Site-to-Site VPN:** Łączy sieć on-premises z Azure przez tunel IPsec/IKE (IKEv1/IKEv2) za pomocą VPN Gateway. Wymaga urządzenia VPN z publicznym IP po stronie lokalnej.
+* **Role IAM (RBAC) – szybka tabela:**
+
+| Rola                | Uprawnienia                                                        |
+|---------------------|--------------------------------------------------------------------|
+| Owner               | Pełny dostęp + zarządzanie uprawnieniami (może nadawać role)        |
+| Contributor         | Pełny dostęp do zarządzania zasobami, NIE może nadawać ról          |
+| Reader              | Tylko odczyt wszystkich zasobów                                    |
+| VM Contributor      | Zarządzanie VM, bez dostępu do sieci/storage, nie może nadawać ról  |
+
 * **Blob Storage vs File Storage:** **Blob** = obiekty, **REST API**; **File** = udziały plików, **SMB/NFS**.
 * **NSG vs Firewall:** **NSG** = reguły na subnet/VM, **Firewall** = centralna ochrona, logi.
 * **ExpressRoute vs VPN:** **ExpressRoute** = dedykowane, **VPN** = szyfrowane przez internet.
