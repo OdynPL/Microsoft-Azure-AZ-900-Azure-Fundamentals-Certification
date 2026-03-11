@@ -1,3 +1,6 @@
+
+[⬅ Powrót do spisu treści](../README.md)
+
 # **AZ-900 – Ściąga pojęć do druku (wersja rozszerzona)**
 
 ---
@@ -34,7 +37,6 @@
     * **DevOps:** CI/CD, tablice zadań.
     * **GitHub:** repozytoria, CI/CD, społeczność.
 
-[⬅ Powrót do spisu treści](../README.md)
 
 ---
 
@@ -440,7 +442,7 @@
 * **Azure Maps:** Usługi geolokalizacyjne.
 * **Tip:** Zwracaj uwagę na typy subskrypcji, poziomy **SLA**, regiony, typy storage, różnice w modelach usług.
 
-[⬅ Powrót do spisu treści](../README.md)
+
 
 
 
