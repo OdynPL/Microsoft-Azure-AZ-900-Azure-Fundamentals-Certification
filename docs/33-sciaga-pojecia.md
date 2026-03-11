@@ -198,7 +198,7 @@
 * **VNet** – Prywatna sieć w Azure.
 * **Subnet** – Podział VNet.
 * **NSG** – Reguły ruchu sieciowego.
-    * Można przypisać do subnetów i interfejsów VM (nie do innych zasobów).
+    * Można przypisać tylko do subnetów i interfejsów VM (NIC), **nie można przypisać do całej Virtual Network!** (częsta pułapka egzaminacyjna)
 * **Azure Firewall** – Zaawansowana ochrona, stateful.
 * **DDoS Protection** – Ochrona przed atakami.
 * **ExpressRoute** – Dedykowane łącze do Azure.
