@@ -47,6 +47,7 @@
 
 ## **4. Hierarchia i organizacja zasobów**
 * **Management Group > Subscription > Resource Group > Resource** – Struktura administracyjna.
+    * **Resource** – pojedynczy zasób w Azure (np. VM, Storage Account, baza danych). Można przypisać **uprawnienia (RBAC)** bezpośrednio do konkretnego zasobu, np. dostęp tylko do jednej maszyny lub bazy.
 * **RBAC** – Zarządzanie dostępem do zasobów (role, zakres).
 * **Tagi** – Etykiety do organizacji i raportowania kosztów (np. Environment, Owner, Project). Ułatwiają filtrowanie, raportowanie, automatyzację i rozliczanie kosztów. Tagi nie dziedziczą się automatycznie na zasoby podrzędne.
 * **Resource Locks** – Blokady przed usunięciem/zmianą zasobów.
@@ -132,6 +133,7 @@
 * **VNet** – Prywatna sieć w Azure.
 * **Subnet** – Podział VNet.
 * **NSG** – Reguły ruchu sieciowego.
+    * Można przypisać do subnetów i interfejsów VM (nie do innych zasobów).
 * **Azure Firewall** – Zaawansowana ochrona, stateful.
 * **DDoS Protection** – Ochrona przed atakami.
 * **ExpressRoute** – Dedykowane łącze do Azure.
@@ -160,6 +162,7 @@
     * Nie wymaga routingu przez internet.
 * **Application Security Group (ASG)** – Grupowanie VM dla reguł NSG.
     * Ułatwia zarządzanie regułami dla wielu VM.
+    * Dotyczy tylko VM i ich interfejsów sieciowych (nie innych zasobów).
 * **Public IP vs Private IP** – Publiczny adres dostępny z internetu, prywatny tylko w sieci Azure.
 * **Service Endpoint** – Umożliwia dostęp do usług Azure z prywatnej sieci bez publicznego IP.
 * **Firewall Rules** – Reguły bezpieczeństwa dla baz danych i storage.
@@ -219,7 +222,7 @@
 * **Azure Cost Management + Billing** – Narzędzie do monitorowania, analizowania i raportowania kosztów.
 
 ## **12. Governance & Compliance**
-* **Azure Policy** – Wymuszanie zasad.
+* **Azure Policy** – Wymuszanie zasad (np. lokalizacja, typy maszyn, wymagane tagi) na poziomie subskrypcji, grupy zasobów lub zasobu.
 * **Initiative** – Grupa polityk.
 * **Blueprints** – Szablony wdrożeń zgodnych z politykami firmy.
 * Przykład Azure Policy: wymuszanie tagów, regionów, typów maszyn.
