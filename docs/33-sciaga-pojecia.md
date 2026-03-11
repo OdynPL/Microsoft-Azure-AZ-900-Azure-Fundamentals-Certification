@@ -127,6 +127,9 @@
     * Każda strefa ma własny zasilanie, chłodzenie, sieć. Umożliwia wdrożenie usług o wysokiej dostępności (np. VM w różnych AZ).
     * Przykład: VM w 2 AZ = odporność na awarię centrum danych.
     * Nie wszystkie regiony mają AZ.
+* **Region vs Recommended Region:**
+    * **Region:** dowolna lokalizacja Azure (np. West Europe, North Europe).
+    * **Recommended Region:** region sugerowany przez Microsoft – ma najnowsze usługi, wyższe SLA, dostępność AZ, lepsze wsparcie, niższe opóźnienia. Nie wszystkie funkcje są dostępne w każdym regionie!
 * **Region Pair** – Dwa powiązane regiony do DR.
     * Aktualizacje i awarie planowane są rozdzielane między regiony w parze.
     * Dane replikowane asynchronicznie.
