@@ -132,102 +132,102 @@
 * **Managed HSM** – Zarządzany sprzętowy moduł bezpieczeństwa.
 
 ## **10. Bazy danych**
-**Azure SQL Database** – Relacyjna baza danych (OLTP).
-**Azure Database for MySQL/PostgreSQL** – Zarządzane bazy open source.
-**Azure Synapse Analytics** – Analityka, hurtownie danych (OLAP).
-**Cosmos DB** – NoSQL, globalna replikacja, niskie opóźnienia.
-**Azure Cache for Redis** – Baza in-memory, cache.
-**Przykład:**
-    - **OLTP:** Azure SQL Database, MySQL, PostgreSQL
-    - **OLAP:** Synapse Analytics
-    - **NoSQL:** Cosmos DB
-    - **In-memory:** Redis
-**Azure Database Migration Service** – Migracja baz danych do Azure.
-**Geo-Replication** – Replikacja bazy do innego regionu.
+* **Azure SQL Database** – Relacyjna baza danych (OLTP).
+* **Azure Database for MySQL/PostgreSQL** – Zarządzane bazy open source.
+* **Azure Synapse Analytics** – Analityka, hurtownie danych (OLAP).
+* **Cosmos DB** – NoSQL, globalna replikacja, niskie opóźnienia.
+* **Azure Cache for Redis** – Baza in-memory, cache.
+* Przykład:
+    * **OLTP:** Azure SQL Database, MySQL, PostgreSQL
+    * **OLAP:** Synapse Analytics
+    * **NoSQL:** Cosmos DB
+    * **In-memory:** Redis
+* **Azure Database Migration Service** – Migracja baz danych do Azure.
+* **Geo-Replication** – Replikacja bazy do innego regionu.
 
 ## **11. Koszty i narzędzia**
-**Pay-as-you-go** – Płacisz za zużycie.
-**Reserved Instances** – Rezerwacja na dłużej, taniej.
-**Spot VM** – Tanie, przerywane VM.
-**Pricing Calculator** – Szacowanie kosztów.
-**TCO Calculator** – Porównanie kosztów chmura vs. on-premises.
-**Budżety i alerty** – Kontrola wydatków.
-**Cost Management** – Analiza i optymalizacja kosztów.
-**Marketplace** – Gotowe rozwiązania partnerów.
-**Azure Reservations** – Rezerwacja zasobów na 1/3 lata dla niższych kosztów.
-**Azure Hybrid Benefit** – Oszczędność kosztów licencji Windows Server/SQL.
-**Cost Analysis** – Analiza wydatków w Azure Cost Management.
+* **Pay-as-you-go** – Płacisz za zużycie.
+* **Reserved Instances** – Rezerwacja na dłużej, taniej.
+* **Spot VM** – Tanie, przerywane VM.
+* **Pricing Calculator** – Szacowanie kosztów.
+* **TCO Calculator** – Porównanie kosztów chmura vs. on-premises.
+* **Budżety i alerty** – Kontrola wydatków.
+* **Cost Management** – Analiza i optymalizacja kosztów.
+* **Marketplace** – Gotowe rozwiązania partnerów.
+* **Azure Reservations** – Rezerwacja zasobów na 1/3 lata dla niższych kosztów.
+* **Azure Hybrid Benefit** – Oszczędność kosztów licencji Windows Server/SQL.
+* **Cost Analysis** – Analiza wydatków w Azure Cost Management.
 
 ## **12. Governance & Compliance**
-**Azure Policy** – Wymuszanie zasad.
-**Initiative** – Grupa polityk.
-**Blueprints** – Szablony wdrożeń zgodnych z politykami firmy.
-**Przykład Azure Policy:** wymuszanie tagów, regionów, typów maszyn.
-**Resource Locks** – Blokady przed usunięciem.
-**Compliance** – Zgodność (ISO, GDPR, NIST, PCI-DSS, HIPAA).
-**Cloud Adoption Framework** – Dobre praktyki wdrożenia chmury.
-**Purview** – Zarządzanie danymi i zgodnością.
-**Management Locks** – Blokady na poziomie subskrypcji, grupy lub zasobu.
-**Policy Assignment** – Przypisywanie polityk na różnych poziomach hierarchii.
-**Compliance Manager** – Narzędzie do zarządzania zgodnością i audytami.
+* **Azure Policy** – Wymuszanie zasad.
+* **Initiative** – Grupa polityk.
+* **Blueprints** – Szablony wdrożeń zgodnych z politykami firmy.
+* Przykład Azure Policy: wymuszanie tagów, regionów, typów maszyn.
+* **Resource Locks** – Blokady przed usunięciem.
+* **Compliance** – Zgodność (ISO, GDPR, NIST, PCI-DSS, HIPAA).
+* **Cloud Adoption Framework** – Dobre praktyki wdrożenia chmury.
+* **Purview** – Zarządzanie danymi i zgodnością.
+* **Management Locks** – Blokady na poziomie subskrypcji, grupy lub zasobu.
+* **Policy Assignment** – Przypisywanie polityk na różnych poziomach hierarchii.
+* **Compliance Manager** – Narzędzie do zarządzania zgodnością i audytami.
 
 ## **13. Narzędzia zarządzania, migracji i automatyzacji**
-**Portal** – Interfejs webowy.
-**PowerShell/CLI** – Automatyzacja i zarządzanie.
-**Cloud Shell** – Terminal w przeglądarce.
-**ARM Templates/Bicep** – Infrastructure as Code.
-**DevTest Labs** – Szybkie środowiska testowe.
-**Azure Monitor** – Monitorowanie zasobów.
-**Log Analytics** – Analiza logów.
-**Service Health** – Powiadomienia o awariach.
-**Advisor** – Rekomendacje optymalizacyjne.
-**Azure Migrate** – Narzędzia do oceny, planowania i migracji serwerów, baz danych, aplikacji do Azure.
-**Data Box** – Fizyczne urządzenia do migracji dużych ilości danych do Azure (np. Data Box Disk, Data Box Heavy). Zamawiasz urządzenie, kopiujesz dane, odsyłasz do Microsoft.
-**Azure DevOps** – CI/CD, repozytoria kodu, tablice zadań, testy.
-**Application Insights** – Monitorowanie aplikacji (część Azure Monitor).
-**Azure Automation** – Automatyzacja zadań administracyjnych (runbooki).
-**Update Management** – Zarządzanie aktualizacjami VM.
-**Change Tracking** – Monitorowanie zmian konfiguracji.
-**Blueprint Assignment** – Przypisywanie szablonów wdrożeniowych.
+* **Portal** – Interfejs webowy.
+* **PowerShell/CLI** – Automatyzacja i zarządzanie.
+* **Cloud Shell** – Terminal w przeglądarce.
+* **ARM Templates/Bicep** – Infrastructure as Code.
+* **DevTest Labs** – Szybkie środowiska testowe.
+* **Azure Monitor** – Monitorowanie zasobów.
+* **Log Analytics** – Analiza logów.
+* **Service Health** – Powiadomienia o awariach.
+* **Advisor** – Rekomendacje optymalizacyjne.
+* **Azure Migrate** – Narzędzia do oceny, planowania i migracji serwerów, baz danych, aplikacji do Azure.
+* **Data Box** – Fizyczne urządzenia do migracji dużych ilości danych do Azure (np. Data Box Disk, Data Box Heavy). Zamawiasz urządzenie, kopiujesz dane, odsyłasz do Microsoft.
+* **Azure DevOps** – CI/CD, repozytoria kodu, tablice zadań, testy.
+* **Application Insights** – Monitorowanie aplikacji (część Azure Monitor).
+* **Azure Automation** – Automatyzacja zadań administracyjnych (runbooki).
+* **Update Management** – Zarządzanie aktualizacjami VM.
+* **Change Tracking** – Monitorowanie zmian konfiguracji.
+* **Blueprint Assignment** – Przypisywanie szablonów wdrożeniowych.
 
 ## **14. Usługi rozszerzone**
-**Service Bus** – Kolejki, pub/sub.
-**Event Hub** – Streaming danych.
-**Event Grid** – Routing zdarzeń.
-**API Management** – Zarządzanie API.
-**Logic Apps** – Automatyzacja procesów.
-**Data Factory** – Integracja i przetwarzanie danych.
-**Cognitive Services** – AI, rozpoznawanie obrazów, tekstu.
-**IoT Hub** – Obsługa urządzeń IoT.
-**Azure Virtual Desktop** – Pulpity w chmurze.
-**Data Box** – Transfer dużych danych (również offline).
-**Logic Apps vs Functions:**
-    - **Logic Apps:** automatyzacja procesów biznesowych, integracje bez kodu.
-    - **Functions:** event-driven, własny kod, automatyczne skalowanie.
-**Service Bus vs Event Hub vs Event Grid:**
-    - **Service Bus:** kolejki, pub/sub, integracja systemów.
-    - **Event Hub:** streaming telemetry/big data.
-    - **Event Grid:** routing zdarzeń między usługami.
-**Azure API Apps** – Hostowanie i zarządzanie API.
-**Azure Data Lake Analytics** – Analiza dużych zbiorów danych.
-**Azure Purview** – Katalogowanie i klasyfikacja danych.
-**Azure Sentinel** – Integracja z innymi narzędziami SIEM/SOAR.
-**Azure VMware Solution** – Uruchamianie środowisk VMware w Azure.
+* **Service Bus** – Kolejki, pub/sub.
+* **Event Hub** – Streaming danych.
+* **Event Grid** – Routing zdarzeń.
+* **API Management** – Zarządzanie API.
+* **Logic Apps** – Automatyzacja procesów.
+* **Data Factory** – Integracja i przetwarzanie danych.
+* **Cognitive Services** – AI, rozpoznawanie obrazów, tekstu.
+* **IoT Hub** – Obsługa urządzeń IoT.
+* **Azure Virtual Desktop** – Pulpity w chmurze.
+* **Data Box** – Transfer dużych danych (również offline).
+* Logic Apps vs Functions:
+    * **Logic Apps:** automatyzacja procesów biznesowych, integracje bez kodu.
+    * **Functions:** event-driven, własny kod, automatyczne skalowanie.
+* Service Bus vs Event Hub vs Event Grid:
+    * **Service Bus:** kolejki, pub/sub, integracja systemów.
+    * **Event Hub:** streaming telemetry/big data.
+    * **Event Grid:** routing zdarzeń między usługami.
+* **Azure API Apps** – Hostowanie i zarządzanie API.
+* **Azure Data Lake Analytics** – Analiza dużych zbiorów danych.
+* **Azure Purview** – Katalogowanie i klasyfikacja danych.
+* **Azure Sentinel** – Integracja z innymi narzędziami SIEM/SOAR.
+* **Azure VMware Solution** – Uruchamianie środowisk VMware w Azure.
 
 ## **16. Praktyczne wskazówki i porównania**
-**Zwracaj uwagę na różnice między usługami** (np. **NSG vs Firewall**, **CDN vs Front Door**).
-**W pytaniach egzaminacyjnych często liczy się szczegół** (np. czy usługa jest **PaaS** czy **IaaS**, czy ruch jest szyfrowany, czy usługa ma **SLA 99,9%** czy **99,99%**).
-**Praktyczne narzędzia:** **Azure Advisor** (rekomendacje), **Service Health** (awarie), **Cost Management** (koszty), **Azure Migrate/Data Box** (migracje), **Sentinel** (SIEM/SOAR), **Purview** (governance danych).
-**App Service vs VM:** **App Service** = **PaaS**, szybkie wdrożenia, automatyczne skalowanie; **VM** = **IaaS**, pełna kontrola, własny OS.
-**Blob Storage vs File Storage:** **Blob** = obiekty, **REST API**; **File** = udziały plików, **SMB/NFS**.
-**NSG vs Firewall:** **NSG** = reguły na subnet/VM, **Firewall** = centralna ochrona, logi.
-**ExpressRoute vs VPN:** **ExpressRoute** = dedykowane, **VPN** = szyfrowane przez internet.
-**CDN vs Front Door vs Traffic Manager:** **CDN** = cache, **Front Door** = globalny routing, **Traffic Manager** = DNS.
-**Service Bus vs Event Hub vs Event Grid:** **Service Bus** = kolejki, **Event Hub** = streaming, **Event Grid** = routing zdarzeń.
-**Logic Apps vs Functions:** **Logic Apps** = automatyzacja bez kodu, **Functions** = własny kod, event-driven.
-**Azure Policy vs Blueprint:** **Policy** = pojedyncze zasady, **Blueprint** = zestaw polityk, ról i szablonów.
-**Azure Monitor vs Application Insights:** **Monitor** = cała platforma monitoringu, **Insights** = szczegółowe monitorowanie aplikacji.
-**Azure Advisor vs Cost Management:** **Advisor** = rekomendacje, **Cost Management** = analiza i optymalizacja kosztów.
+* **Zwracaj uwagę na różnice między usługami** (np. **NSG vs Firewall**, **CDN vs Front Door**).
+* **W pytaniach egzaminacyjnych często liczy się szczegół** (np. czy usługa jest **PaaS** czy **IaaS**, czy ruch jest szyfrowany, czy usługa ma **SLA 99,9%** czy **99,99%**).
+* **Praktyczne narzędzia:** **Azure Advisor** (rekomendacje), **Service Health** (awarie), **Cost Management** (koszty), **Azure Migrate/Data Box** (migracje), **Sentinel** (SIEM/SOAR), **Purview** (governance danych).
+* **App Service vs VM:** **App Service** = **PaaS**, szybkie wdrożenia, automatyczne skalowanie; **VM** = **IaaS**, pełna kontrola, własny OS.
+* **Blob Storage vs File Storage:** **Blob** = obiekty, **REST API**; **File** = udziały plików, **SMB/NFS**.
+* **NSG vs Firewall:** **NSG** = reguły na subnet/VM, **Firewall** = centralna ochrona, logi.
+* **ExpressRoute vs VPN:** **ExpressRoute** = dedykowane, **VPN** = szyfrowane przez internet.
+* **CDN vs Front Door vs Traffic Manager:** **CDN** = cache, **Front Door** = globalny routing, **Traffic Manager** = DNS.
+* **Service Bus vs Event Hub vs Event Grid:** **Service Bus** = kolejki, **Event Hub** = streaming, **Event Grid** = routing zdarzeń.
+* **Logic Apps vs Functions:** **Logic Apps** = automatyzacja bez kodu, **Functions** = własny kod, event-driven.
+* **Azure Policy vs Blueprint:** **Policy** = pojedyncze zasady, **Blueprint** = zestaw polityk, ról i szablonów.
+* **Azure Monitor vs Application Insights:** **Monitor** = cała platforma monitoringu, **Insights** = szczegółowe monitorowanie aplikacji.
+* **Azure Advisor vs Cost Management:** **Advisor** = rekomendacje, **Cost Management** = analiza i optymalizacja kosztów.
 
 ---
 
@@ -235,47 +235,47 @@
 
 ---
 ### **Dodatkowe typowe pułapki i pytania egzaminacyjne:**
-**Support Plans:** Każdy plan (oprócz Free) pozwala otwierać zgłoszenia serwisowe, ale tylko wyższe (np. **Professional Direct**) umożliwiają architekturę review przez Microsoft.
-**Redundancja Storage:** Jeśli wymagany jest odczyt z regionu zapasowego, wybierz **RA-GRS/RA-GZRS**, nie samo **GRS/GZRS**.
-**Modele usług:** **VM = IaaS**, **App Service = PaaS**, **Office 365 = SaaS**. **VM** nie jest **PaaS/SaaS**.
-**Web App Plan:** Wymagania: własna domena, **SSL**, dedykowane instancje, min. plan **Basic/Standard** (**Free/Shared** nie obsługują tych funkcji).
-**Podział administracyjny:** Oddziały firmy = osobne **Subscriptions** lub **Resource Groups**, NIE osobne **Azure AD Tenants** (to osobne katalogi, nie podział administracyjny).
-**Expenditure Model:** **Pay-as-you-go** = model operacyjny (**OpEx**), nie **CapEx**.
-**Geo-replikacja:** Dane muszą być przechowywane na wielu węzłach i w różnych lokalizacjach = **GRS/RA-GRS** lub **GZRS/RA-GZRS**.
-**SLA:** **Preview** (wersja testowa) nie ma gwarantowanego **SLA**.
-**Load Balancing:** **Azure Load Balancer = L4**, **Application Gateway/Front Door = L7**.
-**Azure Policy:** Wymusza zgodność, ale nie blokuje fizycznie wdrożenia (może tylko oznaczyć **non-compliant**).
-**Azure Marketplace:** Służy do wdrażania gotowych rozwiązań partnerów, nie do zarządzania kosztami.
-**Azure Hybrid Benefit:** Pozwala użyć własnych licencji **Windows Server/SQL** w Azure, obniżając koszty.
-**Azure Reservations:** Rezerwacja **VM** na 1/3 lata = niższy koszt, ale mniejsza elastyczność.
-**Azure Advisor:** Daje rekomendacje, ale nie wymusza zmian.
-**Azure Migrate:** Służy do oceny i migracji serwerów, baz, aplikacji do Azure.
-**Azure DevTest Labs:** Szybkie środowiska testowe, nie produkcyjne.
-**Azure Arc:** Zarządzanie zasobami spoza Azure (**on-premises**, **multi-cloud**).
-**Azure Lighthouse:** Zarządzanie wieloma środowiskami klientów przez partnerów/**MSP**.
-**Azure Bastion:** Bezpieczny dostęp do **VM** przez przeglądarkę, bez publicznego IP na VM.
-**ExpressRoute:** Łącze dedykowane, nie szyfruje ruchu domyślnie (**VPN** szyfruje).
-**Azure Free Account:** $200 na 30 dni + wybrane usługi na 12 miesięcy za darmo.
-**VPN** szyfruje, **ExpressRoute** nie domyślnie.
-**Azure Firewall** to **stateful firewall**, **NSG** nie.
-**DDoS Standard** chroni **L3/L4**, nie **L7**.
-**WAF** chroni **HTTP(S)**, np. **OWASP Top 10**.
-**Private Endpoint** daje prywatny IP, **Service Endpoint** nie.
-**Front Door** działa globalnie na edge (**L7**), **Traffic Manager** to **DNS**.
-**Load Balancer** działa na **L4**, **Application Gateway** na **L7** (z **WAF**).
-**Azure Functions** = event-driven serverless, płatność za wykonania (**Consumption**).
-**Durable Functions** = workflow ze stanem.
-**ACI** = szybkie uruchomienie kontenera bez orkiestracji, **ACA** = mikroserwisy, scale-to-zero.
-**AKS** = pełna orkiestracja **Kubernetes**.
-**PaaS** zmniejsza odpowiedzialność za **OS** i patchowanie, **IaaS** = samodzielny **OS**.
-**Entra ID** to **IAM**, nie klasyczny **AD Domain Services**.
-**Conditional Access** ocenia kontekst (**user/device/location/risk**).
-**PIM** daje **JIT/JEA** dla ról uprzywilejowanych.
-**Managed Identity** eliminuje potrzebę trzymania sekretów w kodzie.
-**Blob tiers:** **Hot/Cool/Archive** różnią się kosztem zapisu i odczytu.
-**LRS/ZRS/GRS/RA-GRS** to poziomy redundancji storage.
-**Cosmos DB** = globalny **NoSQL** z **multi-region** i niskimi opóźnieniami.
-**Preview ≠ GA** (brak pełnego **SLA**).
+* **Support Plans:** Każdy plan (oprócz Free) pozwala otwierać zgłoszenia serwisowe, ale tylko wyższe (np. **Professional Direct**) umożliwiają architekturę review przez Microsoft.
+* **Redundancja Storage:** Jeśli wymagany jest odczyt z regionu zapasowego, wybierz **RA-GRS/RA-GZRS**, nie samo **GRS/GZRS**.
+* **Modele usług:** **VM = IaaS**, **App Service = PaaS**, **Office 365 = SaaS**. **VM** nie jest **PaaS/SaaS**.
+* **Web App Plan:** Wymagania: własna domena, **SSL**, dedykowane instancje, min. plan **Basic/Standard** (**Free/Shared** nie obsługują tych funkcji).
+* **Podział administracyjny:** Oddziały firmy = osobne **Subscriptions** lub **Resource Groups**, NIE osobne **Azure AD Tenants** (to osobne katalogi, nie podział administracyjny).
+* **Expenditure Model:** **Pay-as-you-go** = model operacyjny (**OpEx**), nie **CapEx**.
+* **Geo-replikacja:** Dane muszą być przechowywane na wielu węzłach i w różnych lokalizacjach = **GRS/RA-GRS** lub **GZRS/RA-GZRS**.
+* **SLA:** **Preview** (wersja testowa) nie ma gwarantowanego **SLA**.
+* **Load Balancing:** **Azure Load Balancer = L4**, **Application Gateway/Front Door = L7**.
+* **Azure Policy:** Wymusza zgodność, ale nie blokuje fizycznie wdrożenia (może tylko oznaczyć **non-compliant**).
+* **Azure Marketplace:** Służy do wdrażania gotowych rozwiązań partnerów, nie do zarządzania kosztami.
+* **Azure Hybrid Benefit:** Pozwala użyć własnych licencji **Windows Server/SQL** w Azure, obniżając koszty.
+* **Azure Reservations:** Rezerwacja **VM** na 1/3 lata = niższy koszt, ale mniejsza elastyczność.
+* **Azure Advisor:** Daje rekomendacje, ale nie wymusza zmian.
+* **Azure Migrate:** Służy do oceny i migracji serwerów, baz, aplikacji do Azure.
+* **Azure DevTest Labs:** Szybkie środowiska testowe, nie produkcyjne.
+* **Azure Arc:** Zarządzanie zasobami spoza Azure (**on-premises**, **multi-cloud**).
+* **Azure Lighthouse:** Zarządzanie wieloma środowiskami klientów przez partnerów/**MSP**.
+* **Azure Bastion:** Bezpieczny dostęp do **VM** przez przeglądarkę, bez publicznego IP na VM.
+* **ExpressRoute:** Łącze dedykowane, nie szyfruje ruchu domyślnie (**VPN** szyfruje).
+* **Azure Free Account:** $200 na 30 dni + wybrane usługi na 12 miesięcy za darmo.
+* **VPN** szyfruje, **ExpressRoute** nie domyślnie.
+* **Azure Firewall** to **stateful firewall**, **NSG** nie.
+* **DDoS Standard** chroni **L3/L4**, nie **L7**.
+* **WAF** chroni **HTTP(S)**, np. **OWASP Top 10**.
+* **Private Endpoint** daje prywatny IP, **Service Endpoint** nie.
+* **Front Door** działa globalnie na edge (**L7**), **Traffic Manager** to **DNS**.
+* **Load Balancer** działa na **L4**, **Application Gateway** na **L7** (z **WAF**).
+* **Azure Functions** = event-driven serverless, płatność za wykonania (**Consumption**).
+* **Durable Functions** = workflow ze stanem.
+* **ACI** = szybkie uruchomienie kontenera bez orkiestracji, **ACA** = mikroserwisy, scale-to-zero.
+* **AKS** = pełna orkiestracja **Kubernetes**.
+* **PaaS** zmniejsza odpowiedzialność za **OS** i patchowanie, **IaaS** = samodzielny **OS**.
+* **Entra ID** to **IAM**, nie klasyczny **AD Domain Services**.
+* **Conditional Access** ocenia kontekst (**user/device/location/risk**).
+* **PIM** daje **JIT/JEA** dla ról uprzywilejowanych.
+* **Managed Identity** eliminuje potrzebę trzymania sekretów w kodzie.
+* **Blob tiers:** **Hot/Cool/Archive** różnią się kosztem zapisu i odczytu.
+* **LRS/ZRS/GRS/RA-GRS** to poziomy redundancji storage.
+* **Cosmos DB** = globalny **NoSQL** z **multi-region** i niskimi opóźnieniami.
+* **Preview ≠ GA** (brak pełnego **SLA**).
 
 [⬅ Powrót do spisu treści](../README.md)
 
