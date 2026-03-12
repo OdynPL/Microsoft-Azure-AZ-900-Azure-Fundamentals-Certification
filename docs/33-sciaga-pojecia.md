@@ -213,6 +213,11 @@
     * **Cool** – Rzadki dostęp, niższy koszt.
     * **Archive** – Archiwizacja, najniższy koszt, długi czas przywracania.
 * **Geo-replikacja** – Automatyczne kopiowanie danych do innego regionu.
+* **Koszty transferu danych:**
+    * Transfer danych do Azure (ingress) – bezpłatny.
+    * Transfer w tej samej AZ/regionie – bezpłatny.
+    * Transfer między regionami (egress) – płatny.
+    * Transfer z Azure do internetu (egress) – płatny.
 * **Blob Storage vs File Storage:**
     * **Blob:** obiekty, backupy, archiwa, REST API.
     * **File:** udziały plików, SMB/NFS, współdzielenie między VM.
