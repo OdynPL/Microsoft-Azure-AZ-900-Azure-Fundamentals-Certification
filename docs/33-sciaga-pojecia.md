@@ -229,9 +229,9 @@
     * **RA-GRS** – GRS + odczyt w regionie zapasowym.
     * **GZRS/RA-GZRS** – ZRS + geo-replikacja.
 * **Blob Tiers:**
-    * **Hot** – Częsty dostęp, wyższy koszt.
-    * **Cool** – Rzadki dostęp, niższy koszt.
-    * **Archive** – Archiwizacja, najniższy koszt, długi czas przywracania.
+    * **Hot** – Częsty dostęp, wyższy koszt. Brak minimalnego okresu przechowywania – dane można usuwać w dowolnym momencie bez dodatkowych opłat.
+    * **Cool** – Rzadki dostęp, niższy koszt. Minimalny okres przechowywania: 30 dni (jeśli usuniesz lub przeniesiesz dane przed upływem 30 dni, zostanie naliczona opłata za pozostały okres). Zalecane do backupów, archiwów do 1 roku.
+    * **Archive** – Archiwizacja, najniższy koszt, długi czas przywracania. Minimalny okres przechowywania: 180 dni (6 miesięcy). Usunięcie lub przeniesienie danych przed upływem 180 dni skutkuje opłatą za pozostały okres. Czas przywracania (rehydratacji) danych: od kilku godzin do 24h. Przeznaczone do długoterminowej archiwizacji (compliance, backupy wieloletnie).
 * **Geo-replikacja** – Automatyczne kopiowanie danych do innego regionu.
 * **Koszty transferu danych:**
     * Transfer danych do Azure (ingress) – bezpłatny.
