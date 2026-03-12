@@ -210,7 +210,7 @@
 
 ## **Narzędzia transferu i migracji danych**
 
-* **Azure Files** – Udziały plików w chmurze (SMB/NFS), montowane do VM/serwerów, snapshoty, backup.
+* **Azure Files** – Udziały plików w chmurze (SMB/NFS), montowane do VM/serwerów, snapshoty, backup (use case: współdzielenie plików między VM, migracja serwerów plików do chmury, dostęp sieciowy do plików dla aplikacji, backupy).
 * **Azure File Sync** – Synchronizacja plików między serwerami lokalnymi a Azure Files (cache lokalny, hybrydowy serwer plików).
 * **Data Box** – Fizyczne urządzenie lub wirtualna bramka do bezpiecznego transferu dużych ilości danych do Azure (np. migracja serwerowni, backupy offline). Microsoft dostarcza urządzenie, kopiujesz dane lokalnie, odsyłasz do MS, a dane są importowane do chmury. Dostępne warianty: Data Box, Data Box Disk, Data Box Heavy, Data Box Gateway (wirtualna).
 
