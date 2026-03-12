@@ -452,7 +452,7 @@
 * **VPN** szyfruje, **ExpressRoute** nie domyślnie.
 * **Azure Firewall** to **stateful firewall**, **NSG** nie.
 * **DDoS Standard** chroni **L3/L4**, nie **L7**.
-* **WAF** chroni **HTTP(S)**, np. **OWASP Top 10**.
+* **WAF** (Web Application Firewall) chroni **HTTP(S)**, np. **OWASP Top 10**; działa na Application Gateway i Front Door.
 * **Private Endpoint** daje prywatny IP, **Service Endpoint** nie.
 * **Front Door** działa globalnie na edge (**L7**), **Traffic Manager** to **DNS**.
 * **Load Balancer** działa na **L4**, **Application Gateway** na **L7** (z **WAF**).
