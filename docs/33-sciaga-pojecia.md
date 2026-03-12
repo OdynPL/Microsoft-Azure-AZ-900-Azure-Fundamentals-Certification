@@ -303,16 +303,26 @@
 * **Azure Monitor** – Centralne narzędzie do monitorowania wydajności, logów, alertów i metryk dla wszystkich zasobów Azure i hybrydowych.
 * **Azure Advisor** – Narzędzie rekomendujące optymalizacje kosztów, wydajności, bezpieczeństwa i dostępności zasobów w Azure.
 * **Azure Automation** – Automatyzacja zadań administracyjnych (runbooki, update management, change tracking) dla środowisk Azure i hybrydowych.
-    * Runbook – zautomatyzowany skrypt lub procedura wykonywana w Azure Automation, służąca do automatycznego wykonywania powtarzalnych zadań administracyjnych (np. backup, restart VM, czyszczenie logów).
+    * **Runbook** – zautomatyzowany skrypt lub procedura wykonywana w Azure Automation, służąca do automatycznego wykonywania powtarzalnych zadań administracyjnych (np. backup, restart VM, czyszczenie logów).
 * **Azure CLI** – Narzędzie wiersza poleceń do zarządzania zasobami Azure (skrypty, automatyzacja, szybkie operacje).
 * **Cloud Shell** – Wbudowany terminal w portalu Azure z preinstalowanymi narzędziami (CLI, PowerShell, edytor, git), dostępny z poziomu przeglądarki.
 * **Azure DevOps** – Platforma do CI/CD, zarządzania kodem, tablic zadań, testów i automatyzacji wdrożeń aplikacji.
 
 ## **9. Identity & Security (tożsamość i bezpieczeństwo)**
+
 * **Entra ID (Azure AD)** – Zarządzanie tożsamością.
+    * Entra ID (dawniej Azure AD) – chmurowa usługa IAM do zarządzania tożsamościami, SSO, MFA, dostępem i politykami bezpieczeństwa dla użytkowników, aplikacji i urządzeń.
+    * Kluczowe narzędzia: Portal Azure, PowerShell, CLI, Graph API, Microsoft Authenticator.
+
+**Passwordless authentication** – logowanie bez hasła (np. aplikacja Authenticator, Windows Hello, FIDO2). Bezpieczniejsze i wygodniejsze niż tradycyjne hasła.
+
+**Managed Identity** – automatyczna tożsamość dla aplikacji w Azure, umożliwia bezpieczny dostęp do zasobów bez haseł (system-assigned/user-assigned).
+
 * **MFA** – Uwierzytelnianie wieloskładnikowe.
 * **Conditional Access** – Dostęp zależny od warunków.
+    * Automatyczne wymuszanie reguł dostępu na podstawie kontekstu (lokalizacja, urządzenie, ryzyko, MFA). Pozwala blokować lub wymagać dodatkowego uwierzytelnienia w określonych sytuacjach.
 * **PIM** – Zarządzanie uprawnieniami uprzywilejowanymi.
+    * Tymczasowy dostęp do ról administracyjnych (Just-In-Time), zatwierdzanie żądań, audyt i alerty. Minimalizuje ryzyko nadużyć uprawnień.
 * **Managed Identity** – Tożsamość dla aplikacji bez haseł.
 * **Key Vault** – Bezpieczne przechowywanie sekretów.
 * **Zero Trust** – Zasada „nikomu nie ufaj”.
