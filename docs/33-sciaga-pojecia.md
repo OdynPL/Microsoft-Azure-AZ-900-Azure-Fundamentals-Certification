@@ -129,6 +129,8 @@
     * Każda strefa ma własny zasilanie, chłodzenie, sieć. Umożliwia wdrożenie usług o wysokiej dostępności (np. VM w różnych AZ).
     * Przykład: VM w 2 AZ = odporność na awarię centrum danych.
     * Nie wszystkie regiony mają AZ.
+* **Availability Set** – Grupa VM w jednym DC, rozkład na domeny awarii/aktualizacji. To nie to samo co AZ (fizyczne strefy). SLA 99,95% tylko przy 2+ VM w Availability Set.
+* **Fault Domain** – logiczna grupa VM z tym samym zasilaniem i siecią; awaria FD nie wpływa na inne FD.
 * **Region vs Recommended Region:**
     * **Region:** dowolna lokalizacja Azure (np. West Europe, North Europe).
     * **Recommended Region:** region sugerowany przez Microsoft – ma najnowsze usługi, wyższe SLA, dostępność AZ, lepsze wsparcie, niższe opóźnienia. Nie wszystkie funkcje są dostępne w każdym regionie!
@@ -268,7 +270,8 @@
 * **Sentinel** – Narzędzie do monitorowania bezpieczeństwa w chmurze. Wykrywa zagrożenia, analizuje incydenty i automatyzuje reakcje, integrując różne źródła danych.
     * **SIEM** – Zbiera i analizuje logi, wykrywa zagrożenia.
     * **SOAR** – Automatyzuje reakcje na incydenty i procesy bezpieczeństwa.
-* **Conditional Access Policy** – Reguły dostępu zależne od kontekstu (np. lokalizacja, urządzenie, MFA). Np. blokada spoza kraju, wymóg MFA poza biurem.
+* **Conditional Access Policy** – Reguły dostępu zależne od kontekstu (np. lokalizacja, urządzenie, MFA). 
+    * Np. blokada spoza kraju, wymóg MFA poza biurem.
 * **Privileged Access Workstation (PAW)** – Bezpieczne stanowisko do administrowania.
 * **Just-in-Time (JIT) Access** – Tymczasowy dostęp do VM.
 * **Managed HSM** – Zarządzany sprzętowy moduł bezpieczeństwa.
