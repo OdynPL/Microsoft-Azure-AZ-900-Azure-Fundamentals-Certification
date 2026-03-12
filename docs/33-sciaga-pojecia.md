@@ -243,8 +243,8 @@
     * **File:** udziały plików, SMB/NFS, współdzielenie między VM.
 
 ## **8. Networking (sieci)**
-* **VNet** – Prywatna sieć w Azure.
-* **Subnet** – Podział VNet.
+* **VNet (Virtual Network)** – Prywatna sieć w Azure do łączenia i izolacji zasobów oraz połączenia z siecią lokalną.
+* **Subnet** – Podział VNet na mniejsze segmenty dla lepszej organizacji i bezpieczeństwa.
 * **NSG** – Reguły ruchu sieciowego.
     * Można przypisać tylko do subnetów i interfejsów VM (NIC), **nie można przypisać do całej Virtual Network!** (częsta pułapka egzaminacyjna)
 * **Azure Firewall** – Zaawansowana ochrona, stateful.
