@@ -3,9 +3,12 @@
 
 # **AZ-900 – Ściąga pojęć do druku (wersja rozszerzona)**
 
----
 
 ## **Szybkie porównania i skróty (do powtórki)**
+
+---
+
+* **On-premises network / sieć lokalna** – Tradycyjna infrastruktura IT działająca w siedzibie firmy (serwery, sieć, storage, urządzenia), zarządzana i utrzymywana samodzielnie, w przeciwieństwie do zasobów w chmurze.
 
 * **IaaS vs PaaS vs SaaS:**
     * **IaaS:** VM, Storage, sieć – pełna kontrola, zarządzasz OS.
