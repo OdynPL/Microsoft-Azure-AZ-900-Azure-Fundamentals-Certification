@@ -486,6 +486,7 @@
     * **Hot:** Najwyższy koszt przechowywania, najniższy koszt dostępu. Brak minimalnego okresu przechowywania. Do częstego dostępu (produkcyjne dane, backupy do szybkiego odtworzenia).
     * **Cool:** Niższy koszt przechowywania, wyższy koszt dostępu niż Hot. Minimalny okres przechowywania: 30 dni. Do rzadziej używanych danych (backupy miesięczne, archiwa, dane do analizy).
     * **Archive:** Najniższy koszt przechowywania, najwyższy koszt dostępu. Minimalny okres przechowywania: 180 dni (6 miesięcy). Do długoterminowej archiwizacji (compliance, backupy wieloletnie). Czas przywracania: od kilku godzin do 24h (dane są offline, wymagają rehydratacji).
+        * **Rehydratacja:** proces przywracania danych z warstwy Archive do warstwy Hot/Cool, aby można było je odczytać (dane są najpierw „odmrażane”).
     * **Podsumowanie:** Hot – dane produkcyjne, Cool – backupy/archiwa do 1 roku, Archive – archiwizacja na lata (np. 7-10 lat, zgodność z regulacjami).
 * **LRS/ZRS/GRS/RA-GRS** to poziomy redundancji storage.
 * **Cosmos DB** = globalny **NoSQL** z **multi-region** i niskimi opóźnieniami.
