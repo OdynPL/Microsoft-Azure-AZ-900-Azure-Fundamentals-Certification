@@ -1,4 +1,5 @@
 
+
 [⬅ Powrót do spisu treści](../README.md)
 
 # **AZ-900 – Ściąga pojęć do druku (wersja rozszerzona)**
@@ -63,6 +64,21 @@
 **Uwaga:** Większość limitów można podnieść przez zgłoszenie do supportu. Aktualne limity: https://docs.microsoft.com/azure/azure-resource-manager/management/azure-subscription-service-limits
 
 ## **1. Podstawy chmury i korzyści**
+
+### **Cloud benefits (Korzyści chmury)**
+
+* **Reliability (Niezawodność)** – Usługi chmurowe są projektowane tak, aby zapewnić ciągłość działania i minimalizować ryzyko awarii dzięki nadmiarowości, automatycznym kopiom zapasowym i rozproszeniu geograficznemu.
+* **Predictability (Przewidywalność)** – Chmura umożliwia przewidywalność wydajności i kosztów dzięki gwarantowanym SLA, rezerwacjom zasobów oraz narzędziom do monitorowania i prognozowania wydatków.
+* **Resilience (Odporność)** – Zdolność systemu do szybkiego powrotu do działania po awarii lub zakłóceniu.
+* **Agility (Zwinność)** – Możliwość szybkiego wdrażania zmian i reagowania na potrzeby biznesowe.
+* **Elasticity (Elastyczność)** – Automatyczne dostosowanie zasobów do aktualnych potrzeb.
+* **Scalability (Skalowalność)** – Łatwość zwiększania lub zmniejszania zasobów w zależności od obciążenia.
+* **Security (Bezpieczeństwo)** – Zaawansowane mechanizmy ochrony danych, zgodność z normami i certyfikatami.
+* **Cost Efficiency (Efektywność kosztowa)** – Płacisz tylko za to, czego używasz, bez inwestycji w infrastrukturę.
+* **Global Reach (Globalny zasięg)** – Usługi dostępne na całym świecie, w wielu regionach.
+* **On-demand self-service** – Samodzielne uruchamianie i zarządzanie zasobami bez kontaktu z dostawcą.
+* **Manageability (Zarządzalność)** – Łatwość monitorowania, zarządzania i automatyzacji zasobów chmurowych dzięki narzędziom takim jak portale, API, alerty i raporty.
+
 * **Cloud Computing** – Dostarczanie zasobów IT przez internet (serwery, bazy, aplikacje).
 * **Public Cloud** – Usługi dostępne dla każdego (np. Azure, AWS, GCP).
 * **Private Cloud** – Chmura tylko dla jednej organizacji.
