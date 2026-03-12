@@ -242,6 +242,7 @@
     * Obsługuje routing geograficzny, failover, weighted.
 * **Azure DNS** – Zarządzanie rekordami DNS.
 * **Content Delivery Network (CDN)** – Szybkie dostarczanie treści.
+* **Content Delivery Network (CDN)** – Szybkie dostarczanie treści przez cache na całym świecie. Przydatne do: statycznych plików, streamingu wideo/audio, gier online, aktualizacji, ochrony przed DDoS. Skraca czas ładowania i odciąża serwer.
 * **Peering** – Łączenie VNetów w tym samym lub różnych regionach.
     * Nie wymaga routingu przez internet.
 * **Application Security Group (ASG)** – Grupowanie VM dla reguł NSG.
@@ -264,7 +265,7 @@
 * **Defender for Cloud (dawniej Security Center)** – Centrum zarządzania bezpieczeństwem w chmurze. Monitoruje konfigurację, wykrywa zagrożenia, ocenia zgodność, daje rekomendacje i automatyzuje ochronę zasobów (VM, bazy, storage, kontenery, PaaS). Pozwala włączyć zaawansowane funkcje ochrony (Defender plans) dla różnych typów zasobów.
 * **Defender for Identity** – Chmurowa usługa bezpieczeństwa do ochrony tożsamości w środowiskach hybrydowych (on-premises AD + Entra ID). Wykrywa podejrzane działania, ataki na konta, lateral movement, pass-the-hash/ticket, brute force, nieautoryzowane zmiany. Integruje się z Defender for Cloud i Sentinel. **Instaluje sensor na kontrolerze domeny i analizuje ruch oraz logi.**
 * **Azure Information Protection** – Klasyfikacja i ochrona dokumentów.
-* **Sentinel** – SIEM/SOAR, analiza zagrożeń, automatyzacja reakcji na incydenty.
+* **Sentinel** – **SIEM** (zbiera i analizuje logi, wykrywa zagrożenia), **SOAR** (automatyzuje reakcje na incydenty). Analiza zagrożeń, automatyzacja reakcji.
 * **Conditional Access Policy** – Reguły dostępu zależne od kontekstu użytkownika.
 * **Privileged Access Workstation (PAW)** – Bezpieczne stanowisko do administrowania.
 * **Just-in-Time (JIT) Access** – Tymczasowy dostęp do VM.
