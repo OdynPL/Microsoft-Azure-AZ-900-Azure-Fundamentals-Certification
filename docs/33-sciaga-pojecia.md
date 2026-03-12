@@ -265,7 +265,9 @@
 * **Defender for Cloud (dawniej Security Center)** – Centrum zarządzania bezpieczeństwem w chmurze. Monitoruje konfigurację, wykrywa zagrożenia, ocenia zgodność, daje rekomendacje i automatyzuje ochronę zasobów (VM, bazy, storage, kontenery, PaaS). Pozwala włączyć zaawansowane funkcje ochrony (Defender plans) dla różnych typów zasobów.
 * **Defender for Identity** – Chmurowa usługa bezpieczeństwa do ochrony tożsamości w środowiskach hybrydowych (on-premises AD + Entra ID). Wykrywa podejrzane działania, ataki na konta, lateral movement, pass-the-hash/ticket, brute force, nieautoryzowane zmiany. Integruje się z Defender for Cloud i Sentinel. **Instaluje sensor na kontrolerze domeny i analizuje ruch oraz logi.**
 * **Azure Information Protection** – Klasyfikacja i ochrona dokumentów.
-* **Sentinel** – **SIEM** (zbiera i analizuje logi, wykrywa zagrożenia), **SOAR** (automatyzuje reakcje na incydenty). Analiza zagrożeń, automatyzacja reakcji.
+* **Sentinel** – Narzędzie do monitorowania bezpieczeństwa w chmurze. Wykrywa zagrożenia, analizuje incydenty i automatyzuje reakcje, integrując różne źródła danych.
+    * **SIEM** – Zbiera i analizuje logi, wykrywa zagrożenia.
+    * **SOAR** – Automatyzuje reakcje na incydenty i procesy bezpieczeństwa.
 * **Conditional Access Policy** – Reguły dostępu zależne od kontekstu użytkownika.
 * **Privileged Access Workstation (PAW)** – Bezpieczne stanowisko do administrowania.
 * **Just-in-Time (JIT) Access** – Tymczasowy dostęp do VM.
