@@ -303,6 +303,7 @@
 * **Azure Monitor** – Centralne narzędzie do monitorowania wydajności, logów, alertów i metryk dla wszystkich zasobów Azure i hybrydowych.
 * **Azure Advisor** – Narzędzie rekomendujące optymalizacje kosztów, wydajności, bezpieczeństwa i dostępności zasobów w Azure.
 * **Azure Automation** – Automatyzacja zadań administracyjnych (runbooki, update management, change tracking) dla środowisk Azure i hybrydowych.
+    * Runbook – zautomatyzowany skrypt lub procedura wykonywana w Azure Automation, służąca do automatycznego wykonywania powtarzalnych zadań administracyjnych (np. backup, restart VM, czyszczenie logów).
 * **Azure CLI** – Narzędzie wiersza poleceń do zarządzania zasobami Azure (skrypty, automatyzacja, szybkie operacje).
 * **Cloud Shell** – Wbudowany terminal w portalu Azure z preinstalowanymi narzędziami (CLI, PowerShell, edytor, git), dostępny z poziomu przeglądarki.
 * **Azure DevOps** – Platforma do CI/CD, zarządzania kodem, tablic zadań, testów i automatyzacji wdrożeń aplikacji.
