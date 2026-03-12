@@ -201,9 +201,11 @@
 * **Azure File Sync** – Synchronizacja plików między on-premises a Azure Files.
 * **Data Box Gateway** – Wirtualne urządzenie do transferu danych do chmury.
 * **Redundancy (nadmiarowość):**
-    * **LRS** – 3 kopie w jednym regionie.
-    * **ZRS** – Kopie w różnych strefach w regionie.
-    * **GRS** – Kopie w innym regionie.
+    * **LRS** – 3 kopie w jednym regionie (1 DC).
+    * **ZRS** – 3 kopie w różnych strefach (AZ) w regionie.
+    * **GRS** – 3 kopie w regionie głównym + 3 kopie w regionie zapasowym (łącznie 6).
+    * **RA-GRS** – jak GRS, ale umożliwia odczyt z regionu zapasowego (6 kopii).
+    * **GZRS/RA-GZRS** – 3 kopie w różnych strefach w regionie + 3 kopie w regionie zapasowym (łącznie 6).
     * **RA-GRS** – GRS + odczyt w regionie zapasowym.
     * **GZRS/RA-GZRS** – ZRS + geo-replikacja.
 * **Blob Tiers:**
