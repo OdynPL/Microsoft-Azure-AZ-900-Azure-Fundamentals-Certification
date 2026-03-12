@@ -254,11 +254,11 @@
     * Może być połączony z **MPLS** (**Multi-Protocol Label Switching** – technologia sieciowa do wydajnego, prywatnego routingu w sieciach WAN, często wykorzystywana przez firmy do łączenia oddziałów i centrów danych).
 * **VPN Gateway** – Szyfrowane połączenie do Azure.
     * Obsługuje połączenia Site-to-Site, Point-to-Site, VNet-to-VNet.
-* **Site-to-Site VPN** – Łączy całą sieć lokalną z siecią w Azure. Stosowane do stałego, bezpiecznego połączenia między firmą a chmurą (np. oddziały, biura).
-* **Point-to-Site VPN** – Łączy pojedyncze urządzenie (np. laptop) z siecią w Azure. Stosowane do zdalnego dostępu użytkowników, np. home office, praca zdalna.
-* **Public VPN** – Połączenie przez publiczny internet, mniej bezpieczne, stosowane do szybkiego, tymczasowego dostępu lub gdy nie ma dedykowanego łącza.
-* **Private VPN** – Połączenie przez dedykowane, prywatne łącze (np. ExpressRoute), wyższy poziom bezpieczeństwa, stosowane do stałego, bezpiecznego połączenia między sieciami.
-* **Private Link/Endpoint** – Prywatny dostęp do usług.
+* **Site-to-Site VPN** – Łączy całą sieć lokalną z siecią w Azure. Stosowane do stałego, bezpiecznego połączenia między firmą a chmurą (np. oddziały, biura) (use case: połączenie siedziby firmy z Azure).
+* **Point-to-Site VPN** – Łączy pojedyncze urządzenie (np. laptop) z siecią w Azure. Stosowane do zdalnego dostępu użytkowników, np. home office, praca zdalna (use case: pracownik łączy się zdalnie do zasobów Azure).
+* **Public VPN** – Połączenie przez publiczny internet, mniej bezpieczne, stosowane do szybkiego, tymczasowego dostępu lub gdy nie ma dedykowanego łącza (use case: szybki dostęp do zasobów na czas testów lub awarii).
+* **Private VPN** – Połączenie przez dedykowane, prywatne łącze (np. ExpressRoute), wyższy poziom bezpieczeństwa, stosowane do stałego, bezpiecznego połączenia między sieciami (use case: połączenie dwóch oddziałów firmy lub data center z Azure).
+* **Private Link/Endpoint** – Prywatny dostęp do usług (np. Storage, SQL) z poziomu własnej sieci VNet, bez użycia publicznego internetu. (Use case: bezpieczne połączenie aplikacji w VNet z bazą danych lub storage bez narażania ruchu na internet).
 * **Bastion** – Bezpieczny dostęp do VM przez przeglądarkę.
     * Nie wymaga publicznego IP na VM.
 * **Load Balancer** – Rozkładanie ruchu (L4).
