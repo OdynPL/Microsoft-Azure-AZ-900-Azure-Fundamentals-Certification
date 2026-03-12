@@ -203,8 +203,15 @@
 ## **7. Storage (magazynowanie)**
 * **Blob Storage** – Przechowywanie plików/obiektów.
 * **File Storage** – Udziały plików SMB/NFS.
+* **Queue Storage** – Prosta kolejka do przesyłania komunikatów między usługami (np. asynchroniczne zadania, buforowanie żądań).
 * **Disk Storage** – Dyski blokowe dla VM.
 * **Table Storage** – NoSQL, dane strukturalne.
+
+## **Narzędzia transferu i migracji danych**
+
+* **Azure Files** – Udziały plików w chmurze (SMB/NFS), montowane do VM/serwerów, snapshoty, backup.
+* **Azure File Sync** – Synchronizacja plików między serwerami lokalnymi a Azure Files (cache lokalny, hybrydowy serwer plików).
+* **Data Box** – Fizyczne urządzenie lub wirtualna bramka do bezpiecznego transferu dużych ilości danych do Azure (np. migracja serwerowni, backupy offline). Microsoft dostarcza urządzenie, kopiujesz dane lokalnie, odsyłasz do MS, a dane są importowane do chmury. Dostępne warianty: Data Box, Data Box Disk, Data Box Heavy, Data Box Gateway (wirtualna).
 
 **Szybka tabela porównawcza typów storage:**
 
