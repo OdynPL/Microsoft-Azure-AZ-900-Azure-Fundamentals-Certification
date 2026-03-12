@@ -293,6 +293,20 @@
 * **Route Table** – Definiuje trasowanie ruchu w sieci.
 * **UDR (User Defined Route)** – Niestandardowe trasy dla ruchu sieciowego.
 
+## **Narzędzia migracji, zarządzania i automatyzacji**
+
+* **AzCopy** – Narzędzie wiersza poleceń do szybkiego kopiowania danych do/z Azure Storage (Blob, File, Table). Idealne do migracji dużych ilości plików, backupów, automatyzacji transferów.
+* **Azure Migrate** – Platforma do oceny, planowania i migracji serwerów, maszyn wirtualnych, baz danych i aplikacji do Azure. Ułatwia analizę gotowości do migracji, szacowanie kosztów i automatyzację procesu przenoszenia.
+* **Azure Arc** – Rozszerza zarządzanie Azure na zasoby spoza chmury (on-premises, multi-cloud, serwery, klastry Kubernetes, bazy danych). Pozwala zarządzać nimi jak natywnymi zasobami Azure (polityki, monitorowanie, automatyzacja).
+* **Azure Data Factory** – Usługa integracji danych (ETL/ELT), umożliwia przenoszenie, transformację i automatyzację przepływów danych między różnymi źródłami (on-premises, chmura, SaaS).
+* **Azure Site Recovery** – Disaster Recovery as a Service (DRaaS) – replikacja i automatyczne odtwarzanie maszyn wirtualnych, serwerów i aplikacji po awarii.
+* **Azure Monitor** – Centralne narzędzie do monitorowania wydajności, logów, alertów i metryk dla wszystkich zasobów Azure i hybrydowych.
+* **Azure Advisor** – Narzędzie rekomendujące optymalizacje kosztów, wydajności, bezpieczeństwa i dostępności zasobów w Azure.
+* **Azure Automation** – Automatyzacja zadań administracyjnych (runbooki, update management, change tracking) dla środowisk Azure i hybrydowych.
+* **Azure CLI** – Narzędzie wiersza poleceń do zarządzania zasobami Azure (skrypty, automatyzacja, szybkie operacje).
+* **Cloud Shell** – Wbudowany terminal w portalu Azure z preinstalowanymi narzędziami (CLI, PowerShell, edytor, git), dostępny z poziomu przeglądarki.
+* **Azure DevOps** – Platforma do CI/CD, zarządzania kodem, tablic zadań, testów i automatyzacji wdrożeń aplikacji.
+
 ## **9. Identity & Security (tożsamość i bezpieczeństwo)**
 * **Entra ID (Azure AD)** – Zarządzanie tożsamością.
 * **MFA** – Uwierzytelnianie wieloskładnikowe.
