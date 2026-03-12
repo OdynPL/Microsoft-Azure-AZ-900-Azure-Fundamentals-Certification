@@ -185,6 +185,7 @@
 
 ## **6. Compute (obliczenia)**
 * **Virtual Machine (VM)** – Maszyna wirtualna, pełna kontrola.
+    * **DevTest Labs:** szybkie, tanie środowiska testowe i deweloperskie oparte o VM, automatyzacja tworzenia i zarządzania maszynami.
 * **Scale Set** – Automatyczne skalowanie wielu VM.
 * **App Service** – Hostowanie aplikacji web/API bez zarządzania serwerem.
 * **AKS** – Orkiestracja kontenerów (Kubernetes).
