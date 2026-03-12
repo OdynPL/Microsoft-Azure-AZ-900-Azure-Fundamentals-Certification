@@ -416,6 +416,8 @@
 | VM Contributor      | Zarządzanie VM, bez dostępu do sieci/storage, nie może nadawać ról  |
 
 * **Blob Storage vs File Storage:** **Blob** = obiekty, **REST API**; **File** = udziały plików, **SMB/NFS**.
+    * **SMB (Server Message Block):** protokół udostępniania plików w sieciach Windows.
+    * **NFS (Network File System):** protokół udostępniania plików w sieciach Linux/Unix.
 * **NSG vs Firewall:** **NSG** = reguły na subnet/VM, **Firewall** = centralna ochrona, logi.
 * **ExpressRoute vs VPN:** **ExpressRoute** = dedykowane, **VPN** = szyfrowane przez internet.
 * **CDN vs Front Door vs Traffic Manager:** **CDN** = cache, **Front Door** = globalny routing, **Traffic Manager** = DNS.
