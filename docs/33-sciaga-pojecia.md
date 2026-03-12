@@ -268,7 +268,7 @@
 * **Sentinel** – Narzędzie do monitorowania bezpieczeństwa w chmurze. Wykrywa zagrożenia, analizuje incydenty i automatyzuje reakcje, integrując różne źródła danych.
     * **SIEM** – Zbiera i analizuje logi, wykrywa zagrożenia.
     * **SOAR** – Automatyzuje reakcje na incydenty i procesy bezpieczeństwa.
-* **Conditional Access Policy** – Reguły dostępu zależne od kontekstu użytkownika.
+* **Conditional Access Policy** – Reguły dostępu zależne od kontekstu (np. lokalizacja, urządzenie, MFA). Np. blokada spoza kraju, wymóg MFA poza biurem.
 * **Privileged Access Workstation (PAW)** – Bezpieczne stanowisko do administrowania.
 * **Just-in-Time (JIT) Access** – Tymczasowy dostęp do VM.
 * **Managed HSM** – Zarządzany sprzętowy moduł bezpieczeństwa.
