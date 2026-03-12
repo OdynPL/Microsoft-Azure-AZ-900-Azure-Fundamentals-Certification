@@ -373,6 +373,7 @@
 * **Cloud Shell** – Terminal w przeglądarce.
 * **ARM Templates/Bicep** – Infrastructure as Code.
 * **IaC (Infrastructure as Code)** – zarządzanie i wdrażanie infrastruktury za pomocą kodu (np. ARM, Bicep, Terraform). Pozwala na automatyzację, powtarzalność i wersjonowanie środowisk.
+* **Lift and Shift (IaaS)** – Migracja aplikacji do chmury bez zmian w architekturze, najczęściej na maszyny wirtualne (model IaaS).
 * **DevTest Labs** – Szybkie środowiska testowe.
 * **Azure Monitor** – Monitorowanie zasobów.
     * **Azure Monitor** – centralne narzędzie do zbierania, korelacji i analizy logów, metryk i śladów z VM, aplikacji i innych zasobów Azure.
