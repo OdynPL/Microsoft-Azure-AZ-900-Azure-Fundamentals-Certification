@@ -253,6 +253,9 @@
 * **Traffic Manager** – Rozkład ruchu na poziomie DNS.
     * Obsługuje routing geograficzny, failover, weighted.
 * **Azure DNS** – Zarządzanie rekordami DNS.
+    * Umożliwia hostowanie i zarządzanie rekordami DNS domen bez potrzeby własnych serwerów DNS.
+    * Obsługuje typowe rekordy DNS (A, AAAA, CNAME, MX, TXT, NS, SRV).
+    * Wymaga delegacji domeny do serwerów DNS Azure.
 * **Content Delivery Network (CDN)** – Szybkie dostarczanie treści.
 * **Content Delivery Network (CDN)** – Szybkie dostarczanie treści przez cache na całym świecie. Przydatne do: statycznych plików, streamingu wideo/audio, gier online, aktualizacji, ochrony przed DDoS. Skraca czas ładowania i odciąża serwer.
 * **Peering** – Łączenie VNetów w tym samym lub różnych regionach.
