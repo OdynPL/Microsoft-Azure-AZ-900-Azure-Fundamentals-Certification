@@ -202,10 +202,11 @@
 
 ## **7. Storage (magazynowanie)**
 * **Blob Storage** – Przechowywanie plików/obiektów.
-* **File Storage** – Udziały plików SMB/NFS.
-* **Queue Storage** – Prosta kolejka do przesyłania komunikatów między usługami (np. asynchroniczne zadania, buforowanie żądań).
-* **Disk Storage** – Dyski blokowe dla VM.
-* **Table Storage** – NoSQL, dane strukturalne.
+    * **Blob Storage** – Przechowywanie plików/obiektów (use case: backupy, archiwa, zdjęcia, logi, duże pliki, dane nieustrukturyzowane).
+    * **File Storage** – Udziały plików SMB/NFS (use case: współdzielenie plików między VM, migracja serwerów plików, dostęp sieciowy do plików).
+    * **Queue Storage** – Prosta kolejka do przesyłania komunikatów między usługami (use case: asynchroniczne zadania, buforowanie żądań, komunikacja między aplikacjami).
+    * **Disk Storage** – Dyski blokowe dla VM (use case: dyski systemowe i danych dla maszyn wirtualnych, wysokowydajne bazy danych).
+    * **Table Storage** – NoSQL, dane strukturalne (use case: przechowywanie dużych ilości prostych danych, np. logi, dane telemetryczne, konfiguracje).
 
 ## **Narzędzia transferu i migracji danych**
 
