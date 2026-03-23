@@ -183,6 +183,7 @@
 
 ## **6. Compute (obliczenia)**
 * **Virtual Machine (VM)** – Maszyna wirtualna, pełna kontrola.
+    * **Deallokacja VM:** Zatrzymanie i zwolnienie zasobów obliczeniowych (CPU/RAM) maszyny wirtualnej w Azure. Dyski i adresy IP (jeśli są publiczne dynamiczne) mogą zostać zwolnione. Deallokacja oznacza brak naliczania opłat za moc obliczeniową, ale zachowanie danych na dyskach.
     * **DevTest Labs:** szybkie, tanie środowiska testowe i deweloperskie oparte o VM, automatyzacja tworzenia i zarządzania maszynami.
 * **Scale Set** – Automatyczne skalowanie wielu VM.
 * **App Service** – Hostowanie aplikacji web/API bez zarządzania serwerem.
