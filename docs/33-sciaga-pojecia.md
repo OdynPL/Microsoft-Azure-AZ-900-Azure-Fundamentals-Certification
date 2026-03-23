@@ -522,7 +522,9 @@
 * **WAF** (Web Application Firewall) chroni **HTTP(S)**, np. **OWASP Top 10**; działa na Application Gateway i Front Door.
 * **Private Endpoint** daje prywatny IP, **Service Endpoint** nie.
 * **Front Door** działa globalnie na edge (**L7**), **Traffic Manager** to **DNS**.
-* **Load Balancer** działa na **L4**, **Application Gateway** na **L7** (z **WAF**).
+* **Load Balancer** działa na **L4**, **Application Gateway** na **L7** (z **WAF**). 
+    - **Public Load Balancer** rozkłada ruch z internetu do zasobów w Azure. 
+    - **Private Load Balancer** obsługuje ruch tylko wewnątrz sieci wirtualnej (VNet).
 * **Azure Functions** = event-driven serverless, płatność za wykonania (**Consumption**).
 * **Durable Functions** = workflow ze stanem.
 * **ACI** = szybkie uruchomienie kontenera bez orkiestracji, **ACA** = mikroserwisy, scale-to-zero.
