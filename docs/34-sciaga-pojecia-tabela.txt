@@ -1,0 +1,290 @@
+AZ-900 – Ściąga pojęć do druku (wersja tabelaryczna)
+| Geography | Obszar geograficzny obejmujący jeden lub więcej regionów Azure, np. Europa, Ameryka Północna. |
+| Region | Fizyczna lokalizacja centrum danych Azure, np. West Europe, North Europe. |
+| Availability Zone (AZ) | Fizycznie oddzielona strefa w regionie Azure, zapewnia wysoką dostępność i odporność na awarie. |
+| Subscription | Jednostka rozliczeniowa i granica uprawnień w Azure, do niej przypisane są zasoby i rozliczenia. |
+| Tenant | Izolowany katalog Entra ID (dawniej Azure AD) dla organizacji, zarządza użytkownikami, grupami i uprawnieniami. |
+| Resource Group | Kontener logiczny grupujący powiązane zasoby Azure, umożliwia wspólne zarządzanie, wdrażanie i usuwanie. |
+| Resource | Każdy pojedynczy obiekt zarządzany w Azure, np. VM, Storage Account, baza danych, sieć. |
+| Availability Set | Grupa VM w jednym centrum danych, rozkład VM na domeny awarii i aktualizacji dla zwiększenia dostępności. |
+
+| Management Group | Najwyższy poziom organizacji w Azure, grupuje subskrypcje dla centralnego zarządzania i polityk. |
+| Resource ID | Unikalny identyfikator każdego zasobu w Azure, używany do zarządzania i automatyzacji. |
+| Scope | Zakres stosowania uprawnień, polityk lub tagów (np. na poziomie Management Group, Subscription, Resource Group, Resource). |
+| Tag | Etykieta (klucz-wartość) przypisana do zasobu lub grupy, ułatwia organizację i raportowanie kosztów. |
+| Location | Konkretna lokalizacja (region) fizycznego przechowywania zasobu w Azure. |
+
+| Pojęcie | Opis |
+|---|---|
+| On-premises network / sieć lokalna | Tradycyjna infrastruktura IT w siedzibie firmy, zarządzana samodzielnie, w przeciwieństwie do chmury. |
+| IaaS | Wynajmowana infrastruktura (VM, sieć, storage), pełna kontrola nad systemem. |
+| PaaS | Platforma do uruchamiania aplikacji, bez zarządzania OS. |
+| SaaS | Gotowe aplikacje dostępne w chmurze, np. Office 365. |
+| NSG | Reguły ruchu sieciowego na subnet/VM, warstwa 4, proste. |
+| Firewall | Centralna ochrona, logi, warstwa 4/7, zaawansowane scenariusze. |
+| CDN | Cache, przyspiesza statyczne treści. |
+| Front Door | Globalny routing, WAF, warstwa 7. |
+| Traffic Manager | Routing DNS, geograficzny/failover. |
+| App Service | PaaS, szybkie wdrożenia, automatyczne skalowanie. |
+| VM | IaaS, pełna kontrola, własny OS. |
+| Azure Policy | Wymusza zasady (np. region, tagi) na zasobach. |
+| RBAC | Uprawnienia do zasobów, role. |
+| Azure Backup | Kopie zapasowe. |
+| Site Recovery | Disaster Recovery, odtwarzanie po awarii. |
+| Blob Storage | Przechowywanie obiektów, backupy, REST API. |
+| File Storage | Udziały plików, SMB/NFS, współdzielenie między VM. |
+| ExpressRoute | Dedykowane łącze do Azure, nie szyfruje domyślnie. |
+| VPN | Szyfrowane połączenie przez internet. |
+| Azure DevOps | CI/CD, tablice zadań. |
+| GitHub | Repozytoria, CI/CD, społeczność. |
+| VM w subskrypcji | Limit 10–20 na region (można zwiększyć). |
+| Resource Group | Max 980 zasobów. |
+| Storage Accounts | 250 na subskrypcję na region. |
+| Public IP | 10 na subskrypcję na region. |
+| VNet | 1000 na region. |
+| NSG (limit) | 5000 na subskrypcję na region. |
+| Managed Disks | 50 000 na region na subskrypcję. |
+| App Service Plan | 100 na subskrypcję na region. |
+| Azure SQL Database | 5000 DB na serwerze logicznym. |
+| Cosmos DB | 50 kontenerów na bazę, 25 baz na konto. |
+| Azure Functions | 1,5 mln wywołań/miesiąc (free tier). |
+| Resource Groups na subskrypcję | 980. |
+| Subskrypcje na konto | 200. |
+| Tagi | Max 50 tagów na zasób lub grupę. |
+| Reliability | Niezawodność, ciągłość działania, nadmiarowość. |
+| Predictability | Przewidywalność wydajności i kosztów. |
+| Resilience | Odporność na awarie, szybkie przywracanie. |
+| Agility | Szybkie wdrażanie zmian. |
+| Elasticity | Automatyczne dostosowanie zasobów do potrzeb. |
+| Scalability | Łatwe zwiększanie/zmniejszanie zasobów. |
+| Security | Zaawansowane mechanizmy ochrony danych. |
+| Cost Efficiency | Płacisz tylko za to, czego używasz. |
+| Global Reach | Usługi dostępne na całym świecie. |
+| On-demand self-service | Samodzielne uruchamianie i zarządzanie zasobami. |
+| Manageability | Łatwe monitorowanie i automatyzacja zasobów. |
+| Cloud Computing | Dostarczanie zasobów IT przez internet. |
+| Public Cloud | Usługi dostępne dla każdego. |
+| Private Cloud | Chmura tylko dla jednej organizacji. |
+| Hybrid Cloud | Połączenie chmury publicznej i prywatnej. |
+| Vertical scaling | Zwiększanie mocy jednej maszyny. |
+| Horizontal scaling | Dodawanie kolejnych maszyn/instancji. |
+| High Availability | Minimalizacja przestojów, ciągłość działania. |
+| Disaster Recovery | Odtwarzanie po awarii, kopie zapasowe. |
+| Fault Tolerance | Odporność na awarie. |
+| Geo-distribution | Rozmieszczenie usług w wielu regionach. |
+| CapEx/OpEx | Wydatki inwestycyjne vs operacyjne. |
+| SLA | Gwarantowany poziom dostępności usługi. |
+| RTO/RPO | Maksymalny czas odtworzenia/uszkodzenia danych. |
+| Soft Delete | Ochrona przed przypadkowym usunięciem danych. |
+| Immutable Storage | Niezmienialne kopie, np. backupy. |
+| Szyfrowanie at-rest/in-transit | Dane domyślnie szyfrowane w Azure. |
+| Multi-Region Deployment | Wdrażanie usług w wielu regionach. |
+| Predictable Performance/Costs | Przewidywalność wydajności i kosztów. |
+| Economies of Scale | Niższe koszty dzięki dużej skali. |
+| Rapid elasticity | Szybkie zwiększanie/zmniejszanie zasobów. |
+| Measured Service | Automatyczne monitorowanie i rozliczanie zużycia. |
+| Resource pooling | Wspólne zasoby dla wielu klientów. |
+| Cloud Bursting | Przenoszenie obciążenia do chmury w razie potrzeby. |
+| IaaS | Microsoft: sprzęt, sieć; Ty: OS, aplikacje, dane. |
+| PaaS | Microsoft: sprzęt, sieć, OS; Ty: aplikacje, dane. |
+| SaaS | Microsoft: wszystko poza danymi i dostępem użytkownika. |
+| Serverless | Kod uruchamiany bez zarządzania serwerami, automatyczne skalowanie, np. Azure Functions. |
+| FaaS (Function as a Service) | Kod uruchamiany na żądanie, np. Azure Functions. |
+| Management Group > Subscription > Resource Group > Resource | Hierarchia organizacji zasobów w Azure. |
+| Resource | Pojedynczy zasób (np. VM, Storage, DB). |
+| RBAC | Role i uprawnienia na różnych poziomach. |
+| Tagi | Etykiety do organizacji i raportowania kosztów. |
+| Resource Locks | Blokady przed usunięciem/zmianą zasobu. |
+| Subscription | Jednostka rozliczeniowa i granica uprawnień. |
+| Management Group | Grupowanie subskrypcji do centralnego zarządzania. |
+| Azure Lighthouse | Zarządzanie wieloma klientami (MSP). |
+| Azure Arc | Zarządzanie zasobami spoza Azure (multi-cloud, on-premises). |
+| Directory (Entra ID) | Katalog użytkowników, grup i aplikacji w Entra ID (dawniej Azure AD), techniczny kontener tożsamości. |
+| Directory | Katalog użytkowników, grup i aplikacji w Entra ID. |
+| Account | Konto użytkownika w Directory/Tenancie. |
+| User | Pojedynczy użytkownik w Directory. |
+| Group | Grupa użytkowników do zarządzania uprawnieniami. |
+| Role | Zestaw uprawnień przypisanych użytkownikowi lub grupie. |
+| Tenant (dzierżawa) | Izolowany katalog Entra ID dla organizacji. |
+| Tenant ID | Unikalny identyfikator Tenanta. |
+| Authentication (AuthN) | Weryfikacja tożsamości użytkownika (czy jesteś tym, za kogo się podajesz). |
+| Authorization (AuthZ) | Nadawanie uprawnień po zalogowaniu. |
+| Scope | Poziom przypisywania uprawnień i polityk. |
+| Region | Lokalizacja centrum danych. |
+| Region vs Recommended Region | Region – dowolna lokalizacja Azure; Recommended Region – sugerowany przez Microsoft, wyższe SLA, nowsze usługi. |
+| Alternate Region | Region uzupełniający, zapewnia DR, nie zawsze obsługuje AZ. |
+| Availability Zone (AZ) | Niezależne strefy w regionie, zwiększają odporność. |
+| Availability Set | Grupa VM w jednym DC, rozkład na domeny awarii/aktualizacji. |
+| Fault Domain | Grupa VM z tym samym zasilaniem i siecią. |
+| Region Pair | Dwa powiązane regiony do DR. |
+| Resource Group | Logicza grupa zasobów. |
+| GUID | Globalnie unikalny identyfikator. |
+| ARM/Bicep | Automatyzacja wdrożeń (Infrastructure as Code). |
+| Bicep | Język deklaratywny do wdrażania zasobów w Azure, prostszy od ARM (JSON). |
+| Azure Free Account | Darmowe środki na start. |
+| Azure Free Account – szczegóły | $200 na 30 dni + wybrane usługi na 12 miesięcy za darmo. Po wykorzystaniu środków konto przechodzi na Pay-as-you-go lub jest blokowane. |
+| Azure Active Directory Domain Services (AAD DS) | Zarządzane usługi domenowe w chmurze. |
+| Azure AD B2C/B2B | B2C – tożsamość klientów, B2B – partnerów. |
+| Resource ID | Unikalny identyfikator zasobu w Azure. |
+| Service Principal | Tożsamość aplikacji do automatyzacji i integracji. |
+| App Registration | Rejestracja aplikacji w Entra ID. |
+| Azure Resource Manager (ARM) | Centralny system zarządzania zasobami Azure. |
+| Azure Resource Explorer | Narzędzie do przeglądania zasobów i API. |
+| Azure REST API | Programistyczny dostęp do zarządzania zasobami. |
+| Azure Marketplace | Sklep z gotowymi rozwiązaniami i usługami. |
+| Azure Subscription Types | Free, Pay-as-you-go, Enterprise Agreement, CSP. |
+| Virtual Machine (VM) | Maszyna wirtualna, pełna kontrola. |
+| Deallokacja VM | Zatrzymanie i zwolnienie zasobów obliczeniowych VM, brak opłat za moc obliczeniową, dane na dyskach zostają. |
+| DevTest Labs | Szybkie, tanie środowiska testowe i deweloperskie oparte o VM. |
+| Scale Set | Automatyczne skalowanie wielu VM. |
+| App Service | Hostowanie aplikacji web/API bez zarządzania serwerem. |
+| AKS | Orkiestracja kontenerów (Kubernetes). |
+| Container Instances (ACI) | Szybkie uruchamianie pojedynczych kontenerów. |
+| Azure Functions | Serverless, kod uruchamiany na żądanie. |
+| Service Fabric | Orkiestracja mikroserwisów. |
+| Dedicated Host | Fizyczny serwer dedykowany dla jednej organizacji. |
+| VMSS | Automatyczne skalowanie VM. |
+| Burstable VM | VM z elastycznym zużyciem CPU. |
+| Ephemeral Disk | Tymczasowy dysk, tracony po restarcie VM. |
+| Spot VM | VM o niższym koszcie, może być przerwana przez Azure. |
+| Custom Images | Własne obrazy VM do szybkiego wdrożenia. |
+| VM Extensions | Automatyzacja konfiguracji VM (np. instalacja agentów). |
+| Blob Storage | Przechowywanie plików/obiektów. |
+| Data Lake Storage | Analiza dużych zbiorów danych. |
+| Premium Storage | Dyski SSD dla wysokiej wydajności. |
+| File Storage | Udziały plików SMB/NFS, współdzielenie między VM. |
+| Queue Storage | Prosta kolejka do przesyłania komunikatów między usługami. |
+| Disk Storage | Dyski blokowe dla VM. |
+| Table Storage | NoSQL, dane strukturalne. |
+| Azure Files | Udziały plików w chmurze, montowane do VM/serwerów. |
+| Azure File Sync | Synchronizacja plików między serwerami lokalnymi a Azure Files. |
+| Data Box | Fizyczne urządzenie lub bramka do transferu dużych ilości danych do Azure. |
+| Data Box Gateway | Wirtualne urządzenie do transferu danych do chmury. |
+| LRS | 3 kopie w jednym regionie (1 DC). |
+| ZRS | 3 kopie w różnych strefach (AZ) w regionie. |
+| GRS | 3 kopie w regionie głównym + 3 kopie w regionie zapasowym. |
+| RA-GRS | GRS + odczyt w regionie zapasowym. |
+| GZRS/RA-GZRS | ZRS + geo-replikacja. |
+| Blob Tiers: Hot | Częsty dostęp, wyższy koszt, brak minimalnego okresu przechowywania. |
+| Blob Tiers: Cool | Rzadki dostęp, niższy koszt, min. 30 dni przechowywania. |
+| Blob Tiers: Archive | Najniższy koszt, min. 180 dni przechowywania, długi czas przywracania. |
+| Rehydratacja | Proces przywracania danych z warstwy Archive do Hot/Cool, aby można było je odczytać. |
+| Geo-replikacja | Automatyczne kopiowanie danych do innego regionu. |
+| Koszty transferu danych | Transfer do Azure i w regionie bezpłatny, między regionami i do internetu płatny. |
+| VNet | Prywatna sieć w Azure do łączenia i izolacji zasobów. |
+| MPLS | Multi-Protocol Label Switching – technologia sieciowa do wydajnego, prywatnego routingu w sieciach WAN. |
+| Subnet | Podział VNet na mniejsze segmenty. |
+| NSG | Reguły ruchu sieciowego dla subnetów i interfejsów VM. |
+| Azure Firewall | Zaawansowana ochrona, stateful. |
+| DDoS Protection | Ochrona przed atakami. |
+| ExpressRoute | Dedykowane łącze do Azure, wyższa przepustowość. |
+| Virtual Network TAP | Monitoring i analiza ruchu sieciowego z VM. |
+| Terminal Access Point (TAP) | Pozwala na przesyłanie ruchu sieciowego z VM do narzędzi analitycznych. |
+| VPN Gateway | Szyfrowane połączenie do Azure. |
+| Site-to-Site VPN | Stałe, bezpieczne połączenie sieci lokalnej z Azure. |
+| Point-to-Site VPN | Zdalny dostęp pojedynczego urządzenia do sieci Azure. |
+| Public VPN | Połączenie przez publiczny internet, mniej bezpieczne. |
+| Private VPN | Połączenie przez dedykowane, prywatne łącze. |
+| Private Link/Endpoint | Prywatny dostęp do usług z poziomu VNet. |
+| Bastion | Bezpieczny dostęp do VM przez przeglądarkę. |
+| Load Balancer | Rozkładanie ruchu (L4). |
+| Application Gateway | Rozkładanie ruchu (L7), WAF. |
+| Front Door | Globalny rozkład ruchu, CDN, WAF. |
+| Traffic Manager | Rozkład ruchu na poziomie DNS. |
+| Azure DNS | Zarządzanie rekordami DNS. |
+| Content Delivery Network (CDN) | Szybkie dostarczanie treści przez cache. |
+| Peering | Łączenie VNetów w tym samym lub różnych regionach. |
+| Application Security Group (ASG) | Grupowanie VM dla reguł NSG. |
+| ASG – szczegóły | Dotyczy tylko VM i ich interfejsów sieciowych, nie innych zasobów. |
+| Public IP vs Private IP | Publiczny adres dostępny z internetu, prywatny tylko w sieci Azure. |
+| Service Endpoint | Dostęp do usług Azure z prywatnej sieci bez publicznego IP. |
+| Firewall Rules | Reguły bezpieczeństwa dla baz danych i storage. |
+| Route Table | Definiuje trasowanie ruchu w sieci. |
+| UDR (User Defined Route) | Niestandardowe trasy dla ruchu sieciowego. |
+| AzCopy | Narzędzie do szybkiego kopiowania danych do/z Azure Storage. |
+| Azure Migrate | Platforma do migracji serwerów, VM, baz danych do Azure. |
+| Azure Arc | Zarządzanie zasobami spoza chmury jak natywnymi w Azure. |
+| Azure Arc – rozszerzenie | Zarządzanie serwerami, klastrami Kubernetes, bazami danych spoza Azure. |
+| Azure Data Factory | Integracja i automatyzacja przepływów danych. |
+| Data Factory – ETL/ELT | Usługa integracji danych, przenoszenie, transformacja i automatyzacja przepływów danych. |
+| Azure Site Recovery | Disaster Recovery as a Service, replikacja i odtwarzanie VM. |
+| Azure Monitor | Monitorowanie wydajności, logów, alertów i metryk. |
+| Azure Application Insights | Monitorowanie wydajności aplikacji, analiza błędów, telemetria, wykrywanie problemów w czasie rzeczywistym. |
+| Azure Advisor | Rekomendacje optymalizacji kosztów, wydajności, bezpieczeństwa. |
+| Azure Automation | Automatyzacja zadań administracyjnych. |
+| Update Management | Zarządzanie aktualizacjami VM. |
+| Change Tracking | Monitorowanie zmian konfiguracji. |
+| Runbook | Zautomatyzowany skrypt/procedura w Azure Automation. |
+| Azure CLI | Narzędzie wiersza poleceń do zarządzania zasobami Azure. |
+| PowerShell | Automatyzacja i zarządzanie zasobami Azure. |
+| Cloud Shell | Wbudowany terminal w portalu Azure z narzędziami. |
+| Azure DevOps | Platforma do CI/CD, zarządzania kodem, tablic zadań. |
+| Portal | Interfejs webowy do zarządzania zasobami Azure. |
+| Entra ID (Azure AD) | Zarządzanie tożsamością, SSO, MFA, dostępem. |
+| Passwordless authentication | Logowanie bez hasła (np. Authenticator, Windows Hello). |
+| Managed Identity | Automatyczna tożsamość dla aplikacji w Azure. |
+| MFA | Uwierzytelnianie wieloskładnikowe. |
+| Conditional Access | Dostęp zależny od warunków (lokalizacja, urządzenie, MFA). |
+| PIM | Zarządzanie uprawnieniami uprzywilejowanymi. |
+| Key Vault | Bezpieczne przechowywanie sekretów. |
+| Zero Trust | Zasada „nikomu nie ufaj”. |
+| Defender for Cloud | Centrum zarządzania bezpieczeństwem w chmurze. |
+| Defender for Identity | Ochrona tożsamości w środowiskach hybrydowych. |
+| Azure Information Protection | Klasyfikacja i ochrona dokumentów. |
+| Sentinel | Monitorowanie bezpieczeństwa w chmurze, SIEM/SOAR. |
+| SIEM | Zbiera i analizuje logi, wykrywa zagrożenia. |
+| SOAR | Automatyzuje reakcje na incydenty i procesy bezpieczeństwa. |
+| Conditional Access Policy | Reguły dostępu zależne od kontekstu. |
+| Privileged Access Workstation (PAW) | Bezpieczne stanowisko do administrowania. |
+| Just-in-Time (JIT) Access | Tymczasowy dostęp do VM. |
+| Managed HSM | Zarządzany sprzętowy moduł bezpieczeństwa. |
+| Azure SQL Database | Relacyjna baza danych (OLTP). |
+| OLTP | Przetwarzanie transakcyjne online, np. Azure SQL Database. |
+| OLAP | Przetwarzanie analityczne online, np. Synapse Analytics. |
+| In-memory | Bazy danych w pamięci RAM, np. Redis. |
+| Azure Database for MySQL/PostgreSQL | Zarządzane bazy open source. |
+| Azure Synapse Analytics | Analityka, hurtownie danych (OLAP). |
+| Cosmos DB | NoSQL, globalna replikacja, niskie opóźnienia. |
+| Azure Cache for Redis | Baza in-memory, cache. |
+| Azure Database Migration Service | Migracja baz danych do Azure. |
+| Lift and Shift (IaaS) | Migracja aplikacji do chmury bez zmian w architekturze, najczęściej na maszyny wirtualne. |
+| Geo-Replication | Replikacja bazy do innego regionu. |
+| Elastic Pool | Wspólna pula zasobów dla wielu baz SQL. |
+| Hyperscale | Skalowalna architektura dla Azure SQL. |
+| Backup Retention | Okres przechowywania kopii zapasowych. |
+| Read Replica | Odczyt z kopii bazy dla skalowania. |
+| Pay-as-you-go | Płacisz za zużycie. |
+| Reserved Instances | Rezerwacja na dłużej, taniej. |
+| Spot VM | Tanie, przerywane VM. |
+| OpEx | Model operacyjny, płacisz za bieżące zużycie. |
+| CapEx | Wydatki inwestycyjne, płatność z góry. |
+| Pricing Calculator | Szacowanie kosztów. |
+| TCO Calculator | Porównanie kosztów chmura vs. on-premises. |
+| Budżety i alerty | Kontrola wydatków. |
+| Cost Management | Analiza i optymalizacja kosztów. |
+| Marketplace | Gotowe rozwiązania partnerów. |
+| Azure Reservations | Rezerwacja zasobów na 1/3 lata dla niższych kosztów. |
+| Azure Hybrid Benefit | Oszczędność kosztów licencji Windows Server/SQL. |
+| Cost Analysis | Analiza wydatków w Azure Cost Management. |
+| Azure Budgets | Ustawianie limitów wydatków i alertów. |
+| Cost Alerts | Powiadomienia o przekroczeniu budżetu. |
+| Azure Price List API | Automatyczne pobieranie cen usług. |
+| Azure Advisor Recommendations | Sugestie oszczędności i optymalizacji. |
+| Azure Cost Management + Billing | Monitorowanie, analizowanie i raportowanie kosztów. |
+| Azure Policy | Wymuszanie zasad na zasobach. |
+| Policy vs Blueprint | Policy – pojedyncze zasady, Blueprint – zestaw polityk, ról i szablonów. |
+| Initiative | Grupa polityk. |
+| Blueprints | Szablony wdrożeń zgodnych z politykami firmy. |
+| Compliance | Zgodność (ISO, GDPR, NIST, PCI-DSS, HIPAA). |
+| Data Residency | Lokalizacja przechowywania danych. |
+| Cloud Adoption Framework | Dobre praktyki wdrożenia chmury. |
+| Blueprint Assignment | Przypisywanie szablonów wdrożeniowych. |
+| Purview | Zarządzanie danymi i zgodnością. |
+| Management Locks | Blokady na poziomie subskrypcji, grupy lub zasobu. |
+| Policy Assignment | Przypisywanie polityk na różnych poziomach. |
+| Compliance Manager | Zarządzanie zgodnością i audytami. |
+| Azure Trust Center | Informacje o certyfikatach, zgodności i bezpieczeństwie Azure. |
+| Policy Definition | Tworzenie własnych zasad w Azure Policy. |
+| Audit Logs | Rejestr zdarzeń i zmian w zasobach. |
+| Support Plans | Basic, Developer, Standard, Professional Direct – pozwalają otwierać zgłoszenia serwisowe. Free – nie umożliwia otwierania ticketów. |
+| Support Plan Review | Tylko Professional Direct i wyższe umożliwiają architektoniczny przegląd środowiska przez Microsoft. |

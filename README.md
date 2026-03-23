@@ -48,7 +48,9 @@
 - [30. Azure Data Factory](docs/30-data-factory.md)
 - [31. Azure Storage i Blob Storage](docs/31-azure-storage.md)
 - [32. Azure App Service](docs/32-app-service.md)
-- [33. Ściąga pojęć do druku (wersja rozszerzona)](docs/33-sciaga-pojecia.md)
+
+	- [33. Ściąga pojęć do druku (wersja rozszerzona)](docs/33-sciaga-pojecia.md)
+	- [34. Ściąga pojęć do druku (wersja tabelaryczna)](docs/34-sciaga-pojecia-tabela.txt)
 
 ---
 
