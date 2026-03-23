@@ -8,7 +8,6 @@ AZ-900 – Ściąga pojęć do druku (wersja tabelaryczna)
 | Resource Group | Kontener logiczny grupujący powiązane zasoby Azure, umożliwia wspólne zarządzanie, wdrażanie i usuwanie. |
 | Resource | Każdy pojedynczy obiekt zarządzany w Azure, np. VM, Storage Account, baza danych, sieć. |
 | Availability Set | Grupa VM w jednym centrum danych, rozkład VM na domeny awarii i aktualizacji dla zwiększenia dostępności. |
-
 | Management Group | Najwyższy poziom organizacji w Azure, grupuje subskrypcje dla centralnego zarządzania i polityk. |
 | Resource ID | Unikalny identyfikator każdego zasobu w Azure, używany do zarządzania i automatyzacji. |
 | Scope | Zakres stosowania uprawnień, polityk lub tagów (np. na poziomie Management Group, Subscription, Resource Group, Resource). |
