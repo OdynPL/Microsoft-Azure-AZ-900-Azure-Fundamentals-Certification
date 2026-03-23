@@ -490,9 +490,9 @@
 ---
 ### **Dodatkowe typowe pułapki i pytania egzaminacyjne:**
 * **Preview vs GA vs SLA:**
-    * **Private preview:** brak formalnego wsparcia, tylko wybrani klienci, brak SLA.
+    * **Private preview:** brak formalnego wsparcia, tylko wybrani klienci, brak SLA (tylko kilku userów).
     * **Public preview:** dostępne dla wszystkich, wsparcie przez Microsoft Customer Support, ale nie obowiązuje SLA.
-    * **GA (General Availability):** pełne wsparcie, obowiązuje SLA.
+    * **GA (General Availability):** pełne wsparcie, obowiązuje SLA (dostęp dla wszystkich userów).
     * **Na egzaminie:** usługi w preview (private/public) nie mają SLA, tylko GA ma gwarantowany poziom dostępności.
 * **Support Plans:** Tylko plany **Basic**, **Developer**, **Standard**, **Professional Direct** pozwalają otwierać zgłoszenia serwisowe. **Free** nie umożliwia otwierania ticketów.
 * **Support Plan Review:** Tylko **Professional Direct** i wyższe umożliwiają architektoniczny przegląd środowiska przez Microsoft.
