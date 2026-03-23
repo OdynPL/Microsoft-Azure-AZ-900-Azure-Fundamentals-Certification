@@ -1,4 +1,5 @@
 AZ-900 – Ściąga pojęć do druku (wersja tabelaryczna)
+| Data Center (Centrum danych) | Fizyczny obiekt z infrastrukturą IT (serwery, sieci, zasilanie, chłodzenie), w którym Azure przechowuje i przetwarza dane. |
 | Geography | Obszar geograficzny obejmujący jeden lub więcej regionów Azure, np. Europa, Ameryka Północna. |
 | Region | Fizyczna lokalizacja centrum danych Azure, np. West Europe, North Europe. |
 | Availability Zone (AZ) | Fizycznie oddzielona strefa w regionie Azure, zapewnia wysoką dostępność i odporność na awarie. |
