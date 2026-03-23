@@ -1,5 +1,3 @@
-
-
 [⬅ Powrót do spisu treści](../README.md)
 
 # **AZ-900 – Ściąga pojęć do druku (wersja rozszerzona)**
@@ -260,6 +258,7 @@
 * **ExpressRoute** – Dedykowane łącze do Azure.
     * Oferuje wyższą przepustowość i niższe opóźnienia niż VPN.
     * Może być połączony z **MPLS** (**Multi-Protocol Label Switching** – technologia sieciowa do wydajnego, prywatnego routingu w sieciach WAN, często wykorzystywana przez firmy do łączenia oddziałów i centrów danych).
+* **Virtual Network TAP (Terminal Access Point)** – Pozwala na ciągłe przesyłanie ruchu sieciowego z maszyn wirtualnych do narzędzi analitycznych lub kolektorów pakietów. Nie służy do routingu ani architektury sieci – umożliwia tylko monitoring i analizę ruchu.
 * **VPN Gateway** – Szyfrowane połączenie do Azure.
     * Obsługuje połączenia Site-to-Site, Point-to-Site, VNet-to-VNet.
 * **Site-to-Site VPN** – Łączy całą sieć lokalną z siecią w Azure. Stosowane do stałego, bezpiecznego połączenia między firmą a chmurą (np. oddziały, biura) (use case: połączenie siedziby firmy z Azure).
