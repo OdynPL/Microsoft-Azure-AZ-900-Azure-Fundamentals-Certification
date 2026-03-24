@@ -37,6 +37,9 @@
 **Fault Tolerance** – Odporność na awarie komponentów.
 **Disaster Recovery (DR)** – Odzyskiwanie usług po awarii, często w innym regionie.
 **Shared Responsibility Model** ⭐ – Podział odpowiedzialności za bezpieczeństwo i zarządzanie między klientem a dostawcą chmury.
+  - Dostawca (Microsoft): fizyczna infrastruktura, sieć, data center, platforma, zabezpieczenia sprzętu, patchowanie hosta.
+  - Klient: dane, dostęp, konfiguracja, zarządzanie użytkownikami, aplikacje, ustawienia sieciowe.
+  - Im wyższy poziom usługi (SaaS > PaaS > IaaS), tym więcej odpowiedzialności przejmuje dostawca, a mniej klient.
 **IaaS** – Infrastruktura jako usługa (VM, storage, sieć); pełna kontrola nad OS.
 **PaaS** – Platforma jako usługa (App Service, DB); zarządzasz aplikacją, nie OS.
 **SaaS** – Oprogramowanie jako usługa (np. Microsoft 365); korzystasz z gotowej aplikacji.
