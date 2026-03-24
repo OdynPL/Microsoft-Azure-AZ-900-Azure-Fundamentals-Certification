@@ -135,6 +135,11 @@
 **Disk Storage** – Dyski dla VM.
 **Data Lake Storage** – Analiza dużych zbiorów danych.
 **Premium Storage** – Dyski SSD dla wysokiej wydajności.
+  - Rodzaje dysków:
+    - Ultra Disk: najwyższa wydajność (bazy danych, SAP)
+    - Premium SSD: produkcyjne VM, krytyczne aplikacje
+    - Standard SSD: test/dev, tańsze VM
+    - Standard HDD: archiwizacja, backup, niska wydajność
 **Storage Tiers** – Poziomy: Hot, Cool, Archive (różne koszty i dostępność).
 **Blob Tiers:** Hot – częsty dostęp, Cool – rzadki dostęp, Archive – archiwizacja.
 **Redundancy Types** ⭐ – LRS, ZRS, GRS, RA-GRS, GZRS, RA-GZRS (lokalna, strefowa, geograficzna, z odczytem).
