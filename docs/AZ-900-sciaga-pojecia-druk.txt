@@ -95,7 +95,10 @@
 **Availability Set** – Grupa VM rozłożona na domeny awarii/aktualizacji.
 **Dedicated Host** – Fizyczny serwer dedykowany jednej organizacji.
 **App Service** – Hostowanie aplikacji web/API bez zarządzania serwerem.
-  - App Service posiada blade Resource Health – monitoruje dostępność i awarie platformy.
+  - Monitoring: blade Resource Health.
+  - Typy: Web App, API App, Mobile App, Linux/Windows, kontenery.
+  - Kiedy: Web/REST/API/mobilne – odpowiedni typ; kontenery – własne środowisko.
+  - App Service Environment (ASE): pełna izolacja sprzętu/sieci dla najwyższego bezpieczeństwa i zgodności.
 **Azure Functions** – Serverless, kod uruchamiany na żądanie.
 **Container Instances (ACI)** – Szybkie uruchamianie pojedynczych kontenerów.
 **Azure Kubernetes Service (AKS)** – Orkiestracja kontenerów (Kubernetes).
@@ -378,6 +381,7 @@ Każda warstwa utrudnia atak i ogranicza skutki naruszenia bezpieczeństwa.
 **SOAR** – Automatyzacja reakcji na incydenty bezpieczeństwa.
 **DDoS Protection** – Ochrona przed atakami DDoS.
 **Conditional Access** ⭐ – Mechanizm wymuszania dodatkowych warunków dostępu do zasobów (np. wymóg MFA, blokada spoza kraju, wymóg zgodnego urządzenia). Pozwala automatycznie wymuszać reguły na podstawie kontekstu użytkownika, urządzenia, lokalizacji, ryzyka.
+  - Microsoft Entra Conditional Access – narzędzie do wdrażania polityk dostępu warunkowego w Entra ID; pozwala automatycznie wymuszać MFA, ograniczać dostęp na podstawie lokalizacji, urządzenia, ryzyka, stanu zgodności, aplikacji i innych kryteriów.
 **MFA (Multi-Factor Authentication)** ⭐ – Weryfikacja tożsamości wieloma metodami.
 **Passwordless Authentication** – Logowanie bez hasła (np. Windows Hello, FIDO2).
 **Key Vault** – Bezpieczne przechowywanie sekretów, kluczy, certyfikatów.
