@@ -380,6 +380,7 @@
 
 ## General Security & Network Security
 **Microsoft Defender for Cloud** ⭐ – Monitorowanie bezpieczeństwa, rekomendacje, ochrona zasobów.
+**Microsoft Defender for Identity** – Wykrywanie zagrożeń i ataków na tożsamości w środowiskach hybrydowych (on-premises AD i Entra ID), analiza zachowań użytkowników.
 **Defender for Cloud – nowe plany:**
   - **Defender for Cloud Plans 2** – Rozszerzona ochrona, automatyzacja reakcji.
   - **Defender for DevOps** – Ochrona pipeline CI/CD.
