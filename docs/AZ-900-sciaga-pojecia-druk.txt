@@ -58,6 +58,7 @@
 **Availability Set** – Grupa VM w jednym centrum danych, rozkład VM na domeny awarii i aktualizacji; zapewnia wysoką dostępność (SLA 99,95% przy 2+ VM), chroni przed awarią sprzętu lub aktualizacją hosta.
 **Region** ⭐ – Fizyczna lokalizacja centrum danych Azure.
 **Availability Zone (AZ)** ⭐ – Fizycznie oddzielona strefa w regionie, zapewnia wysoką dostępność.
+  - Minimalna liczba AZ do HA (wysokiej dostępności): 2 (aplikacja powinna działać w co najmniej 2 strefach).
 **Region Pair** – Dwa powiązane regiony do DR i aktualizacji.
 **Geography** – Obszar geograficzny obejmujący jeden lub więcej regionów.
 **Data Center** – Fizyczny obiekt z infrastrukturą IT.
