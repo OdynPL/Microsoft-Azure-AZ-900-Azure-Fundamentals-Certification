@@ -40,6 +40,7 @@
 **Resource pooling** – Wspólne zasoby dla wielu klientów (multi-tenancy).
 **Cloud Bursting** – Przenoszenie obciążenia z lokalnej infrastruktury do chmury w razie potrzeby.
 **Measured Service** – Automatyczne monitorowanie i rozliczanie zużycia zasobów.
+**Metered Pricing** – Opłaty naliczane na podstawie faktycznego zużycia zasobów (np. liczba operacji, transfer danych, czas działania usługi).
 **On-demand self-service** – Samodzielne uruchamianie i zarządzanie zasobami bez kontaktu z dostawcą.
 **Economies of Scale** – Niższe koszty dzięki dużej skali działania chmury.
 **Vertical scaling** – Zwiększanie mocy jednej maszyny (więcej CPU/RAM).
@@ -394,12 +395,13 @@
   - **End-to-end encryption** (Szyfrowanie end-to-end)
   - **Continuous monitoring and analytics** (Ciągłe monitorowanie i analiza zachowań)
 **Defense-in-Depth** – Wielowarstwowa ochrona, polegająca na stosowaniu wielu niezależnych warstw zabezpieczeń, aby zminimalizować ryzyko naruszenia. Typowe warstwy (od zewnątrz do wewnątrz):
-  1. **Physical Security** (Bezpieczeństwo fizyczne) – ochrona dostępu do centrów danych.
-  2. **Perimeter Security** (Bezpieczeństwo perymetryczne) – zapory sieciowe, DDoS Protection.
-  3. **Network Security** (Bezpieczeństwo sieciowe) – segmentacja, NSG, kontrola ruchu.
-  4. **Host Security** (Bezpieczeństwo hosta) – zabezpieczenia systemów operacyjnych, aktualizacje, antywirus.
-  5. **Application Security** (Bezpieczeństwo aplikacji) – WAF, testy bezpieczeństwa, kontrola kodu.
-  6. **Data Security** (Bezpieczeństwo danych) – szyfrowanie, backupy, kontrola dostępu.
+  1. **Physical Security** – ochrona dostępu do budynków i sprzętu.
+  2. **Identity & Access** – kontrola tożsamości, uprawnień, MFA, SSO, audyt.
+  3. **Perimeter** – zapory sieciowe, DDoS Protection, ochrona brzegu sieci.
+  4. **Networking** – segmentacja, NSG, ograniczanie komunikacji, bezpieczne połączenia.
+  5. **Compute** – zabezpieczenia VM, aktualizacje, ochrona endpointów.
+  6. **Application** – bezpieczny kod, WAF, ochrona danych w aplikacjach.
+  7. **Data** – szyfrowanie, backupy, kontrola dostępu, zgodność z regulacjami.
 Każda warstwa utrudnia atak i ogranicza skutki naruszenia bezpieczeństwa.
 **SIEM (Sentinel)** – Zbieranie i analiza logów, wykrywanie zagrożeń.
 **SOAR** – Automatyzacja reakcji na incydenty bezpieczeństwa.
