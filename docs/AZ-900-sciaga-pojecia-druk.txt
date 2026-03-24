@@ -128,6 +128,7 @@
 ### Storage
 **Storage Account** ⭐ – Podstawowa jednostka magazynowania w Azure.
   - Storage Account posiada blade Resource Health – informuje o stanie zdrowia usługi i ewentualnych problemach platformy.
+  - Typ General Purpose v2 (GPv2): najczęściej używany, obsługuje wszystkie typy danych (Blob, File, Queue, Table), wszystkie poziomy wydajności i redundancji.
   - AKS posiada blade Resource Health – pokazuje stan klastra i ewentualne problemy platformy.
 **Sustainability** – Azure dąży do bycia „carbon negative” do 2030 r.; centra danych zasilane energią odnawialną, narzędzia do raportowania śladu węglowego (Emissions Impact Dashboard).
 **Blob Storage** – Przechowywanie obiektów (np. backupy, obrazy).
