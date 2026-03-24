@@ -97,6 +97,7 @@
 **Hybrid/Multicloud** – Zarządzanie zasobami w wielu chmurach i on-premises (np. Azure Arc, ExpressRoute, VPN, Azure Stack).
 **VM Scale Set (VMSS)** – Automatyczne skalowanie wielu VM.
   - Limit: do 1000 VM w jednym VMSS (z platform image); do 600 VM (z custom image); limit można zwiększyć przez support.
+  - VMSS domyślnie integruje się z Azure Load Balancer (automatyczne rozkładanie ruchu na instancje VM).
 **Availability Set** – Grupa VM rozłożona na domeny awarii/aktualizacji.
 **Dedicated Host** – Fizyczny serwer dedykowany jednej organizacji.
 **App Service** – Hostowanie aplikacji web/API bez zarządzania serwerem.
@@ -380,6 +381,7 @@ Każda warstwa utrudnia atak i ogranicza skutki naruszenia bezpieczeństwa.
 ---
 
 ## Identity, Governance & Compliance
+**IDaaS (Identity as a Service)** – Chmurowa usługa zarządzania tożsamością i dostępem (np. Microsoft Entra ID, Okta, Auth0). Umożliwia SSO, MFA, zarządzanie użytkownikami i dostępem do aplikacji SaaS, PaaS, on-premises. Stosowana do centralnego uwierzytelniania i kontroli dostępu w organizacjach.
 **Entra ID – logowanie i synchronizacja** – Umożliwia logowanie jednokrotne (SSO) do aplikacji chmurowych i lokalnych, synchronizację kont użytkowników z on-premises (Azure AD Connect), obsługę federacji, MFA, zarządzanie dostępem warunkowym i integrację z usługami SaaS.
 **Managed Identity** – Automatyczna tożsamość dla aplikacji w Azure, umożliwia bezpieczny dostęp do zasobów bez haseł; typy: system-assigned (przypisana do zasobu) i user-assigned (współdzielona przez wiele zasobów); eliminuje konieczność przechowywania sekretów w kodzie.
 **Microsoft Entra ID (dawniej Azure AD)** ⭐ – Usługa IAM do zarządzania tożsamościami, SSO, MFA.
