@@ -231,6 +231,9 @@
 **AAD DS vs AD** – Różnice: AD = klasyczna domena, AAD DS = zarządzane usługi domenowe.
 **Azure Backup vs Site Recovery** – Backup = kopie zapasowe, Site Recovery = DR.
 **Azure Policy vs RBAC** – Policy = zasady, RBAC = uprawnienia.
+  - **RBAC** – Kto ma dostęp i co może zrobić (np. odczyt, edycja, admin). Służy do przydzielania uprawnień.
+  - **Azure Policy** – Jakie zasady muszą spełniać zasoby (np. region, tagi, typy maszyn). Służy do pilnowania zgodności i standardów.
+  - RBAC = dostęp, Policy = zgodność. Razem: Policy ustala reguły, RBAC decyduje kto może działać.
 **Azure DevOps vs GitHub** – DevOps = CI/CD, tablice zadań, GitHub = repozytoria, CI/CD, społeczność.
 **Azure Monitor vs Log Analytics** – Monitor = platforma, Log Analytics = analiza logów.
 **WAF** – Web Application Firewall, ochrona HTTP(S), np. OWASP Top 10; działa na Application Gateway i Front Door.
@@ -397,6 +400,14 @@ Każda warstwa utrudnia atak i ogranicza skutki naruszenia bezpieczeństwa.
   - **User Access Administrator** – Może nadawać uprawnienia innym użytkownikom.
   - **VM Contributor** – Zarządzanie VM, bez dostępu do sieci/storage, nie może nadawać ról.
 **RBAC (Role-Based Access Control)** ⭐ – System zarządzania dostępem do zasobów na podstawie ról przypisanych użytkownikom, grupom lub aplikacjom. Uprawnienia można przypisywać na poziomie Management Group, Subscription, Resource Group lub Resource. Dziedziczenie uprawnień działa tylko w dół hierarchii.
+    - Rodzaje locków (blokad):
+      - **ReadOnly** – zasób można tylko odczytywać, nie można edytować ani usuwać.
+      - **Delete** – zasób nie może być usunięty, ale można go edytować.
+    - Typy efektów (effect):
+      - **Deny** – blokuje wdrożenie niezgodnego zasobu.
+      - **Audit** – oznacza zasób jako niezgodny, ale nie blokuje.
+      - **Append** – automatycznie dodaje tag/metadane.
+      - **Modify** – modyfikuje właściwości zasobu podczas wdrożenia.
   - Uprawnienia RBAC dziedziczą się tylko w dół (np. z resource group na zasoby w tej grupie), nie w górę.
   - Można przypisać wiele ról tej samej osobie/aplikacji.
   - Najbardziej restrykcyjna rola wygrywa (efekt sumowania uprawnień).
