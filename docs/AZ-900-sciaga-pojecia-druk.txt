@@ -248,6 +248,11 @@
 **Microsoft Service Trust Portal** – Portal z dokumentami potwierdzającymi zgodność Microsoft: lista standardów, wyniki testów penetracyjnych, oceny bezpieczeństwa, white papers, FAQ, raporty audytowe i inne materiały do wykazania zgodności i bezpieczeństwa usług Azure.
 **External Identities** – Dostęp partnerów/klientów bez konta w Directory.
 **App Service Plan** – Różnice między Free/Shared/Basic/Standard (np. własna domena, SSL, sloty wdrożeniowe).
+  - Free: brak własnej domeny, brak SSL, ograniczone zasoby, brak SLA.
+  - Shared: współdzielone zasoby, brak własnej domeny, brak SLA.
+  - Basic: własna domena, SSL, dedykowane instancje, brak slotów wdrożeniowych, brak autoskalowania.
+  - Standard: własna domena, SSL, sloty wdrożeniowe, autoskalowanie, SLA 99,95%.
+  - Premium v3: brak limitu liczby web apps (unlimited, ogranicza tylko wydajność instancji).
 **Deployment Slots** – Sloty wdrożeniowe w App Service (testowanie bez downtime).
 **Web App Plan** – Własna domena, SSL, dedykowane instancje.
 **Preview vs GA** – Tylko GA ma SLA.
