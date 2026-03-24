@@ -145,12 +145,10 @@
 
 ### Networking
 **Adresy IP w Azure**:
-    - Adres IP (publiczny lub prywatny) wymagany jest m.in. dla: VM, Load Balancer, Application Gateway, VPN Gateway, Azure Firewall, Bastion, kontenerów, Private Endpoint, Public Endpoint.
-  - Publiczne IP: domyślny limit 10 na subskrypcję (można zwiększyć przez support), płatne, używane do udostępniania zasobów na zewnątrz.
-  - Prywatne IP: przydzielane z zakresu VNet/subnet, brak twardych limitów praktycznych, służą do komunikacji wewnątrz chmury.
-  - Adresy IP mogą być statyczne (stałe) lub dynamiczne (zmienne).
-  - Private Endpoint daje prywatny IP, Service Endpoint nie.
-  - Limity i dostępność mogą się różnić w zależności od regionu i typu subskrypcji – zawsze sprawdzaj aktualną dokumentację.
+    - Adres IP (publiczny/prywatny) wymagany np. dla VM, LB, Gateway, Firewall, Bastion, kontenerów, Endpointów.
+    - Publiczne IP: limit 10 na subskrypcję (można zwiększyć), płatne, do udostępniania zasobów na zewnątrz.
+    - Prywatne IP: z puli VNet, do komunikacji wewnętrznej, brak praktycznych limitów.
+    - IP mogą być statyczne lub dynamiczne. Private Endpoint = prywatny IP, Service Endpoint nie.
 **Site-to-Site VPN** – Stałe, szyfrowane połączenie sieci lokalnej z siecią w Azure przez VPN Gateway; łączy całe sieci (np. biuro z chmurą).
 **Network Observability** – Monitorowanie i analiza ruchu sieciowego (Network Watcher, Connection Monitor, Virtual Network TAP, NSG Flow Logs).
 **Point-to-Site VPN** – Szyfrowane połączenie pojedynczego urządzenia (np. laptopa) z siecią w Azure przez VPN Gateway; idealne dla zdalnych pracowników.
