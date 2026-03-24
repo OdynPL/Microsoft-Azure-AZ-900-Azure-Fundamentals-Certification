@@ -244,6 +244,8 @@
   - RBAC = dostęp, Policy = zgodność. Razem: Policy ustala reguły, RBAC decyduje kto może działać.
 **Azure DevOps vs GitHub** – DevOps = CI/CD, tablice zadań, GitHub = repozytoria, CI/CD, społeczność.
 **Azure Monitor vs Log Analytics** – Monitor = platforma, Log Analytics = analiza logów.
+  - Azure Monitor obejmuje: zbieranie metryk, logów, alerty, dashboardy, Application Insights, Network Watcher, diagnostykę VM, integrację z automatyzacją.
+  - Powiadomienia (alerty) wysyła Azure Monitor – automatycznie, gdy spełniony jest warunek alertu (np. przekroczenie progu CPU, błąd w logach, brak dostępności usługi).
 **WAF** – Web Application Firewall, ochrona HTTP(S), np. OWASP Top 10; działa na Application Gateway i Front Door.
 **DDoS Standard** – Chroni L3/L4, nie L7.
 **Private Endpoint vs Service Endpoint** – Private Endpoint daje prywatny IP, Service Endpoint nie.
