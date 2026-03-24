@@ -1,0 +1,574 @@
+---
+
+## Tricky Exam Questions & Behaviors
+  - Policy nie daje uprawnień (tylko wymusza zasady), RBAC daje uprawnienia.
+  - Lock na RG nie blokuje wszystkich operacji na zasobach podrzędnych.
+  - Tagi nie dziedziczą się automatycznie.
+  - Composite SLA to iloczyn, nie suma.
+  - Preview nie ma SLA.
+  - Limity subskrypcji i usług mogą się zmieniać – zawsze sprawdzaj aktualną dokumentację.
+  - Niektóre Resource Providers wymagają ręcznej rejestracji przed utworzeniem zasobu.
+  - Authentication Strength/Context w Conditional Access.
+# AZ-900 – Ściąga pojęć (wersja do druku)
+
+---
+
+## Cloud Concepts
+**Cloud Adoption Patterns** – Typowe scenariusze wdrożenia chmury: migracja lift-and-shift, modernizacja, innowacja.
+**Cloud Operating Models** – Sposoby zarządzania środowiskiem chmurowym: centralny, federacyjny, hybrydowy.
+**FinOps** – Praktyki optymalizacji kosztów chmury przez współpracę IT, finansów i biznesu.
+**Agility** – Możliwość szybkiego wdrażania zmian i reagowania na potrzeby biznesowe.
+**OpEx (Operating Expenditure)** – Bieżące wydatki operacyjne, płacisz za zużycie usług (np. Pay-as-you-go).
+**CapEx (Capital Expenditure)** – Wydatki inwestycyjne, płatność z góry za infrastrukturę lub rezerwacje.
+**Cloud Computing** ⭐ – Dostarczanie zasobów IT (serwery, storage, sieć, aplikacje) przez internet na żądanie.
+**Public Cloud** – Usługi chmurowe udostępniane wielu klientom przez dostawcę (np. Azure).
+**Private Cloud** – Chmura dedykowana jednej organizacji, zarządzana wewnętrznie lub przez partnera.
+**Hybrid Cloud** – Połączenie chmury publicznej i prywatnej, umożliwia przenoszenie danych/aplikacji między środowiskami.
+**Consumption-based Model** ⭐ – Płacisz tylko za faktycznie zużyte zasoby (pay-as-you-go).
+**CapEx vs OpEx** – CapEx: wydatki inwestycyjne (sprzęt, licencje); OpEx: wydatki operacyjne (usługi w chmurze).
+**High Availability (HA)** – Zapewnienie ciągłości działania usług mimo awarii.
+**Scalability** – Możliwość zwiększania/zmniejszania zasobów w odpowiedzi na zapotrzebowanie.
+**Elasticity** – Automatyczne dostosowanie zasobów do zmieniających się potrzeb.
+**Fault Tolerance** – Odporność na awarie komponentów.
+**Disaster Recovery (DR)** – Odzyskiwanie usług po awarii, często w innym regionie.
+**Shared Responsibility Model** ⭐ – Podział odpowiedzialności za bezpieczeństwo i zarządzanie między klientem a dostawcą chmury.
+**IaaS** – Infrastruktura jako usługa (VM, storage, sieć); pełna kontrola nad OS.
+**PaaS** – Platforma jako usługa (App Service, DB); zarządzasz aplikacją, nie OS.
+**SaaS** – Oprogramowanie jako usługa (np. Microsoft 365); korzystasz z gotowej aplikacji.
+**Serverless** – Kod uruchamiany bez zarządzania serwerami, automatyczne skalowanie (np. Azure Functions).
+**FaaS** – Function as a Service, kod uruchamiany na żądanie.
+**Geo-distribution** – Rozmieszczenie usług w wielu regionach.
+**Resource pooling** – Wspólne zasoby dla wielu klientów (multi-tenancy).
+**Cloud Bursting** – Przenoszenie obciążenia z lokalnej infrastruktury do chmury w razie potrzeby.
+**Measured Service** – Automatyczne monitorowanie i rozliczanie zużycia zasobów.
+**On-demand self-service** – Samodzielne uruchamianie i zarządzanie zasobami bez kontaktu z dostawcą.
+**Economies of Scale** – Niższe koszty dzięki dużej skali działania chmury.
+**Vertical scaling** – Zwiększanie mocy jednej maszyny (więcej CPU/RAM).
+**Horizontal scaling** – Dodawanie kolejnych maszyn/instancji.
+**RTO/RPO** – Recovery Time/Point Objective: maksymalny czas odtworzenia usługi/akceptowalna utrata danych po awarii.
+**Soft Delete** – Ochrona przed przypadkowym usunięciem danych.
+**Immutable Storage** – Niezmienialne kopie, np. backupy nie do usunięcia.
+**Szyfrowanie at-rest/in-transit** – Dane domyślnie szyfrowane w Azure.
+**Predictable Performance/Costs** – Przewidywalność wydajności i kosztów (np. rezerwacje, autoskalowanie).
+
+---
+
+## Core Azure Services
+### Azure Architecture
+**Azure Landing Zone** – Wzorcowa architektura startowa dla wdrożeń w Azure, zapewnia zgodność, bezpieczeństwo, automatyzację i dobre praktyki od początku.
+**Availability Set** – Grupa VM w jednym centrum danych, rozkład VM na domeny awarii i aktualizacji; zapewnia wysoką dostępność (SLA 99,95% przy 2+ VM), chroni przed awarią sprzętu lub aktualizacją hosta.
+**Region** ⭐ – Fizyczna lokalizacja centrum danych Azure.
+**Availability Zone (AZ)** ⭐ – Fizycznie oddzielona strefa w regionie, zapewnia wysoką dostępność.
+**Region Pair** – Dwa powiązane regiony do DR i aktualizacji.
+**Geography** – Obszar geograficzny obejmujący jeden lub więcej regionów.
+**Data Center** – Fizyczny obiekt z infrastrukturą IT.
+**Sovereign Region / Sovereign Cloud** – Specjalne regiony Azure (np. Azure Government, Azure China, Azure Germany), fizycznie i logicznie oddzielone od globalnej chmury Azure. Zapewniają zgodność z lokalnymi przepisami, suwerenność danych i spełniają wymagania rządowe (compliance, bezpieczeństwo, lokalizacja danych). Usługi, funkcje i dostępność mogą się różnić od globalnych regionów Azure.
+**Resource Group** ⭐ – Logicza grupa zasobów Azure, wspólne zarządzanie i lifecycle.
+**Subscription** ⭐ – Jednostka rozliczeniowa i granica uprawnień.
+**Limity usług (przykłady):**
+  - Azure OpenAI: domyślnie 1 instancja na subskrypcję, limity żądań na minutę.
+  - Azure Container Apps: do 100 środowisk na subskrypcję.
+  - Azure Communication Services: limity SMS, połączeń, itp.
+  - Limit: do 50 subskrypcji na konto Microsoft (można zwiększyć przez support).
+  - Limit: do 2000 accounts (users/service principals) na subskrypcję (można zwiększyć przez support).
+**Management Group** – Hierarchiczne grupowanie subskrypcji do zarządzania politykami.
+**Tenant (Entra ID)** – Izolowany katalog tożsamości dla organizacji.
+  - Limit: do 50 000 użytkowników w darmowej wersji Entra ID (można zwiększyć przez support).
+**Resource** – Każdy pojedynczy obiekt zarządzany w Azure (np. VM, Storage Account, baza danych, sieć).
+**Resource Provider (RP)** – Usługa rejestrująca typy zasobów w subskrypcji (np. Microsoft.Compute). Niektóre zasoby wymagają wcześniejszej rejestracji RP.
+**Resource ID** – Unikalny identyfikator zasobu w Azure.
+**Scope** – Poziom przypisywania uprawnień i polityk (Management Group → Subscription → Resource Group → Resource).
+**Tag** – Metadane do organizacji i zarządzania zasobami.
+**Tag Inheritance** – Tagi nie dziedziczą się automatycznie między zasobami (np. z RG na VM); automatyzacja możliwa przez Policy.
+**Location** – Konkretna lokalizacja (region) fizycznego przechowywania zasobu w Azure.
+
+### Compute
+**Virtual Machine (VM)** ⭐ – Wirtualny serwer w chmurze.
+**VM Scale Set (VMSS)** – Automatyczne skalowanie wielu VM.
+  - Limit: do 1000 VM w jednym VMSS (z platform image); do 600 VM (z custom image); limit można zwiększyć przez support.
+**Availability Set** – Grupa VM rozłożona na domeny awarii/aktualizacji.
+**Dedicated Host** – Fizyczny serwer dedykowany jednej organizacji.
+**App Service** – Hostowanie aplikacji web/API bez zarządzania serwerem.
+**Azure Functions** – Serverless, kod uruchamiany na żądanie.
+**Container Instances (ACI)** – Szybkie uruchamianie pojedynczych kontenerów.
+**Azure Kubernetes Service (AKS)** – Orkiestracja kontenerów (Kubernetes).
+**Azure Virtual Desktop** – Zdalne pulpity i aplikacje w chmurze.
+**Burstable VM** – VM z elastycznym zużyciem CPU.
+**Ephemeral Disk** – Tymczasowy dysk, tracony po restarcie VM.
+**Spot VM** – VM o niższym koszcie, może być przerwana przez Azure.
+**Custom Images** – Własne obrazy VM do szybkiego wdrożenia.
+**VM Extensions** – Automatyzacja konfiguracji VM (np. instalacja agentów).
+**Deallokacja VM** – Zatrzymanie i zwolnienie zasobów obliczeniowych VM, brak opłat za moc obliczeniową, dane na dyskach zostają.
+**DevTest Labs** – Szybkie, tanie środowiska testowe i deweloperskie oparte o VM.
+
+### Storage
+**Storage Account** ⭐ – Podstawowa jednostka magazynowania w Azure.
+**Blob Storage** – Przechowywanie obiektów (np. backupy, obrazy).
+**File Storage** – Udostępnianie plików przez SMB/NFS.
+**Queue Storage** – Kolejki komunikatów.
+**Table Storage** – NoSQL, przechowywanie danych tabelarycznych.
+**Disk Storage** – Dyski dla VM.
+**Data Lake Storage** – Analiza dużych zbiorów danych.
+**Premium Storage** – Dyski SSD dla wysokiej wydajności.
+**Storage Tiers** – Poziomy: Hot, Cool, Archive (różne koszty i dostępność).
+**Blob Tiers:** Hot – częsty dostęp, Cool – rzadki dostęp, Archive – archiwizacja.
+**Redundancy Types** ⭐ – LRS, ZRS, GRS, RA-GRS, GZRS, RA-GZRS (lokalna, strefowa, geograficzna, z odczytem).
+  - LRS (Locally Redundant Storage): 3 kopie w jednym regionie (data center); najtańsze, brak ochrony przed awarią regionu.
+  - ZRS (Zone-Redundant Storage): 3 kopie w różnych strefach dostępności w regionie; chroni przed awarią strefy, nie chroni przed awarią całego regionu.
+  - GRS (Geo-Redundant Storage): 3 kopie w regionie pierwotnym + 3 kopie w regionie zapasowym (inny region, pasywny); ochrona przed awarią regionu, odczyt tylko z regionu pierwotnego.
+  - RA-GRS (Read-Access GRS): jak GRS, ale umożliwia odczyt z regionu zapasowego (read-only).
+  - GZRS (Geo-Zone-Redundant Storage): 3 kopie w różnych strefach w regionie pierwotnym + 3 kopie w regionie zapasowym; najwyższa dostępność i ochrona.
+  - RA-GZRS: jak GZRS, ale umożliwia odczyt z regionu zapasowego (read-only).
+  - Kiedy wybrać: LRS – niskie koszty, brak wymagań DR; ZRS – wysoka dostępność w regionie; GRS/RA-GRS – wymagana ochrona przed awarią regionu; GZRS/RA-GZRS – najwyższa dostępność i ochrona, krytyczne dane.
+**Geo-replikacja** – Automatyczne kopiowanie danych do innego regionu.
+**AzCopy** – Narzędzie do transferu danych do/z Azure Storage.
+**Azure Storage Explorer** – GUI do zarządzania danymi w Storage.
+**Azure File Sync** – Synchronizacja plików między serwerami a Azure.
+**Data Box** – Fizyczne urządzenie lub bramka do transferu dużych ilości danych do Azure.
+**Data Box Gateway** – Wirtualne urządzenie do transferu danych do chmury.
+**Backup Retention** – Okres przechowywania kopii zapasowych.
+**Read Replica** – Odczyt z kopii bazy dla skalowania.
+
+### Networking
+**Site-to-Site VPN** – Stałe, szyfrowane połączenie sieci lokalnej z siecią w Azure przez VPN Gateway; łączy całe sieci (np. biuro z chmurą).
+**Point-to-Site VPN** – Szyfrowane połączenie pojedynczego urządzenia (np. laptopa) z siecią w Azure przez VPN Gateway; idealne dla zdalnych pracowników.
+**ExpressRoute** – Dedykowane, prywatne łącze do Azure, omija publiczny internet, zapewnia wyższą przepustowość, niższe opóźnienia i większe bezpieczeństwo; nie szyfruje ruchu domyślnie.
+**Virtual Network (VNet)** ⭐ – Prywatna sieć w Azure.
+**Subnet** – Podział VNet na mniejsze segmenty.
+**Network Security Group (NSG)** – Kontrola ruchu sieciowego (reguły).
+**Azure Firewall** – Zarządzana zapora sieciowa.
+**VPN Gateway** – Szyfrowane połączenie z on-premises.
+**ExpressRoute** – Dedykowane łącze do Azure, nie szyfruje domyślnie.
+**Load Balancer** – Rozkładanie ruchu na wiele VM (L4).
+**Application Gateway** – Load balancer warstwy 7 (HTTP/HTTPS), WAF.
+**Public/Private Endpoint** – Dostęp do zasobów przez publiczny/prywatny adres IP.
+**Azure DNS** – Zarządzanie domenami i rekordami DNS.
+**DNS (Domain Name System)** – System tłumaczący nazwy domenowe na adresy IP; Azure DNS umożliwia zarządzanie rekordami DNS dla własnych domen.
+**Bare Metal** – Fizyczny serwer bez warstwy wirtualizacji, pełna kontrola nad sprzętem (w Azure: Dedicated Host).
+**Ingress** – Dane przychodzące do Azure (zwykle bezpłatne).
+**Egress** – Dane wychodzące z Azure (zwykle płatne, naliczane za transfer do internetu).
+**Za co płacimy w Azure:**
+  - Zużycie zasobów (VM, Storage, transfer danych egress, licencje, backupy, usługi PaaS/SaaS, czas działania, liczba operacji, liczba użytkowników, rezerwacje, dedykowane IP, publiczne IP, Premium Storage, transfer między regionami, usługi sieciowe, backupy, monitoring, logi, API calls, itp.).
+  - Ingress (dane przychodzące) zwykle bezpłatny, egress (wychodzący) płatny.
+  - Koszty mogą być naliczane za: compute (vCPU, RAM, czas działania), storage (GB/miesiąc, operacje), sieć (egress), licencje, usługi zarządzane, backupy, monitoring, alerty, API calls, publiczne IP, Premium Storage, transfer między regionami, dedykowane zasoby (Dedicated Host/Bare Metal).
+**SLA (Service Level Agreement):**
+  - 99,9% – np. pojedyncza VM bez Availability Set/Zone, Storage Account typu Standard, App Service w planie Basic.
+  - 99,95% – VM w Availability Set (min. 2 VM), App Service w planie Standard i wyżej.
+  - 99,99% – VM w różnych Availability Zones, Storage Account typu Premium, Azure SQL Database, Load Balancer Standard.
+  - Composite SLA – łączna dostępność kilku usług (iloczyn SLA).
+**Fault Domain** – Grupa VM współdzielących ten sam sprzęt (np. zasilanie, sieć); awaria dotyka tylko jednego Fault Domain.
+**Update Domain** – Grupa VM aktualizowanych razem podczas maintenance; Azure rozkłada VM na różne Update Domains, by uniknąć przerwy dla wszystkich naraz.
+**Single Point of Failure (SPOF)** – Pojedynczy element, którego awaria powoduje niedostępność całej usługi; eliminowany przez redundancję (Availability Set, Zone, Load Balancer).
+**IaC (Infrastructure as Code)** – Automatyzacja wdrożeń infrastruktury za pomocą kodu (np. ARM, Bicep, Terraform).
+**Azure Resource Manager (ARM)** – Centralny system zarządzania zasobami, umożliwia wdrożenia IaC (szablony ARM).
+**Bicep** – Język deklaratywny do IaC, prostszy niż ARM (kompiluje się do ARM Template).
+**App Registration** – Rejestracja aplikacji w Entra ID, umożliwia nadanie jej tożsamości i uprawnień (tworzy Service Principal).
+**Service Principal** – Tożsamość aplikacji do automatyzacji i integracji (CI/CD, skrypty, API).
+**Policy efekty:** Deny (blokuje wdrożenie), Audit (oznacza jako niezgodne), Append (dodaje tagi/metadane), Modify (modyfikuje właściwości zasobu).
+**Azure Blueprints** – Szablony compliance, łączące role, policy, ARM/Bicep, tagi.
+**Azure Purview** – Governance danych, klasyfikacja, katalogowanie, ochrona danych.
+**Azure Sentinel** – SIEM/SOAR, ochrona i analiza zagrożeń.
+**Azure Arc** – Zarządzanie zasobami spoza Azure (on-premises, multi-cloud).
+**Azure Lighthouse** – Zarządzanie wieloma środowiskami klientów przez partnerów/MSP.
+**Azure Bastion** – Bezpieczny dostęp do VM przez przeglądarkę, bez publicznego IP na VM.
+**Azure DevTest Labs** – Szybkie środowiska testowe, nie produkcyjne.
+**Azure Resource Graph** – Narzędzie do szybkiego wyszukiwania i raportowania zasobów w skali całej organizacji (query na wszystkich subskrypcjach, np. do audytu, compliance, kosztów).
+**Azure Well-Architected Framework** – Zestaw najlepszych praktyk architektury chmurowej Azure, pomagający projektować bezpieczne, wydajne, niezawodne i zoptymalizowane kosztowo rozwiązania. Składa się z 5 filarów:
+  - **Cost Optimization** (Optymalizacja kosztów)
+  - **Security** (Bezpieczeństwo)
+  - **Reliability** (Niezawodność)
+  - **Performance Efficiency** (Wydajność)
+  - **Operational Excellence** (Doskonałość operacyjna)
+**Microsoft Cloud Adoption Framework (CAF)** – Zestaw wytycznych i narzędzi do planowania, wdrażania i zarządzania migracją do chmury. Obejmuje etapy: strategia, planowanie, gotowość, wdrożenie, zarządzanie, governance.
+**Azure Policy Guest Configuration** – Wymuszanie konfiguracji wewnątrz VM (np. ustawienia systemu, polityki bezpieczeństwa) bezpośrednio przez Azure Policy.
+**Przykład użycia Blueprints:** Możesz jednym przypisaniem wdrożyć zestaw polityk, ról RBAC, szablonów ARM/Bicep i tagów dla zgodności (np. środowisko zgodne z ISO).
+**Przykład efektów Policy:**
+  - Deny: Blokuje wdrożenie zasobu niezgodnego z polityką (np. VM poza dozwolonym regionem).
+  - Audit: Oznacza zasób jako niezgodny, ale nie blokuje wdrożenia.
+  - Append: Automatycznie dodaje tag/metadane do zasobu.
+  - Modify: Modyfikuje właściwości zasobu podczas wdrożenia (np. wymusza określony rozmiar dysku).
+**Azure Advisor** – Rekomendacje, nie wymusza zmian.
+**Azure Migrate/Data Box** – Migracje, transfer danych.
+**Azure Free Account** – $200 na 30 dni + wybrane usługi na 12 miesięcy.
+**Azure Hybrid Benefit** – Oszczędność na licencjach Windows/SQL.
+**Azure Reservations** – Rezerwacja VM na 1/3 lata = niższy koszt.
+**Azure Price List API** – Automatyczne pobieranie cen.
+**Azure REST API** – Programistyczny dostęp do zarządzania zasobami.
+**Azure Resource Explorer** – Narzędzie do przeglądania zasobów i API.
+**Update Management** – Zarządzanie aktualizacjami VM.
+**Azure Automanage** – Automatyzuje konfigurację i zarządzanie VM zgodnie z najlepszymi praktykami.
+**Update Management Center** – Nowa usługa do zarządzania aktualizacjami VM i serwerów.
+**Change Tracking** – Monitorowanie zmian konfiguracji.
+**Runbook** – Zautomatyzowany skrypt/procedura w Azure Automation.
+**Data Residency** – Lokalizacja przechowywania danych.
+**Compliance Manager** – Narzędzie do zarządzania zgodnością i audytami.
+**Azure Trust Center** – Informacje o certyfikatach, zgodności i bezpieczeństwie Azure.
+**External Identities** – Dostęp partnerów/klientów bez konta w Directory.
+**App Service Plan** – Różnice między Free/Shared/Basic/Standard (np. własna domena, SSL, sloty wdrożeniowe).
+**Deployment Slots** – Sloty wdrożeniowe w App Service (testowanie bez downtime).
+**Web App Plan** – Własna domena, SSL, dedykowane instancje.
+**Preview vs GA** – Tylko GA ma SLA.
+**Dead-letter queue (DLQ)** – Obsługa nieprzetworzonych wiadomości w Service Bus.
+**SessionId** – Zapewnia FIFO w Service Bus.
+**Azure AD B2C/B2B** – Tożsamość klientów/partnerów.
+**AAD DS vs AD** – Różnice: AD = klasyczna domena, AAD DS = zarządzane usługi domenowe.
+**Azure Backup vs Site Recovery** – Backup = kopie zapasowe, Site Recovery = DR.
+**Azure Policy vs RBAC** – Policy = zasady, RBAC = uprawnienia.
+**Azure DevOps vs GitHub** – DevOps = CI/CD, tablice zadań, GitHub = repozytoria, CI/CD, społeczność.
+**Azure Monitor vs Log Analytics** – Monitor = platforma, Log Analytics = analiza logów.
+**WAF** – Web Application Firewall, ochrona HTTP(S), np. OWASP Top 10; działa na Application Gateway i Front Door.
+**DDoS Standard** – Chroni L3/L4, nie L7.
+**Private Endpoint vs Service Endpoint** – Private Endpoint daje prywatny IP, Service Endpoint nie.
+**Traffic Manager vs Front Door** – Traffic Manager = DNS, Front Door = globalny routing, CDN, WAF.
+**Blob tiers** – Hot/Cool/Archive, rehydratacja.
+**Blob tiers** – Hot, Cool, Cold, Archive:
+  - Hot: bieżące dane, najdroższe przechowywanie, najtańszy dostęp.
+  - Cool: backupy, archiwa do 1 roku, tańsze przechowywanie, droższy dostęp.
+  - Cold: archiwa, logi, compliance, jeszcze tańsze, minimalny okres 90 dni.
+  - Archive: archiwa na lata, najtańsze, dostęp po rehydratacji (kilka godzin+), minimalny okres 180 dni.
+  - Koszt przechowywania: Hot > Cool > Cold > Archive. Koszt dostępu: Archive > Cold > Cool > Hot.
+**LRS/ZRS/GRS/RA-GRS** – Poziomy redundancji storage.
+**Cosmos DB** – Globalny NoSQL, multi-region.
+**Durable Functions** – Workflow ze stanem.
+**ACI/ACA/AKS** – Różnice: ACI = szybkie uruchomienie kontenera bez orkiestracji, ACA = mikroserwisy, scale-to-zero, AKS = pełna orkiestracja Kubernetes.
+**PaaS/IaaS** – Zakres odpowiedzialności.
+**Shared Responsibility Model** – Kto za co odpowiada.
+**Lock ReadOnly/Delete** – Blokady zasobów.
+**Policy Assignment/Definition** – Przypisywanie i tworzenie polityk.
+**Audit Logs** – Rejestr zdarzeń i zmian.
+**Tag** – Metadane do organizacji zasobów.
+**Initiative** – Grupa polityk (Policy Set).
+**Blueprint Assignment** – Przypisywanie szablonów wdrożeniowych.
+
+**NSG vs Firewall:**
+  - NSG (Network Security Group): działa na poziomie subnetu i/lub VM, kontroluje ruch L3/L4 (IP, porty, protokoły), stateless, nie analizuje ruchu aplikacyjnego, nie loguje szczegółowo.
+  - Azure Firewall: działa centralnie na poziomie sieci, chroni całą sieć, obsługuje L3-L7, stateful, loguje ruch, obsługuje FQDN, reguły aplikacyjne, NAT, integracja z Threat Intelligence, może wymuszać polityki na całej sieci.
+
+**Jak łączymy sieci on-premises z Azure:**
+  - Site-to-Site VPN: bezpieczne, szyfrowane połączenie przez publiczny internet (VPN Gateway, IPsec/IKE).
+  - ExpressRoute: dedykowane, prywatne łącze (nie szyfruje domyślnie), omija publiczny internet, wyższa przepustowość, niższe opóźnienia.
+  - Point-to-Site VPN: połączenie pojedynczego urządzenia z siecią w Azure.
+  - Peering: łączenie VNetów w tym samym lub różnych regionach (prywatny, szybki transfer, nie wymaga publicznego IP, nie przechodzi przez internet).
+  - Service Endpoint: umożliwia dostęp do usług PaaS z prywatnej sieci bez publicznego IP.
+
+**Praktyki bezpieczeństwa sieci:**
+  - Segmentacja sieci (subnety, NSG, ASG).
+  - Zasada najmniejszych uprawnień (least privilege).
+  - Użycie Bastion do bezpiecznego dostępu do VM.
+  - Monitorowanie i alerty (Azure Monitor, Network Watcher).
+  - DDoS Protection, Firewall, WAF.
+  - Szyfrowanie ruchu (VPN, TLS/SSL).
+  
+**Content Delivery Network (CDN)** – Szybkie dostarczanie treści przez cache na całym świecie.
+**Traffic Manager** – Rozkład ruchu na poziomie DNS.
+**Front Door** – Globalny rozkład ruchu, CDN, WAF.
+**Peering** – Łączenie VNetów w tym samym lub różnych regionach.
+**Application Security Group (ASG)** – Grupowanie VM dla reguł NSG.
+**Bastion** – Bezpieczny dostęp do VM przez przeglądarkę.
+**Service Endpoint** – Umożliwia dostęp do usług Azure z prywatnej sieci bez publicznego IP.
+**Route Table** – Definiuje trasowanie ruchu w sieci.
+**UDR (User Defined Route)** – Niestandardowe trasy dla ruchu sieciowego.
+**DDoS Protection** – Ochrona przed atakami DDoS.
+**Virtual Network TAP** – Monitoring i analiza ruchu sieciowego z VM.
+**MPLS** – Multi-Protocol Label Switching, wydajny routing w sieciach WAN.
+
+---
+
+## Core Solutions & Management Tools
+**Azure Portal** ⭐ – Graficzny interfejs do zarządzania zasobami Azure.
+**Azure CLI** – Narzędzie wiersza poleceń do zarządzania Azure.
+**Azure PowerShell** – Zarządzanie Azure przez skrypty PowerShell.
+**Cloud Shell** – Terminal w przeglądarce z preinstalowanymi narzędziami.
+**Azure Resource Manager (ARM)** – Centralny system zarządzania zasobami.
+**ARM Template** – Plik JSON do automatyzacji wdrożeń (IaC).
+**Bicep** – Język deklaratywny do IaC, prostszy niż ARM.
+**Azure Advisor** – Rekomendacje optymalizacji kosztów, wydajności, bezpieczeństwa.
+**Azure Monitor** ⭐ – Monitorowanie wydajności, logów, alertów.
+**Azure Monitor: Metrics vs Logs** – Metrics: szybkie, liczbowe dane o wydajności; Logs: szczegółowe zdarzenia i logi. Data Collection Rules (DCR) – nowy model zbierania danych.
+**Azure Monitor Workbooks** – Interaktywne dashboardy do wizualizacji danych.
+**Azure Managed Grafana** – Zarządzane środowisko Grafana do monitoringu.
+**Alerty (dynamic/static thresholds)** – Alerty mogą mieć progi statyczne lub dynamiczne (uczą się na podstawie trendów).
+**Log Analytics** – Analiza logów z różnych źródeł.
+**Application Insights** – Monitorowanie aplikacji.
+**Azure Service Health** – Informacje o stanie usług Azure.
+**Azure Status** – Publiczny portal informujący o bieżącej dostępności i awariach usług Azure w poszczególnych regionach (https://status.azure.com); pozwala sprawdzić, czy problem dotyczy platformy.
+**Azure Policy** ⭐ – Wymuszanie zasad (np. lokalizacja, tagi).
+**Resource Lock** – Blokada usuwania/zmian zasobów.
+**Resource Lock – tricky behaviors:** Lock na Resource Group nie zawsze blokuje wszystkie operacje na zasobach podrzędnych (np. nie blokuje niektórych zmian konfiguracji). Lock ReadOnly blokuje modyfikacje, ale nie odczyt.
+**Blueprints** – Szablony wdrożeniowe dla zgodności i automatyzacji.
+**Azure Arc** – Zarządzanie zasobami poza Azure (on-premises, multi-cloud).
+**Azure Automation** – Automatyzacja zadań administracyjnych (runbooki).
+**Runbook** – Zautomatyzowany skrypt/procedura w Azure Automation.
+**Change Tracking** – Monitorowanie zmian konfiguracji.
+**Azure Site Recovery** – Disaster Recovery dla VM i aplikacji.
+**Azure Backup** – Automatyczne kopie zapasowe VM, plików, baz danych.
+**Azure Migrate** – Migracja serwerów, VM, baz danych do Azure.
+**Azure Data Box** – Fizyczne urządzenie do transferu dużych ilości danych.
+**Azure Data Factory** – Integracja i przetwarzanie danych (ETL/ELT).
+**Azure DevOps** – CI/CD, repozytoria kodu, tablice zadań, testy.
+**GitHub Actions for Azure** – Automatyzacja CI/CD bezpośrednio z GitHub.
+**Azure Deployment Environments** – Szybkie, powtarzalne środowiska dla deweloperów.
+**Azure Automation Hybrid Worker** – Wykonywanie runbooków poza Azure (on-premises).
+**Update Management** – Zarządzanie aktualizacjami VM.
+**Blueprint Assignment** – Przypisywanie szablonów wdrożeniowych.
+**Azure Resource Explorer** – Narzędzie do przeglądania zasobów i API.
+**Azure REST API** – Programistyczny dostęp do zarządzania zasobami.
+
+---
+
+## General Security & Network Security
+**Microsoft Defender for Cloud** ⭐ – Monitorowanie bezpieczeństwa, rekomendacje, ochrona zasobów.
+**Defender for Cloud – nowe plany:**
+  - **Defender for Cloud Plans 2** – Rozszerzona ochrona, automatyzacja reakcji.
+  - **Defender for DevOps** – Ochrona pipeline CI/CD.
+  - **Defender for APIs** – Ochrona interfejsów API.
+**Zero Trust** – Zasada „nikomu nie ufaj”, weryfikacja każdego dostępu.
+**Zero Trust** – Zasada „nikomu nie ufaj”, każda próba dostępu musi być zweryfikowana niezależnie od lokalizacji użytkownika czy urządzenia. Model opiera się na 6 filarach:
+  - **Verify explicitly** (Weryfikuj explicite – zawsze sprawdzaj tożsamość, stan urządzenia, lokalizację, uprawnienia)
+  - **Use least privileged access** (Stosuj zasadę najmniejszych uprawnień)
+  - **Assume breach** (Zakładaj naruszenie bezpieczeństwa – segmentuj, monitoruj, reaguj)
+  - **Micro-segmentation** (Mikrosegmentacja – dziel sieć na małe strefy z osobnymi regułami)
+  - **End-to-end encryption** (Szyfrowanie end-to-end)
+  - **Continuous monitoring and analytics** (Ciągłe monitorowanie i analiza zachowań)
+**Defense-in-Depth** – Wielowarstwowa ochrona, polegająca na stosowaniu wielu niezależnych warstw zabezpieczeń, aby zminimalizować ryzyko naruszenia. Typowe warstwy (od zewnątrz do wewnątrz):
+  1. **Physical Security** (Bezpieczeństwo fizyczne) – ochrona dostępu do centrów danych.
+  2. **Perimeter Security** (Bezpieczeństwo perymetryczne) – zapory sieciowe, DDoS Protection.
+  3. **Network Security** (Bezpieczeństwo sieciowe) – segmentacja, NSG, kontrola ruchu.
+  4. **Host Security** (Bezpieczeństwo hosta) – zabezpieczenia systemów operacyjnych, aktualizacje, antywirus.
+  5. **Application Security** (Bezpieczeństwo aplikacji) – WAF, testy bezpieczeństwa, kontrola kodu.
+  6. **Data Security** (Bezpieczeństwo danych) – szyfrowanie, backupy, kontrola dostępu.
+Każda warstwa utrudnia atak i ogranicza skutki naruszenia bezpieczeństwa.
+**SIEM (Sentinel)** – Zbieranie i analiza logów, wykrywanie zagrożeń.
+**SOAR** – Automatyzacja reakcji na incydenty bezpieczeństwa.
+**DDoS Protection** – Ochrona przed atakami DDoS.
+**Conditional Access** ⭐ – Mechanizm wymuszania dodatkowych warunków dostępu do zasobów (np. wymóg MFA, blokada spoza kraju, wymóg zgodnego urządzenia). Pozwala automatycznie wymuszać reguły na podstawie kontekstu użytkownika, urządzenia, lokalizacji, ryzyka.
+**MFA (Multi-Factor Authentication)** ⭐ – Weryfikacja tożsamości wieloma metodami.
+**Passwordless Authentication** – Logowanie bez hasła (np. Windows Hello, FIDO2).
+**Key Vault** – Bezpieczne przechowywanie sekretów, kluczy, certyfikatów.
+**Managed Identity** – Tożsamość dla aplikacji bez haseł.
+**RBAC (Role-Based Access Control)** ⭐ – Nadawanie uprawnień do zasobów na podstawie ról.
+**PIM (Privileged Identity Management)** – Zarządzanie uprawnieniami uprzywilejowanymi (JIT/JEA).
+**Privileged Access Workstation (PAW)** – Bezpieczne stanowisko do administrowania.
+**Just-in-Time (JIT) Access** – Tymczasowy dostęp do VM.
+**Managed HSM** – Zarządzany sprzętowy moduł bezpieczeństwa.
+**Azure Information Protection** – Klasyfikacja i ochrona dokumentów.
+**Defender for Identity** – Ochrona tożsamości w środowiskach hybrydowych.
+
+---
+
+## Identity, Governance & Compliance
+**Entra ID – logowanie i synchronizacja** – Umożliwia logowanie jednokrotne (SSO) do aplikacji chmurowych i lokalnych, synchronizację kont użytkowników z on-premises (Azure AD Connect), obsługę federacji, MFA, zarządzanie dostępem warunkowym i integrację z usługami SaaS.
+**Managed Identity** – Automatyczna tożsamość dla aplikacji w Azure, umożliwia bezpieczny dostęp do zasobów bez haseł; typy: system-assigned (przypisana do zasobu) i user-assigned (współdzielona przez wiele zasobów); eliminuje konieczność przechowywania sekretów w kodzie.
+**Microsoft Entra ID (dawniej Azure AD)** ⭐ – Usługa IAM do zarządzania tożsamościami, SSO, MFA.
+**Entra Domain Services (AAD DS)** – Zarządzane usługi domenowe w chmurze.
+**Directory** – Katalog użytkowników, grup i aplikacji w Entra ID.
+**Account** – Konto użytkownika w Directory/Tenancie.
+  - Limit: praktycznie nieograniczona liczba kont użytkowników w Entra ID (dawniej Azure AD).
+**Group** – Grupa użytkowników do zarządzania uprawnieniami.
+**Role** – Zestaw uprawnień przypisanych użytkownikowi lub grupie.
+  - **Owner** – Pełny dostęp do zasobów i zarządzania uprawnieniami (może nadawać role).
+  - **Contributor** – Pełny dostęp do zarządzania zasobami, NIE może nadawać ról.
+  - **Reader** – Tylko odczyt wszystkich zasobów.
+  - **User Access Administrator** – Może nadawać uprawnienia innym użytkownikom.
+  - **VM Contributor** – Zarządzanie VM, bez dostępu do sieci/storage, nie może nadawać ról.
+**RBAC (Role-Based Access Control)** ⭐ – System zarządzania dostępem do zasobów na podstawie ról przypisanych użytkownikom, grupom lub aplikacjom. Uprawnienia można przypisywać na poziomie Management Group, Subscription, Resource Group lub Resource. Dziedziczenie uprawnień działa tylko w dół hierarchii.
+  - Uprawnienia RBAC dziedziczą się tylko w dół (np. z resource group na zasoby w tej grupie), nie w górę.
+  - Można przypisać wiele ról tej samej osobie/aplikacji.
+  - Najbardziej restrykcyjna rola wygrywa (efekt sumowania uprawnień).
+**Conditional Access** ⭐ – Mechanizm wymuszania dodatkowych warunków dostępu do zasobów (np. wymóg MFA, blokada spoza kraju, wymóg zgodnego urządzenia). Pozwala automatycznie wymuszać reguły na podstawie kontekstu użytkownika, urządzenia, lokalizacji, ryzyka.
+**Policy** – Wymusza zasady (np. region, tagi, typy maszyn, wymagane tagi) na poziomie subskrypcji, grupy zasobów lub zasobu. Nie blokuje wdrożenia, ale oznacza zasób jako non-compliant lub może zablokować wdrożenie (efekt Deny).
+  - Limit: do 5000 policy assignments na tenant.
+  - Policy może automatycznie przypisywać tagi, wymuszać region, typ maszyny, itp.
+**Initiative** – Grupa polityk (Policy Set), pozwala zarządzać wieloma zasadami jako jednym zestawem.
+  - Limit: do 1000 initiatives na tenant.
+**Blueprint** – Szablon wdrożeniowy dla zgodności, łączy polityki, role, szablony ARM/Bicep i przypisania tagów.
+**Microsoft Purview** – Zarządzanie zgodnością, klasyfikacja i ochrona danych.
+**Microsoft Purview Data Map / Data Estate Insights** – Mapowanie i analiza zasobów danych w organizacji.
+**Data Loss Prevention (DLP)** – Ochrona przed wyciekiem danych, wykrywanie i blokowanie przesyłania wrażliwych informacji (np. przez Microsoft Purview DLP).
+**Microsoft Priva** – Zarządzanie prywatnością i żądaniami dostępu do danych osobowych.
+**Compliance Score / Secure Score** – Wskaźniki zgodności i bezpieczeństwa, pomagają monitorować poziom ryzyka i wdrożenia zabezpieczeń.
+**Compliance** – Zgodność z regulacjami (np. GDPR, ISO, NIST, HIPAA, PCI-DSS).
+  - Azure oferuje narzędzia do monitorowania zgodności i audytu (Compliance Manager, Policy, Audit Logs).
+**Tag** – Metadane do organizacji i zarządzania zasobami.
+  - Maksymalnie 50 tagów na zasób.
+  - Każdy tag to para klucz-wartość (max 256 znaków klucz, 2560 znaków wartość).
+  - Tagów nie dziedziczy się automatycznie między zasobami (np. z resource group na VM) – trzeba je przypisywać ręcznie lub automatyzować (np. Policy).
+  - Tagowanie ułatwia raportowanie kosztów, compliance, automatyzację.
+**Policy Assignment** – Przypisywanie polityk na różnych poziomach hierarchii.
+**Policy Definition** – Tworzenie własnych zasad w Azure Policy.
+**Audit Logs** – Rejestr zdarzeń i zmian w zasobach.
+**Data Residency** – Lokalizacja przechowywania danych.
+**Compliance Manager** – Narzędzie do zarządzania zgodnością i audytami.
+**Azure Trust Center** – Informacje o certyfikatach, zgodności i bezpieczeństwie Azure.
+**Just-In-Time (JIT) Access** – Tymczasowy dostęp do zasobów (np. VM) tylko na określony czas, minimalizuje ryzyko nadużyć.
+**Privileged Identity Management (PIM)** – Zarządzanie uprawnieniami uprzywilejowanymi, umożliwia przyznawanie ról na czas określony (Just-In-Time), wymaga zatwierdzenia, audytuje działania.
+**Identity Governance (Entra ID)** – Zarządzanie cyklem życia dostępu: Access Reviews (przeglądy uprawnień), Entitlement Management (pakiety dostępu), automatyzacja nadawania i odbierania uprawnień.
+**Conditional Access Authentication Strength/Context** – Możliwość wymuszania określonej siły uwierzytelniania (np. MFA, biometria) i kontekstu dostępu.
+**Entra External ID / Verified ID** – Zarządzanie tożsamościami zewnętrznymi i weryfikacja tożsamości użytkowników spoza organizacji.
+**Passwordless Authentication** – Logowanie bez hasła (np. Windows Hello, FIDO2, Microsoft Authenticator), zwiększa bezpieczeństwo i wygodę.
+**Managed Identity** – Automatyczna tożsamość dla aplikacji w Azure, umożliwia bezpieczny dostęp do zasobów bez haseł (system-assigned/user-assigned).
+**External Identities** – Umożliwia dostęp partnerom, klientom lub innym organizacjom do zasobów Azure bez tworzenia konta w Directory.
+
+---
+
+## Azure Cost Management & SLA
+
+**Pricing Calculator** – Szacowanie kosztów usług Azure.
+**TCO Calculator** – Porównanie kosztów chmura vs. on-premises.
+**Cost Management** ⭐ – Analiza i optymalizacja kosztów.
+**Cost Allocation** – Przypisywanie kosztów do działów/projektów (np. przez tagi, invoice section).
+**Chargeback** – Przenoszenie kosztów IT na działy biznesowe na podstawie faktycznego zużycia.
+**Showback** – Raportowanie kosztów bez faktycznego obciążania działów.
+**Reserved Instance Flexibility** – Możliwość zmiany rozmiaru/regionu Reserved VM w ramach tej samej rodziny.
+**Budżety i alerty** – Kontrola wydatków.
+**Azure Reservations** – Rezerwacja zasobów na 1/3 lata dla niższych kosztów.
+**Marketplace** – Sklep z gotowymi rozwiązaniami partnerów.
+**SLA (Service Level Agreement)** ⭐ – Gwarantowany poziom dostępności usługi (np. 99,9%).
+**SLA dla nowych usług:**
+  - Azure Container Apps: 99,95% (prod.), brak SLA w Preview.
+  - Azure OpenAI: SLA zależne od regionu i modelu, sprawdź dokumentację.
+  - Azure Communication Services: 99,9% dla większości funkcji.
+**Composite SLA** – Łączna dostępność kilku usług (iloczyn SLA).
+**Preview vs GA** – Preview: funkcja testowa, brak pełnego SLA; GA: produkcyjna, pełne wsparcie.
+**Azure Hybrid Benefit** – Oszczędność kosztów licencji Windows Server/SQL.
+**Cost Analysis** – Analiza wydatków w Azure Cost Management.
+**Azure Budgets** – Ustawianie limitów wydatków i alertów.
+**Cost Alerts** – Powiadomienia o przekroczeniu budżetu.
+**Azure Price List API** – Automatyczne pobieranie cen usług.
+**Azure Advisor Recommendations** – Sugestie oszczędności i optymalizacji.
+**Azure Cost Management + Billing** – Narzędzie do monitorowania, analizowania i raportowania kosztów.
+
+**Rodzaje subskrypcji/licencji Azure:**
+  - **Pay-As-You-Go (PAYG):** Najpopularniejszy model, płatność za faktyczne zużycie miesięcznie, brak zobowiązań.
+  - **Reserved Instances/Reserved VM:** Rezerwacja zasobów na 1/3 lata, niższa cena, mniejsza elastyczność.
+  - **Spot VM:** Najniższa cena, VM może być przerwana przez Azure w dowolnym momencie.
+  - **Azure Free Account:** $200 na 30 dni + wybrane usługi na 12 miesięcy za darmo.
+  - **Enterprise Agreement (EA):** Umowa korporacyjna, rabaty, centralne rozliczanie, dedykowany billing.
+  - **CSP (Cloud Solution Provider):** Zakup przez partnera Microsoft, własne warunki billingowe.
+  - **Dev/Test Subscription:** Tanie środowiska testowe dla deweloperów (brak SLA produkcyjnego, ograniczenia licencyjne).
+  - **Trial:** Konto testowe, ograniczone środki/czas.
+  - **Student:** Specjalna subskrypcja dla studentów, darmowe środki/usługi.
+
+**Billing Account** – Główne konto rozliczeniowe, może mieć wiele subskrypcji.
+**Invoice Section** – Sekcja faktury, pozwala rozdzielać koszty na działy/projekty.
+**Subscription Types:** Pay-As-You-Go, Reserved, Spot, Free, Dev/Test, EA, CSP, Student.
+**Billing Cycle** – Okres rozliczeniowy (najczęściej miesięczny).
+**Fakturowanie:**
+  - Opłaty naliczane za zużycie (compute, storage, egress, licencje, usługi zarządzane, backupy, monitoring, publiczne IP, itp.).
+  - Możliwość ustawienia budżetów, alertów, raportów kosztowych.
+  - Koszty mogą być rozdzielane na subskrypcje, resource group, tagi, invoice section.
+  - Marketplace – usługi partnerów mogą mieć osobne ceny i warunki.
+
+---
+
+## Core Databases & Extended Services
+
+## Nowe i rozszerzone usługi Azure
+**Azure OpenAI** – Dostęp do modeli AI (np. GPT) jako usługa PaaS.
+**Azure AI Search** – Wyszukiwanie semantyczne i AI w danych.
+**Azure Communication Services** – SMS, głos, wideo, chat jako usługa.
+**Azure Confidential Computing** – Przetwarzanie danych w zaszyfrowanej pamięci (TEE).
+**Azure Chaos Studio** – Testowanie odporności aplikacji przez symulację awarii.
+**Azure Container Apps (ACA)** – Serverless dla kontenerów, mikroserwisy, scale-to-zero.
+**Azure Confidential Ledger** – Niezmienialny rejestr danych (blockchain-like).
+**Azure Quantum** – Usługi obliczeń kwantowych.
+**Azure Orbital** – Usługi satelitarne (ground station as a service).
+
+**Azure SQL Database** – Relacyjna baza danych (OLTP).
+**Azure Database for MySQL/PostgreSQL** – Zarządzane bazy open source.
+**Azure Synapse Analytics** – Analityka, hurtownie danych (OLAP).
+**Cosmos DB** – NoSQL, globalna replikacja, niskie opóźnienia.
+**Azure Cache for Redis** – Baza in-memory, cache.
+**Azure Database Migration Service** – Migracja baz danych do Azure.
+**Elastic Pool** – Wspólna pula zasobów dla wielu baz SQL.
+**Hyperscale** – Skalowalna architektura dla Azure SQL.
+**Read Replica** – Odczyt z kopii bazy dla skalowania.
+**Backup Retention** – Okres przechowywania kopii zapasowych.
+
+**Service Bus** – Kolejki, pub/sub.
+**Event Hub** – Streaming danych.
+**Event Grid** – Routing zdarzeń.
+**API Management** – Zarządzanie API.
+**Logic Apps** – Automatyzacja procesów.
+**Data Factory** – Integracja i przetwarzanie danych.
+**Cognitive Services** – AI, rozpoznawanie obrazów, tekstu.
+**IoT Hub** – Obsługa urządzeń IoT.
+**Azure Virtual Desktop** – Pulpity w chmurze.
+**Azure API Apps** – Hostowanie i zarządzanie API.
+**Azure Data Lake Analytics** – Analiza dużych zbiorów danych.
+**Azure Purview** – Katalogowanie i klasyfikacja danych.
+**Azure Sentinel** – Integracja z innymi narzędziami SIEM/SOAR.
+**Azure VMware Solution** – Uruchamianie środowisk VMware w Azure.
+**Azure Spring Apps** – Hostowanie aplikacji Java.
+**Azure Machine Learning** – Budowa, trenowanie i wdrażanie modeli AI.
+**Azure Bot Service** – Tworzenie chatbotów.
+**Azure Media Services** – Przetwarzanie i streaming multimediów.
+**Azure Maps** – Usługi geolokalizacyjne.
+
+**Azure HDInsight** – Zarządzany klaster Big Data (Hadoop, Spark, Hive, Kafka, HBase) do analizy dużych zbiorów danych; integracja z Data Lake, skalowalność, płatność za użycie.
+**Azure Hadoop Service** – (obecnie realizowane przez HDInsight) – platforma do przetwarzania Big Data w modelu open-source (Hadoop, Spark, itp.).
+**Azure Data Factory** – Usługa ETL/ELT do integracji, transformacji i orkiestracji danych z wielu źródeł (on-premises, chmura); pipeline, mapping data flows, integracja z innymi usługami.
+**Azure Arc** – Zarządzanie zasobami spoza Azure (on-premises, multi-cloud, edge); umożliwia wdrażanie polityk, monitorowanie, zarządzanie VM/kubernetes poza Azure.
+
+---
+
+## Exam Tips & Trick Questions
+
+**Preview vs GA vs SLA:** Preview (private/public) nie ma SLA, tylko GA ma gwarantowany poziom dostępności.
+**Support Plans:** Tylko plany Basic, Developer, Standard, Professional Direct pozwalają otwierać zgłoszenia serwisowe. Free nie umożliwia otwierania ticketów.
+**Support Plan Review:** Tylko Professional Direct i wyższe umożliwiają architektoniczny przegląd środowiska przez Microsoft.
+**Redundancja Storage:** Jeśli wymagany jest odczyt z regionu zapasowego, wybierz RA-GRS lub RA-GZRS.
+**Modele usług:** VM = IaaS, App Service = PaaS, Office 365 = SaaS.
+**Web App Plan:** Własna domena, SSL, dedykowane instancje, min. plan Basic/Standard.
+**Podział administracyjny:** Oddziały firmy = osobne Subscriptions lub Resource Groups, NIE osobne Azure AD Tenants.
+**Expenditure Model:** Pay-as-you-go = OpEx, nie CapEx.
+**Geo-replikacja:** GRS/RA-GRS lub GZRS/RA-GZRS.
+**SLA:** Preview nie ma gwarantowanego SLA.
+**Load Balancing:** Azure Load Balancer = L4, Application Gateway/Front Door = L7.
+**Azure Policy:** Wymusza zgodność, ale nie blokuje fizycznie wdrożenia.
+**Azure Marketplace:** Służy do wdrażania gotowych rozwiązań partnerów, nie do zarządzania kosztami.
+**Azure Hybrid Benefit:** Pozwala użyć własnych licencji Windows Server/SQL w Azure, obniżając koszty.
+**Azure Reservations:** Rezerwacja VM na 1/3 lata = niższy koszt, ale mniejsza elastyczność.
+**Azure Advisor:** Daje rekomendacje, ale nie wymusza zmian.
+**Azure Migrate:** Służy do oceny i migracji serwerów, baz, aplikacji do Azure.
+**Azure DevTest Labs:** Szybkie środowiska testowe, nie produkcyjne.
+**Azure Arc:** Zarządzanie zasobami spoza Azure (on-premises, multi-cloud).
+**Azure Lighthouse:** Zarządzanie wieloma środowiskami klientów przez partnerów/MSP.
+**Azure Bastion:** Bezpieczny dostęp do VM przez przeglądarkę, bez publicznego IP na VM.
+**ExpressRoute:** Łącze dedykowane, nie szyfruje ruchu domyślnie (VPN szyfruje).
+**Azure Free Account:** $200 na 30 dni + wybrane usługi na 12 miesięcy za darmo.
+**VPN szyfruje, ExpressRoute nie domyślnie.**
+**Azure Firewall** to stateful firewall, NSG nie.
+**DDoS Standard** chroni L3/L4, nie L7.
+**WAF** (Web Application Firewall) chroni HTTP(S), np. OWASP Top 10; działa na Application Gateway i Front Door.
+**Private Endpoint** daje prywatny IP, Service Endpoint nie.
+**Front Door** działa globalnie na edge (L7), Traffic Manager to DNS.
+**Load Balancer** działa na L4, Application Gateway na L7 (z WAF).
+**Azure Functions** = event-driven serverless, płatność za wykonania (Consumption).
+**Durable Functions** = workflow ze stanem.
+**ACI** = szybkie uruchomienie kontenera bez orkiestracji, **ACA** = mikroserwisy, scale-to-zero.
+**AKS** = pełna orkiestracja Kubernetes.
+**PaaS** zmniejsza odpowiedzialność za OS i patchowanie, IaaS = samodzielny OS.
+**Entra ID** to IAM, nie klasyczny AD Domain Services.
+**Conditional Access** ocenia kontekst (user/device/location/risk).
+**PIM** daje JIT/JEA dla ról uprzywilejowanych.
+**Managed Identity** eliminuje potrzebę trzymania sekretów w kodzie.
+**Blob tiers:** Hot – dane produkcyjne, Cool – backupy/archiwa do 1 roku, Archive – archiwizacja na lata.
+**LRS/ZRS/GRS/RA-GRS** to poziomy redundancji storage.
+**Cosmos DB** = globalny NoSQL z multi-region i niskimi opóźnieniami.
+**Azure AD B2C/B2B:** B2C = tożsamość klientów, B2B = partnerów.
+**Azure AD vs AAD DS:** AD = klasyczna domena, AAD DS = zarządzane usługi domenowe.
+**Azure Backup vs Site Recovery:** Backup = kopie zapasowe, Site Recovery = DR.
+**Azure Policy vs RBAC:** Policy = zasady, RBAC = uprawnienia.
+**Azure DevOps vs GitHub:** DevOps = CI/CD, tablice zadań, GitHub = repozytoria, CI/CD, społeczność.
+**Azure Monitor vs Log Analytics:** Monitor = platforma, Log Analytics = analiza logów.
+**Azure Spring Apps:** Hostowanie aplikacji Java.
+**Azure Machine Learning:** Budowa, trenowanie i wdrażanie modeli AI.
+**Azure Bot Service:** Tworzenie chatbotów.
+**Azure Media Services:** Przetwarzanie i streaming multimediów.
+**Azure Maps:** Usługi geolokalizacyjne.
+
+---
+
+**Legenda:**
+⭐ – pojęcie bardzo często pojawiające się na egzaminie
