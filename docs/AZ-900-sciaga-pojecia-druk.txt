@@ -63,6 +63,13 @@
 **Data Center** – Fizyczny obiekt z infrastrukturą IT.
 **Sovereign Region / Sovereign Cloud** – Specjalne regiony Azure (np. Azure Government, Azure China, Azure Germany), fizycznie i logicznie oddzielone od globalnej chmury Azure. Zapewniają zgodność z lokalnymi przepisami, suwerenność danych i spełniają wymagania rządowe (compliance, bezpieczeństwo, lokalizacja danych). Usługi, funkcje i dostępność mogą się różnić od globalnych regionów Azure.
 **Resource Group** ⭐ – Logicza grupa zasobów Azure, wspólne zarządzanie i lifecycle.
+  - Usunięcie Resource Group powoduje trwałe usunięcie wszystkich zasobów w niej zawartych (nie można tego cofnąć).
+  - Resource Group może zawierać zasoby z wielu regionów Azure.
+  - Usunięcie Resource Group = usunięcie wszystkich jej zasobów, niezależnie od typu i regionu.
+  - Przeniesienie zasobu do innej Resource Group nie powoduje jego przerwy w działaniu (z wyjątkiem niektórych typów zasobów).
+  - Resource Group ułatwia zarządzanie uprawnieniami, tagami i automatyzacją dla grupy zasobów.
+  - Lock (blokada) ustawiony na Resource Group automatycznie obejmuje wszystkie zasoby w tej grupie (dziedziczenie locka).
+  - Azure Policy przypisana do Resource Group obejmuje wszystkie zasoby w tej grupie (dziedziczenie policy).
 **Subscription** ⭐ – Jednostka rozliczeniowa i granica uprawnień.
 **Limity usług (przykłady):**
   - Azure OpenAI: domyślnie 1 instancja na subskrypcję, limity żądań na minutę.
