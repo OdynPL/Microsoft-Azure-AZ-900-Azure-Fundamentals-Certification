@@ -404,6 +404,16 @@ Każda warstwa utrudnia atak i ogranicza skutki naruszenia bezpieczeństwa.
 **SOAR** – Automatyzacja reakcji na incydenty bezpieczeństwa.
 **DDoS Protection** – Ochrona przed atakami DDoS.
 **Conditional Access** ⭐ – Mechanizm wymuszania dodatkowych warunków dostępu do zasobów (np. wymóg MFA, blokada spoza kraju, wymóg zgodnego urządzenia). Pozwala automatycznie wymuszać reguły na podstawie kontekstu użytkownika, urządzenia, lokalizacji, ryzyka.
+  - Warunki (conditions):
+    - użytkownik/grupa
+    - aplikacja
+    - lokalizacja
+    - urządzenie
+    - stan urządzenia (compliant)
+    - ryzyko logowania
+    - platforma (OS)
+    - siła uwierzytelniania (authentication strength)
+    - czas logowania
   - Microsoft Entra Conditional Access – narzędzie do wdrażania polityk dostępu warunkowego w Entra ID; pozwala automatycznie wymuszać MFA, ograniczać dostęp na podstawie lokalizacji, urządzenia, ryzyka, stanu zgodności, aplikacji i innych kryteriów.
 **MFA (Multi-Factor Authentication)** ⭐ – Weryfikacja tożsamości wieloma metodami.
 **Passwordless Authentication** – Logowanie bez hasła (np. Windows Hello, FIDO2).
