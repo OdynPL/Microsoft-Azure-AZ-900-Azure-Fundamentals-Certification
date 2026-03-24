@@ -1,0 +1,62 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 300' width='600' height='300'>
+  <title>Azure Region, Data Center, AZ, Availability Set, Region Pair</title>
+  <defs>
+    <marker id='arrow' markerWidth='10' markerHeight='7' refX='9' refY='3.5' orient='auto'>
+      <polygon points='0 0, 10 3.5, 0 7' fill='#475569'/>
+    </marker>
+    <marker id='arrowBlue' markerWidth='10' markerHeight='7' refX='9' refY='3.5' orient='auto'>
+      <polygon points='0 0, 10 3.5, 0 7' fill='#2563EB'/>
+    </marker>
+  </defs>
+  <rect width='600' height='300' fill='#FFFFFF'/>
+  <text x='300' y='30' text-anchor='middle' font-family='Segoe UI, Arial' font-size='15' font-weight='600' fill='#0F172A'>Region, Data Center, AZ, AvSet, Region Pair</text>
+
+  <!-- Region Pair -->
+  <rect x='60' y='60' width='220' height='180' rx='18' fill='#DBEAFE' stroke='#2563EB' stroke-width='2'/>
+  <rect x='320' y='60' width='220' height='180' rx='18' fill='#F1F5F9' stroke='#94A3B8' stroke-width='2'/>
+  <text x='170' y='80' text-anchor='middle' font-family='Segoe UI, Arial' font-size='12' font-weight='600' fill='#2563EB'>Region A</text>
+  <text x='430' y='80' text-anchor='middle' font-family='Segoe UI, Arial' font-size='12' font-weight='600' fill='#64748B'>Region B</text>
+  <text x='300' y='55' text-anchor='middle' font-family='Segoe UI, Arial' font-size='11' fill='#334155'>Region Pair</text>
+
+  <!-- AZ in Region A -->
+  <rect x='80' y='100' width='60' height='120' rx='10' fill='#D1FAE5' stroke='#059669' stroke-width='2'/>
+  <rect x='150' y='100' width='60' height='120' rx='10' fill='#FDE68A' stroke='#D97706' stroke-width='2'/>
+  <rect x='220' y='100' width='40' height='120' rx='10' fill='#FECACA' stroke='#DC2626' stroke-width='2'/>
+  <text x='110' y='115' text-anchor='middle' font-family='Segoe UI, Arial' font-size='10' fill='#059669'>AZ 1</text>
+  <text x='180' y='115' text-anchor='middle' font-family='Segoe UI, Arial' font-size='10' fill='#D97706'>AZ 2</text>
+  <text x='240' y='115' text-anchor='middle' font-family='Segoe UI, Arial' font-size='10' fill='#DC2626'>AZ 3</text>
+  <text x='170' y='230' text-anchor='middle' font-family='Segoe UI, Arial' font-size='10' fill='#334155'>Region = 2+ AZ</text>
+
+  <!-- Data Centers in AZ 1 -->
+  <rect x='90' y='130' width='18' height='30' rx='3' fill='#A7F3D0' stroke='#059669' stroke-width='1'/>
+  <rect x='110' y='130' width='18' height='30' rx='3' fill='#A7F3D0' stroke='#059669' stroke-width='1'/>
+  <text x='99' y='145' text-anchor='middle' font-family='Segoe UI, Arial' font-size='7' fill='#059669'>DC</text>
+  <text x='119' y='145' text-anchor='middle' font-family='Segoe UI, Arial' font-size='7' fill='#059669'>DC</text>
+  <text x='110' y='165' text-anchor='middle' font-family='Segoe UI, Arial' font-size='8' fill='#059669'>Data Centers</text>
+
+  <!-- Availability Set in AZ 2 -->
+  <rect x='160' y='150' width='40' height='20' rx='4' fill='#F3F4F6' stroke='#D97706' stroke-width='1'/>
+  <text x='180' y='163' text-anchor='middle' font-family='Segoe UI, Arial' font-size='8' fill='#D97706'>AvSet</text>
+  <circle cx='170' cy='160' r='4' fill='#F59E42' stroke='#B45309' stroke-width='1'/>
+  <circle cx='190' cy='160' r='4' fill='#F59E42' stroke='#B45309' stroke-width='1'/>
+  <text x='180' y='175' text-anchor='middle' font-family='Segoe UI, Arial' font-size='7' fill='#B45309'>VMs</text>
+
+  <!-- AZ in Region B (simplified) -->
+  <rect x='340' y='100' width='60' height='120' rx='10' fill='#E0E7FF' stroke='#6366F1' stroke-width='2'/>
+  <rect x='410' y='100' width='60' height='120' rx='10' fill='#F3E8FF' stroke='#A21CAF' stroke-width='2'/>
+  <text x='370' y='115' text-anchor='middle' font-family='Segoe UI, Arial' font-size='10' fill='#6366F1'>AZ 1</text>
+  <text x='440' y='115' text-anchor='middle' font-family='Segoe UI, Arial' font-size='10' fill='#A21CAF'>AZ 2</text>
+  <text x='430' y='230' text-anchor='middle' font-family='Segoe UI, Arial' font-size='10' fill='#334155'>Region = 2+ AZ</text>
+
+  <!-- Arrows for Region Pair -->
+  <line x1='280' y1='150' x2='320' y2='150' stroke='#2563EB' stroke-width='2' marker-end='url(#arrowBlue)'/>
+  <line x1='320' y1='170' x2='280' y2='170' stroke='#2563EB' stroke-width='2' marker-end='url(#arrowBlue)'/>
+
+  <!-- Legend -->
+  <rect x='20' y='260' width='560' height='30' rx='8' fill='#F1F5F9' stroke='#CBD5E1' stroke-width='1'/>
+  <text x='30' y='278' font-family='Segoe UI, Arial' font-size='10' fill='#2563EB'>Region</text>
+  <text x='90' y='278' font-family='Segoe UI, Arial' font-size='10' fill='#059669'>AZ</text>
+  <text x='130' y='278' font-family='Segoe UI, Arial' font-size='10' fill='#A7F3D0'>Data Center</text>
+  <text x='200' y='278' font-family='Segoe UI, Arial' font-size='10' fill='#D97706'>AvSet</text>
+  <text x='260' y='278' font-family='Segoe UI, Arial' font-size='10' fill='#2563EB'>Region Pair</text>
+</svg>

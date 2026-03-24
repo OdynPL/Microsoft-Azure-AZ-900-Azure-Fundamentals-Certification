@@ -61,6 +61,12 @@ Ta struktura jest fundamentem pracy z Azure — wpływa na **uprawnienia, govern
 
 - **Availability Zone (AZ)** – fizycznie odseparowane centra danych w obrębie jednego regionu (oddzielne zasilanie, chłodzenie, sieć) zapewniające wysoki poziom odporności.
 
+- **Availability Set** – grupa VM w jednym datacenter, rozkładana na domeny błędów i aktualizacji, zwiększa dostępność przy awarii sprzętu lub pracach serwisowych.
+
+<img src="../assets/region_az_avset.svg" alt="Region, AZ, AvSet, Data Center, Region Pair">
+
+
+
 - **Region Pair** – dwa regiony w tej samej geografii sparowane ze sobą w celu zapewnienia odporności, planowania aktualizacji i disaster recovery.
 
 ## ARM (Azure Resource Manager) – warstwa zarządzania
