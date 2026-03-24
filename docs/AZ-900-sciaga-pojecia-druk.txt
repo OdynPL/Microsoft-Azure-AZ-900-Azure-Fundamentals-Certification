@@ -109,6 +109,10 @@
 **Container Instances (ACI)** – Szybkie uruchamianie pojedynczych kontenerów.
 **Azure Kubernetes Service (AKS)** – Orkiestracja kontenerów (Kubernetes).
 **Azure Virtual Desktop** – Zdalne pulpity i aplikacje w chmurze.
+  - Zalety: dostęp do Windows z dowolnego miejsca, centralne zarządzanie, bezpieczeństwo, optymalizacja kosztów (płatność za użycie), wsparcie dla BYOD.
+  - Użycie: praca zdalna, dostęp do aplikacji firmowych, szybkie udostępnianie środowisk dla pracowników, scenariusze edukacyjne i testowe.
+  - Nie można wirtualizować: macOS, niektórych wersji Windows (np. Home), systemów nieobsługiwanych przez Azure Marketplace.
+  - Możliwy dostęp wielu użytkowników jednocześnie (multi-session) – jeden host, wielu użytkowników (np. Windows 10/11 Enterprise multi-session).
 **Burstable VM** – VM z elastycznym zużyciem CPU.
 **Ephemeral Disk** – Tymczasowy dysk, tracony po restarcie VM.
 **Spot VM** – VM o niższym koszcie, może być przerwana przez Azure.
