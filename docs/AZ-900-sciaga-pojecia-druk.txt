@@ -92,6 +92,7 @@
 **Virtual Machine (VM)** ⭐ – Wirtualny serwer w chmurze.
   - Każda VM posiada blade Resource Health – pokazuje stan zdrowia maszyny (dostępność, awarie platformy, restart, deallokacja, diagnostyka problemów).
 **Cloud Native** – Architektura i praktyki budowania aplikacji natywnych dla chmury: kontenery, mikroserwisy, CI/CD, automatyzacja, skalowalność, resilience.
+**Lift-and-Shift (migracja)** – Przeniesienie istniejącej aplikacji lub systemu do chmury bez modyfikacji kodu (najprostsza forma migracji, zwykle do IaaS/VM).
 **AI Services** – Usługi sztucznej inteligencji (np. Azure OpenAI, Cognitive Services, Machine Learning) dostępne jako PaaS/API, bez potrzeby budowy własnych modeli.
 **Confidential Computing** – Przetwarzanie danych w zaszyfrowanej pamięci (TEE), ochrona danych w trakcie przetwarzania.
 **Edge Computing** – Przetwarzanie danych bliżej źródła (np. IoT, Azure Stack Edge), niskie opóźnienia, wsparcie dla scenariuszy offline.
@@ -245,6 +246,8 @@
 **Dead-letter queue (DLQ)** – Obsługa nieprzetworzonych wiadomości w Service Bus.
 **SessionId** – Zapewnia FIFO w Service Bus.
 **Azure AD B2C/B2B** – Tożsamość klientów/partnerów.
+  - Azure AD B2C: Umożliwia uwierzytelnianie i zarządzanie tożsamościami klientów (np. użytkownicy aplikacji, konsumenci).
+  - Azure AD B2B: Pozwala na bezpieczną współpracę z partnerami zewnętrznymi (goście, partnerzy biznesowi) poprzez zapraszanie ich do zasobów organizacji.
 **AAD DS vs AD** – Różnice: AD = klasyczna domena, AAD DS = zarządzane usługi domenowe.
 **Azure Backup vs Site Recovery** – Backup = kopie zapasowe, Site Recovery = DR.
 **Azure Policy vs RBAC** – Policy = zasady, RBAC = uprawnienia.
