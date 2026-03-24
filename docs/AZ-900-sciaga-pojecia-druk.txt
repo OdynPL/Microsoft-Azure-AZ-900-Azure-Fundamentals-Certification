@@ -78,6 +78,7 @@
   - Limit: do 50 subskrypcji na konto Microsoft (można zwiększyć przez support).
   - Limit: do 2000 accounts (users/service principals) na subskrypcję (można zwiększyć przez support).
 **Management Group** – Hierarchiczne grupowanie subskrypcji do zarządzania politykami.
+  - Może zawierać inne Management Groups oraz subskrypcje (tworzy strukturę drzewa).
 **Tenant (Entra ID)** – Izolowany katalog tożsamości dla organizacji.
   - Limit: do 50 000 użytkowników w darmowej wersji Entra ID (można zwiększyć przez support).
 **Resource** – Każdy pojedynczy obiekt zarządzany w Azure (np. VM, Storage Account, baza danych, sieć).
