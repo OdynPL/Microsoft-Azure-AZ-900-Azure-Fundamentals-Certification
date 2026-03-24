@@ -427,6 +427,7 @@ Każda warstwa utrudnia atak i ogranicza skutki naruszenia bezpieczeństwa.
 **PIM (Privileged Identity Management)** – Zarządzanie uprawnieniami uprzywilejowanymi (JIT/JEA).
 **Privileged Access Workstation (PAW)** – Bezpieczne stanowisko do administrowania.
 **Just-in-Time (JIT) Access** – Tymczasowy dostęp do VM.
+  - JIT VM Access jest dostępny przez Microsoft Defender for Cloud.
 **Managed HSM** – Zarządzany sprzętowy moduł bezpieczeństwa.
 **Azure Information Protection** – Klasyfikacja i ochrona dokumentów.
 **Defender for Identity** – Ochrona tożsamości w środowiskach hybrydowych.
