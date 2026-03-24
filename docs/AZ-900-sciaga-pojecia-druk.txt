@@ -29,6 +29,8 @@
   - Dostawca (Microsoft): fizyczna infrastruktura, sieć, data center, platforma, zabezpieczenia sprzętu, patchowanie hosta.
   - Klient: dane, dostęp, konfiguracja, zarządzanie użytkownikami, aplikacje, ustawienia sieciowe.
   - Im wyższy poziom usługi (SaaS > PaaS > IaaS), tym więcej odpowiedzialności przejmuje dostawca, a mniej klient.
+  - **Management in the cloud** – zarządzasz zasobami/aplikacjami uruchomionymi w chmurze (np. VM, storage, aplikacje).
+  - **Management of the cloud** – zarządzasz samą platformą chmurową (np. konfiguracja, polityki, compliance, monitoring całego środowiska, governance).
 **IaaS** – Infrastruktura jako usługa (VM, storage, sieć); pełna kontrola nad OS.
 **PaaS** – Platforma jako usługa (App Service, DB); zarządzasz aplikacją, nie OS.
 **SaaS** – Oprogramowanie jako usługa (np. Microsoft 365); korzystasz z gotowej aplikacji.
@@ -169,6 +171,8 @@
   - 99,9% – np. pojedyncza VM bez Availability Set/Zone, Storage Account typu Standard, App Service w planie Basic.
   - 99,95% – VM w Availability Set (min. 2 VM), App Service w planie Standard i wyżej.
   - 99,99% – VM w różnych Availability Zones, Storage Account typu Premium, Azure SQL Database, Load Balancer Standard.
+  - VM w Availability Set (min. 2 VM w tym samym regionie) = 99,95% SLA (chroni przed awarią sprzętu/maintenance, ale nie całego regionu).
+  - VM w różnych Availability Zones = 99,99% SLA (ochrona przed awarią całej strefy, wyższa dostępność).
   - Composite SLA – łączna dostępność kilku usług (iloczyn SLA).
 **Fault Domain** – Grupa VM współdzielących ten sam sprzęt (np. zasilanie, sieć); awaria dotyka tylko jednego Fault Domain.
 **Update Domain** – Grupa VM aktualizowanych razem podczas maintenance; Azure rozkłada VM na różne Update Domains, by uniknąć przerwy dla wszystkich naraz.
@@ -463,7 +467,6 @@ Każda warstwa utrudnia atak i ogranicza skutki naruszenia bezpieczeństwa.
   - Azure Container Apps: 99,95% (prod.), brak SLA w Preview.
   - Azure OpenAI: SLA zależne od regionu i modelu, sprawdź dokumentację.
   - Azure Communication Services: 99,9% dla większości funkcji.
-  - 99,9% SLA = max ~43 minuty niedostępności w miesiącu.
   - 99,99% SLA = max ~4 minuty niedostępności w miesiącu.
 **Composite SLA** – Łączna dostępność kilku usług (iloczyn SLA).
 **Preview vs GA** – Preview: funkcja testowa, brak pełnego SLA; GA: produkcyjna, pełne wsparcie.
