@@ -89,6 +89,7 @@
 
 ### Compute
 **Virtual Machine (VM)** ⭐ – Wirtualny serwer w chmurze.
+  - Każda VM posiada blade Resource Health – pokazuje stan zdrowia maszyny (dostępność, awarie platformy, restart, deallokacja, diagnostyka problemów).
 **Cloud Native** – Architektura i praktyki budowania aplikacji natywnych dla chmury: kontenery, mikroserwisy, CI/CD, automatyzacja, skalowalność, resilience.
 **AI Services** – Usługi sztucznej inteligencji (np. Azure OpenAI, Cognitive Services, Machine Learning) dostępne jako PaaS/API, bez potrzeby budowy własnych modeli.
 **Confidential Computing** – Przetwarzanie danych w zaszyfrowanej pamięci (TEE), ochrona danych w trakcie przetwarzania.
