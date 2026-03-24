@@ -1,16 +1,5 @@
 ---
-
-## Tricky Exam Questions & Behaviors
-  - Policy nie daje uprawnień (tylko wymusza zasady), RBAC daje uprawnienia.
-  - Lock na RG nie blokuje wszystkich operacji na zasobach podrzędnych.
-  - Tagi nie dziedziczą się automatycznie.
-  - Composite SLA to iloczyn, nie suma.
-  - Preview nie ma SLA.
-  - Limity subskrypcji i usług mogą się zmieniać – zawsze sprawdzaj aktualną dokumentację.
-  - Niektóre Resource Providers wymagają ręcznej rejestracji przed utworzeniem zasobu.
-  - Authentication Strength/Context w Conditional Access.
 # AZ-900 – Ściąga pojęć (wersja do druku)
-
 ---
 
 ## Cloud Concepts
@@ -681,6 +670,16 @@ Każda warstwa utrudnia atak i ogranicza skutki naruszenia bezpieczeństwa.
 **Azure Bot Service:** Tworzenie chatbotów.
 **Azure Media Services:** Przetwarzanie i streaming multimediów.
 **Azure Maps:** Usługi geolokalizacyjne.
+
+## Tricky Exam Questions & Behaviors
+  - Policy nie daje uprawnień (tylko wymusza zasady), RBAC daje uprawnienia.
+  - Lock na RG nie blokuje wszystkich operacji na zasobach podrzędnych.
+  - Tagi nie dziedziczą się automatycznie.
+  - Composite SLA to iloczyn, nie suma.
+  - Preview nie ma SLA.
+  - Limity subskrypcji i usług mogą się zmieniać – zawsze sprawdzaj aktualną dokumentację.
+  - Niektóre Resource Providers wymagają ręcznej rejestracji przed utworzeniem zasobu.
+  - Authentication Strength/Context w Conditional Access.
 
 ---
 
