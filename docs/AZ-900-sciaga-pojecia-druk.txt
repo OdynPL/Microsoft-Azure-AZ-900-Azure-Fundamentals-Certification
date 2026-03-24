@@ -463,6 +463,8 @@ Każda warstwa utrudnia atak i ogranicza skutki naruszenia bezpieczeństwa.
   - Azure Container Apps: 99,95% (prod.), brak SLA w Preview.
   - Azure OpenAI: SLA zależne od regionu i modelu, sprawdź dokumentację.
   - Azure Communication Services: 99,9% dla większości funkcji.
+  - 99,9% SLA = max ~43 minuty niedostępności w miesiącu.
+  - 99,99% SLA = max ~4 minuty niedostępności w miesiącu.
 **Composite SLA** – Łączna dostępność kilku usług (iloczyn SLA).
 **Preview vs GA** – Preview: funkcja testowa, brak pełnego SLA; GA: produkcyjna, pełne wsparcie.
 **Azure Hybrid Benefit** – Oszczędność kosztów licencji Windows Server/SQL.
