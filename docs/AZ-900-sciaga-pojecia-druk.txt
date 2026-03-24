@@ -509,6 +509,8 @@ Każda warstwa utrudnia atak i ogranicza skutki naruszenia bezpieczeństwa.
 **Reserved Instance Flexibility** – Możliwość zmiany rozmiaru/regionu Reserved VM w ramach tej samej rodziny.
 **Budżety i alerty** – Kontrola wydatków.
 **Azure Reservations** – Rezerwacja zasobów na 1/3 lata dla niższych kosztów.
+  - Reserved Instance: rezerwacja konkretnej VM na określony czas (1/3 lata), niższa cena.
+  - Reserved Capacity: rezerwacja określonej ilości zasobów (np. SQL, Storage, Cosmos DB) na określony czas, niższa cena.
 **Marketplace** – Sklep z gotowymi rozwiązaniami partnerów.
 **SLA (Service Level Agreement)** ⭐ – Gwarantowany poziom dostępności usługi (np. 99,9%).
 **SLA dla nowych usług:**
