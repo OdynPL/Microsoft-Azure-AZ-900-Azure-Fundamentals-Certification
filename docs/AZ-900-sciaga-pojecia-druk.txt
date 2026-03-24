@@ -144,6 +144,13 @@
 **Read Replica** – Odczyt z kopii bazy dla skalowania.
 
 ### Networking
+**Adresy IP w Azure**:
+    - Adres IP (publiczny lub prywatny) wymagany jest m.in. dla: VM, Load Balancer, Application Gateway, VPN Gateway, Azure Firewall, Bastion, kontenerów, Private Endpoint, Public Endpoint.
+  - Publiczne IP: domyślny limit 10 na subskrypcję (można zwiększyć przez support), płatne, używane do udostępniania zasobów na zewnątrz.
+  - Prywatne IP: przydzielane z zakresu VNet/subnet, brak twardych limitów praktycznych, służą do komunikacji wewnątrz chmury.
+  - Adresy IP mogą być statyczne (stałe) lub dynamiczne (zmienne).
+  - Private Endpoint daje prywatny IP, Service Endpoint nie.
+  - Limity i dostępność mogą się różnić w zależności od regionu i typu subskrypcji – zawsze sprawdzaj aktualną dokumentację.
 **Site-to-Site VPN** – Stałe, szyfrowane połączenie sieci lokalnej z siecią w Azure przez VPN Gateway; łączy całe sieci (np. biuro z chmurą).
 **Network Observability** – Monitorowanie i analiza ruchu sieciowego (Network Watcher, Connection Monitor, Virtual Network TAP, NSG Flow Logs).
 **Point-to-Site VPN** – Szyfrowane połączenie pojedynczego urządzenia (np. laptopa) z siecią w Azure przez VPN Gateway; idealne dla zdalnych pracowników.
@@ -221,6 +228,7 @@
 **Data Residency** – Lokalizacja przechowywania danych.
 **Compliance Manager** – Narzędzie do zarządzania zgodnością i audytami.
 **Azure Trust Center** – Informacje o certyfikatach, zgodności i bezpieczeństwie Azure.
+**Microsoft Service Trust Portal** – Portal z dokumentami potwierdzającymi zgodność Microsoft: lista standardów, wyniki testów penetracyjnych, oceny bezpieczeństwa, white papers, FAQ, raporty audytowe i inne materiały do wykazania zgodności i bezpieczeństwa usług Azure.
 **External Identities** – Dostęp partnerów/klientów bez konta w Directory.
 **App Service Plan** – Różnice między Free/Shared/Basic/Standard (np. własna domena, SSL, sloty wdrożeniowe).
 **Deployment Slots** – Sloty wdrożeniowe w App Service (testowanie bez downtime).
