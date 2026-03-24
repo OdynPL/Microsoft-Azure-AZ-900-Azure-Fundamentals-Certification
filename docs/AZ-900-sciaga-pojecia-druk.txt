@@ -14,6 +14,11 @@
 ---
 
 ## Cloud Concepts
+**Rodzaje chmury Azure:**
+  - **Azure Global (Standardowa)** – publiczna chmura dostępna na całym świecie, większość regionów i usług.
+  - **Azure Government** – oddzielna chmura dla instytucji rządowych USA, spełnia specjalne wymagania compliance i bezpieczeństwa.
+  - **Azure China** – oddzielna chmura zarządzana przez partnera (21Vianet), zgodna z chińskimi regulacjami, fizycznie i logicznie odseparowana.
+  - **Azure Germany** (historycznie) – oddzielna chmura dla Niemiec, obecnie wygaszana, zastąpiona regionami w globalnej Azure.
 **Cloud Adoption Patterns** – Typowe scenariusze wdrożenia chmury: migracja lift-and-shift, modernizacja, innowacja.
 **Cloud Operating Models** – Sposoby zarządzania środowiskiem chmurowym: centralny, federacyjny, hybrydowy.
 **FinOps** – Praktyki optymalizacji kosztów chmury przez współpracę IT, finansów i biznesu.
@@ -84,6 +89,11 @@
 
 ### Compute
 **Virtual Machine (VM)** ⭐ – Wirtualny serwer w chmurze.
+**Cloud Native** – Architektura i praktyki budowania aplikacji natywnych dla chmury: kontenery, mikroserwisy, CI/CD, automatyzacja, skalowalność, resilience.
+**AI Services** – Usługi sztucznej inteligencji (np. Azure OpenAI, Cognitive Services, Machine Learning) dostępne jako PaaS/API, bez potrzeby budowy własnych modeli.
+**Confidential Computing** – Przetwarzanie danych w zaszyfrowanej pamięci (TEE), ochrona danych w trakcie przetwarzania.
+**Edge Computing** – Przetwarzanie danych bliżej źródła (np. IoT, Azure Stack Edge), niskie opóźnienia, wsparcie dla scenariuszy offline.
+**Hybrid/Multicloud** – Zarządzanie zasobami w wielu chmurach i on-premises (np. Azure Arc, ExpressRoute, VPN, Azure Stack).
 **VM Scale Set (VMSS)** – Automatyczne skalowanie wielu VM.
   - Limit: do 1000 VM w jednym VMSS (z platform image); do 600 VM (z custom image); limit można zwiększyć przez support.
 **Availability Set** – Grupa VM rozłożona na domeny awarii/aktualizacji.
@@ -103,6 +113,7 @@
 
 ### Storage
 **Storage Account** ⭐ – Podstawowa jednostka magazynowania w Azure.
+**Sustainability** – Azure dąży do bycia „carbon negative” do 2030 r.; centra danych zasilane energią odnawialną, narzędzia do raportowania śladu węglowego (Emissions Impact Dashboard).
 **Blob Storage** – Przechowywanie obiektów (np. backupy, obrazy).
 **File Storage** – Udostępnianie plików przez SMB/NFS.
 **Queue Storage** – Kolejki komunikatów.
@@ -131,6 +142,7 @@
 
 ### Networking
 **Site-to-Site VPN** – Stałe, szyfrowane połączenie sieci lokalnej z siecią w Azure przez VPN Gateway; łączy całe sieci (np. biuro z chmurą).
+**Network Observability** – Monitorowanie i analiza ruchu sieciowego (Network Watcher, Connection Monitor, Virtual Network TAP, NSG Flow Logs).
 **Point-to-Site VPN** – Szyfrowane połączenie pojedynczego urządzenia (np. laptopa) z siecią w Azure przez VPN Gateway; idealne dla zdalnych pracowników.
 **ExpressRoute** – Dedykowane, prywatne łącze do Azure, omija publiczny internet, zapewnia wyższą przepustowość, niższe opóźnienia i większe bezpieczeństwo; nie szyfruje ruchu domyślnie.
 **Virtual Network (VNet)** ⭐ – Prywatna sieć w Azure.
@@ -269,6 +281,11 @@
 **Route Table** – Definiuje trasowanie ruchu w sieci.
 **UDR (User Defined Route)** – Niestandardowe trasy dla ruchu sieciowego.
 **DDoS Protection** – Ochrona przed atakami DDoS.
+  - Dostępne tiery:
+      - **Basic** – domyślnie włączony dla wszystkich usług w Azure, bez dodatkowych kosztów; chroni przed typowymi atakami wolumetrycznymi na poziomie platformy (L3/L4), brak konfiguracji i raportowania.
+      - **DDoS Network Protection** (dawniej Standard) – płatny, zaawansowana ochrona dla całych sieci (VNet); adaptacyjne progi, alerty, raporty, wsparcie 24/7, rekompensata kosztów ataku (Service Credit), gwarancja SLA, integracja z Azure Firewall/WAF, ochrona przed bardziej złożonymi atakami.
+      - **DDoS IP Protection** – płatny, ochrona pojedynczych publicznych adresów IP (np. dla aplikacji, usług PaaS, kontenerów, IoT); tańsza opcja dla mniejszych środowisk lub pojedynczych usług, bez zaawansowanych funkcji Network Protection.
+    - DDoS Network/IP Protection nie chronią warstwy aplikacyjnej (L7) – do tego służy WAF.
 **Virtual Network TAP** – Monitoring i analiza ruchu sieciowego z VM.
 **MPLS** – Multi-Protocol Label Switching, wydajny routing w sieciach WAN.
 
@@ -464,6 +481,7 @@ Każda warstwa utrudnia atak i ogranicza skutki naruszenia bezpieczeństwa.
 ## Core Databases & Extended Services
 
 ## Nowe i rozszerzone usługi Azure
+**Databases & Analytics – Nowości**: Azure Data Explorer (Kusto), Azure Data Lake Gen2, Azure Synapse Link, Azure Purview Data Map, Azure Cosmos DB (analiza globalna, multi-model), Azure AI Search (AI w wyszukiwaniu danych).
 **Azure OpenAI** – Dostęp do modeli AI (np. GPT) jako usługa PaaS.
 **Azure AI Search** – Wyszukiwanie semantyczne i AI w danych.
 **Azure Communication Services** – SMS, głos, wideo, chat jako usługa.
@@ -515,6 +533,70 @@ Każda warstwa utrudnia atak i ogranicza skutki naruszenia bezpieczeństwa.
 ## Exam Tips & Trick Questions
 
 **Preview vs GA vs SLA:** Preview (private/public) nie ma SLA, tylko GA ma gwarantowany poziom dostępności.
+**Tricky exam traps/limits:**
+  - Tagów max 50 na zasób, nie są dziedziczone automatycznie.
+  - Limit subskrypcji na tenant: 9800.
+  - Limit resource groups na subskrypcję: 980.
+  - Limit VMSS: 1000 VM (platform image), 600 VM (custom image).
+  - Limit Storage Account: 250 na subskrypcję.
+  - Limit publicznych IP: 10 (domyślnie, można zwiększyć).
+  - Limit RBAC assignments: 2000 na subskrypcję.
+  - Limit Policy assignments: 2000 na subskrypcję.
+  - Limit Managed Identities: 200 na subskrypcję.
+  - Limit App Service Plan: 100 na region.
+  - Limit Cosmos DB: 50 kont na subskrypcję.
+  - Limit SQL Database DTU: zależny od SKU.
+  - Limit Azure Functions: 1.5 mln wykonów/miesiąc (Free), 400k GB-s (Consumption).
+  - Limit Data Factory pipeline: 40 równoległych uruchomień.
+  - Limit Azure Policy Guest Configuration: 5 na subskrypcję (domyślnie).
+  - Limit Azure Arc: 5000 serwerów na subskrypcję.
+  - Limit Azure Monitor alert rules: 250 na subskrypcję.
+  - Limit Azure Key Vault: 5000 kluczy/sekretów/certyfikatów.
+  - Limit Azure AD B2C: 50k użytkowników (Free), 100k (Standard), więcej płatne.
+  - Limit Azure AD PIM: 250 ról na tenant.
+  - Limit Azure Lighthouse delegacji: 1000 klientów na partnera.
+  - Limit Azure Bastion: 50 VM na Bastion.
+  - Limit Azure Firewall: 1000 reguł aplikacyjnych.
+  - Limit Azure Sentinel: 10k zdarzeń/sekundę.
+  - Limit Azure Purview: 1000 źródeł danych.
+  - Limit Azure Data Lake Storage: 500 TB na konto.
+  - Limit Azure Blob Storage: 5 PB na konto.
+  - Limit Azure Managed Grafana: 10 dashboardów na workspace.
+  - Limit Azure Advisor rekomendacji: 1000 na subskrypcję.
+  - Limit Azure Reservations: 1000 na subskrypcję.
+  - Limit Azure Free Account: 1 na osobę.
+  - Limit Azure OpenAI: 5 modeli na subskrypcję (domyślnie).
+  - Limit Azure Communication Services: 100k wiadomości/dzień.
+  - Limit Azure Quantum: 10 zadań równolegle.
+  - Limit Azure Orbital: 10 ground stations na subskrypcję.
+  - Limit Azure Confidential Ledger: 1000 wpisów/dzień.
+  - Limit Azure Chaos Studio: 100 eksperymentów na subskrypcję.
+  - Limit Azure Container Apps: 1000 kontenerów na środowisko.
+  - Limit Azure Spring Apps: 100 aplikacji na subskrypcję.
+  - Limit Azure Machine Learning: 1000 eksperymentów na subskrypcję.
+  - Limit Azure Bot Service: 100 botów na subskrypcję.
+  - Limit Azure Media Services: 1000 assetów na konto.
+  - Limit Azure Maps: 100k żądań/dzień.
+  - Limit Azure HDInsight: 50 klastrów na subskrypcję.
+  - Limit Azure Data Factory: 50 pipeline na subskrypcję.
+  - Limit Azure Arc: 5000 serwerów na subskrypcję.
+  - Limit Azure VMware Solution: 10 środowisk na subskrypcję.
+  - Limit Azure API Management: 1000 API na instancję.
+  - Limit Azure Logic Apps: 1000 workflow na subskrypcję.
+  - Limit Azure Event Hub: 20 hubów na namespace.
+  - Limit Azure Service Bus: 1000 queue/topic na namespace.
+  - Limit Azure Event Grid: 1000 topic na subskrypcję.
+  - Limit Azure Data Lake Analytics: 20 jobów równolegle.
+  - Limit Azure Purview Data Map: 1000 źródeł danych.
+  - Limit Azure Synapse Analytics: 60 pool na subskrypcję.
+  - Limit Azure Data Explorer: 1000 tabel na klaster.
+  - Limit Azure Cognitive Services: 1000 żądań/minutę.
+  - Limit Azure AI Search: 50 indeksów na usługę.
+  - Limit Azure Communication Services: 100k wiadomości/dzień.
+  - Limit Azure Confidential Computing: 100 VM na subskrypcję.
+  - Limit Azure Edge Zones: 10 stref na subskrypcję.
+  - Limit Azure Sustainability Dashboard: 10 raportów na subskrypcję.
+  - Limit Azure Emissions Impact Dashboard: 10 raportów na subskrypcję.
 **Support Plans:** Tylko plany Basic, Developer, Standard, Professional Direct pozwalają otwierać zgłoszenia serwisowe. Free nie umożliwia otwierania ticketów.
 **Support Plan Review:** Tylko Professional Direct i wyższe umożliwiają architektoniczny przegląd środowiska przez Microsoft.
 **Redundancja Storage:** Jeśli wymagany jest odczyt z regionu zapasowego, wybierz RA-GRS lub RA-GZRS.
