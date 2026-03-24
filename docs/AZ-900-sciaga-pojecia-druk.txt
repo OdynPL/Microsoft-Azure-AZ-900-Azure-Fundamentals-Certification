@@ -159,6 +159,7 @@
 **ExpressRoute** – Dedykowane, prywatne łącze do Azure, omija publiczny internet, zapewnia wyższą przepustowość, niższe opóźnienia i większe bezpieczeństwo; nie szyfruje ruchu domyślnie.
 **Virtual Network (VNet)** ⭐ – Prywatna sieć w Azure.
 **Subnet** – Podział VNet na mniejsze segmenty.
+  - Subnety pozwalają na segmentację sieci, izolację środowisk (np. prod/dev), kontrolę ruchu (NSG), lepsze bezpieczeństwo i zarządzanie adresacją IP.
 **Network Security Group (NSG)** – Kontrola ruchu sieciowego (reguły).
 **Azure Firewall** – Zarządzana zapora sieciowa.
 **VPN Gateway** – Szyfrowane połączenie z on-premises.
