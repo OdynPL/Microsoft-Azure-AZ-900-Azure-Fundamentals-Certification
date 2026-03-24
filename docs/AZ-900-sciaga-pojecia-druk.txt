@@ -100,6 +100,7 @@
 **Availability Set** – Grupa VM rozłożona na domeny awarii/aktualizacji.
 **Dedicated Host** – Fizyczny serwer dedykowany jednej organizacji.
 **App Service** – Hostowanie aplikacji web/API bez zarządzania serwerem.
+  - App Service posiada blade Resource Health – monitoruje dostępność i awarie platformy.
 **Azure Functions** – Serverless, kod uruchamiany na żądanie.
 **Container Instances (ACI)** – Szybkie uruchamianie pojedynczych kontenerów.
 **Azure Kubernetes Service (AKS)** – Orkiestracja kontenerów (Kubernetes).
@@ -114,6 +115,8 @@
 
 ### Storage
 **Storage Account** ⭐ – Podstawowa jednostka magazynowania w Azure.
+  - Storage Account posiada blade Resource Health – informuje o stanie zdrowia usługi i ewentualnych problemach platformy.
+  - AKS posiada blade Resource Health – pokazuje stan klastra i ewentualne problemy platformy.
 **Sustainability** – Azure dąży do bycia „carbon negative” do 2030 r.; centra danych zasilane energią odnawialną, narzędzia do raportowania śladu węglowego (Emissions Impact Dashboard).
 **Blob Storage** – Przechowywanie obiektów (np. backupy, obrazy).
 **File Storage** – Udostępnianie plików przez SMB/NFS.
@@ -294,6 +297,8 @@
 
 ## Core Solutions & Management Tools
 **Azure Portal** ⭐ – Graficzny interfejs do zarządzania zasobami Azure.
+  - Możesz: zarządzać zasobami przez GUI.
+  - Nie możesz: automatyzować, wersjonować, wdrażać masowo (do tego CLI/PowerShell/DevOps).
 **Azure CLI** – Narzędzie wiersza poleceń do zarządzania Azure.
 **Azure PowerShell** – Zarządzanie Azure przez skrypty PowerShell.
 **Cloud Shell** – Terminal w przeglądarce z preinstalowanymi narzędziami.
@@ -494,6 +499,9 @@ Każda warstwa utrudnia atak i ogranicza skutki naruszenia bezpieczeństwa.
 **Azure Orbital** – Usługi satelitarne (ground station as a service).
 
 **Azure SQL Database** – Relacyjna baza danych (OLTP).
+  - Azure SQL Database posiada blade Resource Health – monitoruje dostępność i awarie platformy.
+  - Load Balancer posiada blade Resource Health – informuje o stanie zdrowia zasobu.
+  - Application Gateway posiada blade Resource Health – informuje o stanie zdrowia zasobu.
 **Azure Database for MySQL/PostgreSQL** – Zarządzane bazy open source.
 **Azure Synapse Analytics** – Analityka, hurtownie danych (OLAP).
 **Cosmos DB** – NoSQL, globalna replikacja, niskie opóźnienia.
