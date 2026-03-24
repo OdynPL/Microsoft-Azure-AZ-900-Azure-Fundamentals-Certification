@@ -449,7 +449,7 @@ Każda warstwa utrudnia atak i ogranicza skutki naruszenia bezpieczeństwa.
 **RBAC (Role-Based Access Control)** ⭐ – System zarządzania dostępem do zasobów na podstawie ról przypisanych użytkownikom, grupom lub aplikacjom. Uprawnienia można przypisywać na poziomie Management Group, Subscription, Resource Group lub Resource. Dziedziczenie uprawnień działa tylko w dół hierarchii.
     - Rodzaje locków (blokad):
       - **ReadOnly** – zasób można tylko odczytywać, nie można edytować ani usuwać.
-      - **Delete** – zasób nie może być usunięty, ale można go edytować.
+      - **CanNotDelete (Delete)** – nie można usunąć zasobu, ale można go edytować.
     - Typy efektów (effect):
       - **Deny** – blokuje wdrożenie niezgodnego zasobu.
       - **Audit** – oznacza zasób jako niezgodny, ale nie blokuje.
