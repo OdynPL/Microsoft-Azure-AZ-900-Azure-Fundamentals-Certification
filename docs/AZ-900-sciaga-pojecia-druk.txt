@@ -394,6 +394,7 @@ Każda warstwa utrudnia atak i ogranicza skutki naruszenia bezpieczeństwa.
   - Microsoft Entra Conditional Access – narzędzie do wdrażania polityk dostępu warunkowego w Entra ID; pozwala automatycznie wymuszać MFA, ograniczać dostęp na podstawie lokalizacji, urządzenia, ryzyka, stanu zgodności, aplikacji i innych kryteriów.
 **MFA (Multi-Factor Authentication)** ⭐ – Weryfikacja tożsamości wieloma metodami.
 **Passwordless Authentication** – Logowanie bez hasła (np. Windows Hello, FIDO2).
+  - Metody w Azure: Windows Hello (biometria), klucze FIDO2, Microsoft Authenticator, kod SMS.
 **Key Vault** – Bezpieczne przechowywanie sekretów, kluczy, certyfikatów.
 **Managed Identity** – Tożsamość dla aplikacji bez haseł.
 **RBAC (Role-Based Access Control)** ⭐ – Nadawanie uprawnień do zasobów na podstawie ról.
