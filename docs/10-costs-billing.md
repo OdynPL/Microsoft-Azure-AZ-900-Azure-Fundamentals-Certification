@@ -55,6 +55,9 @@
   Porównanie kosztów on‑premise vs Azure (sprzęt, energia, zarządzanie, amortyzacja).  
   Pomocny przy planowaniu migracji i budowaniu business case.
 
+- **Azure Migrate Business Case**  
+  Narzędzie do analizy opłacalności migracji do chmury; pozwala oszacować koszty, korzyści i zwrot z inwestycji (ROI) na podstawie rzeczywistych danych z infrastruktury lokalnej. Jest następcą TCO Calculator i oferuje bardziej zaawansowane możliwości analizy biznesowej migracji do Azure.
+
 - **Cost Management**  
   Wbudowane narzędzie do analizy i kontroli wydatków:
   - budżety i alerty,

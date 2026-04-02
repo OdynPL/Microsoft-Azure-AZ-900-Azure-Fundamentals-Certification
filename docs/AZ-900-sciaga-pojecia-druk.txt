@@ -502,6 +502,7 @@ Każda warstwa utrudnia atak i ogranicza skutki naruszenia bezpieczeństwa.
 
 **Pricing Calculator** – Szacowanie kosztów usług Azure.
 **TCO Calculator** – Porównanie kosztów chmura vs. on-premises.
+**Azure Migrate Business Case** – Narzędzie do analizy opłacalności migracji do chmury; pozwala oszacować koszty, korzyści i zwrot z inwestycji (ROI) na podstawie rzeczywistych danych z infrastruktury lokalnej.
 **Cost Management** ⭐ – Analiza i optymalizacja kosztów.
 **Cost Allocation** – Przypisywanie kosztów do działów/projektów (np. przez tagi, invoice section).
 **Chargeback** – Przenoszenie kosztów IT na działy biznesowe na podstawie faktycznego zużycia.
