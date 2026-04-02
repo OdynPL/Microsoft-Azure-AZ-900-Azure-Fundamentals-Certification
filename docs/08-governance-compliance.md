@@ -151,11 +151,24 @@ Podział odpowiedzialności między Azure a klientem.
 
 **Service Trust Portal** służy do szybkiego sprawdzania, jak Microsoft spełnia wymagania bezpieczeństwa i zgodności, co ułatwia audyty i ocenę ryzyka.
 
+
 <img src="../assets/servicetrust.svg" alt="Service Trust Portal - raporty zgodnosci">
 
 - **Microsoft Service Trust Portal** – raporty zgodności (ISO, SOC, PCI), audyty, certyfikaty.
 - **Data Residency (rezydencja danych)** – dane pozostają w wybranej geografii (np. EU).
 - **Azure Government / Azure China** – suwerenne regiony dla wymagań regulacyjnych.
+
+---
+
+### Compliance Manager
+
+**Compliance Manager** to narzędzie w portalu Microsoft, które pomaga organizacjom zarządzać zgodnością z wymaganiami prawnymi i branżowymi (np. ISO, GDPR, NIST, PCI-DSS). Umożliwia:
+- ocenę poziomu zgodności,
+- śledzenie postępu wdrożenia kontroli,
+- generowanie raportów audytowych,
+- rekomendacje działań naprawczych.
+
+Compliance Manager automatycznie monitoruje stan zgodności usług w Azure i innych chmurach Microsoft, ułatwiając przygotowanie do audytów i spełnienie wymagań regulacyjnych.
 
 ---
 
